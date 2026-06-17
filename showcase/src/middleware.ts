@@ -42,7 +42,8 @@ export default async function middleware(request: NextRequest) {
   if (
     pathname.startsWith("/api") ||
     pathname.startsWith("/_next") ||
-    pathname.includes(".")
+    pathname.includes(".") ||
+    pathname === "/opengraph-image"
   ) {
     return NextResponse.next();
   }
