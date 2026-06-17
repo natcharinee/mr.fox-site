@@ -11,6 +11,30 @@ if (!connectionString) {
   throw new Error("DATABASE_URL is not set");
 }
 
+function splitSql(sql: string): string[] {
+  const statements: string[] = [];
+  let current = "";
+  let inDollarQuote = false;
+
+  for (const line of sql.split("\n")) {
+    current += `${line}\n`;
+    const dollars = (line.match(/\$\$/g) ?? []).length;
+    if (dollars % 2 === 1) {
+      inDollarQuote = !inDollarQuote;
+    }
+    if (!inDollarQuote && line.trim().endsWith(";")) {
+      statements.push(current.trim());
+      current = "";
+    }
+  }
+
+  if (current.trim()) {
+    statements.push(current.trim());
+  }
+
+  return statements.filter(Boolean);
+}
+
 async function main() {
   const sql = neon(connectionString);
   const existing = await sql.query(
@@ -22,13 +46,10 @@ async function main() {
   }
 
   const initSql = readFileSync(join(__dirname, "init.sql"), "utf8");
-  const statements = initSql
-    .split(/;\s*\n/)
-    .map((statement) => statement.trim())
-    .filter(Boolean);
+  const statements = splitSql(initSql);
 
   for (const statement of statements) {
-    await sql.query(`${statement};`);
+    await sql.query(statement);
   }
 
   console.log(`Applied ${statements.length} schema statements.`);
