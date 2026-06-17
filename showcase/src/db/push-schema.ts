@@ -3,13 +3,15 @@ import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { neon } from "@neondatabase/serverless";
 
-const connectionString = (
-  process.env.DATABASE_URL_DIRECT ?? process.env.DATABASE_URL
-)?.replace(/&channel_binding=require/g, "");
-
-if (!connectionString) {
-  throw new Error("DATABASE_URL is not set");
+function resolveConnectionString(): string {
+  const raw = process.env.DATABASE_URL_DIRECT ?? process.env.DATABASE_URL;
+  if (!raw) {
+    throw new Error("DATABASE_URL is not set");
+  }
+  return raw.replace(/&channel_binding=require/g, "");
 }
+
+const connectionString = resolveConnectionString();
 
 function splitSql(sql: string): string[] {
   const statements: string[] = [];
