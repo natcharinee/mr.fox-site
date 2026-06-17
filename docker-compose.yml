@@ -1,0 +1,24 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: mrfox-postgres
+    restart: unless-stopped
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: mrfox
+      POSTGRES_PASSWORD: mrfox_dev
+      POSTGRES_DB: mrfox_showcase
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./scripts/init-databases.sql:/docker-entrypoint-initdb.d/init-databases.sql
+
+  redis:
+    image: redis:7-alpine
+    container_name: mrfox-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+
+volumes:
+  postgres_data:

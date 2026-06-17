@@ -1,0 +1,72 @@
+{
+  "nav": {
+    "platforms": "Platforms",
+    "apps": "Applications",
+    "features": "Features",
+    "news": "News",
+    "about": "About",
+    "contact": "Contact",
+    "search": "ค้นหา",
+    "download": "ดาวน์โหลดแอป"
+  },
+  "home": {
+    "badge": "Creator Economy Ecosystem",
+    "title": "แพลตฟอร์มครบวงจรสำหรับ",
+    "titleHighlight": "Creator",
+    "titleSuffix": "และชุมชน",
+    "subtitle": "Mr.FOX พัฒนา Platform และ Mobile Applications หลายประเภท — จาก Creator Economy ไปจนถึง Contest และ Exhibition ใน ecosystem เดียว",
+    "explorePlatforms": "สำรวจ Platforms",
+    "downloadApps": "ดาวน์โหลดแอป",
+    "ecosystem": "Ecosystem Overview",
+    "ecosystemDesc": "5 กลุ่มใหญ่ครอบคลุมทุกประเภทแพลตฟอร์ม",
+    "platformTypes": "10 Platform Types",
+    "platformTypesDesc": "Template มาตรฐาน — เพิ่มแอปได้ไม่จำกัดโดยไม่แก้โครงสร้าง",
+    "viewAll": "ดูทั้งหมด",
+    "featuredApps": "Featured Applications",
+    "featuredAppsDesc": "ดาวน์โหลดได้ภายใน ≤ 3 คลิก",
+    "coreFeatures": "Core Features",
+    "latestNews": "Latest News",
+    "stats": {
+      "platformTypes": "Platform Types",
+      "applications": "Applications",
+      "features": "Features",
+      "downloads": "Downloads"
+    }
+  },
+  "search": {
+    "title": "ค้นหา",
+    "subtitle": "ค้นหา Platform, Application, Feature และ News",
+    "placeholder": "พิมพ์คำค้นหา...",
+    "submit": "ค้นหา",
+    "noResults": "ไม่พบผลลัพธ์",
+    "platforms": "Platforms",
+    "apps": "Applications",
+    "features": "Features",
+    "news": "News"
+  },
+  "footer": {
+    "tagline": "Ecosystem แพลตฟอร์ม Creator Economy, Community, Contest และ Exhibition",
+    "links": "ลิงก์",
+    "legal": "กฎหมาย",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "copyright": "สงวนลิขสิทธิ์"
+  },
+  "legal": {
+    "privacyTitle": "นโยบายความเป็นส่วนตัว",
+    "privacyIntro": "Mr.FOX ให้ความสำคัญกับการคุ้มครองข้อมูลส่วนบุคคลของผู้ใช้ตาม พ.ร.บ. คุ้มครองข้อมูลส่วนบุคคล (PDPA)",
+    "termsTitle": "ข้อกำหนดการใช้บริการ",
+    "termsIntro": "การใช้งานเว็บไซต์ Mr.FOX Showcase ถือว่าคุณยอมรับข้อกำหนดเหล่านี้",
+    "dataCollection": "การเก็บรวบรวมข้อมูล",
+    "dataCollectionBody": "เราเก็บข้อมูลที่จำเป็นเมื่อคุณติดต่อเราผ่านแบบฟอร์ม Contact หรือเข้าสู่ระบบ CMS — ไม่มีการเก็บข้อมูลการชำระเงินบน Showcase",
+    "usage": "การใช้งาน",
+    "usageBody": "เนื้อหาบน Showcase มีวัตถุประสงค์เพื่อแสดงข้อมูล ecosystem — การทำธุรกรรมจริงอยู่ในแอป Engine แยกต่างหาก",
+    "contact": "ติดต่อ",
+    "contactBody": "หากมีคำถามเกี่ยวกับ PDPA กรุณาติดต่อผ่านหน้า Contact"
+  },
+  "common": {
+    "featured": "Featured",
+    "back": "กลับ",
+    "details": "รายละเอียด"
+  }
+}

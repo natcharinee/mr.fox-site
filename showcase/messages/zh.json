@@ -1,0 +1,72 @@
+{
+  "nav": {
+    "platforms": "平台类型",
+    "apps": "应用",
+    "features": "功能",
+    "news": "新闻",
+    "about": "关于",
+    "contact": "联系",
+    "search": "搜索",
+    "download": "下载应用"
+  },
+  "home": {
+    "badge": "创作者经济生态系统",
+    "title": "面向",
+    "titleHighlight": "创作者",
+    "titleSuffix": "与社区的完整平台",
+    "subtitle": "Mr.FOX 打造多种平台与移动应用 — 涵盖创作者经济、社区、竞赛与展览生态系统。",
+    "explorePlatforms": "探索平台",
+    "downloadApps": "下载应用",
+    "ecosystem": "生态系统概览",
+    "ecosystemDesc": "5 大类别覆盖所有平台类型",
+    "platformTypes": "10 种平台类型",
+    "platformTypesDesc": "标准模板 — 扩展至 100+ 应用无需改动架构",
+    "viewAll": "查看全部",
+    "featuredApps": "精选应用",
+    "featuredAppsDesc": "≤ 3 次点击即可下载",
+    "coreFeatures": "核心功能",
+    "latestNews": "最新新闻",
+    "stats": {
+      "platformTypes": "平台类型",
+      "applications": "应用",
+      "features": "功能",
+      "downloads": "下载"
+    }
+  },
+  "search": {
+    "title": "搜索",
+    "subtitle": "搜索平台、应用、功能和新闻",
+    "placeholder": "输入搜索词...",
+    "submit": "搜索",
+    "noResults": "未找到结果",
+    "platforms": "平台",
+    "apps": "应用",
+    "features": "功能",
+    "news": "新闻"
+  },
+  "footer": {
+    "tagline": "创作者经济、社区、竞赛与展览生态系统",
+    "links": "链接",
+    "legal": "法律",
+    "privacy": "隐私政策",
+    "terms": "服务条款",
+    "copyright": "版权所有"
+  },
+  "legal": {
+    "privacyTitle": "隐私政策",
+    "privacyIntro": "Mr.FOX 致力于根据适用法律（PDPA）保护您的个人数据。",
+    "termsTitle": "服务条款",
+    "termsIntro": "使用 Mr.FOX Showcase 网站即表示您同意这些条款。",
+    "dataCollection": "数据收集",
+    "dataCollectionBody": "当您联系我们或使用 CMS 时，我们会收集必要信息——Showcase 不存储支付数据。",
+    "usage": "使用",
+    "usageBody": "Showcase 内容仅供参考。实际交易在独立的 Engine 应用中进行。",
+    "contact": "联系",
+    "contactBody": "如有隐私问题，请通过联系页面与我们联系。"
+  },
+  "common": {
+    "featured": "精选",
+    "back": "返回",
+    "details": "详情"
+  }
+}

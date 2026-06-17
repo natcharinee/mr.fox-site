@@ -1,0 +1,29 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Build
+.next/
+out/
+dist/
+build/
+
+# Env
+.env
+.env.local
+.env.*.local
+
+# Debug
+npm-debug.log*
+.DS_Store
+
+# Drizzle
+drizzle/meta/
+
+# Uploads
+showcase/public/uploads/
+
+# IDE
+.idea/
+.vscode/

@@ -1,0 +1,72 @@
+{
+  "nav": {
+    "platforms": "Platforms",
+    "apps": "Applications",
+    "features": "Features",
+    "news": "News",
+    "about": "About",
+    "contact": "Contact",
+    "search": "Search",
+    "download": "Download Apps"
+  },
+  "home": {
+    "badge": "Creator Economy Ecosystem",
+    "title": "The complete platform for",
+    "titleHighlight": "Creators",
+    "titleSuffix": "and communities",
+    "subtitle": "Mr.FOX builds Platforms and Mobile Applications across Creator Economy, Community, Contest, and Exhibition — one ecosystem.",
+    "explorePlatforms": "Explore Platforms",
+    "downloadApps": "Download Apps",
+    "ecosystem": "Ecosystem Overview",
+    "ecosystemDesc": "5 major categories covering every platform type",
+    "platformTypes": "10 Platform Types",
+    "platformTypesDesc": "Standard templates — scale to 100+ apps without changing architecture",
+    "viewAll": "View all",
+    "featuredApps": "Featured Applications",
+    "featuredAppsDesc": "Download in ≤ 3 clicks",
+    "coreFeatures": "Core Features",
+    "latestNews": "Latest News",
+    "stats": {
+      "platformTypes": "Platform Types",
+      "applications": "Applications",
+      "features": "Features",
+      "downloads": "Downloads"
+    }
+  },
+  "search": {
+    "title": "Search",
+    "subtitle": "Search Platforms, Applications, Features, and News",
+    "placeholder": "Type to search...",
+    "submit": "Search",
+    "noResults": "No results found",
+    "platforms": "Platforms",
+    "apps": "Applications",
+    "features": "Features",
+    "news": "News"
+  },
+  "footer": {
+    "tagline": "Creator Economy, Community, Contest & Exhibition ecosystem",
+    "links": "Links",
+    "legal": "Legal",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "copyright": "All rights reserved"
+  },
+  "legal": {
+    "privacyTitle": "Privacy Policy",
+    "privacyIntro": "Mr.FOX is committed to protecting your personal data under applicable privacy laws (PDPA).",
+    "termsTitle": "Terms of Service",
+    "termsIntro": "By using the Mr.FOX Showcase website, you agree to these terms.",
+    "dataCollection": "Data Collection",
+    "dataCollectionBody": "We collect information when you contact us or use the CMS — no payment data is stored on Showcase.",
+    "usage": "Usage",
+    "usageBody": "Showcase content is informational. Real transactions happen in the separate Engine app.",
+    "contact": "Contact",
+    "contactBody": "For privacy inquiries, please use the Contact page."
+  },
+  "common": {
+    "featured": "Featured",
+    "back": "Back",
+    "details": "Details"
+  }
+}
