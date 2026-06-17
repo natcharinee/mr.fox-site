@@ -11,8 +11,6 @@ function resolveConnectionString(): string {
   return raw.replace(/&channel_binding=require/g, "");
 }
 
-const connectionString = resolveConnectionString();
-
 function splitSql(sql: string): string[] {
   const statements: string[] = [];
   let current = "";
@@ -38,7 +36,7 @@ function splitSql(sql: string): string[] {
 }
 
 async function main() {
-  const sql = neon(connectionString);
+  const sql = neon(resolveConnectionString());
   const existing = await sql.query(
     "SELECT to_regclass('public.platform_categories') AS table_name",
   );
