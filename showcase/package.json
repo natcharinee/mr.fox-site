@@ -5,13 +5,13 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "vercel-build": "tsx src/db/push-schema.ts && tsx src/db/seed.ts && next build",
+    "vercel-build": "tsx scripts/push-schema.ts && tsx scripts/seed.ts && next build",
     "start": "next start",
     "lint": "eslint",
     "db:push": "drizzle-kit push",
-    "db:push:remote": "tsx src/db/push-schema.ts",
+    "db:push:remote": "tsx scripts/push-schema.ts",
     "db:generate": "drizzle-kit generate",
-    "db:seed": "tsx src/db/seed.ts"
+    "db:seed": "tsx scripts/seed.ts"
   },
   "dependencies": {
     "@base-ui/react": "^1.5.0",

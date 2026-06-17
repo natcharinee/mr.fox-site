@@ -1,6 +1,6 @@
 import "dotenv/config";
 import { eq } from "drizzle-orm";
-import { db } from "./index";
+import { db } from "../src/db/index";
 import {
   applications,
   banners,
@@ -13,8 +13,8 @@ import {
   platformTypePermissions,
   platformTypes,
   users,
-} from "./schema";
-import { hashPassword } from "../lib/password";
+} from "../src/db/schema";
+import { hashPassword } from "../src/lib/password";
 
 type Status = "core" | "optional" | "custom" | "no";
 type PtSlug =

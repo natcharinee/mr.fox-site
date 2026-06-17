@@ -45,7 +45,10 @@ async function main() {
     return;
   }
 
-  const initSql = readFileSync(join(__dirname, "init.sql"), "utf8");
+  const initSql = readFileSync(
+    join(__dirname, "../src/db/init.sql"),
+    "utf8",
+  );
   const statements = splitSql(initSql);
 
   for (const statement of statements) {
