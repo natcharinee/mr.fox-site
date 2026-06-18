@@ -12,6 +12,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { BrandLogo } from "@/components/brand/brand-logo";
 
 export default function AdminLoginPage() {
   const router = useRouter();
@@ -47,8 +48,9 @@ export default function AdminLoginPage() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-muted/30 p-4">
       <Card className="w-full max-w-md">
-        <CardHeader>
-          <CardTitle>🦊 Mr.FOX Admin</CardTitle>
+        <CardHeader className="items-center text-center">
+          <BrandLogo className="justify-center" wordmarkClassName="h-9" iconClassName="size-10" />
+          <CardTitle className="mt-2">Admin</CardTitle>
           <CardDescription>เข้าสู่ระบบ CMS / Back Office</CardDescription>
         </CardHeader>
         <CardContent>

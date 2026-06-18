@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import { BrandLogo } from "@/components/brand/brand-logo";
 import type { SessionPayload } from "@/lib/auth";
 
 const NAV = [
@@ -53,8 +54,8 @@ export function AdminShell({
   return (
     <div className="flex min-h-screen">
       <aside className="hidden w-60 shrink-0 border-r bg-muted/20 md:flex md:flex-col">
-        <div className="flex h-16 items-center border-b px-4 font-bold">
-          🦊 Admin
+        <div className="flex h-16 items-center border-b px-4">
+          <BrandLogo iconClassName="size-8" wordmarkClassName="h-6" />
         </div>
         <nav className="flex-1 space-y-1 p-3">
           {items.map((item) => {
@@ -102,9 +103,9 @@ export function AdminShell({
       </aside>
       <div className="flex min-w-0 flex-1 flex-col">
         <header className="flex h-16 items-center justify-between border-b px-4 md:px-8">
-          <h1 className="text-sm font-medium text-muted-foreground md:hidden">
-            Mr.FOX Admin
-          </h1>
+          <div className="md:hidden">
+            <BrandLogo showWordmark={false} iconClassName="size-8" />
+          </div>
           <p className="hidden text-sm text-muted-foreground md:block">
             CMS / Back Office
           </p>

@@ -27,3 +27,4 @@ showcase/public/uploads/
 # IDE
 .idea/
 .vscode/
+.vercel

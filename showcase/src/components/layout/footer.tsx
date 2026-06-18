@@ -3,7 +3,7 @@
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { Separator } from "@/components/ui/separator";
-import { SITE_NAME } from "@/lib/metadata";
+import { BrandLogo } from "@/components/brand/brand-logo";
 
 export function Footer() {
   const t = useTranslations("footer");
@@ -23,8 +23,8 @@ export function Footer() {
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
         <div className="grid gap-8 md:grid-cols-3">
           <div>
-            <p className="text-lg font-bold">{SITE_NAME}</p>
-            <p className="mt-2 text-sm text-muted-foreground max-w-xs">
+            <BrandLogo wordmarkClassName="h-7" />
+            <p className="mt-3 text-sm text-muted-foreground max-w-xs">
               {t("tagline")}
             </p>
           </div>
@@ -61,7 +61,7 @@ export function Footer() {
         </div>
         <Separator className="my-8" />
         <p className="text-center text-sm text-muted-foreground">
-          © {new Date().getFullYear()} {SITE_NAME}. {t("copyright")}.
+          © {new Date().getFullYear()} Mr.FOX. {t("copyright")}.
         </p>
       </div>
     </footer>

@@ -5,7 +5,7 @@ import { Search } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { LinkButton } from "@/components/ui/link-button";
 import { LocaleSwitcher } from "@/components/layout/locale-switcher";
-import { SITE_NAME } from "@/lib/metadata";
+import { BrandLogo } from "@/components/brand/brand-logo";
 
 export function Header() {
   const t = useTranslations("nav");
@@ -22,11 +22,8 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 border-b border-border/60 bg-background/80 backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
-        <Link href="/" className="flex items-center gap-2 font-bold text-xl tracking-tight">
-          <span className="flex size-8 items-center justify-center rounded-lg bg-primary text-primary-foreground text-sm">
-            🦊
-          </span>
-          <span>{SITE_NAME}</span>
+        <Link href="/" className="flex items-center">
+          <BrandLogo priority />
         </Link>
 
         <nav className="hidden items-center gap-1 lg:flex">
