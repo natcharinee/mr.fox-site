@@ -6,9 +6,11 @@ import { z } from "zod";
 import { db } from "@/db";
 import {
   applications,
+  auditLogs,
   banners,
   downloadLinks,
   features,
+  media,
   news,
   platformTypes,
   users,
@@ -265,7 +267,16 @@ export async function createUser(formData: FormData) {
 
 export async function deleteUser(id: number) {
   const session = await auth("admin");
-  if (session.userId === id) throw new Error("Cannot delete yourself");
+  if (session.userId === id) {
+    throw new Error("Cannot delete yourself");
+  }
+
+  await db.update(auditLogs).set({ userId: null }).where(eq(auditLogs.userId, id));
+  await db
+    .update(media)
+    .set({ uploadedBy: null })
+    .where(eq(media.uploadedBy, id));
+
   await db.delete(users).where(eq(users.id, id));
   await logAudit(session, "delete", "user", id);
   revalidatePath("/admin/users");
