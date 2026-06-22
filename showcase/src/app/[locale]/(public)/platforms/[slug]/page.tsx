@@ -1,3 +1,4 @@
+import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { notFound } from "next/navigation";
 import { Badge } from "@/components/ui/badge";
@@ -8,8 +9,12 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { FeatureMatrix } from "@/components/platforms/feature-matrix";
 import { DownloadButtons } from "@/components/apps/download-buttons";
+import { FeatureMatrix } from "@/components/platforms/feature-matrix";
+import { PageHero } from "@/components/layout/page-hero";
+import { PageShell } from "@/components/layout/page-shell";
+import { SectionHeading } from "@/components/layout/section-heading";
+import { publicTheme, themedCard } from "@/components/layout/public-theme";
 import { buildMetadata } from "@/lib/metadata";
 import {
   getAppsByPlatformType,
@@ -59,6 +64,7 @@ const REVENUE_LABELS: Record<string, string> = {
 
 export default async function PlatformDetailPage({ params }: Props) {
   const { slug } = await params;
+  const t = await getTranslations("platforms");
   const platform = await getPlatformTypeBySlug(slug);
   if (!platform) notFound();
 
@@ -77,105 +83,96 @@ export default async function PlatformDetailPage({ params }: Props) {
   );
 
   return (
-    <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-      <Badge variant="outline" className="mb-4">
-        {platform.categoryName}
-      </Badge>
-      <h1 className="text-3xl font-bold">{platform.name}</h1>
-      <p className="mt-4 max-w-3xl text-lg text-muted-foreground">
-        {platform.concept}
-      </p>
+    <PageShell>
+      <PageHero title={platform.name} description={platform.concept ?? undefined}>
+        <Badge variant="outline" className={publicTheme.heroBadge}>
+          {platform.categoryName}
+        </Badge>
+      </PageHero>
 
-      <div className="mt-10 grid gap-6 lg:grid-cols-2">
-        <Card>
-          <CardHeader>
-            <CardTitle>Creator Model</CardTitle>
-            <CardDescription>{platform.creatorModel}</CardDescription>
-          </CardHeader>
-        </Card>
-        <Card>
-          <CardHeader>
-            <CardTitle>Visitor Model</CardTitle>
-            <CardDescription>{platform.visitorModel}</CardDescription>
-          </CardHeader>
-        </Card>
-      </div>
+      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+        <div className="grid gap-6 lg:grid-cols-2">
+          <Card className={themedCard()}>
+            <CardHeader>
+              <CardTitle className="text-[var(--fox-charcoal)]">{t("creatorModel")}</CardTitle>
+              <CardDescription className="text-foreground">{platform.creatorModel}</CardDescription>
+            </CardHeader>
+          </Card>
+          <Card className={themedCard()}>
+            <CardHeader>
+              <CardTitle className="text-[var(--fox-charcoal)]">{t("visitorModel")}</CardTitle>
+              <CardDescription className="text-foreground">{platform.visitorModel}</CardDescription>
+            </CardHeader>
+          </Card>
+        </div>
 
-      <div className="mt-10">
-        <FeatureMatrix rows={matrix} />
-      </div>
+        <div className="mt-10">
+          <FeatureMatrix rows={matrix} />
+        </div>
 
-      <div className="mt-10 grid gap-6 lg:grid-cols-2">
-        <Card>
-          <CardHeader>
-            <CardTitle>Permission Matrix</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <dl className="space-y-2 text-sm">
-              {permissions.map((p) => (
-                <div key={p.key} className="flex justify-between gap-4">
-                  <dt className="text-muted-foreground">
-                    {PERM_LABELS[p.key] ?? p.key}
-                  </dt>
-                  <dd className="font-medium capitalize">{p.value}</dd>
-                </div>
+        <div className="mt-10 grid gap-6 lg:grid-cols-2">
+          <Card className={themedCard()}>
+            <CardHeader>
+              <CardTitle className="text-[var(--fox-charcoal)]">{t("permissionMatrix")}</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <dl className="space-y-2 text-sm">
+                {permissions.map((p) => (
+                  <div key={p.key} className="flex justify-between gap-4">
+                    <dt className="text-muted-foreground">{PERM_LABELS[p.key] ?? p.key}</dt>
+                    <dd className="font-medium capitalize text-[var(--fox-charcoal)]">{p.value}</dd>
+                  </div>
+                ))}
+              </dl>
+            </CardContent>
+          </Card>
+          <Card className={themedCard()}>
+            <CardHeader>
+              <CardTitle className="text-[var(--fox-charcoal)]">{t("revenueModel")}</CardTitle>
+              <CardDescription>
+                {t("revenueCategoryNote")} — {platform.categoryName}
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <dl className="space-y-2 text-sm">
+                {revenues.map((r) => (
+                  <div key={r.revenueFeature} className="flex justify-between gap-4">
+                    <dt className="text-muted-foreground">
+                      {REVENUE_LABELS[r.revenueFeature] ?? r.revenueFeature}
+                    </dt>
+                    <dd className="font-medium capitalize text-[var(--fox-charcoal)]">{r.value}</dd>
+                  </div>
+                ))}
+              </dl>
+            </CardContent>
+          </Card>
+        </div>
+
+        {appsWithLinks.length > 0 ? (
+          <section className="mt-12">
+            <SectionHeading title={t("exampleApps")} />
+            <div className="grid gap-4 sm:grid-cols-2">
+              {appsWithLinks.map((app) => (
+                <Card key={app.slug} className={themedCard()}>
+                  <CardHeader>
+                    <CardTitle className="text-base text-[var(--fox-charcoal)]">{app.name}</CardTitle>
+                    <CardDescription className="line-clamp-2">{app.description}</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <DownloadButtons appSlug={app.slug} appId={app.id} links={app.links} />
+                  </CardContent>
+                </Card>
               ))}
-            </dl>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardHeader>
-            <CardTitle>Revenue Model</CardTitle>
-            <CardDescription>ระดับ Category — {platform.categoryName}</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <dl className="space-y-2 text-sm">
-              {revenues.map((r) => (
-                <div key={r.revenueFeature} className="flex justify-between gap-4">
-                  <dt className="text-muted-foreground">
-                    {REVENUE_LABELS[r.revenueFeature] ?? r.revenueFeature}
-                  </dt>
-                  <dd className="font-medium capitalize">{r.value}</dd>
-                </div>
-              ))}
-            </dl>
-          </CardContent>
-        </Card>
-      </div>
+            </div>
+          </section>
+        ) : null}
 
-      {appsWithLinks.length > 0 && (
-        <section className="mt-12">
-          <h2 className="text-xl font-bold">Example Applications</h2>
-          <div className="mt-6 grid gap-4 sm:grid-cols-2">
-            {appsWithLinks.map((app) => (
-              <Card key={app.slug}>
-                <CardHeader>
-                  <CardTitle className="text-base">{app.name}</CardTitle>
-                  <CardDescription className="line-clamp-2">
-                    {app.description}
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <DownloadButtons
-                    appSlug={app.slug}
-                    appId={app.id}
-                    links={app.links}
-                  />
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </section>
-      )}
-
-      <div className="mt-10">
-        <Link
-          href="/platforms"
-          className="text-sm text-primary hover:underline"
-        >
-          ← กลับไป Platform Types
-        </Link>
+        <div className="mt-10">
+          <Link href="/platforms" className={`text-sm ${publicTheme.link}`}>
+            ← {t("backToPlatforms")}
+          </Link>
+        </div>
       </div>
-    </div>
+    </PageShell>
   );
 }

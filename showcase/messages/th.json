@@ -33,6 +33,79 @@
       "downloads": "Downloads"
     }
   },
+  "apps": {
+    "title": "Applications",
+    "subtitle": "ค้นหาและดาวน์โหลดแอปใน ecosystem",
+    "searchPlaceholder": "ค้นหาแอป...",
+    "allCategories": "ทุก Category",
+    "allPlatforms": "ทุก Platform Type",
+    "search": "ค้นหา",
+    "noResults": "ไม่พบแอปที่ตรงกับเงื่อนไข",
+    "backToApps": "กลับไป Applications",
+    "related": "Related Applications",
+    "platformType": "Platform Type",
+    "targetAudience": "Target Audience",
+    "comingSoon": "เร็วๆ นี้"
+  },
+  "platforms": {
+    "title": "Platform Types",
+    "subtitle": "10 template มาตรฐาน — แต่ละประเภทกำหนด Feature set และ Permission ตาม Matrix",
+    "backToPlatforms": "กลับไป Platform Types",
+    "creatorModel": "Creator Model",
+    "visitorModel": "Visitor Model",
+    "featuresMatrix": "Features Matrix",
+    "featuresMatrixDesc": "สร้างอัตโนมัติจาก junction table — ตาม Website Spec §5",
+    "permissionMatrix": "Permission Matrix",
+    "revenueModel": "Revenue Model",
+    "revenueCategoryNote": "ระดับ Category",
+    "exampleApps": "Example Applications"
+  },
+  "features": {
+    "title": "Feature Library",
+    "subtitle": "Group B — ฟีเจอร์ที่แสดงใน Showcase และมี Detail page (ตาม Website Spec §3)",
+    "backToFeatures": "กลับไป Feature Library",
+    "workflow": "Workflow",
+    "revenueModel": "Revenue Model",
+    "revenueFeature": "Revenue Feature",
+    "usedBy": "Used By"
+  },
+  "news": {
+    "title": "News",
+    "subtitle": "ข่าวสารและอัปเดตล่าสุด",
+    "backToNews": "กลับไป News"
+  },
+  "about": {
+    "title": "About Mr.FOX",
+    "subtitle": "Mr.FOX พัฒนา Platform และ Mobile Applications สำหรับ Creator Economy Ecosystem",
+    "vision": "Vision",
+    "visionBody": "สร้าง ecosystem ที่ Creator หารายได้จากแฟนคลับโดยตรง ผ่านแพลตฟอร์มมาตรฐานที่ scale ได้ไม่จำกัด",
+    "mission": "Mission",
+    "missionBody": "พัฒนา Showcase + Engine ที่ data-driven — เพิ่มแอปจาก 10 เป็น 100+ โดยเพิ่ม record ใน database เท่านั้น",
+    "roadmap": "Roadmap"
+  },
+  "contact": {
+    "title": "Contact",
+    "subtitle": "ติดต่อ Mr.FOX — Business Inquiry · Partnership · Support",
+    "formTitle": "ส่งข้อความ",
+    "formDesc": "กรอกแบบฟอร์มด้านล่าง ทีมงานจะติดต่อกลับภายใน 2–3 วันทำการ",
+    "success": "ขอบคุณ! เราได้รับข้อความของคุณแล้ว",
+    "error": "ส่งไม่สำเร็จ กรุณาลองอีกครั้ง",
+    "name": "ชื่อ",
+    "email": "อีเมล",
+    "subject": "หัวข้อ",
+    "message": "ข้อความ",
+    "sending": "กำลังส่ง...",
+    "submit": "ส่งข้อความ",
+    "subjectGeneral": "ทั่วไป",
+    "subjectBusiness": "Business Inquiry",
+    "subjectPartnership": "Partnership",
+    "businessInquiry": "Business Inquiry",
+    "businessInquiryDesc": "สนใจใช้แพลตฟอร์ม Mr.FOX สำหรับองค์กร",
+    "partnership": "Partnership",
+    "partnershipDesc": "ร่วมพัฒนา ecosystem กับ Mr.FOX",
+    "social": "Social",
+    "socialDesc": "Facebook · Instagram · TikTok · YouTube · LinkedIn"
+  },
   "search": {
     "title": "ค้นหา",
     "subtitle": "ค้นหา Platform, Application, Feature และ News",

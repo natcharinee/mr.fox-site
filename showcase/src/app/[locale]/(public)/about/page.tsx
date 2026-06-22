@@ -1,24 +1,15 @@
-import {
-  Card,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { getTranslations } from "next-intl/server";
+import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { PageHero } from "@/components/layout/page-hero";
+import { PageShell } from "@/components/layout/page-shell";
+import { SectionHeading } from "@/components/layout/section-heading";
+import { themedCard } from "@/components/layout/public-theme";
 import type { Locale } from "@/i18n/routing";
 import { buildMetadata } from "@/lib/metadata";
 
-type Props = { params: Promise<{ locale: string }> };
+export const dynamic = "force-dynamic";
 
-export async function generateMetadata({ params }: Props) {
-  const { locale } = await params;
-  return buildMetadata({
-    title: "About Mr.FOX",
-    description:
-      "Mr.FOX — พัฒนา Platform และ Mobile Applications สำหรับ Creator Economy Ecosystem",
-    path: "/about",
-    locale: locale as Locale,
-  });
-}
+type Props = { params: Promise<{ locale: string }> };
 
 const ROADMAP = [
   {
@@ -38,57 +29,63 @@ const ROADMAP = [
   },
 ];
 
-export default function AboutPage() {
+export async function generateMetadata({ params }: Props) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "about" });
+  return buildMetadata({
+    title: t("title"),
+    description: t("subtitle"),
+    path: "/about",
+    locale: locale as Locale,
+  });
+}
+
+export default async function AboutPage() {
+  const t = await getTranslations("about");
+
   return (
-    <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-      <h1 className="text-3xl font-bold">About Mr.FOX</h1>
-      <p className="mt-4 max-w-3xl text-lg text-muted-foreground leading-relaxed">
-        Mr.FOX เป็นบริษัทที่พัฒนา Platform และ Mobile Applications หลายประเภท
-        เพื่อสร้าง Ecosystem ครอบคลุม Creator Economy, Community, Organization,
-        Contest และ Exhibition
-      </p>
+    <PageShell>
+      <PageHero title={t("title")} description={t("subtitle")} />
 
-      <div className="mt-12 grid gap-6 md:grid-cols-2">
-        <Card>
-          <CardHeader>
-            <CardTitle>Vision</CardTitle>
-            <CardDescription className="text-foreground text-base leading-relaxed">
-              สร้าง ecosystem ที่ Creator หารายได้จากแฟนคลับโดยตรง
-              ผ่านแพลตฟอร์มมาตรฐานที่ scale ได้ไม่จำกัด
-            </CardDescription>
-          </CardHeader>
-        </Card>
-        <Card>
-          <CardHeader>
-            <CardTitle>Mission</CardTitle>
-            <CardDescription className="text-foreground text-base leading-relaxed">
-              พัฒนา Showcase + Engine ที่ data-driven — เพิ่มแอปจาก 10 เป็น 100+
-              โดยเพิ่ม record ใน database เท่านั้น
-            </CardDescription>
-          </CardHeader>
-        </Card>
-      </div>
-
-      <section className="mt-12">
-        <h2 className="text-xl font-bold">Roadmap</h2>
-        <div className="mt-6 grid gap-4 md:grid-cols-3">
-          {ROADMAP.map((r) => (
-            <Card key={r.phase}>
-              <CardHeader>
-                <CardTitle className="text-base">{r.phase}</CardTitle>
-                <CardDescription className="font-medium text-foreground">
-                  {r.title}
-                </CardDescription>
-                <ul className="mt-3 space-y-1 text-sm text-muted-foreground list-disc list-inside">
-                  {r.items.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
-              </CardHeader>
-            </Card>
-          ))}
+      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+        <div className="grid gap-6 md:grid-cols-2">
+          <Card className={themedCard()}>
+            <CardHeader>
+              <CardTitle className="text-[var(--fox-charcoal)]">{t("vision")}</CardTitle>
+              <CardDescription className="text-base leading-relaxed text-foreground">
+                {t("visionBody")}
+              </CardDescription>
+            </CardHeader>
+          </Card>
+          <Card className={themedCard()}>
+            <CardHeader>
+              <CardTitle className="text-[var(--fox-charcoal)]">{t("mission")}</CardTitle>
+              <CardDescription className="text-base leading-relaxed text-foreground">
+                {t("missionBody")}
+              </CardDescription>
+            </CardHeader>
+          </Card>
         </div>
-      </section>
-    </div>
+
+        <section className="mt-12">
+          <SectionHeading title={t("roadmap")} />
+          <div className="grid gap-4 md:grid-cols-3">
+            {ROADMAP.map((r) => (
+              <Card key={r.phase} className={themedCard()}>
+                <CardHeader>
+                  <CardTitle className="text-base text-[var(--fox-charcoal)]">{r.phase}</CardTitle>
+                  <CardDescription className="font-medium text-foreground">{r.title}</CardDescription>
+                  <ul className="mt-3 list-inside list-disc space-y-1 text-sm text-muted-foreground">
+                    {r.items.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                </CardHeader>
+              </Card>
+            ))}
+          </div>
+        </section>
+      </div>
+    </PageShell>
   );
 }

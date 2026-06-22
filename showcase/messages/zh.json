@@ -33,6 +33,79 @@
       "downloads": "下载"
     }
   },
+  "apps": {
+    "title": "应用",
+    "subtitle": "在 Mr.FOX 生态系统中搜索并下载应用",
+    "searchPlaceholder": "搜索应用...",
+    "allCategories": "所有类别",
+    "allPlatforms": "所有平台类型",
+    "search": "搜索",
+    "noResults": "没有符合筛选条件的应用",
+    "backToApps": "返回应用列表",
+    "related": "相关应用",
+    "platformType": "平台类型",
+    "targetAudience": "目标受众",
+    "comingSoon": "即将推出"
+  },
+  "platforms": {
+    "title": "平台类型",
+    "subtitle": "10 种标准模板 — 每种通过 Matrix 定义功能集与权限",
+    "backToPlatforms": "返回平台类型",
+    "creatorModel": "创作者模式",
+    "visitorModel": "访客模式",
+    "featuresMatrix": "功能矩阵",
+    "featuresMatrixDesc": "从 junction 表自动生成 — 网站规范 §5",
+    "permissionMatrix": "权限矩阵",
+    "revenueModel": "收入模式",
+    "revenueCategoryNote": "类别级别",
+    "exampleApps": "示例应用"
+  },
+  "features": {
+    "title": "功能库",
+    "subtitle": "B 组 — Showcase 中展示并带有详情页的功能（网站规范 §3）",
+    "backToFeatures": "返回功能库",
+    "workflow": "工作流程",
+    "revenueModel": "收入模式",
+    "revenueFeature": "收入功能",
+    "usedBy": "使用者"
+  },
+  "news": {
+    "title": "新闻",
+    "subtitle": "Mr.FOX 最新新闻与更新",
+    "backToNews": "返回新闻"
+  },
+  "about": {
+    "title": "关于 Mr.FOX",
+    "subtitle": "Mr.FOX 为创作者经济生态系统打造平台与移动应用",
+    "vision": "愿景",
+    "visionBody": "构建创作者可直接从粉丝获利的可扩展标准平台生态系统",
+    "mission": "使命",
+    "missionBody": "开发数据驱动的 Showcase + Engine — 仅通过添加数据库记录从 10 扩展到 100+ 应用",
+    "roadmap": "路线图"
+  },
+  "contact": {
+    "title": "联系",
+    "subtitle": "联系 Mr.FOX — 商务咨询 · 合作 · 支持",
+    "formTitle": "发送消息",
+    "formDesc": "填写下方表单，团队将在 2–3 个工作日内回复。",
+    "success": "谢谢！我们已收到您的消息。",
+    "error": "发送失败，请重试。",
+    "name": "姓名",
+    "email": "邮箱",
+    "subject": "主题",
+    "message": "消息",
+    "sending": "发送中...",
+    "submit": "发送消息",
+    "subjectGeneral": "一般",
+    "subjectBusiness": "商务咨询",
+    "subjectPartnership": "合作",
+    "businessInquiry": "商务咨询",
+    "businessInquiryDesc": "有兴趣为组织使用 Mr.FOX 平台",
+    "partnership": "合作",
+    "partnershipDesc": "与 Mr.FOX 共同开发生态系统",
+    "social": "社交媒体",
+    "socialDesc": "Facebook · Instagram · TikTok · YouTube · LinkedIn"
+  },
   "search": {
     "title": "搜索",
     "subtitle": "搜索平台、应用、功能和新闻",

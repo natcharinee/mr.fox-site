@@ -1,3 +1,4 @@
+import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -9,11 +10,16 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { DownloadButtons } from "@/components/apps/download-buttons";
+import { PageHero } from "@/components/layout/page-hero";
+import { PageShell } from "@/components/layout/page-shell";
+import { publicTheme, themedCard } from "@/components/layout/public-theme";
 import type { Locale } from "@/i18n/routing";
 import { buildMetadata } from "@/lib/metadata";
 import { getApplications, getCategories, getDownloadLinks, getPlatformTypes } from "@/lib/queries";
 
 export const dynamic = "force-dynamic";
+
+const filterClass = publicTheme.select;
 
 type PageProps = {
   params: Promise<{ locale: string }>;
@@ -26,9 +32,10 @@ type PageProps = {
 
 export async function generateMetadata({ params }: Pick<PageProps, "params">) {
   const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "apps" });
   return buildMetadata({
-    title: "Applications",
-    description: "รายการแอปพลิเคชันใน Mr.FOX Ecosystem — ค้นหาและดาวน์โหลด",
+    title: t("title"),
+    description: t("subtitle"),
     path: "/apps",
     locale: locale as Locale,
   });
@@ -38,6 +45,9 @@ export default async function AppsPage({
   searchParams,
 }: Pick<PageProps, "searchParams">) {
   const { q, category, platform } = await searchParams;
+  const t = await getTranslations("apps");
+  const tc = await getTranslations("common");
+
   const [apps, categories, platformTypes] = await Promise.all([
     getApplications({
       search: q,
@@ -56,86 +66,84 @@ export default async function AppsPage({
   );
 
   return (
-    <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-      <h1 className="text-3xl font-bold">Applications</h1>
-      <p className="mt-2 text-muted-foreground">
-        ค้นหาและดาวน์โหลดแอปใน ecosystem
-      </p>
+    <PageShell>
+      <PageHero title={t("title")} description={t("subtitle")}>
+        <form className="flex flex-wrap gap-3" action="/apps" method="get">
+          <Input
+            name="q"
+            placeholder={t("searchPlaceholder")}
+            defaultValue={q}
+            className="max-w-xs border-[#e8d49a] bg-white/90 text-[var(--fox-charcoal)] placeholder:text-muted-foreground focus-visible:border-[var(--fox-gold)] focus-visible:ring-[var(--fox-gold)]/20"
+          />
+          <select name="category" defaultValue={category ?? ""} className={publicTheme.select}>
+            <option value="">{t("allCategories")}</option>
+            {categories.map((c) => (
+              <option key={c.slug} value={c.slug}>
+                {c.name}
+              </option>
+            ))}
+          </select>
+          <select name="platform" defaultValue={platform ?? ""} className={filterClass}>
+            <option value="">{t("allPlatforms")}</option>
+            {platformTypes.map((pt) => (
+              <option key={pt.slug} value={pt.slug}>
+                {pt.name}
+              </option>
+            ))}
+          </select>
+          <button
+            type="submit"
+            className={publicTheme.submitButton}
+          >
+            {t("search")}
+          </button>
+        </form>
+      </PageHero>
 
-      <form className="mt-8 flex flex-wrap gap-3" action="/apps" method="get">
-        <Input
-          name="q"
-          placeholder="ค้นหาแอป..."
-          defaultValue={q}
-          className="max-w-xs"
-        />
-        <select
-          name="category"
-          defaultValue={category ?? ""}
-          className="h-9 rounded-md border border-input bg-background px-3 text-sm"
-        >
-          <option value="">ทุก Category</option>
-          {categories.map((c) => (
-            <option key={c.slug} value={c.slug}>
-              {c.name}
-            </option>
+      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {appsWithLinks.map((app) => (
+            <Card key={app.slug} className={themedCard("flex flex-col")}>
+              <CardHeader>
+                <div className="flex items-start justify-between gap-2">
+                  <CardTitle className="text-lg text-[var(--fox-charcoal)]">
+                    <Link
+                      href={`/apps/${app.slug}`}
+                      className="transition-colors hover:text-[var(--fox-gold-dark)]"
+                    >
+                      {app.name}
+                    </Link>
+                  </CardTitle>
+                  {app.featured ? (
+                    <Badge className="shrink-0 bg-[var(--fox-gold)] text-[var(--fox-charcoal)] hover:bg-[var(--fox-gold)]">
+                      {tc("featured")}
+                    </Badge>
+                  ) : null}
+                </div>
+                <CardDescription>
+                  {app.platformTypeName} · {app.categoryName}
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="mt-auto">
+                <p className="mb-4 line-clamp-2 text-sm text-muted-foreground">
+                  {app.description}
+                </p>
+                <DownloadButtons
+                  appSlug={app.slug}
+                  appId={app.id}
+                  links={app.links}
+                />
+              </CardContent>
+            </Card>
           ))}
-        </select>
-        <select
-          name="platform"
-          defaultValue={platform ?? ""}
-          className="h-9 rounded-md border border-input bg-background px-3 text-sm"
-        >
-          <option value="">ทุก Platform Type</option>
-          {platformTypes.map((pt) => (
-            <option key={pt.slug} value={pt.slug}>
-              {pt.name}
-            </option>
-          ))}
-        </select>
-        <button
-          type="submit"
-          className="h-9 rounded-md bg-primary px-4 text-sm font-medium text-primary-foreground"
-        >
-          ค้นหา
-        </button>
-      </form>
+        </div>
 
-      <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {appsWithLinks.map((app) => (
-          <Card key={app.slug} className="flex flex-col">
-            <CardHeader>
-              <div className="flex items-start justify-between gap-2">
-                <CardTitle className="text-lg">
-                  <Link href={`/apps/${app.slug}`} className="hover:text-primary">
-                    {app.name}
-                  </Link>
-                </CardTitle>
-                {app.featured && <Badge>Featured</Badge>}
-              </div>
-              <CardDescription>
-                {app.platformTypeName} · {app.categoryName}
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="mt-auto">
-              <p className="text-sm text-muted-foreground line-clamp-2 mb-4">
-                {app.description}
-              </p>
-              <DownloadButtons
-                appSlug={app.slug}
-                appId={app.id}
-                links={app.links}
-              />
-            </CardContent>
-          </Card>
-        ))}
+        {appsWithLinks.length === 0 ? (
+          <div className="mt-10 rounded-2xl border border-dashed border-[#e8d49a] bg-white/60 px-6 py-12 text-center">
+            <p className="text-muted-foreground">{t("noResults")}</p>
+          </div>
+        ) : null}
       </div>
-
-      {appsWithLinks.length === 0 && (
-        <p className="mt-10 text-center text-muted-foreground">
-          ไม่พบแอปที่ตรงกับเงื่อนไข
-        </p>
-      )}
-    </div>
+    </PageShell>
   );
 }

@@ -1,3 +1,4 @@
+import { getTranslations } from "next-intl/server";
 import { Badge } from "@/components/ui/badge";
 import {
   Card,
@@ -6,6 +7,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { themedCard } from "@/components/layout/public-theme";
 
 const STATUS_LABEL: Record<string, string> = {
   core: "CORE",
@@ -21,7 +23,7 @@ const STATUS_VARIANT: Record<string, "default" | "secondary" | "outline" | "dest
   no: "destructive",
 };
 
-export function FeatureMatrix({
+export async function FeatureMatrix({
   rows,
 }: {
   rows: {
@@ -31,31 +33,37 @@ export function FeatureMatrix({
     status: string;
   }[];
 }) {
+  const t = await getTranslations("platforms");
   const showcaseRows = rows.filter((r) => r.group === "B" || r.status !== "no");
 
   return (
-    <Card>
+    <Card className={themedCard()}>
       <CardHeader>
-        <CardTitle>Features Matrix</CardTitle>
-        <CardDescription>
-          สร้างอัตโนมัติจาก junction table — ตาม Website Spec §5
-        </CardDescription>
+        <CardTitle className="text-[var(--fox-charcoal)]">{t("featuresMatrix")}</CardTitle>
+        <CardDescription>{t("featuresMatrixDesc")}</CardDescription>
       </CardHeader>
       <CardContent>
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
-              <tr className="border-b text-left">
-                <th className="pb-3 pr-4 font-semibold">Feature</th>
-                <th className="pb-3 font-semibold">Status</th>
+              <tr className="border-b border-[#f0e4c3] text-left">
+                <th className="pb-3 pr-4 font-semibold text-[var(--fox-charcoal)]">Feature</th>
+                <th className="pb-3 font-semibold text-[var(--fox-charcoal)]">Status</th>
               </tr>
             </thead>
             <tbody>
               {showcaseRows.map((row) => (
-                <tr key={row.featureSlug} className="border-b border-border/50">
-                  <td className="py-2.5 pr-4">{row.featureName}</td>
+                <tr key={row.featureSlug} className="border-b border-[#f0e4c3]/60">
+                  <td className="py-2.5 pr-4 text-[var(--fox-charcoal)]">{row.featureName}</td>
                   <td className="py-2.5">
-                    <Badge variant={STATUS_VARIANT[row.status] ?? "outline"}>
+                    <Badge
+                      variant={STATUS_VARIANT[row.status] ?? "outline"}
+                      className={
+                        row.status === "core"
+                          ? "bg-[var(--fox-gold)] text-[var(--fox-charcoal)] hover:bg-[var(--fox-gold)]"
+                          : undefined
+                      }
+                    >
                       {STATUS_LABEL[row.status] ?? row.status}
                     </Badge>
                   </td>

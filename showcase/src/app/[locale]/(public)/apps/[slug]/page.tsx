@@ -1,3 +1,4 @@
+import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { notFound } from "next/navigation";
 import { Badge } from "@/components/ui/badge";
@@ -8,6 +9,10 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { DownloadButtons } from "@/components/apps/download-buttons";
+import { PageHero } from "@/components/layout/page-hero";
+import { PageShell } from "@/components/layout/page-shell";
+import { SectionHeading } from "@/components/layout/section-heading";
+import { publicTheme, themedCard } from "@/components/layout/public-theme";
 import { buildMetadata } from "@/lib/metadata";
 import {
   getApplicationBySlug,
@@ -32,6 +37,7 @@ export async function generateMetadata({ params }: Props) {
 
 export default async function AppDetailPage({ params }: Props) {
   const { slug } = await params;
+  const t = await getTranslations("apps");
   const app = await getApplicationBySlug(slug);
   if (!app) notFound();
 
@@ -41,64 +47,72 @@ export default async function AppDetailPage({ params }: Props) {
   ]);
 
   return (
-    <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-      <div className="flex flex-wrap items-center gap-2 mb-4">
-        <Badge variant="outline">{app.categoryName}</Badge>
-        <Badge variant="secondary">{app.platformTypeName}</Badge>
-      </div>
-      <h1 className="text-3xl font-bold">{app.name}</h1>
-      <p className="mt-4 max-w-3xl text-lg text-muted-foreground">
-        {app.description}
-      </p>
+    <PageShell>
+      <PageHero title={app.name} description={app.description ?? undefined}>
+        <div className="flex flex-wrap items-center gap-2">
+          <Badge variant="outline" className={publicTheme.heroBadge}>
+            {app.categoryName}
+          </Badge>
+          <Badge className="bg-white/10 text-[#fff4cc] hover:bg-white/10">
+            {app.platformTypeName}
+          </Badge>
+        </div>
+      </PageHero>
 
-      <div className="mt-8">
-        <DownloadButtons appSlug={app.slug} appId={app.id} links={links} />
-      </div>
+      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+        <DownloadButtons
+          appSlug={app.slug}
+          appId={app.id}
+          links={links}
+          showDetailsLink={false}
+        />
 
-      <div className="mt-10 grid gap-6 lg:grid-cols-2">
-        <Card>
-          <CardHeader>
-            <CardTitle className="text-base">Platform Type</CardTitle>
-            <CardDescription>
-              <Link
-                href={`/platforms/${app.platformTypeSlug}`}
-                className="text-primary hover:underline"
-              >
-                {app.platformTypeName}
-              </Link>
-            </CardDescription>
-          </CardHeader>
-        </Card>
-        {app.targetAudience && (
-          <Card>
+        <div className="mt-10 grid gap-6 lg:grid-cols-2">
+          <Card className={themedCard()}>
             <CardHeader>
-              <CardTitle className="text-base">Target Audience</CardTitle>
-              <CardDescription>{app.targetAudience}</CardDescription>
+              <CardTitle className="text-base text-[var(--fox-charcoal)]">
+                {t("platformType")}
+              </CardTitle>
+              <CardDescription>
+                <Link href={`/platforms/${app.platformTypeSlug}`} className={publicTheme.link}>
+                  {app.platformTypeName}
+                </Link>
+              </CardDescription>
             </CardHeader>
           </Card>
-        )}
-      </div>
+          {app.targetAudience ? (
+            <Card className={themedCard()}>
+              <CardHeader>
+                <CardTitle className="text-base text-[var(--fox-charcoal)]">
+                  {t("targetAudience")}
+                </CardTitle>
+                <CardDescription>{app.targetAudience}</CardDescription>
+              </CardHeader>
+            </Card>
+          ) : null}
+        </div>
 
-      {related.length > 0 && (
-        <section className="mt-12">
-          <h2 className="text-xl font-bold">Related Applications</h2>
-          <div className="mt-4 flex flex-wrap gap-3">
-            {related.map((r) => (
-              <Link key={r.slug} href={`/apps/${r.slug}`}>
-                <Badge variant="outline" className="hover:bg-accent">
-                  {r.name}
-                </Badge>
-              </Link>
-            ))}
-          </div>
-        </section>
-      )}
+        {related.length > 0 ? (
+          <section className="mt-12">
+            <SectionHeading title={t("related")} />
+            <div className="flex flex-wrap gap-3">
+              {related.map((r) => (
+                <Link key={r.slug} href={`/apps/${r.slug}`}>
+                  <Badge variant="outline" className={publicTheme.badgeOutline}>
+                    {r.name}
+                  </Badge>
+                </Link>
+              ))}
+            </div>
+          </section>
+        ) : null}
 
-      <div className="mt-10">
-        <Link href="/apps" className="text-sm text-primary hover:underline">
-          ← กลับไป Applications
-        </Link>
+        <div className="mt-10">
+          <Link href="/apps" className={`text-sm ${publicTheme.link}`}>
+            ← {t("backToApps")}
+          </Link>
+        </div>
       </div>
-    </div>
+    </PageShell>
   );
 }
