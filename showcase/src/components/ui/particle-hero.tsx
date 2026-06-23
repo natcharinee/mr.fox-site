@@ -186,7 +186,7 @@ export function ParticleHero({ children, className }: ParticleHeroProps) {
         aria-hidden
       />
 
-      <div className="particle-hero__content relative z-10">{children}</div>
+      <div className="particle-hero__content relative z-10 overflow-visible">{children}</div>
     </div>
   );
 }
