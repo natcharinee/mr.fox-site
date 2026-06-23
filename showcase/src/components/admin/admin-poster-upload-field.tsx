@@ -14,6 +14,8 @@ type AdminPosterUploadFieldProps = {
   label?: string;
   hint?: string;
   className?: string;
+  defaultValue?: string;
+  previewClassName?: string;
 };
 
 export function AdminPosterUploadField({
@@ -21,9 +23,11 @@ export function AdminPosterUploadField({
   label = "รูปโปสเตอร์ (แสดงหน้าบ้าน)",
   hint = "อัปโหลดรูปแนวตั้งหรือสี่เหลี่ยม — แนะนำขนาดอย่างน้อย 600×800 px",
   className,
+  defaultValue = "",
+  previewClassName = "h-40 w-28",
 }: AdminPosterUploadFieldProps) {
   const [fileInputKey, setFileInputKey] = useState(0);
-  const [posterUrl, setPosterUrl] = useState("");
+  const [posterUrl, setPosterUrl] = useState(defaultValue);
   const [uploading, setUploading] = useState(false);
 
   async function handleFileChange(file: File | null) {
@@ -71,7 +75,12 @@ export function AdminPosterUploadField({
       <p className="mt-1 text-xs text-muted-foreground">{hint}</p>
 
       <div className="mt-3 flex flex-col gap-3 sm:flex-row sm:items-start">
-        <div className="relative h-40 w-28 shrink-0 overflow-hidden rounded-xl border border-dashed border-input bg-muted/30">
+        <div
+          className={cn(
+            "relative shrink-0 overflow-hidden rounded-xl border border-dashed border-input bg-muted/30",
+            previewClassName,
+          )}
+        >
           {posterUrl ? (
             <>
               <Image

@@ -29,10 +29,10 @@ export function HomeHero({
 }: HomeHeroProps) {
   return (
     <section className="relative min-h-[115vh] overflow-x-clip border-b border-[#2a2418] sm:min-h-[110vh] lg:min-h-0 lg:overflow-x-hidden">
-      <ParticleHero className="min-h-[inherit] lg:min-h-0 lg:overflow-visible lg:px-0">
+      <ParticleHero className="flex min-h-[inherit] flex-col lg:min-h-0 lg:overflow-visible lg:px-0">
         <HeroScrollMockup />
 
-        <div className="mx-auto max-w-7xl px-4 pb-16 pt-8 sm:px-6 sm:pt-10 lg:px-8 lg:pb-24 lg:pt-12">
+        <div className="mx-auto flex w-full max-w-7xl flex-1 flex-col justify-center px-4 pb-16 pt-10 sm:px-6 sm:pt-12 lg:flex-none lg:justify-start lg:px-8 lg:pb-24 lg:pt-16">
           <div className="mx-auto max-w-3xl text-center">
             <Badge className="mb-4 border-[#5c4a12] bg-[#ffc20e]/15 text-[#ffe08a] hover:bg-[#ffc20e]/15">
               {badge}

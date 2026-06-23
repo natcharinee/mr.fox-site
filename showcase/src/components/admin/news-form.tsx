@@ -1,4 +1,5 @@
 import { AdminSaveForm } from "@/components/admin/admin-save-form";
+import { AdminPosterUploadField } from "@/components/admin/admin-poster-upload-field";
 import { createNews } from "@/lib/admin/actions";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -35,10 +36,12 @@ export function NewsForm() {
             <Label htmlFor="content">เนื้อหา</Label>
             <Textarea id="content" name="content" required rows={4} className="mt-1" />
           </div>
-          <div>
-            <Label htmlFor="thumbnailUrl">Thumbnail URL</Label>
-            <Input id="thumbnailUrl" name="thumbnailUrl" className="mt-1" />
-          </div>
+          <AdminPosterUploadField
+            name="thumbnailUrl"
+            label="รูป Thumbnail"
+            hint="อัปโหลดรูปปกข่าว — แนะนำขนาด 1200×630 px"
+            previewClassName="h-24 w-40"
+          />
           <div>
             <Label htmlFor="publishedAt">วันที่เผยแพร่</Label>
             <Input id="publishedAt" name="publishedAt" type="date" className="mt-1" />

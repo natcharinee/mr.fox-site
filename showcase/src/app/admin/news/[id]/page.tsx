@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { NewsStatusBadge } from "@/components/admin/news-status-badge";
 import { AdminSaveForm } from "@/components/admin/admin-save-form";
+import { AdminPosterUploadField } from "@/components/admin/admin-poster-upload-field";
 import { updateNews } from "@/lib/admin/actions";
 import { getNewsById } from "@/lib/admin/queries";
 import {
@@ -83,15 +84,13 @@ export default async function AdminNewsEditPage({ params }: Props) {
             className="mt-1"
           />
         </div>
-        <div>
-          <Label htmlFor="thumbnailUrl">Thumbnail URL</Label>
-          <Input
-            id="thumbnailUrl"
-            name="thumbnailUrl"
-            defaultValue={item.thumbnailUrl ?? ""}
-            className="mt-1"
-          />
-        </div>
+        <AdminPosterUploadField
+          name="thumbnailUrl"
+          label="รูป Thumbnail"
+          hint="อัปโหลดรูปปกข่าว — แนะนำขนาด 1200×630 px"
+          previewClassName="h-24 w-40"
+          defaultValue={item.thumbnailUrl ?? ""}
+        />
         <div>
           <Label htmlFor="publishedAt">วันที่เผยแพร่</Label>
           <Input
