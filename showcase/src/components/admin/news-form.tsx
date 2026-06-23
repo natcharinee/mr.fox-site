@@ -1,3 +1,4 @@
+import { AdminSaveForm } from "@/components/admin/admin-save-form";
 import { createNews } from "@/lib/admin/actions";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -17,7 +18,7 @@ export function NewsForm() {
         <CardTitle className="text-base">เพิ่มข่าวใหม่</CardTitle>
       </CardHeader>
       <CardContent>
-        <form action={createNews} className="grid gap-4 sm:grid-cols-2">
+        <AdminSaveForm action={createNews} successMessage="บันทึกข่าวสำเร็จแล้ว" className="grid gap-4 sm:grid-cols-2">
           <div>
             <Label htmlFor="title">หัวข้อ</Label>
             <Input id="title" name="title" required className="mt-1" />
@@ -41,11 +42,14 @@ export function NewsForm() {
           <div>
             <Label htmlFor="publishedAt">วันที่เผยแพร่</Label>
             <Input id="publishedAt" name="publishedAt" type="date" className="mt-1" />
+            <p className="mt-1 text-xs text-muted-foreground">
+              เว้นว่าง = Draft (ไม่แสดงบนเว็บไซต์)
+            </p>
           </div>
           <div className="sm:col-span-2">
             <Button type="submit">บันทึกข่าว</Button>
           </div>
-        </form>
+        </AdminSaveForm>
       </CardContent>
     </Card>
   );

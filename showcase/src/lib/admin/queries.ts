@@ -143,6 +143,15 @@ export async function getAllNewsAdmin() {
   return db.select().from(news).orderBy(desc(news.publishedAt));
 }
 
+export async function getNewsById(id: number) {
+  const [row] = await db
+    .select()
+    .from(news)
+    .where(eq(news.id, id))
+    .limit(1);
+  return row ?? null;
+}
+
 export async function getPlatformById(id: number) {
   const [row] = await db
     .select()

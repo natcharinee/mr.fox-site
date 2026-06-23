@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { NewsStatusBadge } from "@/components/admin/news-status-badge";
 import { Button } from "@/components/ui/button";
 import {
   Table,
@@ -32,8 +33,9 @@ export default async function AdminNewsPage() {
             <TableRow>
               <TableHead>Title</TableHead>
               <TableHead>Slug</TableHead>
+              <TableHead>Status</TableHead>
               <TableHead>Published</TableHead>
-              <TableHead className="w-32">Actions</TableHead>
+              <TableHead className="w-44">Actions</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -42,15 +44,27 @@ export default async function AdminNewsPage() {
                 <TableCell className="font-medium">{item.title}</TableCell>
                 <TableCell className="text-muted-foreground">{item.slug}</TableCell>
                 <TableCell>
+                  <NewsStatusBadge publishedAt={item.publishedAt} />
+                </TableCell>
+                <TableCell>
                   {item.publishedAt
                     ? new Date(item.publishedAt).toLocaleDateString("th-TH")
                     : "—"}
                 </TableCell>
                 <TableCell>
                   <div className="flex gap-2">
-                    <Button size="sm" variant="outline" nativeButton={false} render={<Link href={`/news/${item.slug}`} />}>
-                      ดู
+                    <Button size="sm" variant="outline" nativeButton={false} render={<Link href={`/admin/news/${item.id}`} />}>
+                      แก้ไข
                     </Button>
+                    {item.publishedAt ? (
+                      <Button size="sm" variant="outline" nativeButton={false} render={<Link href={`/news/${item.slug}`} />}>
+                        ดู
+                      </Button>
+                    ) : (
+                      <Button size="sm" variant="outline" disabled title="ข่าว Draft ยังไม่แสดงบนเว็บไซต์">
+                        ดู
+                      </Button>
+                    )}
                     <form action={deleteNews.bind(null, item.id)}>
                       <Button size="sm" variant="destructive" type="submit">
                         ลบ

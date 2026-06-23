@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import { AdminSaveForm } from "@/components/admin/admin-save-form";
 import { updateFeature } from "@/lib/admin/actions";
 import { getFeatureById } from "@/lib/admin/queries";
 import { Button } from "@/components/ui/button";
@@ -24,7 +25,7 @@ export default async function AdminFeatureEditPage({ params }: Props) {
         <p className="text-muted-foreground">{feature.slug} · Group {feature.group}</p>
       </div>
 
-      <form action={update} className="space-y-4">
+      <AdminSaveForm action={update} successMessage="บันทึกฟีเจอร์สำเร็จแล้ว" className="space-y-4">
         <div>
           <Label htmlFor="name">ชื่อ</Label>
           <Input id="name" name="name" defaultValue={feature.name} required className="mt-1" />
@@ -42,7 +43,7 @@ export default async function AdminFeatureEditPage({ params }: Props) {
           <Input id="revenueModel" name="revenueModel" defaultValue={feature.revenueModel ?? ""} className="mt-1" />
         </div>
         <Button type="submit">บันทึก</Button>
-      </form>
+      </AdminSaveForm>
     </div>
   );
 }

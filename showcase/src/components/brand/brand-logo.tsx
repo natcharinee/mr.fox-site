@@ -22,13 +22,13 @@ export function BrandLogo({
   priority = false,
 }: BrandLogoProps) {
   return (
-    <span className={cn("inline-flex items-center gap-2.5", className)}>
+    <span className={cn("inline-flex h-9 items-center gap-2.5", className)}>
       {showIcon && (
         <Image
           src={ICON}
           alt=""
-          width={40}
-          height={40}
+          width={36}
+          height={36}
           priority={priority}
           className={cn("size-9 shrink-0 rounded-lg object-cover", iconClassName)}
         />
@@ -40,7 +40,7 @@ export function BrandLogo({
           width={148}
           height={37}
           priority={priority}
-          className={cn("h-8 w-auto shrink-0", wordmarkClassName)}
+          className={cn("h-9 w-auto shrink-0", wordmarkClassName)}
         />
       )}
     </span>

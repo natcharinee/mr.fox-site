@@ -55,6 +55,7 @@ export async function createNews(formData: FormData) {
 
   await logAudit(session, "create", "news", row.id, data.title);
   revalidatePath("/news");
+  revalidatePath(`/news/${data.slug}`);
   revalidatePath("/admin/news");
 }
 
@@ -69,6 +70,12 @@ export async function updateNews(id: number, formData: FormData) {
     publishedAt: formData.get("publishedAt") || undefined,
   });
 
+  const [existing] = await db
+    .select({ slug: news.slug })
+    .from(news)
+    .where(eq(news.id, id))
+    .limit(1);
+
   await db
     .update(news)
     .set({
@@ -79,7 +86,12 @@ export async function updateNews(id: number, formData: FormData) {
 
   await logAudit(session, "update", "news", id, data.title);
   revalidatePath("/news");
+  revalidatePath(`/news/${data.slug}`);
+  if (existing && existing.slug !== data.slug) {
+    revalidatePath(`/news/${existing.slug}`);
+  }
   revalidatePath("/admin/news");
+  revalidatePath(`/admin/news/${id}`);
 }
 
 export async function deleteNews(id: number) {

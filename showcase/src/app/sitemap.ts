@@ -6,7 +6,7 @@ import {
   news,
   platformTypes,
 } from "@/db/schema";
-import { eq } from "drizzle-orm";
+import { eq, isNotNull } from "drizzle-orm";
 import { routing } from "@/i18n/routing";
 import { SITE_URL } from "@/lib/metadata";
 
@@ -44,7 +44,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         .select({ slug: features.slug })
         .from(features)
         .where(eq(features.group, "B")),
-      db.select({ slug: news.slug }).from(news),
+      db.select({ slug: news.slug }).from(news).where(isNotNull(news.publishedAt)),
     ]);
 
     return [

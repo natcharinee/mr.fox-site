@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import { AdminSaveForm } from "@/components/admin/admin-save-form";
 import { updatePlatform } from "@/lib/admin/actions";
 import { getPlatformById } from "@/lib/admin/queries";
 import { Button } from "@/components/ui/button";
@@ -24,7 +25,7 @@ export default async function AdminPlatformEditPage({ params }: Props) {
         <p className="text-muted-foreground">{platform.slug}</p>
       </div>
 
-      <form action={update} className="space-y-4">
+      <AdminSaveForm action={update} successMessage="บันทึก Platform สำเร็จแล้ว" className="space-y-4">
         <div>
           <Label htmlFor="name">ชื่อ</Label>
           <Input id="name" name="name" defaultValue={platform.name} required className="mt-1" />
@@ -46,7 +47,7 @@ export default async function AdminPlatformEditPage({ params }: Props) {
           <Textarea id="visitorModel" name="visitorModel" defaultValue={platform.visitorModel ?? ""} rows={2} className="mt-1" />
         </div>
         <Button type="submit">บันทึก</Button>
-      </form>
+      </AdminSaveForm>
     </div>
   );
 }

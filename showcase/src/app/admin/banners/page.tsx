@@ -15,6 +15,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { AdminSaveForm } from "@/components/admin/admin-save-form";
 import { createBanner, deleteBanner } from "@/lib/admin/actions";
 import { getAllBanners } from "@/lib/admin/queries";
 
@@ -35,7 +36,7 @@ export default async function AdminBannersPage() {
           <CardTitle className="text-base">เพิ่ม Banner</CardTitle>
         </CardHeader>
         <CardContent>
-          <form action={createBanner} className="grid gap-4 sm:grid-cols-2">
+          <AdminSaveForm action={createBanner} successMessage="บันทึก Banner สำเร็จแล้ว" className="grid gap-4 sm:grid-cols-2">
             <div>
               <Label htmlFor="title">หัวข้อ</Label>
               <Input id="title" name="title" required className="mt-1" />
@@ -59,7 +60,7 @@ export default async function AdminBannersPage() {
             <div className="sm:col-span-2">
               <Button type="submit">บันทึก Banner</Button>
             </div>
-          </form>
+          </AdminSaveForm>
         </CardContent>
       </Card>
 

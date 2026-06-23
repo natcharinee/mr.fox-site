@@ -19,6 +19,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { AdminSaveForm } from "@/components/admin/admin-save-form";
 import { createApplication, deleteApplication } from "@/lib/admin/actions";
 import { getAllApplicationsAdmin } from "@/lib/admin/queries";
 
@@ -42,7 +43,7 @@ export default async function AdminApplicationsPage() {
           <CardTitle className="text-base">เพิ่มแอปใหม่</CardTitle>
         </CardHeader>
         <CardContent>
-          <form action={createApplication} className="grid gap-4 sm:grid-cols-2">
+          <AdminSaveForm action={createApplication} successMessage="บันทึกแอปสำเร็จแล้ว" className="grid gap-4 sm:grid-cols-2">
             <div>
               <Label htmlFor="name">ชื่อแอป</Label>
               <Input id="name" name="name" required className="mt-1" />
@@ -85,7 +86,7 @@ export default async function AdminApplicationsPage() {
             <div className="sm:col-span-2">
               <Button type="submit">บันทึกแอป</Button>
             </div>
-          </form>
+          </AdminSaveForm>
         </CardContent>
       </Card>
 

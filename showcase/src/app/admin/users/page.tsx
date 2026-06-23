@@ -16,6 +16,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { AdminSaveForm } from "@/components/admin/admin-save-form";
 import { createUser, deleteUser } from "@/lib/admin/actions";
 import { getAllUsers } from "@/lib/admin/queries";
 import { requireSession } from "@/lib/auth";
@@ -44,7 +45,7 @@ export default async function AdminUsersPage() {
           <CardTitle className="text-base">เพิ่มผู้ใช้</CardTitle>
         </CardHeader>
         <CardContent>
-          <form action={createUser} className="grid gap-4 sm:grid-cols-2">
+          <AdminSaveForm action={createUser} successMessage="สร้างผู้ใช้สำเร็จแล้ว" className="grid gap-4 sm:grid-cols-2">
             <div>
               <Label htmlFor="name">ชื่อ</Label>
               <Input id="name" name="name" required className="mt-1" />
@@ -71,7 +72,7 @@ export default async function AdminUsersPage() {
             <div className="sm:col-span-2">
               <Button type="submit">สร้างผู้ใช้</Button>
             </div>
-          </form>
+          </AdminSaveForm>
         </CardContent>
       </Card>
 

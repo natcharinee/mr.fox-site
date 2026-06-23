@@ -305,14 +305,18 @@ export async function getLatestNews(limit = 3) {
 }
 
 export async function getAllNews() {
-  return db.select().from(news).orderBy(desc(news.publishedAt));
+  return db
+    .select()
+    .from(news)
+    .where(isNotNull(news.publishedAt))
+    .orderBy(desc(news.publishedAt));
 }
 
 export async function getNewsBySlug(slug: string) {
   const [row] = await db
     .select()
     .from(news)
-    .where(eq(news.slug, slug))
+    .where(and(eq(news.slug, slug), isNotNull(news.publishedAt)))
     .limit(1);
   return row ?? null;
 }
@@ -339,7 +343,12 @@ export async function globalSearch(q: string) {
       db
         .select({ name: news.title, slug: news.slug })
         .from(news)
-        .where(or(ilike(news.title, term), ilike(news.excerpt, term)))
+        .where(
+          and(
+            or(ilike(news.title, term), ilike(news.excerpt, term)),
+            isNotNull(news.publishedAt),
+          ),
+        )
         .limit(5),
     ]);
 
