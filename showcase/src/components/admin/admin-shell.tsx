@@ -14,7 +14,6 @@ import {
   Sparkles,
   Users,
 } from "lucide-react";
-import { Toaster } from "sonner";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { BrandLogo } from "@/components/brand/brand-logo";
@@ -54,7 +53,6 @@ export function AdminShell({
 
   return (
     <div className="flex min-h-screen">
-      <Toaster position="top-center" richColors closeButton className="!z-[9999]" />
       <aside className="hidden w-60 shrink-0 border-r bg-muted/20 md:flex md:flex-col">
         <div className="flex h-16 items-center border-b px-4">
           <BrandLogo iconClassName="size-8" wordmarkClassName="h-6" />

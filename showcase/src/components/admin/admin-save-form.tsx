@@ -1,8 +1,14 @@
 "use client";
 
-import { useState, type FormEvent, type ReactNode } from "react";
+import { useActionState, useEffect, type ReactNode } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
+
+type ActionState = {
+  ok: boolean;
+  message?: string;
+  error?: string;
+} | null;
 
 type Props = {
   action: (formData: FormData) => Promise<void>;
@@ -18,35 +24,37 @@ export function AdminSaveForm({
   children,
 }: Props) {
   const router = useRouter();
-  const [pending, setPending] = useState(false);
 
-  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    const form = event.currentTarget;
-    const formData = new FormData(form);
-    setPending(true);
+  const [state, formAction, pending] = useActionState<ActionState, FormData>(
+    async (_prev, formData) => {
+      try {
+        await action(formData);
+        return { ok: true, message: successMessage };
+      } catch (error) {
+        const message =
+          error instanceof Error
+            ? error.message
+            : "บันทึกไม่สำเร็จ กรุณาลองใหม่อีกครั้ง";
+        return { ok: false, error: message };
+      }
+    },
+    null,
+  );
 
-    try {
-      await action(formData);
-      toast.success(successMessage);
-      router.refresh();
-    } catch (error) {
-      const message =
-        error instanceof Error
-          ? error.message
-          : "บันทึกไม่สำเร็จ กรุณาลองใหม่อีกครั้ง";
-      toast.error(message);
-    } finally {
-      setPending(false);
+  useEffect(() => {
+    if (!state) return;
+
+    if (state.ok) {
+      toast.success(state.message ?? successMessage);
+      const timer = window.setTimeout(() => router.refresh(), 400);
+      return () => window.clearTimeout(timer);
     }
-  }
+
+    toast.error(state.error ?? "บันทึกไม่สำเร็จ กรุณาลองใหม่อีกครั้ง");
+  }, [state, successMessage, router]);
 
   return (
-    <form
-      onSubmit={(event) => void handleSubmit(event)}
-      className={className}
-      aria-busy={pending}
-    >
+    <form action={formAction} className={className} aria-busy={pending}>
       {children}
     </form>
   );
