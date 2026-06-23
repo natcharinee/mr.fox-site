@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { db } from "@/db";
 import { platformTypes } from "@/db/schema";
 import { Button } from "@/components/ui/button";
@@ -20,6 +21,8 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { AdminSaveForm } from "@/components/admin/admin-save-form";
+import { AdminPosterUploadField } from "@/components/admin/admin-poster-upload-field";
+import { ApplicationFeaturedToggle } from "@/components/admin/application-featured-toggle";
 import { createApplication, deleteApplication } from "@/lib/admin/actions";
 import { getAllApplicationsAdmin } from "@/lib/admin/queries";
 
@@ -69,12 +72,13 @@ export default async function AdminApplicationsPage() {
             </div>
             <div className="flex items-end gap-2 pb-1">
               <input type="checkbox" id="featured" name="featured" className="size-4" />
-              <Label htmlFor="featured">Featured</Label>
+              <Label htmlFor="featured">แสดงบนหน้าแรก (Featured)</Label>
             </div>
             <div className="sm:col-span-2">
               <Label htmlFor="description">คำอธิบาย</Label>
               <Textarea id="description" name="description" rows={2} className="mt-1" />
             </div>
+            <AdminPosterUploadField />
             <div>
               <Label htmlFor="iosUrl">iOS URL</Label>
               <Input id="iosUrl" name="iosUrl" className="mt-1" />
@@ -94,21 +98,45 @@ export default async function AdminApplicationsPage() {
         <Table>
           <TableHeader>
             <TableRow>
+              <TableHead className="w-14">รูป</TableHead>
               <TableHead>Name</TableHead>
               <TableHead>Platform</TableHead>
               <TableHead>Downloads</TableHead>
-              <TableHead className="w-32">Actions</TableHead>
+              <TableHead>หน้าบ้าน</TableHead>
+              <TableHead className="w-40">Actions</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
             {items.map((item) => (
               <TableRow key={item.id}>
-                <TableCell className="font-medium">
-                  {item.name}
-                  {item.featured && " ⭐"}
+                <TableCell>
+                  <div className="relative h-12 w-9 overflow-hidden rounded-md bg-muted">
+                    {item.posterUrl ? (
+                      <Image
+                        src={item.posterUrl}
+                        alt=""
+                        fill
+                        unoptimized
+                        className="object-cover"
+                        sizes="36px"
+                      />
+                    ) : (
+                      <span className="flex h-full items-center justify-center text-[10px] text-muted-foreground">
+                        —
+                      </span>
+                    )}
+                  </div>
                 </TableCell>
+                <TableCell className="font-medium">{item.name}</TableCell>
                 <TableCell>{item.platformTypeName}</TableCell>
                 <TableCell>{item.downloadCount}</TableCell>
+                <TableCell>
+                  <ApplicationFeaturedToggle
+                    applicationId={item.id}
+                    applicationName={item.name}
+                    featured={item.featured}
+                  />
+                </TableCell>
                 <TableCell>
                   <div className="flex gap-2">
                     <Button size="sm" variant="outline" nativeButton={false} render={<Link href={`/apps/${item.slug}`} />}>

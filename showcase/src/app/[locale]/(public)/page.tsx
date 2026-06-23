@@ -76,6 +76,17 @@ export default async function HomePage({ params }: Props) {
         downloadApps={t("downloadApps")}
       />
 
+      <EcosystemBento
+        title={t("ecosystem")}
+        description={t("ecosystemDesc")}
+        includesLabel={t("ecosystemIncludes")}
+        typeCountLabel={t("ecosystemTypeCount")}
+        viewPlatformLabel={t("ecosystemViewPlatform")}
+        viewAllLabel={t("viewAll")}
+        categories={localizedCategories}
+        platformTypes={localizedPlatforms}
+      />
+
       <HomeStats
         items={[
           {
@@ -99,17 +110,6 @@ export default async function HomePage({ params }: Props) {
             icon: "download",
           },
         ]}
-      />
-
-      <EcosystemBento
-        title={t("ecosystem")}
-        description={t("ecosystemDesc")}
-        includesLabel={t("ecosystemIncludes")}
-        typeCountLabel={t("ecosystemTypeCount")}
-        viewPlatformLabel={t("ecosystemViewPlatform")}
-        viewAllLabel={t("viewAll")}
-        categories={localizedCategories}
-        platformTypes={localizedPlatforms}
       />
 
       <HomePlatformTypesSection

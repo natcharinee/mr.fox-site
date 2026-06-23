@@ -58,8 +58,7 @@ export function HeroScrollMockup() {
       ref={containerRef}
       className={cn(
         "relative w-full overflow-visible py-2 sm:py-4",
-        "lg:w-screen lg:max-w-[100vw] lg:py-0",
-        "lg:relative lg:left-1/2 lg:-translate-x-1/2",
+        "lg:ml-[calc(50%-50vw)] lg:w-screen lg:max-w-[100vw] lg:overflow-hidden lg:py-0",
       )}
     >
       <div
@@ -68,20 +67,18 @@ export function HeroScrollMockup() {
           "pointer-events-none absolute left-1/2 top-1/2 z-0 -translate-x-1/2 -translate-y-[42%] rounded-full bg-[radial-gradient(circle,rgba(255,194,14,0.22)_0%,rgba(255,194,14,0.06)_42%,transparent_72%)] blur-2xl",
           "h-[min(90vw,520px)] w-[min(90vw,520px)]",
           "md:h-[min(85vw,580px)] md:w-[min(85vw,580px)]",
-          "lg:top-auto lg:bottom-0 lg:h-[42.86vw] lg:w-full lg:max-h-[min(42.86vw,820px)] lg:translate-y-0 lg:rounded-none",
+          "lg:hidden",
         )}
       />
 
-      <div className="relative mx-auto flex w-full justify-center overflow-visible px-2 sm:px-4 lg:px-0">
-        <div
-          className="relative z-10 w-full will-change-transform [backface-visibility:hidden] [transform:translateZ(0)] lg:max-w-none"
-          style={{
-            transform: `translateY(${mockupTranslateY}px) scale(${mockupScale})`,
-            opacity: mockupOpacity,
-          }}
-        >
-          <HeroPhoneMockup />
-        </div>
+      <div
+        className="relative z-10 w-full will-change-transform [backface-visibility:hidden] [transform:translateZ(0)] lg:max-w-none"
+        style={{
+          transform: `translateY(${mockupTranslateY}px) scale(${mockupScale})`,
+          opacity: mockupOpacity,
+        }}
+      >
+        <HeroPhoneMockup />
       </div>
     </div>
   );

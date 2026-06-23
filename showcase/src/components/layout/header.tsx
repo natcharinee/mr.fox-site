@@ -40,16 +40,16 @@ export function Header({ variant = "brand" }: HeaderProps) {
           <BrandLogo priority />
         </Link>
 
-        <nav className="hidden items-center gap-1 lg:flex">
+        <nav className="hidden items-center gap-0.5 lg:flex">
           {NAV.map((item) => (
             <Link
               key={item.href}
               href={item.href}
               className={cn(
-                "rounded-md px-3 py-2 text-sm font-medium transition-colors",
+                "rounded-md px-3.5 py-2 text-[15px] font-semibold tracking-wide transition-colors sm:text-base",
                 isBrand
-                  ? "text-white/75 hover:bg-white/10 hover:text-[var(--fox-gold)]"
-                  : "text-muted-foreground hover:bg-accent hover:text-foreground",
+                  ? "text-white/90 hover:bg-white/10 hover:text-[var(--fox-gold)]"
+                  : "text-foreground/80 hover:bg-accent hover:text-foreground",
               )}
             >
               {item.label}

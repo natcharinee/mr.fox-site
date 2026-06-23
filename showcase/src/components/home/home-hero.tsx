@@ -28,8 +28,8 @@ export function HomeHero({
   downloadApps,
 }: HomeHeroProps) {
   return (
-    <section className="relative min-h-[115vh] overflow-x-clip border-b border-[#2a2418] sm:min-h-[110vh] lg:min-h-0">
-      <ParticleHero className="min-h-[inherit] lg:min-h-0 lg:overflow-visible">
+    <section className="relative min-h-[115vh] overflow-x-clip border-b border-[#2a2418] sm:min-h-[110vh] lg:min-h-0 lg:overflow-x-hidden">
+      <ParticleHero className="min-h-[inherit] lg:min-h-0 lg:overflow-visible lg:px-0">
         <HeroScrollMockup />
 
         <div className="mx-auto max-w-7xl px-4 pb-16 pt-8 sm:px-6 sm:pt-10 lg:px-8 lg:pb-24 lg:pt-12">

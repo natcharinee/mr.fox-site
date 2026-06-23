@@ -123,6 +123,7 @@ export async function getAllApplicationsAdmin() {
       name: applications.name,
       slug: applications.slug,
       featured: applications.featured,
+      posterUrl: applications.posterUrl,
       downloadCount: applications.downloadCount,
       platformTypeName: platformTypes.name,
     })
