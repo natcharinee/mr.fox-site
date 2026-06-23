@@ -6,8 +6,9 @@ import {
   news,
   platformTypes,
 } from "@/db/schema";
-import { eq, isNotNull } from "drizzle-orm";
+import { eq } from "drizzle-orm";
 import { routing } from "@/i18n/routing";
+import { newsPublicWhere } from "@/lib/news-publish";
 import { SITE_URL } from "@/lib/metadata";
 
 export const dynamic = "force-dynamic";
@@ -44,7 +45,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         .select({ slug: features.slug })
         .from(features)
         .where(eq(features.group, "B")),
-      db.select({ slug: news.slug }).from(news).where(isNotNull(news.publishedAt)),
+      db.select({ slug: news.slug }).from(news).where(newsPublicWhere),
     ]);
 
     return [

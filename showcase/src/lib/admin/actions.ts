@@ -17,6 +17,7 @@ import {
 } from "@/db/schema";
 import { logAudit } from "@/lib/audit";
 import { requireSession } from "@/lib/auth";
+import { parseNewsPublishDate } from "@/lib/news-publish";
 import { hashPassword } from "@/lib/password";
 
 async function auth(role?: "admin") {
@@ -49,7 +50,7 @@ export async function createNews(formData: FormData) {
     .insert(news)
     .values({
       ...data,
-      publishedAt: data.publishedAt ? new Date(data.publishedAt) : null,
+      publishedAt: parseNewsPublishDate(data.publishedAt),
     })
     .returning();
 
@@ -80,7 +81,7 @@ export async function updateNews(id: number, formData: FormData) {
     .update(news)
     .set({
       ...data,
-      publishedAt: data.publishedAt ? new Date(data.publishedAt) : null,
+      publishedAt: parseNewsPublishDate(data.publishedAt),
     })
     .where(eq(news.id, id));
 

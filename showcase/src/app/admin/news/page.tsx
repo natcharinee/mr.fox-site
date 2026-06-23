@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/table";
 import { deleteNews } from "@/lib/admin/actions";
 import { getAllNewsAdmin } from "@/lib/admin/queries";
+import { isNewsPublic } from "@/lib/news-publish";
 import { NewsForm } from "@/components/admin/news-form";
 
 export const dynamic = "force-dynamic";
@@ -56,12 +57,17 @@ export default async function AdminNewsPage() {
                     <Button size="sm" variant="outline" nativeButton={false} render={<Link href={`/admin/news/${item.id}`} />}>
                       แก้ไข
                     </Button>
-                    {item.publishedAt ? (
+                    {isNewsPublic(item.publishedAt) ? (
                       <Button size="sm" variant="outline" nativeButton={false} render={<Link href={`/news/${item.slug}`} />}>
                         ดู
                       </Button>
                     ) : (
-                      <Button size="sm" variant="outline" disabled title="ข่าว Draft ยังไม่แสดงบนเว็บไซต์">
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        disabled
+                        title="ข่าวยังไม่แสดงบนเว็บไซต์ (Draft หรือยังไม่ถึงวันเผยแพร่)"
+                      >
                         ดู
                       </Button>
                     )}

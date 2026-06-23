@@ -1,4 +1,4 @@
-import { and, count, desc, eq, ilike, isNotNull, ne, or } from "drizzle-orm";
+import { and, count, desc, eq, ilike, ne, or } from "drizzle-orm";
 import { db } from "@/db";
 import {
   applications,
@@ -13,6 +13,7 @@ import {
   platformTypePermissions,
   platformTypes,
 } from "@/db/schema";
+import { newsPublicWhere } from "@/lib/news-publish";
 
 export async function getActiveBanners() {
   return db
@@ -299,7 +300,7 @@ export async function getLatestNews(limit = 3) {
   return db
     .select()
     .from(news)
-    .where(isNotNull(news.publishedAt))
+    .where(newsPublicWhere)
     .orderBy(desc(news.publishedAt))
     .limit(limit);
 }
@@ -308,7 +309,7 @@ export async function getAllNews() {
   return db
     .select()
     .from(news)
-    .where(isNotNull(news.publishedAt))
+    .where(newsPublicWhere)
     .orderBy(desc(news.publishedAt));
 }
 
@@ -316,7 +317,7 @@ export async function getNewsBySlug(slug: string) {
   const [row] = await db
     .select()
     .from(news)
-    .where(and(eq(news.slug, slug), isNotNull(news.publishedAt)))
+    .where(and(eq(news.slug, slug), newsPublicWhere))
     .limit(1);
   return row ?? null;
 }
@@ -343,12 +344,7 @@ export async function globalSearch(q: string) {
       db
         .select({ name: news.title, slug: news.slug })
         .from(news)
-        .where(
-          and(
-            or(ilike(news.title, term), ilike(news.excerpt, term)),
-            isNotNull(news.publishedAt),
-          ),
-        )
+        .where(and(or(ilike(news.title, term), ilike(news.excerpt, term)), newsPublicWhere))
         .limit(5),
     ]);
 

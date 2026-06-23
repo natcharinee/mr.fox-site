@@ -4,6 +4,10 @@ import { NewsStatusBadge } from "@/components/admin/news-status-badge";
 import { AdminSaveForm } from "@/components/admin/admin-save-form";
 import { updateNews } from "@/lib/admin/actions";
 import { getNewsById } from "@/lib/admin/queries";
+import {
+  formatNewsPublishDateInput,
+  getNewsPublishStatus,
+} from "@/lib/news-publish";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -14,8 +18,7 @@ export const dynamic = "force-dynamic";
 type Props = { params: Promise<{ id: string }> };
 
 function formatDateInput(value: Date | null) {
-  if (!value) return "";
-  return new Date(value).toISOString().slice(0, 10);
+  return formatNewsPublishDateInput(value);
 }
 
 export default async function AdminNewsEditPage({ params }: Props) {
@@ -24,6 +27,7 @@ export default async function AdminNewsEditPage({ params }: Props) {
   if (!item) notFound();
 
   const update = updateNews.bind(null, item.id);
+  const publishStatus = getNewsPublishStatus(item.publishedAt);
 
   return (
     <div className="mx-auto max-w-2xl space-y-6">
@@ -33,9 +37,21 @@ export default async function AdminNewsEditPage({ params }: Props) {
           <NewsStatusBadge publishedAt={item.publishedAt} />
         </div>
         <p className="text-muted-foreground">{item.slug}</p>
-        {!item.publishedAt && (
+        {publishStatus === "draft" && (
           <p className="mt-1 text-sm text-amber-700 dark:text-amber-300">
             ข่าวนี้เป็น Draft — ยังไม่แสดงบนหน้าเว็บ public จนกว่าจะใส่วันที่เผยแพร่
+          </p>
+        )}
+        {publishStatus === "scheduled" && item.publishedAt && (
+          <p className="mt-1 text-sm text-sky-700 dark:text-sky-300">
+            ข่าวจะเผยแพร่อัตโนมัติเมื่อถึงวันที่{" "}
+            {new Date(item.publishedAt).toLocaleDateString("th-TH", {
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+              timeZone: "Asia/Bangkok",
+            })}{" "}
+            (00:00 น. ตามเวลาไทย)
           </p>
         )}
       </div>
@@ -83,7 +99,7 @@ export default async function AdminNewsEditPage({ params }: Props) {
             className="mt-1"
           />
           <p className="mt-1 text-xs text-muted-foreground">
-            เว้นว่าง = Draft (ไม่แสดงบนเว็บไซต์)
+            เว้นว่าง = Draft · วันในอนาคต = รอเผยแพร่ (00:00 น. ตามเวลาไทย)
           </p>
         </div>
         <div className="flex gap-2 sm:col-span-2">

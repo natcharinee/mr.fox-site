@@ -43,7 +43,7 @@ export function NewsForm() {
             <Label htmlFor="publishedAt">วันที่เผยแพร่</Label>
             <Input id="publishedAt" name="publishedAt" type="date" className="mt-1" />
             <p className="mt-1 text-xs text-muted-foreground">
-              เว้นว่าง = Draft (ไม่แสดงบนเว็บไซต์)
+              เว้นว่าง = Draft · วันในอนาคต = รอเผยแพร่ (00:00 น. ตามเวลาไทย)
             </p>
           </div>
           <div className="sm:col-span-2">
