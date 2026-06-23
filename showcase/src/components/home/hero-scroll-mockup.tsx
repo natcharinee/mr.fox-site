@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { HeroPhoneMockup } from "@/components/home/hero-phone-mockup";
+import { cn } from "@/lib/utils";
 
 function getScrollProgress(section: HTMLElement) {
   const rect = section.getBoundingClientRect();
@@ -48,20 +49,32 @@ export function HeroScrollMockup() {
   }, [reduceMotion]);
 
   const activeProgress = reduceMotion ? 0 : progress;
-  const mockupTranslateY = -activeProgress * 320;
-  const mockupScale = 1 - activeProgress * 0.06;
-  const mockupOpacity = 1 - activeProgress * 0.45;
+  const mockupTranslateY = -activeProgress * 120;
+  const mockupScale = 1 - activeProgress * 0.03;
+  const mockupOpacity = 1 - activeProgress * 0.25;
 
   return (
-    <div ref={containerRef} className="relative w-full overflow-visible py-2 sm:py-4">
+    <div
+      ref={containerRef}
+      className={cn(
+        "relative w-full overflow-visible py-2 sm:py-4",
+        "lg:w-screen lg:max-w-[100vw] lg:py-0",
+        "lg:relative lg:left-1/2 lg:-translate-x-1/2",
+      )}
+    >
       <div
         aria-hidden
-        className="pointer-events-none absolute left-1/2 top-1/2 z-0 h-[min(90vw,520px)] w-[min(90vw,520px)] -translate-x-1/2 -translate-y-[42%] rounded-full bg-[radial-gradient(circle,rgba(255,194,14,0.22)_0%,rgba(255,194,14,0.06)_42%,transparent_72%)] blur-2xl"
+        className={cn(
+          "pointer-events-none absolute left-1/2 top-1/2 z-0 -translate-x-1/2 -translate-y-[42%] rounded-full bg-[radial-gradient(circle,rgba(255,194,14,0.22)_0%,rgba(255,194,14,0.06)_42%,transparent_72%)] blur-2xl",
+          "h-[min(90vw,520px)] w-[min(90vw,520px)]",
+          "md:h-[min(85vw,580px)] md:w-[min(85vw,580px)]",
+          "lg:top-auto lg:bottom-0 lg:h-[42.86vw] lg:w-full lg:max-h-[min(42.86vw,820px)] lg:translate-y-0 lg:rounded-none",
+        )}
       />
 
-      <div className="relative mx-auto flex w-full max-w-6xl justify-center overflow-visible px-2 sm:px-4">
+      <div className="relative mx-auto flex w-full justify-center overflow-visible px-2 sm:px-4 lg:px-0">
         <div
-          className="relative z-10 will-change-transform [backface-visibility:hidden] [transform:translateZ(0)]"
+          className="relative z-10 w-full will-change-transform [backface-visibility:hidden] [transform:translateZ(0)] lg:max-w-none"
           style={{
             transform: `translateY(${mockupTranslateY}px) scale(${mockupScale})`,
             opacity: mockupOpacity,

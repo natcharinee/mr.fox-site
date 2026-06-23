@@ -2,9 +2,29 @@
 
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
+import { cn } from "@/lib/utils";
 
 const HERO_IMAGE = "/hero/mrfox-app-mockup@2x.png";
 const HERO_VIDEO_MP4 = "/hero/Present-MrFOX-COIN-final.mp4";
+
+const frameClassName = cn(
+  "relative mx-auto",
+  "w-[240px] sm:w-[280px] md:w-[340px]",
+  "lg:w-full lg:max-w-none",
+);
+
+const glowClassName = cn(
+  "pointer-events-none absolute bg-[var(--fox-gold)]/20 blur-2xl",
+  "-inset-6 rounded-full md:-inset-8",
+  "lg:hidden",
+);
+
+const mediaClassName = cn(
+  "relative w-full [transform:translateZ(0)]",
+  "rounded-[2rem] md:rounded-[2.25rem]",
+  "h-auto",
+  "lg:aspect-[21/9] lg:rounded-none lg:object-cover lg:shadow-none",
+);
 
 export function HeroPhoneMockup() {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -36,8 +56,8 @@ export function HeroPhoneMockup() {
   const useVideo = showVideo && !videoFailed;
 
   return (
-    <div className="relative mx-auto w-[240px] sm:w-[280px]">
-      <div className="pointer-events-none absolute -inset-6 rounded-full bg-[var(--fox-gold)]/20 blur-2xl" />
+    <div className={frameClassName}>
+      <div className={glowClassName} aria-hidden />
 
       {useVideo ? (
         <video
@@ -49,22 +69,35 @@ export function HeroPhoneMockup() {
           preload="auto"
           poster={HERO_IMAGE}
           aria-label="Mr.FOX app preview"
-          className="relative h-auto w-full rounded-[2rem] [transform:translateZ(0)]"
+          className={mediaClassName}
           onError={() => setVideoFailed(true)}
         >
           <source src={HERO_VIDEO_MP4} type="video/mp4" />
         </video>
       ) : (
-        <Image
-          src={HERO_IMAGE}
-          alt="Mr.FOX app"
-          width={560}
-          height={1131}
-          priority
-          unoptimized
-          sizes="(max-width: 640px) 240px, 280px"
-          className="relative h-auto w-full [transform:translateZ(0)]"
-        />
+        <>
+          <Image
+            src={HERO_IMAGE}
+            alt="Mr.FOX app"
+            width={560}
+            height={1131}
+            priority
+            unoptimized
+            sizes="(max-width: 1024px) 340px, 100vw"
+            className={cn(mediaClassName, "lg:hidden")}
+          />
+          <div className="relative hidden lg:block lg:aspect-[21/9] lg:w-full lg:overflow-hidden">
+            <Image
+              src={HERO_IMAGE}
+              alt="Mr.FOX app"
+              fill
+              priority
+              unoptimized
+              sizes="100vw"
+              className="object-cover [transform:translateZ(0)]"
+            />
+          </div>
+        </>
       )}
     </div>
   );

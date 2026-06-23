@@ -17,7 +17,12 @@ const useNeon =
 export const db = useNeon
   ? drizzleNeon(neon(connectionString), { schema })
   : drizzlePostgres(
-      postgres(connectionString, { prepare: false, max: 1 }),
+      postgres(connectionString, {
+        prepare: false,
+        max: 1,
+        connect_timeout: 3,
+        idle_timeout: 10,
+      }),
       { schema },
     );
 

@@ -104,7 +104,10 @@ export default async function HomePage({ params }: Props) {
       <EcosystemBento
         title={t("ecosystem")}
         description={t("ecosystemDesc")}
-        viewAllLabel={t("platformTypes")}
+        includesLabel={t("ecosystemIncludes")}
+        typeCountLabel={t("ecosystemTypeCount")}
+        viewPlatformLabel={t("ecosystemViewPlatform")}
+        viewAllLabel={t("viewAll")}
         categories={localizedCategories}
         platformTypes={localizedPlatforms}
       />

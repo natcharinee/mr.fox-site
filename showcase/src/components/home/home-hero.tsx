@@ -28,45 +28,43 @@ export function HomeHero({
   downloadApps,
 }: HomeHeroProps) {
   return (
-    <section className="relative min-h-[115vh] border-b border-[#2a2418] sm:min-h-[110vh]">
-      <ParticleHero className="min-h-[inherit]">
-        <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
-          <div className="flex flex-col items-center">
-            <HeroScrollMockup />
+    <section className="relative min-h-[115vh] overflow-x-clip border-b border-[#2a2418] sm:min-h-[110vh] lg:min-h-0">
+      <ParticleHero className="min-h-[inherit] lg:min-h-0 lg:overflow-visible">
+        <HeroScrollMockup />
 
-            <div className="mt-10 max-w-3xl text-center sm:mt-12">
-              <Badge className="mb-4 border-[#5c4a12] bg-[#ffc20e]/15 text-[#ffe08a] hover:bg-[#ffc20e]/15">
-                {badge}
-              </Badge>
-              <h1 className="text-4xl font-bold tracking-tight text-[#fff8e8] sm:text-5xl lg:text-6xl">
-                {title}{" "}
-                <span className="text-[var(--fox-gold)]">{titleHighlight}</span> {titleSuffix}
-              </h1>
-              <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-[#c9b98a]">
-                {subtitle}
-              </p>
-              <div className="mt-8 flex flex-wrap justify-center gap-3">
-                <LinkButton
-                  href="/platforms"
-                  size="lg"
-                  className="bg-[var(--fox-gold)] text-[var(--fox-charcoal)] hover:bg-[var(--fox-gold)]/90"
-                >
-                  {explorePlatforms}
-                  <ArrowRight className="ml-2 size-4" />
-                </LinkButton>
-                <a
-                  href="https://link.mrfox.app"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={cn(
-                    buttonVariants({ size: "lg", variant: "outline" }),
-                    "border-[#5c4a12] bg-transparent text-[#fff4cc] hover:bg-[#ffc20e]/10",
-                  )}
-                >
-                  <Download className="mr-2 size-4" />
-                  {downloadApps}
-                </a>
-              </div>
+        <div className="mx-auto max-w-7xl px-4 pb-16 pt-8 sm:px-6 sm:pt-10 lg:px-8 lg:pb-24 lg:pt-12">
+          <div className="mx-auto max-w-3xl text-center">
+            <Badge className="mb-4 border-[#5c4a12] bg-[#ffc20e]/15 text-[#ffe08a] hover:bg-[#ffc20e]/15">
+              {badge}
+            </Badge>
+            <h1 className="text-4xl font-bold tracking-tight text-[#fff8e8] sm:text-5xl lg:text-6xl">
+              {title}{" "}
+              <span className="text-[var(--fox-gold)]">{titleHighlight}</span> {titleSuffix}
+            </h1>
+            <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-[#c9b98a]">
+              {subtitle}
+            </p>
+            <div className="mt-8 flex flex-wrap justify-center gap-3">
+              <LinkButton
+                href="/platforms"
+                size="lg"
+                className="bg-[var(--fox-gold)] text-[var(--fox-charcoal)] hover:bg-[var(--fox-gold)]/90"
+              >
+                {explorePlatforms}
+                <ArrowRight className="ml-2 size-4" />
+              </LinkButton>
+              <a
+                href="https://link.mrfox.app"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={cn(
+                  buttonVariants({ size: "lg", variant: "outline" }),
+                  "border-[#5c4a12] bg-transparent text-[#fff4cc] hover:bg-[#ffc20e]/10",
+                )}
+              >
+                <Download className="mr-2 size-4" />
+                {downloadApps}
+              </a>
             </div>
           </div>
         </div>
