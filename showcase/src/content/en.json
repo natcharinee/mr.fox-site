@@ -1,0 +1,237 @@
+{
+  "categories": {
+    "creator": {
+      "name": "Creator",
+      "description": "Platforms for the Creator Economy — from solo creators to multi-category setups"
+    },
+    "community": {
+      "name": "Community",
+      "description": "Communities where every member can participate, post, and exchange ideas"
+    },
+    "company": {
+      "name": "Company",
+      "description": "Corporate platforms for companies, universities, and alumni networks"
+    },
+    "contest": {
+      "name": "Contest",
+      "description": "Contest and voting platforms — supporting single events and multi-contest hubs"
+    },
+    "exhibition": {
+      "name": "Exhibition",
+      "description": "Exhibitions and trade shows — ticket sales and exhibitor management"
+    }
+  },
+  "platforms": {
+    "creator-specific": {
+      "name": "Creator Specific",
+      "concept": "Multiple creators, one category; visitors cannot post",
+      "shortDescription": "Single-category creator platform, e.g. FOXY",
+      "creatorModel": "Creators post content, receive votes and gifts, go live, and access monetization tools",
+      "visitorModel": "Visitors view content, vote, send gifts, and subscribe — cannot post"
+    },
+    "creator-multi-category": {
+      "name": "Creator Multi Category",
+      "concept": "Multiple creators, multiple categories; visitors cannot post",
+      "shortDescription": "Multi-discipline creator hub, e.g. The Expert, The Consult",
+      "creatorModel": "Creators organized by category, set their own service prices",
+      "visitorModel": "Visitors follow creators in categories they care about"
+    },
+    "creator-single": {
+      "name": "Creator Single",
+      "concept": "Solo creator — official platform",
+      "shortDescription": "Dedicated platform for a celebrity or individual creator",
+      "creatorModel": "One creator controls all content and monetization",
+      "visitorModel": "Fans support through votes, gifts, and subscriptions"
+    },
+    "community-specific": {
+      "name": "Community Specific",
+      "concept": "Every member can post; no creator/visitor split",
+      "shortDescription": "Online community, e.g. TOM Thailand, Silom",
+      "creatorModel": "Every member can be a creator",
+      "visitorModel": "Everyone posts, comments, and participates"
+    },
+    "the-company": {
+      "name": "The Company / Alumni / Gov",
+      "concept": "Multiple organizations on one platform",
+      "shortDescription": "e.g. The Alumni, Local Government",
+      "creatorModel": "Organizations and members publish updates",
+      "visitorModel": "Members and interested users follow organization news"
+    },
+    "company-single": {
+      "name": "Company Single",
+      "concept": "Single organization",
+      "shortDescription": "e.g. SRICHA, University Platform",
+      "creatorModel": "One organization manages all content",
+      "visitorModel": "Members and people interested in the organization"
+    },
+    "the-contest": {
+      "name": "The Contest",
+      "concept": "Multiple contest programs",
+      "shortDescription": "e.g. Music Contest, Photo Contest",
+      "creatorModel": "Contestants post their entries",
+      "visitorModel": "Viewers vote and support contestants"
+    },
+    "contest-single": {
+      "name": "Contest Single",
+      "concept": "Single contest program",
+      "shortDescription": "e.g. Miss Grand, MUT",
+      "creatorModel": "Contestants post and compete",
+      "visitorModel": "Fans vote and send gifts"
+    },
+    "the-exhibition": {
+      "name": "The Exhibition",
+      "concept": "Multiple exhibition events",
+      "shortDescription": "Exhibition Hub for trade shows and expos",
+      "creatorModel": "Exhibitors register and manage booths",
+      "visitorModel": "Visitors buy tickets and browse events"
+    },
+    "exhibition-single": {
+      "name": "Exhibition Single",
+      "concept": "Single exhibition event",
+      "shortDescription": "e.g. Museum Event, Expo",
+      "creatorModel": "Organizers manage exhibitors and content",
+      "visitorModel": "Visitors buy tickets to attend"
+    }
+  },
+  "features": {
+    "vote": {
+      "name": "Vote",
+      "description": "Paid voting to support creators",
+      "workflow": "Creator opens voting → visitor pays to vote → points accumulate in rankings",
+      "revenueModel": "10/20/50/100 THB per vote"
+    },
+    "gift": {
+      "name": "Gift",
+      "description": "Send sticker gifts to creators",
+      "workflow": "Visitor picks a sticker → pays from wallet → creator receives the gift",
+      "revenueModel": "Priced per sticker"
+    },
+    "chat": {
+      "name": "Chat",
+      "description": "Pay-per-message chat with creators",
+      "workflow": "Creator sets price → visitor pays before sending → message reaches creator",
+      "revenueModel": "Per message"
+    },
+    "voice-call": {
+      "name": "Voice Call",
+      "description": "Pay-per-minute voice calls with creators",
+      "workflow": "Visitor buys time → starts a 1:1 voice call",
+      "revenueModel": "Per minute"
+    },
+    "video-call": {
+      "name": "Video Call",
+      "description": "Pay-per-minute video calls with creators",
+      "workflow": "Visitor buys time → video call with gifts available during the session",
+      "revenueModel": "Per minute + gifts"
+    },
+    "live": {
+      "name": "Live",
+      "description": "Live streaming — free, paid, or password-protected",
+      "workflow": "Creator opens a live room → visitors join, comment, and send gifts",
+      "revenueModel": "Entry fee + gifts"
+    },
+    "live-archive": {
+      "name": "Live Archive",
+      "description": "Sell recorded live streams",
+      "workflow": "Creator saves a live stream → sets price → visitor pays to watch",
+      "revenueModel": "Per clip"
+    },
+    "unlock-photo": {
+      "name": "Unlock Photo",
+      "description": "Blurred photos unlocked with payment",
+      "workflow": "Creator uploads blurred image → visitor pays to view the full image",
+      "revenueModel": "Per item"
+    },
+    "unlock-video": {
+      "name": "Unlock Video",
+      "description": "Video previews unlocked with payment",
+      "workflow": "Creator uploads preview → visitor pays to watch the full video",
+      "revenueModel": "Per clip"
+    },
+    "subscription": {
+      "name": "Subscription",
+      "description": "Monthly premium feed",
+      "workflow": "Creator builds premium content → visitor subscribes",
+      "revenueModel": "Monthly / quarterly / annual"
+    },
+    "fan-club": {
+      "name": "Fan Club",
+      "description": "Multi-tier fan club membership",
+      "workflow": "Visitor joins fan club → earns badge and special perks"
+    },
+    "marketplace": {
+      "name": "Marketplace",
+      "description": "Buy and sell within the community",
+      "revenueModel": "Commission"
+    },
+    "event": {
+      "name": "Event",
+      "description": "Event management"
+    },
+    "contest": {
+      "name": "Contest",
+      "description": "Contest and ranking system"
+    },
+    "exhibition": {
+      "name": "Exhibition",
+      "description": "Exhibition and booth management"
+    },
+    "ticketing": {
+      "name": "Ticketing",
+      "description": "Event ticket sales",
+      "revenueModel": "Per ticket"
+    },
+    "membership": {
+      "name": "Membership",
+      "description": "Organization membership",
+      "revenueModel": "Annual / monthly"
+    },
+    "ranking": {
+      "name": "Ranking",
+      "description": "Creator rankings based on votes and gifts"
+    }
+  },
+  "apps": {
+    "foxy": {
+      "description": "Mr.FOX's flagship Creator Economy platform — full support for votes, gifts, live streaming, and monetization",
+      "targetAudience": "Creators and fans"
+    },
+    "the-expert": {
+      "description": "Multi-disciplinary experts hub — consulting, coaching, and knowledge sharing",
+      "targetAudience": "Experts and learners"
+    },
+    "tom-thailand": {
+      "description": "Online community where every member can participate",
+      "targetAudience": "Community members"
+    },
+    "the-alumni": {
+      "description": "Alumni platform spanning multiple institutions",
+      "targetAudience": "Alumni and organizations"
+    },
+    "miss-grand": {
+      "description": "Beauty pageant platform — vote and support contestants",
+      "targetAudience": "Contestants and fans"
+    },
+    "exhibition-hub": {
+      "description": "Hub for exhibitions and trade shows",
+      "targetAudience": "Organizers and visitors"
+    }
+  },
+  "news": {
+    "mrfox-ecosystem-launch": {
+      "title": "Mr.FOX Launches Creator Economy Platform Ecosystem",
+      "excerpt": "10 platform types covering Creator, Community, Company, Contest, and Exhibition",
+      "content": "Mr.FOX announces a full-stack ecosystem for the Creator Economy, with monetization through votes, gifts, live streaming, subscriptions, and more."
+    },
+    "foxy-app-update": {
+      "title": "FOXY App Update: New Live and Gift Features",
+      "excerpt": "Adds animated gifts and improves the live streaming experience",
+      "content": "FOXY launches a new animated gift collection and upgrades live rooms to support more concurrent viewers."
+    },
+    "creator-platform-engine": {
+      "title": "Creator Platform Engine — Standard Template for Every App",
+      "excerpt": "A new engine helps launch creator platforms faster",
+      "content": "Mr.FOX develops the Creator Platform Engine as a standard template supporting wallet, votes, gifts, chat, live streaming, and video calls."
+    }
+  }
+}

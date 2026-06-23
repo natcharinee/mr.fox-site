@@ -13,6 +13,8 @@ import { PageHero } from "@/components/layout/page-hero";
 import { PageShell } from "@/components/layout/page-shell";
 import { SectionHeading } from "@/components/layout/section-heading";
 import { publicTheme, themedCard } from "@/components/layout/public-theme";
+import type { Locale } from "@/i18n/routing";
+import { localizeApp, localizePlatform } from "@/lib/content-i18n";
 import { buildMetadata } from "@/lib/metadata";
 import {
   getApplicationBySlug,
@@ -22,29 +24,41 @@ import {
 
 export const dynamic = "force-dynamic";
 
-type Props = { params: Promise<{ slug: string }> };
+type Props = { params: Promise<{ locale: string; slug: string }> };
 
 export async function generateMetadata({ params }: Props) {
-  const { slug } = await params;
+  const { locale: localeParam, slug } = await params;
+  const locale = localeParam as Locale;
   const app = await getApplicationBySlug(slug);
   if (!app) return {};
+  const localized = localizeApp(locale, app);
   return buildMetadata({
-    title: app.name,
-    description: app.description ?? "",
+    title: localized.name,
+    description: localized.description ?? "",
     path: `/apps/${slug}`,
+    locale,
   });
 }
 
 export default async function AppDetailPage({ params }: Props) {
-  const { slug } = await params;
+  const { locale: localeParam, slug } = await params;
+  const locale = localeParam as Locale;
   const t = await getTranslations("apps");
-  const app = await getApplicationBySlug(slug);
-  if (!app) notFound();
+  const appRow = await getApplicationBySlug(slug);
+  if (!appRow) notFound();
+  const app = localizeApp(locale, appRow);
 
-  const [links, related] = await Promise.all([
-    getDownloadLinks(app.id),
-    getRelatedApplications(app.platformTypeId, slug),
+  const [links, relatedRows] = await Promise.all([
+    getDownloadLinks(appRow.id),
+    getRelatedApplications(appRow.platformTypeId, slug),
   ]);
+  const related = relatedRows.map((r) => localizeApp(locale, r));
+  const platformTypeName = app.platformTypeSlug
+    ? localizePlatform(locale, {
+        slug: app.platformTypeSlug,
+        name: app.platformTypeName ?? "",
+      }).name
+    : app.platformTypeName;
 
   return (
     <PageShell>
@@ -54,7 +68,7 @@ export default async function AppDetailPage({ params }: Props) {
             {app.categoryName}
           </Badge>
           <Badge className="bg-white/10 text-[#fff4cc] hover:bg-white/10">
-            {app.platformTypeName}
+            {platformTypeName}
           </Badge>
         </div>
       </PageHero>
@@ -75,7 +89,7 @@ export default async function AppDetailPage({ params }: Props) {
               </CardTitle>
               <CardDescription>
                 <Link href={`/platforms/${app.platformTypeSlug}`} className={publicTheme.link}>
-                  {app.platformTypeName}
+                  {platformTypeName}
                 </Link>
               </CardDescription>
             </CardHeader>

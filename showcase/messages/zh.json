@@ -58,7 +58,40 @@
     "permissionMatrix": "权限矩阵",
     "revenueModel": "收入模式",
     "revenueCategoryNote": "类别级别",
-    "exampleApps": "示例应用"
+    "exampleApps": "示例应用",
+    "matrixFeature": "功能",
+    "matrixStatus": "状态",
+    "statusCore": "核心",
+    "statusOptional": "可选",
+    "statusCustom": "定制",
+    "statusNo": "无",
+    "perm": {
+      "creator_post": "创作者发帖",
+      "visitor_post": "访客发帖",
+      "creator_live": "创作者直播",
+      "visitor_comment": "访客评论",
+      "visitor_vote": "访客投票",
+      "visitor_gift": "访客送礼"
+    },
+    "revenue": {
+      "vote": "投票收入",
+      "gift": "礼物收入",
+      "chat": "聊天收入",
+      "voice": "语音收入",
+      "video": "视频收入",
+      "subscription": "订阅收入",
+      "live": "直播收入",
+      "ticket": "票务收入",
+      "marketplace": "商城收入",
+      "membership": "会员收入"
+    },
+    "permValue": {
+      "yes": "是",
+      "no": "否",
+      "optional": "可选",
+      "contestant_only": "仅参赛者",
+      "exhibitor_only": "仅参展商"
+    }
   },
   "features": {
     "title": "功能库",
@@ -67,7 +100,8 @@
     "workflow": "工作流程",
     "revenueModel": "收入模式",
     "revenueFeature": "收入功能",
-    "usedBy": "使用者"
+    "usedBy": "使用者",
+    "groupLabel": "第 {group} 组"
   },
   "news": {
     "title": "新闻",
@@ -81,7 +115,36 @@
     "visionBody": "构建创作者可直接从粉丝获利的可扩展标准平台生态系统",
     "mission": "使命",
     "missionBody": "开发数据驱动的 Showcase + Engine — 仅通过添加数据库记录从 10 扩展到 100+ 应用",
-    "roadmap": "路线图"
+    "roadmap": "路线图",
+    "roadmapPhases": [
+      {
+        "phase": "第一阶段",
+        "title": "公开展示",
+        "items": [
+          "首页、平台、应用、功能",
+          "新闻、关于、联系",
+          "数据模型 + 矩阵种子数据"
+        ]
+      },
+      {
+        "phase": "第二阶段",
+        "title": "CMS / 后台",
+        "items": [
+          "所有模块的管理 CRUD",
+          "媒体库 + 分析",
+          "SEO + 横幅管理"
+        ]
+      },
+      {
+        "phase": "第三阶段",
+        "title": "优化与扩展",
+        "items": [
+          "多语言 (th/en/zh)",
+          "高级全局搜索",
+          "100+ 应用"
+        ]
+      }
+    ]
   },
   "contact": {
     "title": "联系",
@@ -115,7 +178,8 @@
     "platforms": "平台",
     "apps": "应用",
     "features": "功能",
-    "news": "新闻"
+    "news": "新闻",
+    "featureBadge": "功能"
   },
   "footer": {
     "tagline": "创作者经济、社区、竞赛与展览生态系统",

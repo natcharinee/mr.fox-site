@@ -13,38 +13,45 @@ import { PageHero } from "@/components/layout/page-hero";
 import { PageShell } from "@/components/layout/page-shell";
 import { SectionHeading } from "@/components/layout/section-heading";
 import { publicTheme, themedCard } from "@/components/layout/public-theme";
+import type { Locale } from "@/i18n/routing";
+import { localizeFeature } from "@/lib/content-i18n";
 import { buildMetadata } from "@/lib/metadata";
 import { getAppsUsingFeature, getFeatureBySlug } from "@/lib/queries";
 
 export const dynamic = "force-dynamic";
 
-type Props = { params: Promise<{ slug: string }> };
+type Props = { params: Promise<{ locale: string; slug: string }> };
 
 export async function generateMetadata({ params }: Props) {
-  const { slug } = await params;
+  const { locale: localeParam, slug } = await params;
+  const locale = localeParam as Locale;
   const feature = await getFeatureBySlug(slug);
   if (!feature) return {};
+  const localized = localizeFeature(locale, feature);
   return buildMetadata({
-    title: feature.name,
-    description: feature.description ?? "",
+    title: localized.name,
+    description: localized.description ?? "",
     path: `/features/${slug}`,
+    locale,
   });
 }
 
 export default async function FeatureDetailPage({ params }: Props) {
-  const { slug } = await params;
+  const { locale: localeParam, slug } = await params;
+  const locale = localeParam as Locale;
   const t = await getTranslations("features");
-  const feature = await getFeatureBySlug(slug);
-  if (!feature) notFound();
+  const featureRow = await getFeatureBySlug(slug);
+  if (!featureRow) notFound();
+  const feature = localizeFeature(locale, featureRow);
 
-  const usedBy = await getAppsUsingFeature(feature.id);
+  const usedBy = await getAppsUsingFeature(featureRow.id);
 
   return (
     <PageShell>
       <PageHero title={feature.name} description={feature.description ?? undefined}>
         <div className="flex items-center gap-2">
           <Badge variant="outline" className={publicTheme.heroBadge}>
-            Group {feature.group}
+            {t("groupLabel", { group: feature.group })}
           </Badge>
           {feature.revenueModel ? (
             <Badge className="bg-white/10 text-[#fff4cc] hover:bg-white/10">

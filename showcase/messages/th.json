@@ -58,7 +58,40 @@
     "permissionMatrix": "Permission Matrix",
     "revenueModel": "Revenue Model",
     "revenueCategoryNote": "ระดับ Category",
-    "exampleApps": "Example Applications"
+    "exampleApps": "Example Applications",
+    "matrixFeature": "Feature",
+    "matrixStatus": "สถานะ",
+    "statusCore": "CORE",
+    "statusOptional": "OPTIONAL",
+    "statusCustom": "CUSTOM",
+    "statusNo": "NO",
+    "perm": {
+      "creator_post": "Creator Post",
+      "visitor_post": "Visitor Post",
+      "creator_live": "Creator Live",
+      "visitor_comment": "Visitor Comment",
+      "visitor_vote": "Visitor Vote",
+      "visitor_gift": "Visitor Gift"
+    },
+    "revenue": {
+      "vote": "Vote Revenue",
+      "gift": "Gift Revenue",
+      "chat": "Chat Revenue",
+      "voice": "Voice Revenue",
+      "video": "Video Revenue",
+      "subscription": "Subscription Revenue",
+      "live": "Live Revenue",
+      "ticket": "Ticket Revenue",
+      "marketplace": "Marketplace Revenue",
+      "membership": "Membership Revenue"
+    },
+    "permValue": {
+      "yes": "ใช่",
+      "no": "ไม่",
+      "optional": "ทางเลือก",
+      "contestant_only": "ผู้เข้าแข่งขันเท่านั้น",
+      "exhibitor_only": "ผู้จัดแสดงเท่านั้น"
+    }
   },
   "features": {
     "title": "Feature Library",
@@ -67,7 +100,8 @@
     "workflow": "Workflow",
     "revenueModel": "Revenue Model",
     "revenueFeature": "Revenue Feature",
-    "usedBy": "Used By"
+    "usedBy": "Used By",
+    "groupLabel": "Group {group}"
   },
   "news": {
     "title": "News",
@@ -81,7 +115,36 @@
     "visionBody": "สร้าง ecosystem ที่ Creator หารายได้จากแฟนคลับโดยตรง ผ่านแพลตฟอร์มมาตรฐานที่ scale ได้ไม่จำกัด",
     "mission": "Mission",
     "missionBody": "พัฒนา Showcase + Engine ที่ data-driven — เพิ่มแอปจาก 10 เป็น 100+ โดยเพิ่ม record ใน database เท่านั้น",
-    "roadmap": "Roadmap"
+    "roadmap": "Roadmap",
+    "roadmapPhases": [
+      {
+        "phase": "Phase 1",
+        "title": "Public Showcase",
+        "items": [
+          "Home, Platforms, Apps, Features",
+          "News, About, Contact",
+          "Data Model + Matrix seed"
+        ]
+      },
+      {
+        "phase": "Phase 2",
+        "title": "CMS / Back Office",
+        "items": [
+          "Admin CRUD ทุก module",
+          "Media Library + Analytics",
+          "SEO + Banner management"
+        ]
+      },
+      {
+        "phase": "Phase 3",
+        "title": "Polish & Scale",
+        "items": [
+          "Multi-language (th/en/zh)",
+          "Global Search ขั้นสูง",
+          "100+ Applications"
+        ]
+      }
+    ]
   },
   "contact": {
     "title": "Contact",
@@ -115,7 +178,8 @@
     "platforms": "Platforms",
     "apps": "Applications",
     "features": "Features",
-    "news": "News"
+    "news": "News",
+    "featureBadge": "Feature"
   },
   "footer": {
     "tagline": "Ecosystem แพลตฟอร์ม Creator Economy, Community, Contest และ Exhibition",

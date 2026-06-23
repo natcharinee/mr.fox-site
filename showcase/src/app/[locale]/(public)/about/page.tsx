@@ -11,23 +11,11 @@ export const dynamic = "force-dynamic";
 
 type Props = { params: Promise<{ locale: string }> };
 
-const ROADMAP = [
-  {
-    phase: "Phase 1",
-    title: "Public Showcase",
-    items: ["Home, Platforms, Apps, Features", "News, About, Contact", "Data Model + Matrix seed"],
-  },
-  {
-    phase: "Phase 2",
-    title: "CMS / Back Office",
-    items: ["Admin CRUD ทุก module", "Media Library + Analytics", "SEO + Banner management"],
-  },
-  {
-    phase: "Phase 3",
-    title: "Polish & Scale",
-    items: ["Multi-language (th/en/zh)", "Global Search ขั้นสูง", "100+ Applications"],
-  },
-];
+type RoadmapPhase = {
+  phase: string;
+  title: string;
+  items: string[];
+};
 
 export async function generateMetadata({ params }: Props) {
   const { locale } = await params;
@@ -40,8 +28,10 @@ export async function generateMetadata({ params }: Props) {
   });
 }
 
-export default async function AboutPage() {
-  const t = await getTranslations("about");
+export default async function AboutPage({ params }: Props) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "about" });
+  const roadmap = t.raw("roadmapPhases") as RoadmapPhase[];
 
   return (
     <PageShell>
@@ -70,7 +60,7 @@ export default async function AboutPage() {
         <section className="mt-12">
           <SectionHeading title={t("roadmap")} />
           <div className="grid gap-4 md:grid-cols-3">
-            {ROADMAP.map((r) => (
+            {roadmap.map((r) => (
               <Card key={r.phase} className={themedCard()}>
                 <CardHeader>
                   <CardTitle className="text-base text-[var(--fox-charcoal)]">{r.phase}</CardTitle>

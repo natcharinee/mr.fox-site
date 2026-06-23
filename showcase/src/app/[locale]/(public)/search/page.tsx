@@ -6,19 +6,44 @@ import { Input } from "@/components/ui/input";
 import { PageHero } from "@/components/layout/page-hero";
 import { PageShell } from "@/components/layout/page-shell";
 import { publicTheme, themedCard } from "@/components/layout/public-theme";
+import type { Locale } from "@/i18n/routing";
+import {
+  localizeApp,
+  localizeFeature,
+  localizeNews,
+  localizePlatform,
+} from "@/lib/content-i18n";
 import { globalSearch } from "@/lib/queries";
 
 export const dynamic = "force-dynamic";
 
 type Props = {
+  params: Promise<{ locale: string }>;
   searchParams: Promise<{ q?: string }>;
 };
 
-export default async function SearchPage({ searchParams }: Props) {
+export default async function SearchPage({ params, searchParams }: Props) {
+  const { locale: localeParam } = await params;
+  const locale = localeParam as Locale;
   const { q } = await searchParams;
   const t = await getTranslations("search");
 
-  const results = q && q.length >= 2 ? await globalSearch(q) : null;
+  const resultsRaw = q && q.length >= 2 ? await globalSearch(q) : null;
+  const results = resultsRaw
+    ? {
+        platforms: resultsRaw.platforms.map((item) => localizePlatform(locale, item)),
+        apps: resultsRaw.apps.map((item) => localizeApp(locale, item)),
+        features: resultsRaw.features.map((item) => localizeFeature(locale, item)),
+        news: resultsRaw.news.map((item) =>
+          localizeNews(locale, {
+            slug: item.slug,
+            title: item.name,
+            excerpt: null,
+            content: "",
+          }),
+        ),
+      }
+    : null;
   const hasResults =
     results &&
     (results.platforms.length > 0 ||
@@ -93,7 +118,9 @@ export default async function SearchPage({ searchParams }: Props) {
                         <CardHeader className="py-3">
                           <CardTitle className="flex items-center gap-2 text-sm text-[var(--fox-charcoal)]">
                             {item.name}
-                            <Badge className="bg-[#fff4cc] text-xs text-[var(--fox-gold-dark)]">Feature</Badge>
+                            <Badge className="bg-[#fff4cc] text-xs text-[var(--fox-gold-dark)]">
+                              {t("featureBadge")}
+                            </Badge>
                           </CardTitle>
                         </CardHeader>
                       </Card>
@@ -110,7 +137,9 @@ export default async function SearchPage({ searchParams }: Props) {
                     <Link key={item.slug} href={`/news/${item.slug}`}>
                       <Card className={themedCard()}>
                         <CardHeader className="py-3">
-                          <CardTitle className="text-sm text-[var(--fox-charcoal)]">{item.name}</CardTitle>
+                          <CardTitle className="text-sm text-[var(--fox-charcoal)]">
+                            {item.title}
+                          </CardTitle>
                         </CardHeader>
                       </Card>
                     </Link>

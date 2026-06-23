@@ -14,6 +14,7 @@ import { PageHero } from "@/components/layout/page-hero";
 import { PageShell } from "@/components/layout/page-shell";
 import { publicTheme, themedCard } from "@/components/layout/public-theme";
 import type { Locale } from "@/i18n/routing";
+import { localizeApp, localizeCategory, localizePlatform } from "@/lib/content-i18n";
 import { buildMetadata } from "@/lib/metadata";
 import { getApplications, getCategories, getDownloadLinks, getPlatformTypes } from "@/lib/queries";
 
@@ -42,8 +43,11 @@ export async function generateMetadata({ params }: Pick<PageProps, "params">) {
 }
 
 export default async function AppsPage({
+  params,
   searchParams,
-}: Pick<PageProps, "searchParams">) {
+}: PageProps) {
+  const { locale: localeParam } = await params;
+  const locale = localeParam as Locale;
   const { q, category, platform } = await searchParams;
   const t = await getTranslations("apps");
   const tc = await getTranslations("common");
@@ -58,8 +62,12 @@ export default async function AppsPage({
     getPlatformTypes(),
   ]);
 
+  const localizedCategories = categories.map((c) => localizeCategory(locale, c));
+  const localizedPlatformTypes = platformTypes.map((p) => localizePlatform(locale, p));
+  const localizedApps = apps.map((a) => localizeApp(locale, a));
+
   const appsWithLinks = await Promise.all(
-    apps.map(async (app) => ({
+    localizedApps.map(async (app) => ({
       ...app,
       links: await getDownloadLinks(app.id),
     })),
@@ -77,7 +85,7 @@ export default async function AppsPage({
           />
           <select name="category" defaultValue={category ?? ""} className={publicTheme.select}>
             <option value="">{t("allCategories")}</option>
-            {categories.map((c) => (
+            {localizedCategories.map((c) => (
               <option key={c.slug} value={c.slug}>
                 {c.name}
               </option>
@@ -85,7 +93,7 @@ export default async function AppsPage({
           </select>
           <select name="platform" defaultValue={platform ?? ""} className={filterClass}>
             <option value="">{t("allPlatforms")}</option>
-            {platformTypes.map((pt) => (
+            {localizedPlatformTypes.map((pt) => (
               <option key={pt.slug} value={pt.slug}>
                 {pt.name}
               </option>

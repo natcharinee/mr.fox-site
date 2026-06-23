@@ -75,14 +75,20 @@ export const applications = pgTable("applications", {
   sortOrder: integer("sort_order").notNull().default(0),
 });
 
-export const downloadLinks = pgTable("download_links", {
-  id: serial("id").primaryKey(),
-  applicationId: integer("application_id")
-    .notNull()
-    .references(() => applications.id, { onDelete: "cascade" }),
-  type: downloadTypeEnum("type").notNull(),
-  url: text("url").notNull(),
-});
+export const downloadLinks = pgTable(
+  "download_links",
+  {
+    id: serial("id").primaryKey(),
+    applicationId: integer("application_id")
+      .notNull()
+      .references(() => applications.id, { onDelete: "cascade" }),
+    type: downloadTypeEnum("type").notNull(),
+    url: text("url").notNull(),
+  },
+  (t) => [
+    uniqueIndex("download_links_app_type_unique").on(t.applicationId, t.type),
+  ],
+);
 
 export const screenshots = pgTable("screenshots", {
   id: serial("id").primaryKey(),

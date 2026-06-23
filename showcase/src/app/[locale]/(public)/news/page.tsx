@@ -5,6 +5,7 @@ import { PageHero } from "@/components/layout/page-hero";
 import { PageShell } from "@/components/layout/page-shell";
 import { themedCard } from "@/components/layout/public-theme";
 import type { Locale } from "@/i18n/routing";
+import { formatLocaleDate, localizeNews } from "@/lib/content-i18n";
 import { buildMetadata } from "@/lib/metadata";
 import { getAllNews } from "@/lib/queries";
 
@@ -23,9 +24,15 @@ export async function generateMetadata({ params }: Props) {
   });
 }
 
-export default async function NewsPage() {
+export default async function NewsPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale: localeParam } = await params;
+  const locale = localeParam as Locale;
   const t = await getTranslations("news");
-  const items = await getAllNews();
+  const items = (await getAllNews()).map((item) => localizeNews(locale, item));
 
   return (
     <PageShell>
@@ -41,9 +48,7 @@ export default async function NewsPage() {
                     {item.title}
                   </CardTitle>
                   <CardDescription>
-                    {item.publishedAt
-                      ? new Date(item.publishedAt).toLocaleDateString("th-TH")
-                      : ""}
+                    {item.publishedAt ? formatLocaleDate(locale, item.publishedAt) : ""}
                   </CardDescription>
                   <CardDescription className="line-clamp-2">{item.excerpt}</CardDescription>
                 </CardHeader>

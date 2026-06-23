@@ -4,36 +4,39 @@ import { notFound } from "next/navigation";
 import { PageHero } from "@/components/layout/page-hero";
 import { PageShell } from "@/components/layout/page-shell";
 import { publicTheme } from "@/components/layout/public-theme";
+import type { Locale } from "@/i18n/routing";
+import { formatLocaleDate, localizeNews } from "@/lib/content-i18n";
 import { buildMetadata } from "@/lib/metadata";
 import { getNewsBySlug } from "@/lib/queries";
 
 export const dynamic = "force-dynamic";
 
-type Props = { params: Promise<{ slug: string }> };
+type Props = { params: Promise<{ locale: string; slug: string }> };
 
 export async function generateMetadata({ params }: Props) {
-  const { slug } = await params;
+  const { locale: localeParam, slug } = await params;
+  const locale = localeParam as Locale;
   const item = await getNewsBySlug(slug);
   if (!item) return {};
+  const localized = localizeNews(locale, item);
   return buildMetadata({
-    title: item.title,
-    description: item.excerpt ?? "",
+    title: localized.title,
+    description: localized.excerpt ?? "",
     path: `/news/${slug}`,
+    locale,
   });
 }
 
 export default async function NewsDetailPage({ params }: Props) {
-  const { slug } = await params;
+  const { locale: localeParam, slug } = await params;
+  const locale = localeParam as Locale;
   const t = await getTranslations("news");
-  const item = await getNewsBySlug(slug);
-  if (!item) notFound();
+  const itemRow = await getNewsBySlug(slug);
+  if (!itemRow) notFound();
+  const item = localizeNews(locale, itemRow);
 
   const publishedLabel = item.publishedAt
-    ? new Date(item.publishedAt).toLocaleDateString("th-TH", {
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-      })
+    ? formatLocaleDate(locale, item.publishedAt, "long")
     : "";
 
   return (

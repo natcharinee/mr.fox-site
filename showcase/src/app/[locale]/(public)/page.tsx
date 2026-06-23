@@ -10,8 +10,17 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { DownloadButtons } from "@/components/apps/download-buttons";
+import { FeaturedAppCard } from "@/components/apps/featured-app-card";
 import { HomeHero } from "@/components/home/home-hero";
+import { EcosystemBento } from "@/components/home/ecosystem-bento";
+import type { Locale } from "@/i18n/routing";
+import {
+  localizeApp,
+  localizeCategory,
+  localizeFeature,
+  localizeNews,
+  localizePlatform,
+} from "@/lib/content-i18n";
 import {
   getCategories,
   getCoreFeatures,
@@ -24,7 +33,11 @@ import {
 
 export const dynamic = "force-dynamic";
 
-export default async function HomePage() {
+type Props = { params: Promise<{ locale: string }> };
+
+export default async function HomePage({ params }: Props) {
+  const { locale: localeParam } = await params;
+  const locale = localeParam as Locale;
   const t = await getTranslations("home");
   const tc = await getTranslations("common");
 
@@ -38,8 +51,14 @@ export default async function HomePage() {
       getLatestNews(3),
     ]);
 
+  const localizedCategories = categories.map((c) => localizeCategory(locale, c));
+  const localizedPlatforms = platformTypes.map((p) => localizePlatform(locale, p));
+  const localizedApps = featuredApps.map((a) => localizeApp(locale, a));
+  const localizedFeatures = coreFeatures.map((f) => localizeFeature(locale, f));
+  const localizedNews = latestNews.map((n) => localizeNews(locale, n));
+
   const appsWithLinks = await Promise.all(
-    featuredApps.map(async (app) => ({
+    localizedApps.map(async (app) => ({
       ...app,
       links: await getDownloadLinks(app.id),
     })),
@@ -79,28 +98,13 @@ export default async function HomePage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-        <div className="flex items-center gap-3">
-          <span className="h-9 w-1 rounded-full bg-[var(--fox-gold)]" />
-          <div>
-            <h2 className="text-2xl font-bold text-[var(--fox-charcoal)]">{t("ecosystem")}</h2>
-            <p className="mt-1 text-muted-foreground">{t("ecosystemDesc")}</p>
-          </div>
-        </div>
-        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {categories.map((cat) => (
-            <Card
-              key={cat.slug}
-              className="border-[#f0e4c3] bg-white/80 transition-all hover:-translate-y-0.5 hover:border-[var(--fox-gold)]/40 hover:shadow-md"
-            >
-              <CardHeader>
-                <CardTitle className="text-lg">{cat.name}</CardTitle>
-                <CardDescription>{cat.description}</CardDescription>
-              </CardHeader>
-            </Card>
-          ))}
-        </div>
-      </section>
+      <EcosystemBento
+        title={t("ecosystem")}
+        description={t("ecosystemDesc")}
+        viewAllLabel={t("platformTypes")}
+        categories={localizedCategories}
+        platformTypes={localizedPlatforms}
+      />
 
       <section className="border-t border-[#f0e4c3] bg-white/60">
         <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
@@ -119,7 +123,7 @@ export default async function HomePage() {
             </LinkButton>
           </div>
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {platformTypes.slice(0, 6).map((pt) => (
+            {localizedPlatforms.slice(0, 6).map((pt) => (
               <Link key={pt.slug} href={`/platforms/${pt.slug}`}>
                 <Card className="h-full border-[#f0e4c3] bg-[var(--fox-cream)] transition-all hover:-translate-y-0.5 hover:border-[var(--fox-gold)]/40 hover:shadow-md">
                   <CardHeader>
@@ -148,29 +152,13 @@ export default async function HomePage() {
         </div>
         <div className="mt-8 grid gap-6 sm:grid-cols-2">
           {appsWithLinks.map((app) => (
-            <Card key={app.slug} className="border-[#f0e4c3] bg-white/85 shadow-sm">
-              <CardHeader>
-                <div className="flex items-start justify-between gap-4">
-                  <div>
-                    <CardTitle>{app.name}</CardTitle>
-                    <CardDescription>{app.platformTypeName}</CardDescription>
-                  </div>
-                  <Badge className="bg-[var(--fox-gold)] text-[var(--fox-charcoal)] hover:bg-[var(--fox-gold)]">
-                    {tc("featured")}
-                  </Badge>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground line-clamp-2 mb-4">
-                  {app.description}
-                </p>
-                <DownloadButtons
-                  appSlug={app.slug}
-                  appId={app.id}
-                  links={app.links}
-                />
-              </CardContent>
-            </Card>
+            <FeaturedAppCard
+              key={app.slug}
+              app={app}
+              featuredLabel={tc("featured")}
+              downloadLabel={t("downloadApps")}
+              links={app.links}
+            />
           ))}
         </div>
       </section>
@@ -182,7 +170,7 @@ export default async function HomePage() {
             <h2 className="text-2xl font-bold text-[var(--fox-charcoal)]">{t("coreFeatures")}</h2>
           </div>
           <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            {coreFeatures.map((f) => (
+            {localizedFeatures.map((f) => (
               <Link key={f.slug} href={`/features/${f.slug}`}>
                 <Card className="h-full border-[#f0e4c3] bg-[var(--fox-cream)] transition-all hover:-translate-y-0.5 hover:border-[var(--fox-gold)]/40 hover:shadow-sm">
                   <CardHeader className="pb-2">
@@ -209,7 +197,7 @@ export default async function HomePage() {
           </LinkButton>
         </div>
         <div className="mt-8 grid gap-4 md:grid-cols-3">
-          {latestNews.map((item) => (
+          {localizedNews.map((item) => (
             <Link key={item.slug} href={`/news/${item.slug}`}>
               <Card className="h-full border-[#f0e4c3] bg-white/85 transition-all hover:-translate-y-0.5 hover:border-[var(--fox-gold)]/40 hover:shadow-md">
                 <CardHeader>

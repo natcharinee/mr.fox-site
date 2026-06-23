@@ -78,6 +78,8 @@ CREATE TABLE IF NOT EXISTS "download_links" (
   CONSTRAINT "download_links_application_id_applications_id_fk"
     FOREIGN KEY ("application_id") REFERENCES "applications"("id") ON DELETE cascade
 );
+CREATE UNIQUE INDEX IF NOT EXISTS "download_links_app_type_unique"
+  ON "download_links" ("application_id", "type");
 
 CREATE TABLE IF NOT EXISTS "screenshots" (
   "id" serial PRIMARY KEY NOT NULL,

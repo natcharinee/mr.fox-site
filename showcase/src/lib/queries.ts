@@ -182,12 +182,19 @@ export async function getFeaturedApplications(limit = 4) {
       id: applications.id,
       name: applications.name,
       slug: applications.slug,
+      logoUrl: applications.logoUrl,
+      posterUrl: applications.posterUrl,
       description: applications.description,
       platformTypeName: platformTypes.name,
       platformTypeSlug: platformTypes.slug,
+      categoryName: platformCategories.name,
     })
     .from(applications)
     .innerJoin(platformTypes, eq(applications.platformTypeId, platformTypes.id))
+    .innerJoin(
+      platformCategories,
+      eq(platformTypes.categoryId, platformCategories.id),
+    )
     .where(eq(applications.featured, true))
     .orderBy(applications.sortOrder)
     .limit(limit);
@@ -221,10 +228,24 @@ export async function getApplicationBySlug(slug: string) {
 }
 
 export async function getDownloadLinks(applicationId: number) {
-  return db
-    .select()
+  const rows = await db
+    .select({
+      id: downloadLinks.id,
+      type: downloadLinks.type,
+      url: downloadLinks.url,
+    })
     .from(downloadLinks)
-    .where(eq(downloadLinks.applicationId, applicationId));
+    .where(eq(downloadLinks.applicationId, applicationId))
+    .orderBy(downloadLinks.id);
+
+  const byType = new Map<string, (typeof rows)[number]>();
+  for (const row of rows) {
+    if (!byType.has(row.type)) {
+      byType.set(row.type, row);
+    }
+  }
+
+  return Array.from(byType.values());
 }
 
 export async function getRelatedApplications(

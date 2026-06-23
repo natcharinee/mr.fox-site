@@ -6,6 +6,7 @@ import { PageHero } from "@/components/layout/page-hero";
 import { PageShell } from "@/components/layout/page-shell";
 import { themedCard } from "@/components/layout/public-theme";
 import type { Locale } from "@/i18n/routing";
+import { localizePlatform } from "@/lib/content-i18n";
 import { buildMetadata } from "@/lib/metadata";
 import { getPlatformTypes } from "@/lib/queries";
 
@@ -24,9 +25,17 @@ export async function generateMetadata({ params }: Props) {
   });
 }
 
-export default async function PlatformsPage() {
+export default async function PlatformsPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale: localeParam } = await params;
+  const locale = localeParam as Locale;
   const t = await getTranslations("platforms");
-  const platformTypes = await getPlatformTypes();
+  const platformTypes = (await getPlatformTypes()).map((p) =>
+    localizePlatform(locale, p),
+  );
 
   return (
     <PageShell>

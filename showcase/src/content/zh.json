@@ -1,0 +1,237 @@
+{
+  "categories": {
+    "creator": {
+      "name": "创作者",
+      "description": "创作者经济平台——从独立创作者到多品类多种形态"
+    },
+    "community": {
+      "name": "社区",
+      "description": "每位成员均可发帖、互动与交流的在线社区"
+    },
+    "company": {
+      "name": "机构",
+      "description": "面向企业、大学和校友组织的机构平台"
+    },
+    "contest": {
+      "name": "竞赛",
+      "description": "竞赛与投票平台——支持单项赛事和多项竞赛合集"
+    },
+    "exhibition": {
+      "name": "展览",
+      "description": "展览与展销会——票务销售与参展商管理"
+    }
+  },
+  "platforms": {
+    "creator-specific": {
+      "name": "创作者专属",
+      "concept": "多位创作者、单一品类，访客不可发帖",
+      "shortDescription": "单一品类的创作者平台，例如 FOXY",
+      "creatorModel": "创作者发布内容、接收投票与礼物、开启直播并使用变现工具",
+      "visitorModel": "访客浏览内容、投票、送礼、订阅——不可发帖"
+    },
+    "creator-multi-category": {
+      "name": "创作者多品类",
+      "concept": "多位创作者、多个品类，访客不可发帖",
+      "shortDescription": "汇聚多领域创作者，例如 The Expert、The Consult",
+      "creatorModel": "创作者按品类划分，自主设定服务价格",
+      "visitorModel": "访客按感兴趣的品类关注创作者"
+    },
+    "creator-single": {
+      "name": "创作者个人",
+      "concept": "单一创作者——官方平台",
+      "shortDescription": "专为明星或个体创作者打造的专属平台",
+      "creatorModel": "单一创作者掌控全部内容与变现",
+      "visitorModel": "粉丝通过投票、礼物和订阅予以支持"
+    },
+    "community-specific": {
+      "name": "社区专属",
+      "concept": "每位成员均可发帖，不区分创作者与访客",
+      "shortDescription": "在线社区，例如 TOM Thailand、Silom",
+      "creatorModel": "每位成员均可成为创作者",
+      "visitorModel": "所有人发帖、评论并参与互动"
+    },
+    "the-company": {
+      "name": "机构 / 校友 / 政府",
+      "concept": "多个组织汇聚于同一平台",
+      "shortDescription": "例如 The Alumni、地方政府",
+      "creatorModel": "组织与成员发布资讯",
+      "visitorModel": "成员与关注者获取组织动态"
+    },
+    "company-single": {
+      "name": "单一机构",
+      "concept": "单一组织",
+      "shortDescription": "例如 SRICHA、大学平台",
+      "creatorModel": "单一组织管理全部内容",
+      "visitorModel": "组织成员与关注者"
+    },
+    "the-contest": {
+      "name": "竞赛合集",
+      "concept": "汇聚多项竞赛活动",
+      "shortDescription": "例如音乐竞赛、摄影竞赛",
+      "creatorModel": "参赛者发布参赛作品",
+      "visitorModel": "观众投票并支持参赛者"
+    },
+    "contest-single": {
+      "name": "单项竞赛",
+      "concept": "单一竞赛活动",
+      "shortDescription": "例如 Miss Grand、MUT",
+      "creatorModel": "参赛者发布作品并参与角逐",
+      "visitorModel": "粉丝投票并赠送礼物"
+    },
+    "the-exhibition": {
+      "name": "展览合集",
+      "concept": "汇聚多场展览活动",
+      "shortDescription": "Exhibition Hub 汇聚各类展销活动",
+      "creatorModel": "参展商注册并管理展位",
+      "visitorModel": "观众购票并参观活动"
+    },
+    "exhibition-single": {
+      "name": "单场展览",
+      "concept": "单一展览活动",
+      "shortDescription": "例如博物馆活动、博览会",
+      "creatorModel": "主办方管理参展商与内容",
+      "visitorModel": "观众购票入场"
+    }
+  },
+  "features": {
+    "vote": {
+      "name": "投票",
+      "description": "付费投票支持创作者",
+      "workflow": "创作者开启投票 → 访客付费投票 → 积分计入排行榜",
+      "revenueModel": "每次投票 10/20/50/100 泰铢"
+    },
+    "gift": {
+      "name": "礼物",
+      "description": "向创作者发送贴纸礼物",
+      "workflow": "访客选择贴纸 → 从钱包扣款 → 创作者收到礼物",
+      "revenueModel": "按贴纸定价"
+    },
+    "chat": {
+      "name": "聊天",
+      "description": "与创作者按条付费聊天",
+      "workflow": "创作者设定价格 → 访客付费后发送 → 消息送达创作者",
+      "revenueModel": "按条计费"
+    },
+    "voice-call": {
+      "name": "语音通话",
+      "description": "与创作者按分钟付费语音通话",
+      "workflow": "访客购买时长 → 发起一对一语音通话",
+      "revenueModel": "按分钟计费"
+    },
+    "video-call": {
+      "name": "视频通话",
+      "description": "与创作者按分钟付费视频通话",
+      "workflow": "访客购买时长 → 视频通话期间可赠送礼物",
+      "revenueModel": "按分钟计费 + 礼物"
+    },
+    "live": {
+      "name": "直播",
+      "description": "直播——免费 / 付费 / 密码保护",
+      "workflow": "创作者开启直播间 → 访客进入观看、评论并送礼",
+      "revenueModel": "入场费 + 礼物"
+    },
+    "live-archive": {
+      "name": "直播回放",
+      "description": "销售直播回放视频",
+      "workflow": "创作者保存直播 → 设定价格 → 访客付费观看",
+      "revenueModel": "按条计费"
+    },
+    "unlock-photo": {
+      "name": "解锁照片",
+      "description": "模糊照片付费解锁",
+      "workflow": "创作者上传模糊图片 → 访客付费查看完整图片",
+      "revenueModel": "按张计费"
+    },
+    "unlock-video": {
+      "name": "解锁视频",
+      "description": "预览视频付费观看完整版",
+      "workflow": "创作者上传预览 → 访客付费观看完整视频",
+      "revenueModel": "按条计费"
+    },
+    "subscription": {
+      "name": "订阅",
+      "description": "月度优质内容订阅",
+      "workflow": "创作者发布优质内容 → 访客订阅",
+      "revenueModel": "月付 / 季付 / 年付"
+    },
+    "fan-club": {
+      "name": "粉丝俱乐部",
+      "description": "多等级粉丝俱乐部会员",
+      "workflow": "访客加入粉丝俱乐部 → 获得徽章与专属权益"
+    },
+    "marketplace": {
+      "name": "市集",
+      "description": "社区内买卖商品",
+      "revenueModel": "佣金"
+    },
+    "event": {
+      "name": "活动",
+      "description": "活动管理"
+    },
+    "contest": {
+      "name": "竞赛",
+      "description": "竞赛与排名系统"
+    },
+    "exhibition": {
+      "name": "展览",
+      "description": "展览与展位管理"
+    },
+    "ticketing": {
+      "name": "票务",
+      "description": "活动门票销售",
+      "revenueModel": "按张计费"
+    },
+    "membership": {
+      "name": "会员",
+      "description": "机构会员",
+      "revenueModel": "年付 / 月付"
+    },
+    "ranking": {
+      "name": "排行榜",
+      "description": "根据投票与礼物排名的创作者榜单"
+    }
+  },
+  "apps": {
+    "foxy": {
+      "description": "Mr.FOX 旗舰创作者经济平台——全面支持投票、礼物、直播与变现",
+      "targetAudience": "创作者与粉丝"
+    },
+    "the-expert": {
+      "description": "汇聚多领域专家——咨询、辅导与知识分享",
+      "targetAudience": "专家与学习者"
+    },
+    "tom-thailand": {
+      "description": "每位成员均可参与的在线社区",
+      "targetAudience": "社区成员"
+    },
+    "the-alumni": {
+      "description": "汇聚多所院校的校友平台",
+      "targetAudience": "校友与组织"
+    },
+    "miss-grand": {
+      "description": "选美竞赛平台——投票并支持参赛者",
+      "targetAudience": "参赛者与粉丝"
+    },
+    "exhibition-hub": {
+      "description": "展览与展销活动汇聚中心",
+      "targetAudience": "主办方与观众"
+    }
+  },
+  "news": {
+    "mrfox-ecosystem-launch": {
+      "title": "Mr.FOX 发布创作者经济平台生态",
+      "excerpt": "涵盖创作者、社区、机构、竞赛与展览的 10 种平台类型",
+      "content": "Mr.FOX 宣布推出面向创作者经济的全栈平台生态，支持投票、礼物、直播、订阅等多种变现方式。"
+    },
+    "foxy-app-update": {
+      "title": "FOXY 应用更新：全新直播与礼物功能",
+      "excerpt": "新增动态礼物并优化直播体验",
+      "content": "FOXY 推出全新动态礼物系列，并升级直播间以支持更多并发观众。"
+    },
+    "creator-platform-engine": {
+      "title": "创作者平台引擎——面向所有应用的标准模板",
+      "excerpt": "全新引擎助力更快上线创作者平台",
+      "content": "Mr.FOX 推出创作者平台引擎作为标准模板，支持钱包、投票、礼物、聊天、直播与视频通话。"
+    }
+  }
+}

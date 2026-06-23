@@ -1,5 +1,5 @@
 import "dotenv/config";
-import { eq } from "drizzle-orm";
+import { eq, sql } from "drizzle-orm";
 import { db } from "../src/db/index";
 import {
   applications,
@@ -390,16 +390,24 @@ const REVENUE_MATRIX: Record<string, Record<string, string>> = {
 };
 
 const SAMPLE_APPS = [
-  { slug: "foxy", name: "FOXY", platformType: "creator-specific", description: "แพลตฟอร์ม Creator Economy หลักของ Mr.FOX — รองรับ Vote, Gift, Live และ monetization ครบ", targetAudience: "Creator และแฟนคลับ", featured: true },
-  { slug: "the-expert", name: "The Expert", platformType: "creator-multi-category", description: "รวมผู้เชี่ยวชาญหลายสาขา — Consult, Coaching, Knowledge sharing", targetAudience: "ผู้เชี่ยวชาญและผู้เรียนรู้", featured: true },
-  { slug: "tom-thailand", name: "TOM Thailand", platformType: "community-specific", description: "ชุมชนออนไลน์ที่สมาชิกทุกคนมีส่วนร่วม", targetAudience: "สมาชิกชุมชน", featured: true },
-  { slug: "the-alumni", name: "The Alumni", platformType: "the-company", description: "แพลตฟอร์มศิษย์เก่ารวมหลายสถาบัน", targetAudience: "ศิษย์เก่าและองค์กร", featured: false },
-  { slug: "miss-grand", name: "Miss Grand", platformType: "contest-single", description: "แพลตฟอร์มประกวดนางงาม — โหวตและสนับสนุนผู้เข้าประกวด", targetAudience: "ผู้เข้าประกวดและแฟนคลับ", featured: true },
-  { slug: "exhibition-hub", name: "Exhibition Hub", platformType: "the-exhibition", description: "ศูนย์รวมนิทรรศการและงานแสดงสินค้า", targetAudience: "ผู้จัดงานและผู้ชม", featured: false },
+  { slug: "foxy", name: "FOXY", platformType: "creator-specific", description: "แพลตฟอร์ม Creator Economy หลักของ Mr.FOX — รองรับ Vote, Gift, Live และ monetization ครบ", targetAudience: "Creator และแฟนคลับ", featured: true, logoUrl: "/brand/mrfox-icon.png", posterUrl: "/apps/posters/foxy.png" },
+  { slug: "the-expert", name: "The Expert", platformType: "creator-multi-category", description: "รวมผู้เชี่ยวชาญหลายสาขา — Consult, Coaching, Knowledge sharing", targetAudience: "ผู้เชี่ยวชาญและผู้เรียนรู้", featured: true, logoUrl: "/brand/mrfox-icon.png", posterUrl: "/apps/posters/the-expert.png" },
+  { slug: "tom-thailand", name: "TOM Thailand", platformType: "community-specific", description: "ชุมชนออนไลน์ที่สมาชิกทุกคนมีส่วนร่วม", targetAudience: "สมาชิกชุมชน", featured: true, logoUrl: "/brand/mrfox-icon.png", posterUrl: "/hero/mrfox-app-mockup.png" },
+  { slug: "the-alumni", name: "The Alumni", platformType: "the-company", description: "แพลตฟอร์มศิษย์เก่ารวมหลายสถาบัน", targetAudience: "ศิษย์เก่าและองค์กร", featured: false, logoUrl: "/brand/mrfox-icon.png", posterUrl: "/hero/mrfox-app-mockup@2x.png" },
+  { slug: "miss-grand", name: "Miss Grand", platformType: "contest-single", description: "แพลตฟอร์มประกวดนางงาม — โหวตและสนับสนุนผู้เข้าประกวด", targetAudience: "ผู้เข้าประกวดและแฟนคลับ", featured: true, logoUrl: "/brand/mrfox-icon.png", posterUrl: "/hero/mrfox-app-mockup@2x.png" },
+  { slug: "exhibition-hub", name: "Exhibition Hub", platformType: "the-exhibition", description: "ศูนย์รวมนิทรรศการและงานแสดงสินค้า", targetAudience: "ผู้จัดงานและผู้ชม", featured: false, logoUrl: "/brand/mrfox-icon.png", posterUrl: "/hero/mrfox-app-mockup.png" },
 ];
 
 async function seed() {
   console.log("🌱 Seeding Mr.FOX Showcase database...");
+
+  await db.execute(sql`
+    DELETE FROM download_links a
+    USING download_links b
+    WHERE a.application_id = b.application_id
+      AND a.type = b.type
+      AND a.id > b.id
+  `);
 
   const categoryMap = new Map<string, number>();
   for (const cat of CATEGORIES) {
@@ -498,6 +506,8 @@ async function seed() {
         description: app.description,
         targetAudience: app.targetAudience,
         featured: app.featured,
+        logoUrl: app.logoUrl,
+        posterUrl: app.posterUrl,
       })
       .onConflictDoNothing()
       .returning();
@@ -512,11 +522,19 @@ async function seed() {
     const appId = existingApp?.id;
 
     if (appId) {
-      await db.insert(downloadLinks).values([
-        { applicationId: appId, type: "ios", url: `https://apps.apple.com/app/${app.slug}` },
-        { applicationId: appId, type: "android", url: `https://play.google.com/store/apps/details?id=com.mrfox.${app.slug}` },
-        { applicationId: appId, type: "apk", url: `https://download.mrfox.app/${app.slug}.apk` },
-      ]).onConflictDoNothing();
+      const existingLinks = await db
+        .select({ id: downloadLinks.id })
+        .from(downloadLinks)
+        .where(eq(downloadLinks.applicationId, appId))
+        .limit(1);
+
+      if (existingLinks.length === 0) {
+        await db.insert(downloadLinks).values([
+          { applicationId: appId, type: "ios", url: `https://apps.apple.com/app/${app.slug}` },
+          { applicationId: appId, type: "android", url: `https://play.google.com/store/apps/details?id=com.mrfox.${app.slug}` },
+          { applicationId: appId, type: "apk", url: `https://download.mrfox.app/${app.slug}.apk` },
+        ]);
+      }
     }
   }
 

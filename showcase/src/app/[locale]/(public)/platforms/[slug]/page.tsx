@@ -15,6 +15,8 @@ import { PageHero } from "@/components/layout/page-hero";
 import { PageShell } from "@/components/layout/page-shell";
 import { SectionHeading } from "@/components/layout/section-heading";
 import { publicTheme, themedCard } from "@/components/layout/public-theme";
+import type { Locale } from "@/i18n/routing";
+import { localizeApp, localizePlatform } from "@/lib/content-i18n";
 import { buildMetadata } from "@/lib/metadata";
 import {
   getAppsByPlatformType,
@@ -27,59 +29,45 @@ import {
 
 export const dynamic = "force-dynamic";
 
-type Props = { params: Promise<{ slug: string }> };
+type Props = { params: Promise<{ locale: string; slug: string }> };
 
 export async function generateMetadata({ params }: Props) {
-  const { slug } = await params;
+  const { locale: localeParam, slug } = await params;
+  const locale = localeParam as Locale;
   const platform = await getPlatformTypeBySlug(slug);
   if (!platform) return {};
+  const localized = localizePlatform(locale, platform);
   return buildMetadata({
-    title: platform.name,
-    description: platform.shortDescription ?? platform.concept ?? "",
+    title: localized.name,
+    description: localized.shortDescription ?? localized.concept ?? "",
     path: `/platforms/${slug}`,
+    locale,
   });
 }
 
-const PERM_LABELS: Record<string, string> = {
-  creator_post: "Creator Post",
-  visitor_post: "Visitor Post",
-  creator_live: "Creator Live",
-  visitor_comment: "Visitor Comment",
-  visitor_vote: "Visitor Vote",
-  visitor_gift: "Visitor Gift",
-};
-
-const REVENUE_LABELS: Record<string, string> = {
-  vote: "Vote Revenue",
-  gift: "Gift Revenue",
-  chat: "Chat Revenue",
-  voice: "Voice Revenue",
-  video: "Video Revenue",
-  subscription: "Subscription Revenue",
-  live: "Live Revenue",
-  ticket: "Ticket Revenue",
-  marketplace: "Marketplace Revenue",
-  membership: "Membership Revenue",
-};
-
 export default async function PlatformDetailPage({ params }: Props) {
-  const { slug } = await params;
+  const { locale: localeParam, slug } = await params;
+  const locale = localeParam as Locale;
   const t = await getTranslations("platforms");
-  const platform = await getPlatformTypeBySlug(slug);
-  if (!platform) notFound();
+  const platformRow = await getPlatformTypeBySlug(slug);
+  if (!platformRow) notFound();
+  const platform = localizePlatform(locale, platformRow);
 
   const [matrix, permissions, revenues, apps] = await Promise.all([
-    getPlatformFeatureMatrix(platform.id),
-    getPlatformPermissions(platform.id),
-    getCategoryRevenue(platform.categoryId),
-    getAppsByPlatformType(platform.id),
+    getPlatformFeatureMatrix(platformRow.id),
+    getPlatformPermissions(platformRow.id),
+    getCategoryRevenue(platformRow.categoryId),
+    getAppsByPlatformType(platformRow.id),
   ]);
 
   const appsWithLinks = await Promise.all(
-    apps.map(async (app) => ({
-      ...app,
-      links: await getDownloadLinks(app.id),
-    })),
+    apps.map(async (app) => {
+      const localized = localizeApp(locale, app);
+      return {
+        ...localized,
+        links: await getDownloadLinks(app.id),
+      };
+    }),
   );
 
   return (
@@ -107,7 +95,7 @@ export default async function PlatformDetailPage({ params }: Props) {
         </div>
 
         <div className="mt-10">
-          <FeatureMatrix rows={matrix} />
+          <FeatureMatrix locale={locale} rows={matrix} />
         </div>
 
         <div className="mt-10 grid gap-6 lg:grid-cols-2">
@@ -119,8 +107,14 @@ export default async function PlatformDetailPage({ params }: Props) {
               <dl className="space-y-2 text-sm">
                 {permissions.map((p) => (
                   <div key={p.key} className="flex justify-between gap-4">
-                    <dt className="text-muted-foreground">{PERM_LABELS[p.key] ?? p.key}</dt>
-                    <dd className="font-medium capitalize text-[var(--fox-charcoal)]">{p.value}</dd>
+                    <dt className="text-muted-foreground">
+                      {t.has(`perm.${p.key}`) ? t(`perm.${p.key}`) : p.key}
+                    </dt>
+                    <dd className="font-medium text-[var(--fox-charcoal)]">
+                      {t.has(`permValue.${p.value}`)
+                        ? t(`permValue.${p.value}`)
+                        : p.value}
+                    </dd>
                   </div>
                 ))}
               </dl>
@@ -138,9 +132,15 @@ export default async function PlatformDetailPage({ params }: Props) {
                 {revenues.map((r) => (
                   <div key={r.revenueFeature} className="flex justify-between gap-4">
                     <dt className="text-muted-foreground">
-                      {REVENUE_LABELS[r.revenueFeature] ?? r.revenueFeature}
+                      {t.has(`revenue.${r.revenueFeature}`)
+                        ? t(`revenue.${r.revenueFeature}`)
+                        : r.revenueFeature}
                     </dt>
-                    <dd className="font-medium capitalize text-[var(--fox-charcoal)]">{r.value}</dd>
+                    <dd className="font-medium text-[var(--fox-charcoal)]">
+                      {t.has(`permValue.${r.value}`)
+                        ? t(`permValue.${r.value}`)
+                        : r.value}
+                    </dd>
                   </div>
                 ))}
               </dl>

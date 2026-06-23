@@ -40,9 +40,13 @@ export function DownloadButtons({
     );
   }
 
+  const uniqueLinks = Array.from(
+    new Map(links.map((link) => [link.type, link])).values(),
+  );
+
   return (
     <div className={cn("flex flex-wrap gap-2", className)}>
-      {links.map((link) => (
+      {uniqueLinks.map((link) => (
         <Button
           key={link.type}
           size="sm"

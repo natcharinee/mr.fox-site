@@ -8,13 +8,8 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { themedCard } from "@/components/layout/public-theme";
-
-const STATUS_LABEL: Record<string, string> = {
-  core: "CORE",
-  optional: "OPTIONAL",
-  custom: "CUSTOM",
-  no: "NO",
-};
+import type { Locale } from "@/i18n/routing";
+import { localizeFeatureMatrixRow } from "@/lib/content-i18n";
 
 const STATUS_VARIANT: Record<string, "default" | "secondary" | "outline" | "destructive"> = {
   core: "default",
@@ -23,9 +18,18 @@ const STATUS_VARIANT: Record<string, "default" | "secondary" | "outline" | "dest
   no: "destructive",
 };
 
+const STATUS_KEY: Record<string, string> = {
+  core: "statusCore",
+  optional: "statusOptional",
+  custom: "statusCustom",
+  no: "statusNo",
+};
+
 export async function FeatureMatrix({
+  locale,
   rows,
 }: {
+  locale: Locale;
   rows: {
     featureName: string;
     featureSlug: string;
@@ -34,7 +38,8 @@ export async function FeatureMatrix({
   }[];
 }) {
   const t = await getTranslations("platforms");
-  const showcaseRows = rows.filter((r) => r.group === "B" || r.status !== "no");
+  const localizedRows = rows.map((row) => localizeFeatureMatrixRow(locale, row));
+  const showcaseRows = localizedRows.filter((r) => r.group === "B" || r.status !== "no");
 
   return (
     <Card className={themedCard()}>
@@ -47,8 +52,12 @@ export async function FeatureMatrix({
           <table className="w-full text-sm">
             <thead>
               <tr className="border-b border-[#f0e4c3] text-left">
-                <th className="pb-3 pr-4 font-semibold text-[var(--fox-charcoal)]">Feature</th>
-                <th className="pb-3 font-semibold text-[var(--fox-charcoal)]">Status</th>
+                <th className="pb-3 pr-4 font-semibold text-[var(--fox-charcoal)]">
+                  {t("matrixFeature")}
+                </th>
+                <th className="pb-3 font-semibold text-[var(--fox-charcoal)]">
+                  {t("matrixStatus")}
+                </th>
               </tr>
             </thead>
             <tbody>
@@ -64,7 +73,7 @@ export async function FeatureMatrix({
                           : undefined
                       }
                     >
-                      {STATUS_LABEL[row.status] ?? row.status}
+                      {STATUS_KEY[row.status] ? t(STATUS_KEY[row.status]) : row.status}
                     </Badge>
                   </td>
                 </tr>

@@ -58,7 +58,40 @@
     "permissionMatrix": "Permission Matrix",
     "revenueModel": "Revenue Model",
     "revenueCategoryNote": "Category level",
-    "exampleApps": "Example Applications"
+    "exampleApps": "Example Applications",
+    "matrixFeature": "Feature",
+    "matrixStatus": "Status",
+    "statusCore": "CORE",
+    "statusOptional": "OPTIONAL",
+    "statusCustom": "CUSTOM",
+    "statusNo": "NO",
+    "perm": {
+      "creator_post": "Creator Post",
+      "visitor_post": "Visitor Post",
+      "creator_live": "Creator Live",
+      "visitor_comment": "Visitor Comment",
+      "visitor_vote": "Visitor Vote",
+      "visitor_gift": "Visitor Gift"
+    },
+    "revenue": {
+      "vote": "Vote Revenue",
+      "gift": "Gift Revenue",
+      "chat": "Chat Revenue",
+      "voice": "Voice Revenue",
+      "video": "Video Revenue",
+      "subscription": "Subscription Revenue",
+      "live": "Live Revenue",
+      "ticket": "Ticket Revenue",
+      "marketplace": "Marketplace Revenue",
+      "membership": "Membership Revenue"
+    },
+    "permValue": {
+      "yes": "Yes",
+      "no": "No",
+      "optional": "Optional",
+      "contestant_only": "Contestants only",
+      "exhibitor_only": "Exhibitors only"
+    }
   },
   "features": {
     "title": "Feature Library",
@@ -67,7 +100,8 @@
     "workflow": "Workflow",
     "revenueModel": "Revenue Model",
     "revenueFeature": "Revenue Feature",
-    "usedBy": "Used By"
+    "usedBy": "Used By",
+    "groupLabel": "Group {group}"
   },
   "news": {
     "title": "News",
@@ -81,7 +115,36 @@
     "visionBody": "Build an ecosystem where Creators earn directly from fans through scalable standard platforms",
     "mission": "Mission",
     "missionBody": "Develop data-driven Showcase + Engine — scale from 10 to 100+ apps by adding database records only",
-    "roadmap": "Roadmap"
+    "roadmap": "Roadmap",
+    "roadmapPhases": [
+      {
+        "phase": "Phase 1",
+        "title": "Public Showcase",
+        "items": [
+          "Home, Platforms, Apps, Features",
+          "News, About, Contact",
+          "Data Model + Matrix seed"
+        ]
+      },
+      {
+        "phase": "Phase 2",
+        "title": "CMS / Back Office",
+        "items": [
+          "Admin CRUD for all modules",
+          "Media Library + Analytics",
+          "SEO + Banner management"
+        ]
+      },
+      {
+        "phase": "Phase 3",
+        "title": "Polish & Scale",
+        "items": [
+          "Multi-language (th/en/zh)",
+          "Advanced Global Search",
+          "100+ Applications"
+        ]
+      }
+    ]
   },
   "contact": {
     "title": "Contact",
@@ -115,7 +178,8 @@
     "platforms": "Platforms",
     "apps": "Applications",
     "features": "Features",
-    "news": "News"
+    "news": "News",
+    "featureBadge": "Feature"
   },
   "footer": {
     "tagline": "Creator Economy, Community, Contest & Exhibition ecosystem",
