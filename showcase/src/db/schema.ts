@@ -71,6 +71,7 @@ export const applications = pgTable("applications", {
   description: text("description"),
   targetAudience: text("target_audience"),
   featured: boolean("featured").notNull().default(false),
+  published: boolean("published").notNull().default(true),
   downloadCount: integer("download_count").notNull().default(0),
   sortOrder: integer("sort_order").notNull().default(0),
 });

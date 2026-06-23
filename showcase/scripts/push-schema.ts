@@ -35,6 +35,12 @@ function splitSql(sql: string): string[] {
   return statements.filter(Boolean);
 }
 
+async function applySchemaPatches(sql: ReturnType<typeof neon>) {
+  await sql.query(
+    `ALTER TABLE applications ADD COLUMN IF NOT EXISTS published boolean DEFAULT true NOT NULL`,
+  );
+}
+
 async function main() {
   const sql = neon(resolveConnectionString());
   const existing = await sql.query(
@@ -42,6 +48,7 @@ async function main() {
   );
   if (existing[0]?.table_name) {
     console.log("Schema already exists, skipping migration.");
+    await applySchemaPatches(sql);
     return;
   }
 

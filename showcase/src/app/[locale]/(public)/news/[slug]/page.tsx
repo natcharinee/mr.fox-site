@@ -2,6 +2,7 @@ import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { notFound } from "next/navigation";
 import { PageHero } from "@/components/layout/page-hero";
+import { NewsMedia } from "@/components/news/news-media";
 import { PageShell } from "@/components/layout/page-shell";
 import { publicTheme } from "@/components/layout/public-theme";
 import type { Locale } from "@/i18n/routing";
@@ -42,6 +43,14 @@ export default async function NewsDetailPage({ params }: Props) {
   return (
     <PageShell>
       <PageHero title={item.title} description={publishedLabel} />
+
+      <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+        <NewsMedia
+          thumbnailUrl={item.thumbnailUrl}
+          title={item.title}
+          className="aspect-[21/9] rounded-2xl"
+        />
+      </div>
 
       <article className="mx-auto max-w-3xl px-4 py-12 sm:px-6 lg:px-8">
         <div className={`${publicTheme.prose} text-[var(--fox-charcoal)]`}>

@@ -1,6 +1,5 @@
 import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
-import { Badge } from "@/components/ui/badge";
 import {
   Card,
   CardContent,
@@ -10,6 +9,7 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { DownloadButtons } from "@/components/apps/download-buttons";
+import { AppMedia } from "@/components/apps/app-media";
 import { PageHero } from "@/components/layout/page-hero";
 import { PageShell } from "@/components/layout/page-shell";
 import { publicTheme, themedCard } from "@/components/layout/public-theme";
@@ -50,7 +50,6 @@ export default async function AppsPage({
   const locale = localeParam as Locale;
   const { q, category, platform } = await searchParams;
   const t = await getTranslations("apps");
-  const tc = await getTranslations("common");
 
   const [apps, categories, platformTypes] = await Promise.all([
     getApplications({
@@ -111,7 +110,12 @@ export default async function AppsPage({
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {appsWithLinks.map((app) => (
-            <Card key={app.slug} className={themedCard("flex flex-col")}>
+            <Card key={app.slug} className={themedCard("flex flex-col overflow-hidden")}>
+              <AppMedia
+                posterUrl={app.posterUrl}
+                name={app.name}
+                className="aspect-[4/3]"
+              />
               <CardHeader>
                 <div className="flex items-start justify-between gap-2">
                   <CardTitle className="text-lg text-[var(--fox-charcoal)]">
@@ -122,11 +126,6 @@ export default async function AppsPage({
                       {app.name}
                     </Link>
                   </CardTitle>
-                  {app.featured ? (
-                    <Badge className="shrink-0 bg-[var(--fox-gold)] text-[var(--fox-charcoal)] hover:bg-[var(--fox-gold)]">
-                      {tc("featured")}
-                    </Badge>
-                  ) : null}
                 </div>
                 <CardDescription>
                   {app.platformTypeName} · {app.categoryName}

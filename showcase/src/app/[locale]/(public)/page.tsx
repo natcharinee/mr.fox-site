@@ -13,6 +13,7 @@ import { FeaturedAppCard } from "@/components/apps/featured-app-card";
 import { HomeHero } from "@/components/home/home-hero";
 import { HomeStats } from "@/components/home/home-stats";
 import { EcosystemBento } from "@/components/home/ecosystem-bento";
+import { NewsMedia } from "@/components/news/news-media";
 import type { Locale } from "@/i18n/routing";
 import {
   localizeApp,
@@ -46,7 +47,7 @@ export default async function HomePage({ params }: Props) {
       getSiteStats(),
       getCategories(),
       getPlatformTypes(),
-      getFeaturedApplications(4),
+      getFeaturedApplications(),
       getCoreFeatures(6),
       getLatestNews(3),
     ]);
@@ -133,15 +134,21 @@ export default async function HomePage({ params }: Props) {
           </div>
         </div>
         <div className="mt-8 grid gap-6 sm:grid-cols-2">
-          {appsWithLinks.map((app) => (
-            <FeaturedAppCard
-              key={app.slug}
-              app={app}
-              featuredLabel={tc("featured")}
-              downloadLabel={t("downloadApps")}
-              links={app.links}
-            />
-          ))}
+          {appsWithLinks.length > 0 ? (
+            appsWithLinks.map((app) => (
+              <FeaturedAppCard
+                key={app.slug}
+                app={app}
+                featuredLabel={tc("featured")}
+                downloadLabel={t("downloadApps")}
+                links={app.links}
+              />
+            ))
+          ) : (
+            <p className="text-muted-foreground sm:col-span-2">
+              {t("featuredAppsEmpty")}
+            </p>
+          )}
         </div>
       </section>
 
@@ -164,7 +171,12 @@ export default async function HomePage({ params }: Props) {
         <div className="mt-8 grid gap-4 md:grid-cols-3">
           {localizedNews.map((item) => (
             <Link key={item.slug} href={`/news/${item.slug}`}>
-              <Card className="h-full border-[#f0e4c3] bg-white/85 transition-all hover:-translate-y-0.5 hover:border-[var(--fox-gold)]/40 hover:shadow-md">
+              <Card className="h-full overflow-hidden border-[#f0e4c3] bg-white/85 transition-all hover:-translate-y-0.5 hover:border-[var(--fox-gold)]/40 hover:shadow-md">
+                <NewsMedia
+                  thumbnailUrl={item.thumbnailUrl}
+                  title={item.title}
+                  className="aspect-[16/10]"
+                />
                 <CardHeader>
                   <CardTitle className="text-base line-clamp-2">
                     {item.title}

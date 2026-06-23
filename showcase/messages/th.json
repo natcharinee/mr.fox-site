@@ -27,6 +27,7 @@
     "viewAll": "ดูทั้งหมด",
     "featuredApps": "Featured Applications",
     "featuredAppsDesc": "ดาวน์โหลดได้ภายใน ≤ 3 คลิก",
+    "featuredAppsEmpty": "ยังไม่มีแอปที่เลือกแสดงบนหน้าแรก",
     "coreFeatures": "Core Features",
     "exploreFeature": "ดูรายละเอียด",
     "morePlatformTypes": "อีก {count} ประเภท — ดูครบทั้งหมดใน Platform Types",

@@ -27,6 +27,7 @@
     "viewAll": "View all",
     "featuredApps": "Featured Applications",
     "featuredAppsDesc": "Download in ≤ 3 clicks",
+    "featuredAppsEmpty": "No applications are featured on the homepage yet.",
     "coreFeatures": "Core Features",
     "exploreFeature": "Explore",
     "morePlatformTypes": "{count} more types — see the full Platform Types catalog",

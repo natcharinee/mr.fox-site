@@ -9,6 +9,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { DownloadButtons } from "@/components/apps/download-buttons";
+import { AppMedia } from "@/components/apps/app-media";
 import { PageHero } from "@/components/layout/page-hero";
 import { PageShell } from "@/components/layout/page-shell";
 import { SectionHeading } from "@/components/layout/section-heading";
@@ -72,6 +73,14 @@ export default async function AppDetailPage({ params }: Props) {
           </Badge>
         </div>
       </PageHero>
+
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <AppMedia
+          posterUrl={app.posterUrl}
+          name={app.name}
+          className="aspect-[21/9] rounded-2xl"
+        />
+      </div>
 
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
         <DownloadButtons

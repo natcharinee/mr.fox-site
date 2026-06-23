@@ -27,6 +27,7 @@
     "viewAll": "查看全部",
     "featuredApps": "精选应用",
     "featuredAppsDesc": "≤ 3 次点击即可下载",
+    "featuredAppsEmpty": "首页暂无精选应用。",
     "coreFeatures": "核心功能",
     "exploreFeature": "查看详情",
     "morePlatformTypes": "还有 {count} 种类型 — 查看完整 Platform Types 目录",

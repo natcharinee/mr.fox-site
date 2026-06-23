@@ -1,6 +1,7 @@
 import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { NewsMedia } from "@/components/news/news-media";
 import { PageHero } from "@/components/layout/page-hero";
 import { PageShell } from "@/components/layout/page-shell";
 import { themedCard } from "@/components/layout/public-theme";
@@ -42,7 +43,12 @@ export default async function NewsPage({
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {items.map((item) => (
             <Link key={item.slug} href={`/news/${item.slug}`}>
-              <Card className={themedCard("h-full")}>
+              <Card className={themedCard("h-full overflow-hidden")}>
+                <NewsMedia
+                  thumbnailUrl={item.thumbnailUrl}
+                  title={item.title}
+                  className="aspect-[16/10]"
+                />
                 <CardHeader>
                   <CardTitle className="line-clamp-2 text-base text-[var(--fox-charcoal)]">
                     {item.title}

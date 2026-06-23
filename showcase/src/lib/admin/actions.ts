@@ -18,6 +18,7 @@ import {
 import { logAudit } from "@/lib/audit";
 import { requireSession } from "@/lib/auth";
 import { parseNewsPublishDate } from "@/lib/news-publish";
+import { COMPANY_LOGO } from "@/lib/brand-assets";
 import { hashPassword } from "@/lib/password";
 
 async function auth(role?: "admin") {
@@ -112,6 +113,7 @@ const appSchema = z.object({
   description: z.string().optional(),
   targetAudience: z.string().optional(),
   featured: z.coerce.boolean().optional(),
+  published: z.coerce.boolean().optional(),
   iosUrl: z.string().optional(),
   androidUrl: z.string().optional(),
   posterUrl: z.string().optional(),
@@ -127,6 +129,7 @@ export async function createApplication(formData: FormData) {
     description: formData.get("description") || undefined,
     targetAudience: formData.get("targetAudience") || undefined,
     featured: formData.get("featured") === "on",
+    published: formData.get("published") === "on",
     iosUrl: formData.get("iosUrl") || undefined,
     androidUrl: formData.get("androidUrl") || undefined,
     posterUrl: formData.get("posterUrl") || undefined,
@@ -142,7 +145,8 @@ export async function createApplication(formData: FormData) {
       description: data.description,
       targetAudience: data.targetAudience,
       featured: data.featured ?? false,
-      logoUrl: data.logoUrl || "/brand/mrfox-icon.png",
+      published: data.published ?? true,
+      logoUrl: data.logoUrl || COMPANY_LOGO,
       posterUrl: data.posterUrl || undefined,
     })
     .returning();
@@ -153,21 +157,22 @@ export async function createApplication(formData: FormData) {
   if (links.length) await db.insert(downloadLinks).values(links);
 
   await logAudit(session, "create", "application", row.id, data.name);
-  revalidatePath("/apps");
-  revalidatePath("/admin/applications");
-  for (const locale of ["th", "en", "zh"]) {
-    revalidatePath(`/${locale}`);
-  }
+  revalidateApplicationPaths();
 }
 
 export async function deleteApplication(id: number) {
   const session = await auth();
   await db.delete(applications).where(eq(applications.id, id));
   await logAudit(session, "delete", "application", id);
+  revalidateApplicationPaths();
+}
+
+function revalidateApplicationPaths() {
   revalidatePath("/apps");
   revalidatePath("/admin/applications");
   for (const locale of ["th", "en", "zh"]) {
     revalidatePath(`/${locale}`);
+    revalidatePath(`/${locale}/apps`);
   }
 }
 
@@ -194,11 +199,36 @@ export async function setApplicationFeatured(id: number, featured: boolean) {
     featured ? `${row.name} · featured:on` : `${row.name} · featured:off`,
   );
 
-  revalidatePath("/apps");
-  revalidatePath("/admin/applications");
-  for (const locale of ["th", "en", "zh"]) {
-    revalidatePath(`/${locale}`);
+  revalidateApplicationPaths();
+}
+
+export async function setApplicationPublished(id: number, published: boolean) {
+  const session = await auth();
+
+  const [row] = await db
+    .select({ name: applications.name })
+    .from(applications)
+    .where(eq(applications.id, id))
+    .limit(1);
+
+  if (!row) {
+    throw new Error("ไม่พบแอปนี้");
   }
+
+  await db
+    .update(applications)
+    .set({ published, ...(published ? {} : { featured: false }) })
+    .where(eq(applications.id, id));
+
+  await logAudit(
+    session,
+    "update",
+    "application",
+    id,
+    published ? `${row.name} · published:on` : `${row.name} · published:off`,
+  );
+
+  revalidateApplicationPaths();
 }
 
 // ─── Banners ────────────────────────────────────────────

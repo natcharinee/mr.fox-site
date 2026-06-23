@@ -134,7 +134,7 @@ export async function getApplications(filters?: {
   platformTypeSlug?: string;
   search?: string;
 }) {
-  const conditions = [];
+  const conditions = [eq(applications.published, true)];
   if (filters?.categorySlug) {
     conditions.push(eq(platformCategories.slug, filters.categorySlug));
   }
@@ -142,15 +142,16 @@ export async function getApplications(filters?: {
     conditions.push(eq(platformTypes.slug, filters.platformTypeSlug));
   }
   if (filters?.search) {
-    conditions.push(
-      or(
-        ilike(applications.name, `%${filters.search}%`),
-        ilike(applications.description, `%${filters.search}%`),
-      ),
+    const searchClause = or(
+      ilike(applications.name, `%${filters.search}%`),
+      ilike(applications.description, `%${filters.search}%`),
     );
+    if (searchClause) {
+      conditions.push(searchClause);
+    }
   }
 
-  const whereClause = conditions.length > 0 ? and(...conditions) : undefined;
+  const whereClause = and(...conditions);
 
   return db
     .select({
@@ -173,11 +174,11 @@ export async function getApplications(filters?: {
       eq(platformTypes.categoryId, platformCategories.id),
     )
     .where(whereClause)
-    .orderBy(desc(applications.featured), applications.sortOrder);
+    .orderBy(applications.sortOrder);
 }
 
-export async function getFeaturedApplications(limit = 4) {
-  return db
+export async function getFeaturedApplications(limit?: number) {
+  const query = db
     .select({
       id: applications.id,
       name: applications.name,
@@ -195,9 +196,14 @@ export async function getFeaturedApplications(limit = 4) {
       platformCategories,
       eq(platformTypes.categoryId, platformCategories.id),
     )
-    .where(eq(applications.featured, true))
-    .orderBy(applications.sortOrder)
-    .limit(limit);
+    .where(and(eq(applications.featured, true), eq(applications.published, true)))
+    .orderBy(applications.sortOrder);
+
+  if (limit != null) {
+    return query.limit(limit);
+  }
+
+  return query;
 }
 
 export async function getApplicationBySlug(slug: string) {
@@ -221,7 +227,7 @@ export async function getApplicationBySlug(slug: string) {
       platformCategories,
       eq(platformTypes.categoryId, platformCategories.id),
     )
-    .where(eq(applications.slug, slug))
+    .where(and(eq(applications.slug, slug), eq(applications.published, true)))
     .limit(1);
 
   return row ?? null;
@@ -264,6 +270,7 @@ export async function getRelatedApplications(
     .where(
       and(
         eq(applications.platformTypeId, platformTypeId),
+        eq(applications.published, true),
         ne(applications.slug, excludeSlug),
       ),
     )
@@ -311,10 +318,13 @@ export async function getAppsUsingFeature(featureId: number) {
       name: applications.name,
       slug: applications.slug,
       platformTypeId: applications.platformTypeId,
+      published: applications.published,
     })
     .from(applications);
 
-  return allApps.filter((app) => typeIds.includes(app.platformTypeId));
+  return allApps.filter(
+    (app) => typeIds.includes(app.platformTypeId) && app.published,
+  );
 }
 
 export async function getLatestNews(limit = 3) {
@@ -355,7 +365,12 @@ export async function globalSearch(q: string) {
       db
         .select({ name: applications.name, slug: applications.slug })
         .from(applications)
-        .where(or(ilike(applications.name, term), ilike(applications.description, term)))
+        .where(
+          and(
+            eq(applications.published, true),
+            or(ilike(applications.name, term), ilike(applications.description, term)),
+          ),
+        )
         .limit(5),
       db
         .select({ name: features.name, slug: features.slug })

@@ -63,6 +63,7 @@ CREATE TABLE IF NOT EXISTS "applications" (
   "description" text,
   "target_audience" text,
   "featured" boolean DEFAULT false NOT NULL,
+  "published" boolean DEFAULT true NOT NULL,
   "download_count" integer DEFAULT 0 NOT NULL,
   "sort_order" integer DEFAULT 0 NOT NULL,
   CONSTRAINT "applications_slug_unique" UNIQUE("slug"),

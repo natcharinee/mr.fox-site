@@ -506,6 +506,7 @@ async function seed() {
         description: app.description,
         targetAudience: app.targetAudience,
         featured: app.featured,
+        published: true,
         logoUrl: app.logoUrl,
         posterUrl: app.posterUrl,
       })

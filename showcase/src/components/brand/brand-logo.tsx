@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 
-const ICON = "/brand/mrfox-icon.png";
+import { COMPANY_LOGO } from "@/lib/brand-assets";
 const WORDMARK = "/brand/mrfox-wordmark.png";
 
 type BrandLogoProps = {
@@ -25,7 +25,7 @@ export function BrandLogo({
     <span className={cn("inline-flex h-9 items-center gap-2.5", className)}>
       {showIcon && (
         <Image
-          src={ICON}
+          src={COMPANY_LOGO}
           alt=""
           width={36}
           height={36}

@@ -1,29 +1,8 @@
-import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
+import { ContentImage } from "@/components/ui/content-image";
 import { DownloadButtons } from "@/components/apps/download-buttons";
+import { isCompanyLogo, resolveImageUrl } from "@/lib/brand-assets";
 import { cn } from "@/lib/utils";
-
-const DEFAULT_POSTER = "/hero/mrfox-app-mockup.png";
-const DEFAULT_LOGO = "/brand/mrfox-icon.png";
-
-const POSTER_OBJECT_POSITION: Record<string, string> = {
-  foxy: "object-top",
-  "the-expert": "object-top",
-  "tom-thailand": "object-top",
-  "miss-grand": "object-top",
-};
-
-const POSTER_IMAGE_CLASS: Record<string, string> = {
-  foxy: "scale-100",
-  "the-expert": "scale-100",
-};
-
-const POSTER_BY_SLUG: Record<string, string> = {
-  foxy: "/apps/posters/foxy.png",
-  "the-expert": "/apps/posters/the-expert.png",
-  "tom-thailand": "/apps/posters/tom-thailand.png",
-  "miss-grand": "/apps/posters/miss-grand.png",
-};
 
 type FeaturedAppCardProps = {
   app: {
@@ -49,9 +28,9 @@ export function FeaturedAppCard({
   links,
   className,
 }: FeaturedAppCardProps) {
-  const poster =
-    POSTER_BY_SLUG[app.slug] ?? app.posterUrl ?? DEFAULT_POSTER;
-  const logo = app.logoUrl ?? DEFAULT_LOGO;
+  const poster = resolveImageUrl(app.posterUrl);
+  const logo = resolveImageUrl(app.logoUrl);
+  const posterIsFallback = isCompanyLogo(poster);
 
   return (
     <article
@@ -62,33 +41,38 @@ export function FeaturedAppCard({
     >
       <div
         className={cn(
-          "relative overflow-hidden bg-[var(--fox-charcoal)]",
+          "relative overflow-hidden",
           "aspect-[4/5] sm:aspect-[3/4]",
+          posterIsFallback ? "bg-[var(--fox-gold)]" : "bg-[var(--fox-charcoal)]",
         )}
       >
-        <Image
-          src={poster}
-          alt=""
+        <ContentImage
+          src={app.posterUrl}
           fill
           sizes="(max-width: 640px) 100vw, 50vw"
           className={cn(
-            "object-cover transition-transform duration-500 group-hover:scale-[1.03]",
-            POSTER_OBJECT_POSITION[app.slug] ?? "object-center",
-            POSTER_IMAGE_CLASS[app.slug],
+            "transition-transform duration-500 group-hover:scale-[1.03]",
+            posterIsFallback ? "p-10 sm:p-12" : "object-center",
           )}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+        {!posterIsFallback ? (
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+        ) : null}
         <Badge className="absolute right-3 top-3 border-0 bg-[var(--fox-gold)] text-[var(--fox-charcoal)] shadow-md">
           {featuredLabel}
         </Badge>
         <div className="absolute bottom-3 left-3 flex items-center gap-3">
-          <div className="relative size-11 shrink-0 overflow-hidden rounded-xl bg-white/10 ring-2 ring-white/25 backdrop-blur-sm">
-            <Image
-              src={logo}
-              alt=""
+          <div
+            className={cn(
+              "relative size-11 shrink-0 overflow-hidden rounded-xl ring-2 ring-white/25 backdrop-blur-sm",
+              isCompanyLogo(logo) ? "bg-[var(--fox-gold)]" : "bg-white/10",
+            )}
+          >
+            <ContentImage
+              src={app.logoUrl}
               fill
               sizes="44px"
-              className="object-cover"
+              fallbackClassName="p-1.5"
             />
           </div>
         </div>

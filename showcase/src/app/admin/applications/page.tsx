@@ -1,6 +1,6 @@
 import Link from "next/link";
-import Image from "next/image";
 import { db } from "@/db";
+import { AppMedia } from "@/components/apps/app-media";
 import { platformTypes } from "@/db/schema";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -22,7 +22,7 @@ import {
 } from "@/components/ui/card";
 import { AdminSaveForm } from "@/components/admin/admin-save-form";
 import { AdminPosterUploadField } from "@/components/admin/admin-poster-upload-field";
-import { ApplicationFeaturedToggle } from "@/components/admin/application-featured-toggle";
+import { ApplicationVisibilityToggle } from "@/components/admin/application-visibility-toggle";
 import { createApplication, deleteApplication } from "@/lib/admin/actions";
 import { getAllApplicationsAdmin } from "@/lib/admin/queries";
 
@@ -34,11 +34,19 @@ export default async function AdminApplicationsPage() {
     db.select({ id: platformTypes.id, name: platformTypes.name }).from(platformTypes),
   ]);
 
+  const publishedCount = items.filter((item) => item.published).length;
+  const featuredCount = items.filter((item) => item.featured).length;
+
   return (
     <div className="space-y-8">
       <div>
         <h2 className="text-2xl font-bold">Application Management</h2>
-        <p className="text-muted-foreground">CRUD แอปพลิเคชันและลิงก์ดาวน์โหลด</p>
+        <p className="text-muted-foreground">
+          ปุ่ม <span className="font-medium text-foreground">Applications</span> ควบคุมรายการในเมนู
+          Applications ({publishedCount} แอป) · ปุ่ม{" "}
+          <span className="font-medium text-foreground">หน้าแรก</span> ควบคุมส่วน Featured
+          Applications บนหน้าแรก ({featuredCount} แอป)
+        </p>
       </div>
 
       <Card>
@@ -70,9 +78,21 @@ export default async function AdminApplicationsPage() {
                 ))}
               </select>
             </div>
-            <div className="flex items-end gap-2 pb-1">
-              <input type="checkbox" id="featured" name="featured" className="size-4" />
-              <Label htmlFor="featured">แสดงบนหน้าแรก (Featured)</Label>
+            <div className="flex flex-col gap-3 sm:col-span-2 sm:flex-row sm:items-end">
+              <div className="flex items-end gap-2 pb-1">
+                <input
+                  type="checkbox"
+                  id="published"
+                  name="published"
+                  defaultChecked
+                  className="size-4"
+                />
+                <Label htmlFor="published">แสดงในหน้า Applications</Label>
+              </div>
+              <div className="flex items-end gap-2 pb-1">
+                <input type="checkbox" id="featured" name="featured" className="size-4" />
+                <Label htmlFor="featured">แสดงบนหน้าแรก (Featured)</Label>
+              </div>
             </div>
             <div className="sm:col-span-2">
               <Label htmlFor="description">คำอธิบาย</Label>
@@ -102,7 +122,12 @@ export default async function AdminApplicationsPage() {
               <TableHead>Name</TableHead>
               <TableHead>Platform</TableHead>
               <TableHead>Downloads</TableHead>
-              <TableHead>หน้าบ้าน</TableHead>
+              <TableHead title="เปิด/ปิดการแสดงในเมนู Applications">
+                Applications
+              </TableHead>
+              <TableHead title="เปิด/ปิดการแสดงในส่วน Featured Applications บนหน้าแรก">
+                หน้าแรก
+              </TableHead>
               <TableHead className="w-40">Actions</TableHead>
             </TableRow>
           </TableHeader>
@@ -110,31 +135,31 @@ export default async function AdminApplicationsPage() {
             {items.map((item) => (
               <TableRow key={item.id}>
                 <TableCell>
-                  <div className="relative h-12 w-9 overflow-hidden rounded-md bg-muted">
-                    {item.posterUrl ? (
-                      <Image
-                        src={item.posterUrl}
-                        alt=""
-                        fill
-                        unoptimized
-                        className="object-cover"
-                        sizes="36px"
-                      />
-                    ) : (
-                      <span className="flex h-full items-center justify-center text-[10px] text-muted-foreground">
-                        —
-                      </span>
-                    )}
-                  </div>
+                  <AppMedia
+                    posterUrl={item.posterUrl}
+                    name={item.name}
+                    className="h-12 w-9 rounded-md"
+                    imageClassName="p-1"
+                  />
                 </TableCell>
                 <TableCell className="font-medium">{item.name}</TableCell>
                 <TableCell>{item.platformTypeName}</TableCell>
                 <TableCell>{item.downloadCount}</TableCell>
                 <TableCell>
-                  <ApplicationFeaturedToggle
+                  <ApplicationVisibilityToggle
                     applicationId={item.id}
                     applicationName={item.name}
-                    featured={item.featured}
+                    enabled={item.published}
+                    field="published"
+                  />
+                </TableCell>
+                <TableCell>
+                  <ApplicationVisibilityToggle
+                    applicationId={item.id}
+                    applicationName={item.name}
+                    enabled={item.featured}
+                    field="featured"
+                    disabled={!item.published}
                   />
                 </TableCell>
                 <TableCell>
