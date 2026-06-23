@@ -1,5 +1,5 @@
 import { getTranslations } from "next-intl/server";
-import { ArrowRight, Download, Layers, Sparkles, Zap } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { LinkButton } from "@/components/ui/link-button";
 import { Badge } from "@/components/ui/badge";
@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/card";
 import { FeaturedAppCard } from "@/components/apps/featured-app-card";
 import { HomeHero } from "@/components/home/home-hero";
+import { HomeStats } from "@/components/home/home-stats";
 import { EcosystemBento } from "@/components/home/ecosystem-bento";
 import type { Locale } from "@/i18n/routing";
 import {
@@ -76,27 +77,30 @@ export default async function HomePage({ params }: Props) {
         downloadApps={t("downloadApps")}
       />
 
-      <section className="border-b border-[#f0e4c3] bg-white/70">
-        <div className="mx-auto grid max-w-7xl grid-cols-2 gap-4 px-4 py-10 sm:px-6 md:grid-cols-4 lg:gap-6 lg:px-8">
-          {[
-            { label: t("stats.platformTypes"), value: stats.platformTypes, icon: Layers },
-            { label: t("stats.applications"), value: stats.applications, icon: Zap },
-            { label: t("stats.features"), value: stats.features, icon: Sparkles },
-            { label: t("stats.downloads"), value: stats.downloads, icon: Download },
-          ].map((item) => (
-            <div
-              key={item.label}
-              className="rounded-2xl border border-[#f0e4c3] bg-[var(--fox-cream)] px-4 py-6 text-center shadow-sm"
-            >
-              <div className="mx-auto mb-3 flex size-10 items-center justify-center rounded-full bg-[#fff4cc] text-[var(--fox-gold-dark)]">
-                <item.icon className="size-5" />
-              </div>
-              <p className="text-3xl font-bold text-[var(--fox-charcoal)]">{item.value}</p>
-              <p className="mt-1 text-sm text-muted-foreground">{item.label}</p>
-            </div>
-          ))}
-        </div>
-      </section>
+      <HomeStats
+        items={[
+          {
+            label: t("stats.platformTypes"),
+            value: stats.platformTypes,
+            icon: "layers",
+          },
+          {
+            label: t("stats.applications"),
+            value: stats.applications,
+            icon: "zap",
+          },
+          {
+            label: t("stats.features"),
+            value: stats.features,
+            icon: "sparkles",
+          },
+          {
+            label: t("stats.downloads"),
+            value: stats.downloads,
+            icon: "download",
+          },
+        ]}
+      />
 
       <EcosystemBento
         title={t("ecosystem")}
