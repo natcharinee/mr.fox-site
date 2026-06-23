@@ -92,17 +92,29 @@ export function HomeStats({ items }: HomeStatsProps) {
     const el = ref.current;
     if (!el) return;
 
+    const start = () => setActive(true);
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setActive(true);
+          start();
           observer.disconnect();
         }
       },
-      { threshold: 0.25, rootMargin: "0px 0px -40px 0px" },
+      { threshold: 0.2 },
     );
 
     observer.observe(el);
+
+    // Stats can already be in view on first paint (below hero).
+    requestAnimationFrame(() => {
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight * 0.85 && rect.bottom > 0) {
+        start();
+        observer.disconnect();
+      }
+    });
+
     return () => observer.disconnect();
   }, []);
 
