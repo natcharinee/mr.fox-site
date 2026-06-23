@@ -10,6 +10,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { CoreFeaturesGrid } from "@/components/home/core-features-grid";
 import { FeaturedAppCard } from "@/components/apps/featured-app-card";
 import { HomeHero } from "@/components/home/home-hero";
 import { HomeStats } from "@/components/home/home-stats";
@@ -167,28 +168,11 @@ export default async function HomePage({ params }: Props) {
         </div>
       </section>
 
-      <section className="border-t border-[#f0e4c3] bg-white/60">
-        <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-          <div className="flex items-center gap-3">
-            <span className="h-9 w-1 rounded-full bg-[var(--fox-gold)]" />
-            <h2 className="text-2xl font-bold text-[var(--fox-charcoal)]">{t("coreFeatures")}</h2>
-          </div>
-          <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            {localizedFeatures.map((f) => (
-              <Link key={f.slug} href={`/features/${f.slug}`}>
-                <Card className="h-full border-[#f0e4c3] bg-[var(--fox-cream)] transition-all hover:-translate-y-0.5 hover:border-[var(--fox-gold)]/40 hover:shadow-sm">
-                  <CardHeader className="pb-2">
-                    <CardTitle className="text-base">{f.name}</CardTitle>
-                    <CardDescription className="line-clamp-2">
-                      {f.description}
-                    </CardDescription>
-                  </CardHeader>
-                </Card>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
+      <CoreFeaturesGrid
+        title={t("coreFeatures")}
+        exploreLabel={t("exploreFeature")}
+        features={localizedFeatures}
+      />
 
       <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="flex items-end justify-between gap-4">

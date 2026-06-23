@@ -25,6 +25,7 @@
     "featuredApps": "Featured Applications",
     "featuredAppsDesc": "ดาวน์โหลดได้ภายใน ≤ 3 คลิก",
     "coreFeatures": "Core Features",
+    "exploreFeature": "ดูรายละเอียด",
     "latestNews": "Latest News",
     "stats": {
       "platformTypes": "Platform Types",
@@ -50,6 +51,10 @@
   "platforms": {
     "title": "Platform Types",
     "subtitle": "10 template มาตรฐาน — แต่ละประเภทกำหนด Feature set และ Permission ตาม Matrix",
+    "catalog": {
+      "viewDetails": "ดูรายละเอียด",
+      "typeCount": "{count} ประเภท"
+    },
     "backToPlatforms": "กลับไป Platform Types",
     "creatorModel": "Creator Model",
     "visitorModel": "Visitor Model",
