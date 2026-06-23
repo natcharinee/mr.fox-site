@@ -1,16 +1,14 @@
 import { getTranslations } from "next-intl/server";
-import { ArrowRight } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { LinkButton } from "@/components/ui/link-button";
-import { Badge } from "@/components/ui/badge";
 import {
   Card,
-  CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
 import { CoreFeaturesGrid } from "@/components/home/core-features-grid";
+import { HomePlatformTypesSection } from "@/components/home/home-platform-types-section";
 import { FeaturedAppCard } from "@/components/apps/featured-app-card";
 import { HomeHero } from "@/components/home/home-hero";
 import { HomeStats } from "@/components/home/home-stats";
@@ -111,41 +109,17 @@ export default async function HomePage({ params }: Props) {
         platformTypes={localizedPlatforms}
       />
 
-      <section className="border-t border-[#f0e4c3] bg-white/60">
-        <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-          <div className="flex items-end justify-between gap-4">
-            <div className="flex items-center gap-3">
-              <span className="h-9 w-1 rounded-full bg-[var(--fox-gold)]" />
-              <div>
-                <h2 className="text-2xl font-bold text-[var(--fox-charcoal)]">
-                  {t("platformTypes")}
-                </h2>
-                <p className="mt-1 text-muted-foreground">{t("platformTypesDesc")}</p>
-              </div>
-            </div>
-            <LinkButton href="/platforms" variant="ghost" className="text-[var(--fox-charcoal)]">
-              {t("viewAll")} →
-            </LinkButton>
-          </div>
-          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {localizedPlatforms.slice(0, 6).map((pt) => (
-              <Link key={pt.slug} href={`/platforms/${pt.slug}`}>
-                <Card className="h-full border-[#f0e4c3] bg-[var(--fox-cream)] transition-all hover:-translate-y-0.5 hover:border-[var(--fox-gold)]/40 hover:shadow-md">
-                  <CardHeader>
-                    <Badge variant="outline" className="w-fit mb-2">
-                      {pt.categoryName}
-                    </Badge>
-                    <CardTitle className="text-base">{pt.name}</CardTitle>
-                    <CardDescription className="line-clamp-2">
-                      {pt.shortDescription ?? pt.concept}
-                    </CardDescription>
-                  </CardHeader>
-                </Card>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
+      <HomePlatformTypesSection
+        title={t("platformTypes")}
+        description={t("platformTypesDesc")}
+        viewAllLabel={t("viewAll")}
+        exploreLabel={t("exploreFeature")}
+        moreTypesLabel={t("morePlatformTypes", {
+          count: Math.max(localizedPlatforms.length - 6, 0),
+        })}
+        categories={localizedCategories}
+        platformTypes={localizedPlatforms}
+      />
 
       <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="flex items-center gap-3">
