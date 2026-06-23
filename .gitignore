@@ -24,6 +24,9 @@ drizzle/meta/
 # Uploads
 showcase/public/uploads/
 
+# Local backups (large media not for deploy)
+.local-backups/
+
 # IDE
 .idea/
 .vscode/
