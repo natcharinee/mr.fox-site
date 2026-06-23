@@ -34,7 +34,10 @@ export default async function AdminNewsEditPage({ params }: Props) {
       <div>
         <div className="flex flex-wrap items-center gap-3">
           <h2 className="text-2xl font-bold">แก้ไขข่าว</h2>
-          <NewsStatusBadge publishedAt={item.publishedAt} />
+          <NewsStatusBadge
+            status={publishStatus}
+            publishedAt={item.publishedAt}
+          />
         </div>
         <p className="text-muted-foreground">{item.slug}</p>
         {publishStatus === "draft" && (

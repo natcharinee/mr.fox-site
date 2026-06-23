@@ -13,7 +13,7 @@ import {
   platformTypePermissions,
   platformTypes,
 } from "@/db/schema";
-import { newsPublicWhere } from "@/lib/news-publish";
+import { newsPublicWhere } from "@/lib/news-publish-sql";
 
 export async function getActiveBanners() {
   return db

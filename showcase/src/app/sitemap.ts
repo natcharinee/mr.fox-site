@@ -8,7 +8,7 @@ import {
 } from "@/db/schema";
 import { eq } from "drizzle-orm";
 import { routing } from "@/i18n/routing";
-import { newsPublicWhere } from "@/lib/news-publish";
+import { newsPublicWhere } from "@/lib/news-publish-sql";
 import { SITE_URL } from "@/lib/metadata";
 
 export const dynamic = "force-dynamic";

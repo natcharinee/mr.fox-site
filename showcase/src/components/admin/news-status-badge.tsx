@@ -1,16 +1,15 @@
 import { Badge } from "@/components/ui/badge";
 import {
   formatNewsPublishDateInput,
-  getNewsPublishStatus,
+  type NewsPublishStatus,
 } from "@/lib/news-publish";
 
 type Props = {
-  publishedAt: Date | null;
+  status: NewsPublishStatus;
+  publishedAt?: Date | string | null;
 };
 
-export function NewsStatusBadge({ publishedAt }: Props) {
-  const status = getNewsPublishStatus(publishedAt);
-
+export function NewsStatusBadge({ status, publishedAt }: Props) {
   if (status === "draft") {
     return (
       <Badge

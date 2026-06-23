@@ -11,7 +11,10 @@ import {
 } from "@/components/ui/table";
 import { deleteNews } from "@/lib/admin/actions";
 import { getAllNewsAdmin } from "@/lib/admin/queries";
-import { isNewsPublic } from "@/lib/news-publish";
+import {
+  formatNewsPublishDateInput,
+  getNewsPublishStatus,
+} from "@/lib/news-publish";
 import { NewsForm } from "@/components/admin/news-form";
 
 export const dynamic = "force-dynamic";
@@ -40,16 +43,22 @@ export default async function AdminNewsPage() {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {items.map((item) => (
+            {items.map((item) => {
+              const publishStatus = getNewsPublishStatus(item.publishedAt);
+
+              return (
               <TableRow key={item.id}>
                 <TableCell className="font-medium">{item.title}</TableCell>
                 <TableCell className="text-muted-foreground">{item.slug}</TableCell>
                 <TableCell>
-                  <NewsStatusBadge publishedAt={item.publishedAt} />
+                  <NewsStatusBadge
+                    status={publishStatus}
+                    publishedAt={item.publishedAt}
+                  />
                 </TableCell>
                 <TableCell>
                   {item.publishedAt
-                    ? new Date(item.publishedAt).toLocaleDateString("th-TH")
+                    ? formatNewsPublishDateInput(item.publishedAt)
                     : "—"}
                 </TableCell>
                 <TableCell>
@@ -57,7 +66,7 @@ export default async function AdminNewsPage() {
                     <Button size="sm" variant="outline" nativeButton={false} render={<Link href={`/admin/news/${item.id}`} />}>
                       แก้ไข
                     </Button>
-                    {isNewsPublic(item.publishedAt) ? (
+                    {publishStatus === "published" ? (
                       <Button size="sm" variant="outline" nativeButton={false} render={<Link href={`/news/${item.slug}`} />}>
                         ดู
                       </Button>
@@ -79,7 +88,8 @@ export default async function AdminNewsPage() {
                   </div>
                 </TableCell>
               </TableRow>
-            ))}
+              );
+            })}
           </TableBody>
         </Table>
       </div>

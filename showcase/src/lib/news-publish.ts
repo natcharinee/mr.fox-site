@@ -1,6 +1,3 @@
-import { and, isNotNull, lte, sql } from "drizzle-orm";
-import { news } from "@/db/schema";
-
 export type NewsPublishStatus = "draft" | "scheduled" | "published";
 
 const BANGKOK_TZ = "Asia/Bangkok";
@@ -10,30 +7,35 @@ export function parseNewsPublishDate(value: string | undefined): Date | null {
   return new Date(`${value}T00:00:00+07:00`);
 }
 
-export function formatNewsPublishDateInput(value: Date | null): string {
-  if (!value) return "";
+export function getBangkokCalendarDate(value: Date | string): string {
   return new Intl.DateTimeFormat("en-CA", { timeZone: BANGKOK_TZ }).format(
     new Date(value),
   );
 }
 
+export function formatNewsPublishDateInput(
+  value: Date | string | null,
+): string {
+  if (!value) return "";
+  return getBangkokCalendarDate(value);
+}
+
 export function getNewsPublishStatus(
-  publishedAt: Date | null,
-  now = new Date(),
+  publishedAt: Date | string | null,
+  now: Date = new Date(),
 ): NewsPublishStatus {
   if (!publishedAt) return "draft";
-  if (new Date(publishedAt).getTime() > now.getTime()) return "scheduled";
+
+  const publishDay = getBangkokCalendarDate(publishedAt);
+  const today = getBangkokCalendarDate(now);
+
+  if (publishDay > today) return "scheduled";
   return "published";
 }
 
 export function isNewsPublic(
-  publishedAt: Date | null,
-  now = new Date(),
+  publishedAt: Date | string | null,
+  now: Date = new Date(),
 ): boolean {
   return getNewsPublishStatus(publishedAt, now) === "published";
 }
-
-export const newsPublicWhere = and(
-  isNotNull(news.publishedAt),
-  lte(news.publishedAt, sql`now()`),
-);
