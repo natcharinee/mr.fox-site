@@ -10,6 +10,7 @@ const POSTER_OBJECT_POSITION: Record<string, string> = {
   foxy: "object-top",
   "the-expert": "object-top",
   "tom-thailand": "object-top",
+  "miss-grand": "object-top",
 };
 
 const POSTER_IMAGE_CLASS: Record<string, string> = {
@@ -21,7 +22,7 @@ const POSTER_BY_SLUG: Record<string, string> = {
   foxy: "/apps/posters/foxy.png",
   "the-expert": "/apps/posters/the-expert.png",
   "tom-thailand": "/apps/posters/tom-thailand.png",
-  "miss-grand": "/hero/mrfox-app-mockup@2x.png",
+  "miss-grand": "/apps/posters/miss-grand.png",
 };
 
 type FeaturedAppCardProps = {
