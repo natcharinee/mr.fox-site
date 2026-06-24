@@ -1,7 +1,7 @@
 import { ContentImage } from "@/components/ui/content-image";
 import { DownloadButtons } from "@/components/apps/download-buttons";
 import { GlassCard } from "@/components/vulpine/vulpine-primitives";
-import { isCompanyLogo, resolveImageUrl } from "@/lib/brand-assets";
+import { isCompanyLogo, resolveImageUrl, resolvePosterUrl } from "@/lib/brand-assets";
 import { cn } from "@/lib/utils";
 
 type FeaturedAppCardProps = {
@@ -15,6 +15,8 @@ type FeaturedAppCardProps = {
     logoUrl: string | null;
     posterUrl: string | null;
     posterFocus?: string | null;
+    featuredPosterUrl?: string | null;
+    featuredPosterFocus?: string | null;
   };
   featuredLabel: string;
   downloadLabel: string;
@@ -29,9 +31,11 @@ export function FeaturedAppCard({
   links,
   className,
 }: FeaturedAppCardProps) {
-  const poster = resolveImageUrl(app.posterUrl);
+  const posterSrc = resolvePosterUrl(app.posterUrl, app.featuredPosterUrl);
+  const posterFocus = posterSrc === app.posterUrl?.trim()
+    ? app.posterFocus
+    : app.featuredPosterFocus ?? app.posterFocus;
   const logo = resolveImageUrl(app.logoUrl);
-  const posterIsFallback = isCompanyLogo(poster);
 
   return (
     <GlassCard
@@ -41,24 +45,34 @@ export function FeaturedAppCard({
         className,
       )}
     >
-      <div
-        className={cn(
-          "relative aspect-[3/4] w-full overflow-hidden",
-          posterIsFallback ? "bg-[var(--fox-gold)]" : "bg-[var(--fox-charcoal)]",
+      <div className="relative aspect-[3/4] w-full overflow-hidden bg-black">
+        {posterSrc ? (
+          <ContentImage
+            src={posterSrc}
+            fill
+            sizes="(max-width: 640px) 50vw, 25vw"
+            objectPosition={posterFocus}
+            fit="cover"
+            unoptimized={
+              posterSrc.startsWith("/api/media/") || posterSrc.startsWith("/uploads/")
+            }
+            className="transition-all duration-700 group-hover:scale-105 grayscale-[0.15] group-hover:grayscale-0"
+          />
+        ) : (
+          <div className="flex h-full flex-col items-center justify-center gap-4 bg-gradient-to-br from-[var(--fox-charcoal)] via-[#1a1a1a] to-black p-8 text-center">
+            <div className="relative size-24 overflow-hidden rounded-xl border border-white/10 bg-[var(--fox-gold)] shadow-[0_0_30px_rgba(255,184,0,0.15)]">
+              <ContentImage
+                src={app.logoUrl}
+                fill
+                sizes="96px"
+                fallbackClassName="p-4"
+              />
+            </div>
+            <p className="font-display text-lg font-bold uppercase tracking-wide text-white/70">
+              {app.name}
+            </p>
+          </div>
         )}
-      >
-        <ContentImage
-          src={app.posterUrl}
-          fill
-          sizes="(max-width: 640px) 50vw, 25vw"
-          objectPosition={app.posterFocus}
-          fit={posterIsFallback ? "contain" : "cover"}
-          fallbackClassName="p-8"
-          className={cn(
-            "transition-all duration-700 group-hover:scale-105",
-            !posterIsFallback && "grayscale-[0.15] group-hover:grayscale-0",
-          )}
-        />
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-[var(--vulpine-background)] to-transparent opacity-90" />
         <span className="vulpine-label absolute top-4 right-4 rounded-sm bg-[var(--vulpine-primary)] px-2 py-0.5 text-[10px] text-[var(--vulpine-on-primary)] shadow-[0_0_10px_rgba(255,184,0,0.5)]">
           {featuredLabel}

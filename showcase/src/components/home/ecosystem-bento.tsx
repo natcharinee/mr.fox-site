@@ -1,6 +1,10 @@
 import { ArrowRight } from "lucide-react";
 import { Link } from "@/i18n/navigation";
-import { CATEGORY_THEME } from "@/components/platforms/platform-category-theme";
+import { LinkButton } from "@/components/ui/link-button";
+import {
+  CATEGORY_ORDER,
+  CATEGORY_THEME,
+} from "@/components/platforms/platform-category-theme";
 import { cn } from "@/lib/utils";
 
 type Category = {
@@ -27,42 +31,49 @@ type EcosystemBentoProps = {
   platformTypes: PlatformType[];
 };
 
-const LEFT_COLUMN = ["creator", "company"] as const;
-const RIGHT_COLUMN = ["community", "contest", "exhibition"] as const;
+const COLUMN_LAYOUT: { slugs: readonly string[]; rowCount: 2 | 3 }[] = [
+  { slugs: ["creator", "company"], rowCount: 2 },
+  { slugs: ["community", "contest", "exhibition"], rowCount: 3 },
+];
 
 const DARK_THEME: Record<
   string,
-  { card: string; iconWrap: string; accent: string; itemHover: string }
+  { card: string; iconWrap: string; accent: string; itemHover: string; glow: string }
 > = {
   creator: {
-    card: "border-[var(--fox-gold)]/20",
+    card: "border-[var(--fox-gold)]/25",
     iconWrap: "bg-[var(--fox-gold)]/15 text-[var(--fox-gold)]",
     accent: "text-[var(--fox-gold)]",
-    itemHover: "hover:border-[var(--fox-gold)]/35 hover:bg-[var(--fox-gold)]/5",
+    itemHover: "hover:border-[var(--fox-gold)]/40 hover:bg-[var(--fox-gold)]/8",
+    glow: "from-[var(--fox-gold)]/10",
   },
   community: {
-    card: "border-teal-500/20",
+    card: "border-teal-500/25",
     iconWrap: "bg-teal-500/15 text-teal-300",
     accent: "text-teal-300",
-    itemHover: "hover:border-teal-500/35 hover:bg-teal-500/5",
+    itemHover: "hover:border-teal-500/40 hover:bg-teal-500/8",
+    glow: "from-teal-500/10",
   },
   company: {
-    card: "border-slate-400/20",
+    card: "border-slate-400/25",
     iconWrap: "bg-slate-400/15 text-slate-200",
     accent: "text-slate-200",
-    itemHover: "hover:border-slate-400/35 hover:bg-white/5",
+    itemHover: "hover:border-slate-400/40 hover:bg-white/6",
+    glow: "from-slate-400/10",
   },
   contest: {
-    card: "border-rose-500/20",
+    card: "border-rose-500/25",
     iconWrap: "bg-rose-500/15 text-rose-300",
     accent: "text-rose-300",
-    itemHover: "hover:border-rose-500/35 hover:bg-rose-500/5",
+    itemHover: "hover:border-rose-500/40 hover:bg-rose-500/8",
+    glow: "from-rose-500/10",
   },
   exhibition: {
-    card: "border-violet-500/20",
+    card: "border-violet-500/25",
     iconWrap: "bg-violet-500/15 text-violet-300",
     accent: "text-violet-300",
-    itemHover: "hover:border-violet-500/35 hover:bg-violet-500/5",
+    itemHover: "hover:border-violet-500/40 hover:bg-violet-500/8",
+    glow: "from-violet-500/10",
   },
 };
 
@@ -90,80 +101,92 @@ function CategoryCard({
   return (
     <article
       className={cn(
-        "vulpine-hud-border vulpine-glow-hover flex h-full min-h-0 flex-col rounded-lg border border-white/8 bg-[rgba(18,20,20,0.4)] p-6 shadow-[0_4px_30px_rgba(0,0,0,0.1)] backdrop-blur-2xl transition-all sm:p-8",
+        "vulpine-hud-border vulpine-glow-hover relative flex h-full min-h-0 flex-col overflow-hidden rounded-xl border border-white/10 bg-[rgba(18,20,20,0.55)] shadow-[0_8px_40px_rgba(0,0,0,0.25)] backdrop-blur-2xl transition-all",
         dark.card,
       )}
     >
-      <div className="flex items-start gap-4">
-        {Icon ? (
-          <div
-            className={cn(
-              "flex size-11 shrink-0 items-center justify-center rounded-2xl",
-              dark.iconWrap,
-            )}
-          >
-            <Icon className="size-5" aria-hidden />
-          </div>
-        ) : null}
-        <div className="min-w-0 flex-1">
-          <div className="flex flex-wrap items-center gap-2">
-          <h3 className="font-display text-lg font-bold uppercase text-[var(--vulpine-on-surface)]">
-            {category.name}
-          </h3>
-            <span
+      <div
+        className={cn(
+          "pointer-events-none absolute inset-x-0 top-0 h-28 bg-gradient-to-b to-transparent",
+          dark.glow,
+        )}
+        aria-hidden
+      />
+
+      <div className="relative border-b border-white/8 px-6 py-6 sm:px-8 sm:py-7">
+        <div className="flex items-start gap-5">
+          {Icon ? (
+            <div
               className={cn(
-                "vulpine-label rounded-sm border px-3 py-1 text-[10px] tabular-nums",
+                "flex size-14 shrink-0 items-center justify-center rounded-2xl ring-1 ring-white/10",
                 dark.iconWrap,
               )}
             >
-              {types.length} MODULES
-            </span>
+              <Icon className="size-7" aria-hidden />
+            </div>
+          ) : null}
+          <div className="min-w-0 flex-1">
+            <div className="flex flex-wrap items-center gap-3">
+              <h3 className="font-display text-xl font-bold uppercase tracking-wide text-[var(--vulpine-on-surface)] sm:text-2xl">
+                {category.name}
+              </h3>
+              <span
+                className={cn(
+                  "vulpine-label rounded-sm border px-3 py-1.5 text-[11px] tabular-nums sm:text-xs",
+                  dark.iconWrap,
+                )}
+              >
+                {types.length} MODULES
+              </span>
+            </div>
+            <p className="mt-3 text-base leading-relaxed text-white/65 sm:text-[17px]">
+              {category.description}
+            </p>
           </div>
-          <p className="mt-2 text-sm leading-relaxed text-white/55">
-            {category.description}
-          </p>
         </div>
       </div>
 
-      <div className="mt-5 flex min-h-0 flex-1 flex-col">
+      <div className="relative flex min-h-0 flex-1 flex-col px-6 py-5 sm:px-8 sm:py-6">
         <p
           className={cn(
-            "text-xs font-semibold uppercase tracking-wider",
+            "vulpine-label text-xs font-semibold uppercase tracking-[0.2em] sm:text-sm",
             dark.accent,
           )}
         >
           {includesLabel}
         </p>
-        <ul className="mt-3 flex flex-1 flex-col gap-2">
+        <ul className="mt-4 flex flex-1 flex-col gap-3">
           {types.map((pt) => (
-            <li key={pt.slug} className="flex-1">
+            <li key={pt.slug}>
               <Link
                 href={`/platforms/${pt.slug}`}
                 className={cn(
-                  "group flex h-full flex-col rounded-2xl border border-white/8 bg-white/[0.03] p-3.5 transition-colors",
+                  "group flex h-full flex-col rounded-xl border border-white/10 bg-white/[0.04] p-4 transition-all sm:p-5",
                   dark.itemHover,
+                  theme?.border && "border-l-2",
+                  theme?.border,
                 )}
               >
-                <div className="flex items-start justify-between gap-3">
-                  <div className="min-w-0">
-                    <p className="font-semibold text-white">{pt.name}</p>
-                    <p className="mt-1 text-sm leading-relaxed text-white/50">
+                <div className="flex items-start justify-between gap-4">
+                  <div className="min-w-0 flex-1">
+                    <p className="text-base font-bold text-white sm:text-lg">{pt.name}</p>
+                    <p className="mt-2 text-sm leading-relaxed text-white/60 sm:text-base">
                       {pt.shortDescription ?? pt.concept}
                     </p>
                     {pt.concept && pt.shortDescription ? (
-                      <p className="mt-2 text-xs leading-relaxed text-white/35">
+                      <p className="mt-2 text-sm leading-relaxed text-white/40">
                         {pt.concept}
                       </p>
                     ) : null}
                   </div>
                   <span
                     className={cn(
-                      "vulpine-label mt-0.5 inline-flex shrink-0 items-center gap-1 text-xs opacity-0 transition-opacity group-hover:opacity-100",
+                      "vulpine-label mt-1 inline-flex shrink-0 items-center gap-1.5 text-xs opacity-70 transition-all group-hover:translate-x-0.5 group-hover:opacity-100 sm:text-sm",
                       dark.accent,
                     )}
                   >
                     {viewPlatformLabel}
-                    <ArrowRight className="size-3.5" aria-hidden />
+                    <ArrowRight className="size-4" aria-hidden />
                   </span>
                 </div>
               </Link>
@@ -193,7 +216,7 @@ function CategoryColumn({
   return (
     <div
       className={cn(
-        "grid gap-5",
+        "grid gap-6",
         rowCount === 2 && "lg:grid-rows-2 lg:h-full",
         rowCount === 3 && "lg:grid-rows-3 lg:h-full",
       )}
@@ -227,47 +250,87 @@ export function EcosystemBento({
   platformTypes,
 }: EcosystemBentoProps) {
   const bySlug = Object.fromEntries(categories.map((c) => [c.slug, c]));
+  const categoryCounts = Object.fromEntries(
+    CATEGORY_ORDER.map((slug) => [
+      slug,
+      categoryTypes(platformTypes, slug).length,
+    ]),
+  );
 
   return (
-    <section className="px-4 py-16 md:px-16 md:py-24" id="ecosystem">
-      <div className="mx-auto max-w-[1200px]">
-        <div className="mb-12 border-l-2 border-[var(--vulpine-primary-container)] pl-6">
-          <p className="vulpine-label mb-2 text-[var(--vulpine-primary-container)]">
+    <section
+      className="relative overflow-hidden border-y border-white/5 bg-[var(--vulpine-surface-container-low)]/20 px-4 py-16 md:px-16 md:py-24"
+      id="ecosystem"
+    >
+      <div
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-10%,rgba(255,184,0,0.08),transparent)]"
+        aria-hidden
+      />
+      <div
+        className="pointer-events-none absolute inset-0 opacity-[0.35] [background-image:linear-gradient(rgba(255,184,0,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(255,184,0,0.04)_1px,transparent_1px)] [background-size:48px_48px]"
+        aria-hidden
+      />
+
+      <div className="relative mx-auto max-w-[1200px]">
+        <div className="mb-10 border-l-4 border-[var(--vulpine-primary-container)] pl-6 sm:mb-12 sm:pl-8">
+          <p className="vulpine-label mb-3 text-sm text-[var(--vulpine-primary-container)] sm:text-base">
             System Architecture
           </p>
-          <h2 className="font-display text-2xl font-bold tracking-wide text-[var(--vulpine-on-surface)] uppercase md:text-3xl">
+          <h2 className="font-display text-3xl font-bold tracking-wide text-[var(--vulpine-on-surface)] uppercase sm:text-4xl md:text-[2.75rem] md:leading-tight">
             {title}
           </h2>
-          <p className="mt-2 max-w-2xl text-[var(--vulpine-on-surface-variant)]">{description}</p>
+          <p className="mt-4 max-w-3xl text-base leading-relaxed text-[var(--vulpine-on-surface-variant)] sm:text-lg">
+            {description}
+          </p>
+
+          <div className="mt-6 flex flex-wrap gap-2.5">
+            {CATEGORY_ORDER.map((slug) => {
+              const theme = CATEGORY_THEME[slug];
+              const count = categoryCounts[slug] ?? 0;
+              const category = bySlug[slug];
+              if (!theme || !category || count === 0) return null;
+              const Icon = theme.icon;
+
+              return (
+                <span
+                  key={slug}
+                  className={cn(
+                    "inline-flex items-center gap-2 rounded-full border px-3.5 py-2 text-sm font-medium",
+                    theme.pill,
+                  )}
+                >
+                  <Icon className="size-4 shrink-0" aria-hidden />
+                  {category.name}
+                  <span className="tabular-nums opacity-80">{count}</span>
+                </span>
+              );
+            })}
+          </div>
         </div>
 
-        <div className="mt-10 grid gap-5 lg:grid-cols-2 lg:items-stretch lg:gap-6">
-          <CategoryColumn
-            slugs={LEFT_COLUMN}
-            bySlug={bySlug}
-            platformTypes={platformTypes}
-            includesLabel={includesLabel}
-            viewPlatformLabel={viewPlatformLabel}
-            rowCount={2}
-          />
-          <CategoryColumn
-            slugs={RIGHT_COLUMN}
-            bySlug={bySlug}
-            platformTypes={platformTypes}
-            includesLabel={includesLabel}
-            viewPlatformLabel={viewPlatformLabel}
-            rowCount={3}
-          />
+        <div className="grid gap-6 lg:grid-cols-2 lg:items-stretch lg:gap-7">
+          {COLUMN_LAYOUT.map(({ slugs, rowCount }) => (
+            <CategoryColumn
+              key={slugs.join("-")}
+              slugs={slugs}
+              bySlug={bySlug}
+              platformTypes={platformTypes}
+              includesLabel={includesLabel}
+              viewPlatformLabel={viewPlatformLabel}
+              rowCount={rowCount}
+            />
+          ))}
         </div>
 
-        <div className="mt-8 text-center">
-          <Link
+        <div className="mt-10 flex justify-center sm:mt-12">
+          <LinkButton
             href="/platforms"
-            className="vulpine-label inline-flex items-center gap-2 text-[var(--vulpine-primary-container)] transition-all hover:translate-x-1"
+            variant="outline"
+            className="vulpine-label gap-2 border-[var(--vulpine-primary-container)]/40 px-6 py-2.5 text-sm text-[var(--vulpine-primary-container)] hover:bg-[var(--vulpine-primary-container)]/10 sm:text-base"
           >
             {viewAllLabel}
             <ArrowRight className="size-4" aria-hidden />
-          </Link>
+          </LinkButton>
         </div>
       </div>
     </section>

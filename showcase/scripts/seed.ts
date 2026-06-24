@@ -1,5 +1,5 @@
 import "dotenv/config";
-import { eq, sql } from "drizzle-orm";
+import { and, eq, isNull, or, sql } from "drizzle-orm";
 import { db } from "../src/db/index";
 import {
   applications,
@@ -520,6 +520,18 @@ async function seed() {
           .where(eq(applications.slug, app.slug))
           .limit(1);
     const appId = existingApp?.id;
+
+    if (appId && app.posterUrl) {
+      await db
+        .update(applications)
+        .set({ posterUrl: app.posterUrl })
+        .where(
+          and(
+            eq(applications.id, appId),
+            or(isNull(applications.posterUrl), eq(applications.posterUrl, "")),
+          ),
+        );
+    }
 
     if (appId) {
       const existingLinks = await db

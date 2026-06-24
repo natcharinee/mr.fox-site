@@ -189,6 +189,8 @@ export async function getFeaturedApplications(limit?: number) {
       logoUrl: applications.logoUrl,
       posterUrl: applications.posterUrl,
       posterFocus: applications.posterFocus,
+      featuredPosterUrl: applications.featuredPosterUrl,
+      featuredPosterFocus: applications.featuredPosterFocus,
       description: applications.description,
       platformTypeName: platformTypes.name,
       platformTypeSlug: platformTypes.slug,
