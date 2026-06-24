@@ -57,7 +57,7 @@ export function HeroScrollMockup() {
     <div
       ref={containerRef}
       className={cn(
-        "relative w-full overflow-visible py-2 sm:py-4",
+        "relative w-full overflow-visible py-1 sm:py-2",
         "lg:ml-[calc(50%-50vw)] lg:w-screen lg:max-w-[100vw] lg:overflow-hidden lg:py-0",
       )}
     >

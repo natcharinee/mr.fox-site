@@ -126,6 +126,7 @@ export async function getAllApplicationsAdmin() {
       featured: applications.featured,
       published: applications.published,
       posterUrl: applications.posterUrl,
+      posterFocus: applications.posterFocus,
       downloadCount: applications.downloadCount,
       platformTypeName: platformTypes.name,
     })

@@ -14,6 +14,8 @@ type ContentImageProps = {
   className?: string;
   fallbackClassName?: string;
   wrapperClassName?: string;
+  objectPosition?: string | null;
+  fit?: "cover" | "contain";
 };
 
 export function ContentImage({
@@ -28,9 +30,13 @@ export function ContentImage({
   className,
   fallbackClassName,
   wrapperClassName,
+  objectPosition,
+  fit = "contain",
 }: ContentImageProps) {
   const resolved = resolveImageUrl(src);
   const fallback = isCompanyLogo(resolved);
+  const focusStyle = !fallback && objectPosition ? { objectPosition } : undefined;
+  const objectFit = fallback ? "contain" : fit;
 
   const image = (
     <Image
@@ -42,8 +48,10 @@ export function ContentImage({
       sizes={sizes}
       priority={priority}
       unoptimized={unoptimized}
+      style={focusStyle}
       className={cn(
-        fallback ? "object-contain p-4" : "object-cover",
+        objectFit === "contain" ? "object-contain" : "object-cover",
+        fallback && "p-4",
         className,
         fallback && fallbackClassName,
       )}

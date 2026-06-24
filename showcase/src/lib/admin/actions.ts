@@ -117,6 +117,7 @@ const appSchema = z.object({
   iosUrl: z.string().optional(),
   androidUrl: z.string().optional(),
   posterUrl: z.string().optional(),
+  posterFocus: z.string().optional(),
   logoUrl: z.string().optional(),
 });
 
@@ -133,6 +134,7 @@ export async function createApplication(formData: FormData) {
     iosUrl: formData.get("iosUrl") || undefined,
     androidUrl: formData.get("androidUrl") || undefined,
     posterUrl: formData.get("posterUrl") || undefined,
+    posterFocus: formData.get("posterFocus") || undefined,
     logoUrl: formData.get("logoUrl") || undefined,
   });
 
@@ -148,6 +150,7 @@ export async function createApplication(formData: FormData) {
       published: data.published ?? true,
       logoUrl: data.logoUrl || COMPANY_LOGO,
       posterUrl: data.posterUrl || undefined,
+      posterFocus: data.posterFocus || undefined,
     })
     .returning();
 
@@ -173,6 +176,7 @@ export async function updateApplication(id: number, formData: FormData) {
     iosUrl: formData.get("iosUrl") || undefined,
     androidUrl: formData.get("androidUrl") || undefined,
     posterUrl: formData.get("posterUrl") || undefined,
+    posterFocus: formData.get("posterFocus") || undefined,
     logoUrl: formData.get("logoUrl") || undefined,
   });
 
@@ -200,6 +204,7 @@ export async function updateApplication(id: number, formData: FormData) {
       published,
       logoUrl: data.logoUrl || COMPANY_LOGO,
       posterUrl: data.posterUrl || undefined,
+      posterFocus: data.posterFocus || undefined,
     })
     .where(eq(applications.id, id));
 

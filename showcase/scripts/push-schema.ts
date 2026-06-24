@@ -42,6 +42,9 @@ async function applySchemaPatches(sql: ReturnType<typeof neon>) {
   await sql.query(
     `ALTER TABLE media ADD COLUMN IF NOT EXISTS storage_data text`,
   );
+  await sql.query(
+    `ALTER TABLE applications ADD COLUMN IF NOT EXISTS poster_focus text DEFAULT '50% 50%'`,
+  );
 }
 
 async function main() {

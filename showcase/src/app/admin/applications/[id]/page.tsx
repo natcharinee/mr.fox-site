@@ -79,7 +79,10 @@ export default async function AdminApplicationEditPage({ params }: Props) {
             className="mt-1"
           />
         </div>
-        <AdminPosterUploadField defaultValue={item.posterUrl ?? ""} />
+        <AdminPosterUploadField
+          defaultValue={item.posterUrl ?? ""}
+          defaultFocus={item.posterFocus ?? undefined}
+        />
         <div>
           <Label htmlFor="iosUrl">iOS URL</Label>
           <Input id="iosUrl" name="iosUrl" defaultValue={iosUrl} className="mt-1" />

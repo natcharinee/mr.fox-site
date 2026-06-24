@@ -68,6 +68,7 @@ export const applications = pgTable("applications", {
   slug: text("slug").notNull().unique(),
   logoUrl: text("logo_url"),
   posterUrl: text("poster_url"),
+  posterFocus: text("poster_focus").default("50% 50%"),
   description: text("description"),
   targetAudience: text("target_audience"),
   featured: boolean("featured").notNull().default(false),

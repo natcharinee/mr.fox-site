@@ -4,16 +4,20 @@ import { cn } from "@/lib/utils";
 
 type AppMediaProps = {
   posterUrl?: string | null;
+  posterFocus?: string | null;
   name: string;
   className?: string;
   imageClassName?: string;
+  fit?: "cover" | "contain";
 };
 
 export function AppMedia({
   posterUrl,
+  posterFocus,
   name,
   className,
   imageClassName,
+  fit = "contain",
 }: AppMediaProps) {
   const resolved = resolveImageUrl(posterUrl);
   const fallback = isCompanyLogo(resolved);
@@ -31,6 +35,8 @@ export function AppMedia({
         alt={name}
         fill
         sizes="(max-width: 768px) 100vw, 33vw"
+        objectPosition={posterFocus}
+        fit={fit}
         className={cn(fallback && "p-8", imageClassName)}
       />
     </div>

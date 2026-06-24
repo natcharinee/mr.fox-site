@@ -14,6 +14,7 @@ type FeaturedAppCardProps = {
     categoryName: string | null;
     logoUrl: string | null;
     posterUrl: string | null;
+    posterFocus?: string | null;
   };
   featuredLabel: string;
   downloadLabel: string;
@@ -50,9 +51,10 @@ export function FeaturedAppCard({
           src={app.posterUrl}
           fill
           sizes="(max-width: 640px) 100vw, 50vw"
+          objectPosition={app.posterFocus}
           className={cn(
             "transition-transform duration-500 group-hover:scale-[1.03]",
-            posterIsFallback ? "p-10 sm:p-12" : "object-center",
+            posterIsFallback && "p-10 sm:p-12",
           )}
         />
         {!posterIsFallback ? (

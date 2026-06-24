@@ -123,6 +123,7 @@ export default async function AdminApplicationsPage() {
                 <TableCell>
                   <AppMedia
                     posterUrl={item.posterUrl}
+                    posterFocus={item.posterFocus}
                     name={item.name}
                     className="h-12 w-9 rounded-md"
                     imageClassName="p-1"

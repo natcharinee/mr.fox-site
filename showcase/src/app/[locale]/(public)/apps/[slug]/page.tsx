@@ -77,6 +77,7 @@ export default async function AppDetailPage({ params }: Props) {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <AppMedia
           posterUrl={app.posterUrl}
+          posterFocus={app.posterFocus}
           name={app.name}
           className="aspect-[21/9] rounded-2xl"
         />
