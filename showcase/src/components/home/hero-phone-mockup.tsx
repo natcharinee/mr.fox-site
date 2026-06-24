@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 
 const HERO_IMAGE = "/hero/mrfox-app-mockup@2x.png";
-const HERO_VIDEO_MP4 = "/hero/Present-MrFOX-COIN-final.mp4";
+const HERO_VIDEO_MP4 = "/hero/Mr.FOX_creator_super_app_202606241106.mp4";
 
 const frameClassName = cn(
   "relative mx-auto",
