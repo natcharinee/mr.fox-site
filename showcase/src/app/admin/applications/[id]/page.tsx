@@ -79,10 +79,23 @@ export default async function AdminApplicationEditPage({ params }: Props) {
             className="mt-1"
           />
         </div>
-        <AdminPosterUploadField
-          defaultValue={item.posterUrl ?? ""}
-          defaultFocus={item.posterFocus ?? undefined}
-        />
+        <div className="sm:col-span-2 grid gap-4 sm:grid-cols-2">
+          <AdminPosterUploadField
+            defaultValue={item.posterUrl ?? ""}
+            defaultFocus={item.posterFocus ?? undefined}
+            className="sm:col-span-1"
+          />
+          <AdminPosterUploadField
+            name="featuredPosterUrl"
+            focusName="featuredPosterFocus"
+            label="รูป Featured (หน้า Applications)"
+            hint="อัปโหลดรูปสำหรับหน้า Applications — แนะนำแนวนอนอย่างน้อย 1200×600 px"
+            defaultValue={item.featuredPosterUrl ?? ""}
+            defaultFocus={item.featuredPosterFocus ?? undefined}
+            className="sm:col-span-1"
+            previewClassName="h-28 w-full max-w-[12rem]"
+          />
+        </div>
         <div>
           <Label htmlFor="iosUrl">iOS URL</Label>
           <Input id="iosUrl" name="iosUrl" defaultValue={iosUrl} className="mt-1" />

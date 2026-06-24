@@ -20,7 +20,6 @@ export function Header({ variant = "brand" }: HeaderProps) {
   const isBrand = variant === "brand";
 
   const NAV = [
-    { href: "/" as const, label: t("home"), match: (p: string) => /\/(th|en|zh)\/?$/.test(p) },
     { href: "/platforms" as const, label: t("platforms"), match: (p: string) => p.includes("/platforms") },
     { href: "/apps" as const, label: t("apps"), match: (p: string) => p.includes("/apps") },
     { href: "/news" as const, label: t("news"), match: (p: string) => p.includes("/news") },

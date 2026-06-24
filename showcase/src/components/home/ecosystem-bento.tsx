@@ -21,7 +21,6 @@ type EcosystemBentoProps = {
   title: string;
   description: string;
   includesLabel: string;
-  typeCountLabel: string;
   viewPlatformLabel: string;
   viewAllLabel: string;
   categories: Category[];
@@ -76,14 +75,12 @@ function CategoryCard({
   category,
   types,
   includesLabel,
-  typeCountLabel,
   viewPlatformLabel,
 }: {
   slug: string;
   category: Category;
   types: PlatformType[];
   includesLabel: string;
-  typeCountLabel: string;
   viewPlatformLabel: string;
 }) {
   const theme = CATEGORY_THEME[slug];
@@ -183,7 +180,6 @@ function CategoryColumn({
   bySlug,
   platformTypes,
   includesLabel,
-  typeCountLabel,
   viewPlatformLabel,
   rowCount,
 }: {
@@ -191,7 +187,6 @@ function CategoryColumn({
   bySlug: Record<string, Category>;
   platformTypes: PlatformType[];
   includesLabel: string;
-  typeCountLabel: string;
   viewPlatformLabel: string;
   rowCount: 2 | 3;
 }) {
@@ -214,7 +209,6 @@ function CategoryColumn({
             category={category}
             types={categoryTypes(platformTypes, slug)}
             includesLabel={includesLabel}
-            typeCountLabel={typeCountLabel}
             viewPlatformLabel={viewPlatformLabel}
           />
         );
@@ -227,7 +221,6 @@ export function EcosystemBento({
   title,
   description,
   includesLabel,
-  typeCountLabel,
   viewPlatformLabel,
   viewAllLabel,
   categories,
@@ -254,7 +247,6 @@ export function EcosystemBento({
             bySlug={bySlug}
             platformTypes={platformTypes}
             includesLabel={includesLabel}
-            typeCountLabel={typeCountLabel}
             viewPlatformLabel={viewPlatformLabel}
             rowCount={2}
           />
@@ -263,7 +255,6 @@ export function EcosystemBento({
             bySlug={bySlug}
             platformTypes={platformTypes}
             includesLabel={includesLabel}
-            typeCountLabel={typeCountLabel}
             viewPlatformLabel={viewPlatformLabel}
             rowCount={3}
           />

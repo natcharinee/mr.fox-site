@@ -26,8 +26,8 @@ type AdminPosterUploadFieldProps = {
 export function AdminPosterUploadField({
   name = "posterUrl",
   focusName = "posterFocus",
-  label = "รูปโปสเตอร์ (แสดงหน้าบ้าน)",
-  hint = "อัปโหลดรูปแนวตั้งหรือสี่เหลี่ยม — แนะนำขนาดอย่างน้อย 600×800 px",
+  label = "รูป Poster (หน้าแรก)",
+  hint = "อัปโหลดรูปสำหรับส่วน Featured Applications บนหน้าแรก — แนะนำแนวตั้งอย่างน้อย 600×800 px",
   className,
   defaultValue = "",
   defaultFocus = DEFAULT_IMAGE_FOCUS,

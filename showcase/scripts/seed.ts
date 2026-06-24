@@ -7,7 +7,6 @@ import {
   categoryRevenue,
   downloadLinks,
   features,
-  news,
   platformCategories,
   platformTypeFeatures,
   platformTypePermissions,
@@ -539,29 +538,7 @@ async function seed() {
     }
   }
 
-  await db.insert(news).values([
-    {
-      slug: "mrfox-ecosystem-launch",
-      title: "Mr.FOX เปิดตัว Ecosystem แพลตฟอร์ม Creator Economy",
-      excerpt: "รวม 10 Platform Types ครอบคลุม Creator, Community, Company, Contest และ Exhibition",
-      content: "Mr.FOX ประกาศเปิดตัว ecosystem แพลตฟอร์มครบวงจรสำหรับ Creator Economy รองรับ monetization ผ่าน Vote, Gift, Live, Subscription และอีกมากมาย",
-      publishedAt: new Date("2026-01-15"),
-    },
-    {
-      slug: "foxy-app-update",
-      title: "FOXY App อัปเดตฟีเจอร์ Live และ Gift ใหม่",
-      excerpt: "เพิ่ม Animated Gift และปรับปรุงประสบการณ์ Live streaming",
-      content: "FOXY เปิดตัว Animated Gift ชุดใหม่พร้อมปรับปรุง Live room ให้รองรับผู้ชมได้มากขึ้น",
-      publishedAt: new Date("2026-02-01"),
-    },
-    {
-      slug: "creator-platform-engine",
-      title: "Creator Platform Engine — Template มาตรฐานสำหรับทุกแอป",
-      excerpt: "Engine ใหม่ช่วยเปิดแอป Creator Platform ได้เร็วขึ้น",
-      content: "Mr.FOX พัฒนา Creator Platform Engine เป็น template มาตรฐาน รองรับ Wallet, Vote, Gift, Chat, Live และ Video Call",
-      publishedAt: new Date("2026-03-01"),
-    },
-  ]).onConflictDoNothing();
+  // News is imported from info.mrfox.com via `npm run news:import` or Admin → Sync ข่าว.
 
   await db.insert(banners).values({
     title: "Mr.FOX Ecosystem",

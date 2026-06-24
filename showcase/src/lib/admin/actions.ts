@@ -20,6 +20,7 @@ import { requireSession } from "@/lib/auth";
 import { parseNewsPublishDate } from "@/lib/news-publish";
 import { COMPANY_LOGO } from "@/lib/brand-assets";
 import { hashPassword } from "@/lib/password";
+import { syncInfoMrfoxNewsToDatabase } from "@/lib/sync-info-mrfox-news";
 
 async function auth(role?: "admin") {
   return requireSession(role);
@@ -107,6 +108,25 @@ export async function deleteNews(id: number) {
   revalidatePath("/admin/news");
 }
 
+export async function syncInfoMrfoxNews() {
+  const session = await auth();
+  const result = await syncInfoMrfoxNewsToDatabase();
+
+  await logAudit(
+    session,
+    "update",
+    "news",
+    0,
+    `Synced ${result.total} reviews from info.mrfox.com`,
+  );
+
+  revalidatePath("/");
+  revalidatePath("/news");
+  revalidatePath("/admin/news");
+
+  return result;
+}
+
 // ─── Applications ───────────────────────────────────────
 
 const appSchema = z.object({
@@ -121,6 +141,8 @@ const appSchema = z.object({
   androidUrl: z.string().optional(),
   posterUrl: z.string().optional(),
   posterFocus: z.string().optional(),
+  featuredPosterUrl: z.string().optional(),
+  featuredPosterFocus: z.string().optional(),
   logoUrl: z.string().optional(),
 });
 
@@ -138,6 +160,8 @@ export async function createApplication(formData: FormData) {
     androidUrl: formData.get("androidUrl") || undefined,
     posterUrl: formData.get("posterUrl") || undefined,
     posterFocus: formData.get("posterFocus") || undefined,
+    featuredPosterUrl: formData.get("featuredPosterUrl") || undefined,
+    featuredPosterFocus: formData.get("featuredPosterFocus") || undefined,
     logoUrl: formData.get("logoUrl") || undefined,
   });
 
@@ -154,6 +178,8 @@ export async function createApplication(formData: FormData) {
       logoUrl: data.logoUrl || COMPANY_LOGO,
       posterUrl: data.posterUrl || undefined,
       posterFocus: data.posterFocus || undefined,
+      featuredPosterUrl: data.featuredPosterUrl || undefined,
+      featuredPosterFocus: data.featuredPosterFocus || undefined,
     })
     .returning();
 
@@ -180,6 +206,8 @@ export async function updateApplication(id: number, formData: FormData) {
     androidUrl: formData.get("androidUrl") || undefined,
     posterUrl: formData.get("posterUrl") || undefined,
     posterFocus: formData.get("posterFocus") || undefined,
+    featuredPosterUrl: formData.get("featuredPosterUrl") || undefined,
+    featuredPosterFocus: formData.get("featuredPosterFocus") || undefined,
     logoUrl: formData.get("logoUrl") || undefined,
   });
 
@@ -208,6 +236,8 @@ export async function updateApplication(id: number, formData: FormData) {
       logoUrl: data.logoUrl || COMPANY_LOGO,
       posterUrl: data.posterUrl || undefined,
       posterFocus: data.posterFocus || undefined,
+      featuredPosterUrl: data.featuredPosterUrl || undefined,
+      featuredPosterFocus: data.featuredPosterFocus || undefined,
     })
     .where(eq(applications.id, id));
 

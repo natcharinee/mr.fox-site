@@ -41,8 +41,7 @@
       "platformTypes": "Platform Types",
       "applications": "Applications",
       "features": "Features",
-      "downloads": "Downloads",
-      "downloadsDisplay": "3K+"
+      "downloads": "Downloads"
     }
   },
   "apps": {
@@ -123,47 +122,117 @@
     "title": "News",
     "subtitle": "ข่าวสารและอัปเดตล่าสุด",
     "backToNews": "กลับไป News",
-    "source": "แหล่งที่มา"
+    "source": "แหล่งที่มา",
+    "readAtSource": "อ่านข่าวฉบับเต็มที่แหล่งที่มา"
   },
   "about": {
     "title": "About Mr.FOX",
     "subtitle": "Mr.FOX พัฒนา Platform และ Mobile Applications สำหรับ Creator Economy Ecosystem",
-    "vision": "Vision",
-    "visionBody": "สร้าง ecosystem ที่ Creator หารายได้จากแฟนคลับโดยตรง ผ่านแพลตฟอร์มมาตรฐานที่ scale ได้ไม่จำกัด",
-    "mission": "Mission",
-    "missionBody": "พัฒนา Showcase + Engine ที่ data-driven — เพิ่มแอปจาก 10 เป็น 100+ โดยเพิ่ม record ใน database เท่านั้น",
+    "purpose": {
+      "eyebrow": "Why Mr.FOX",
+      "sectionTitle": "วิสัยทัศน์ที่ขับเคลื่อน Ecosystem",
+      "vision": {
+        "label": "Vision",
+        "headline": "Creator หารายได้จากแฟนคลับโดยตรง",
+        "body": "สร้าง ecosystem ที่ Creator หารายได้จากแฟนคลับโดยตรง ผ่านแพลตฟอร์มมาตรฐานที่ scale ได้ไม่จำกัด",
+        "highlights": [
+          "แพลตฟอร์มเดียว ครอบคลุม Vote · Gift · Live · Chat",
+          "Creator เป็นเจ้าของชุมชนและรายได้ของตัวเอง",
+          "ขยายได้จากแอปเดียวสู่หลาย Platform Types"
+        ]
+      },
+      "mission": {
+        "label": "Mission",
+        "headline": "Engine ที่เพิ่มแอปได้ด้วยข้อมูล",
+        "body": "พัฒนา Showcase + Engine ที่ data-driven — เพิ่มแอปจาก 10 เป็น 100+ โดยเพิ่ม record ใน database เท่านั้น",
+        "highlights": [
+          "Template มาตรฐานสำหรับทุก use case",
+          "CMS / Back Office จัดการเนื้อหาได้ครบ",
+          "พร้อม scale โดยไม่ต้อง rebuild โครงสร้าง"
+        ]
+      },
+      "valuesTitle": "หลักการที่ยึดถือ",
+      "values": [
+        {
+          "title": "Creator First",
+          "description": "ทุกฟีเจอร์ออกแบบมาเพื่อให้ Creator สร้างรายได้และเติบโตอย่างยั่งยืน"
+        },
+        {
+          "title": "Platform by Design",
+          "description": "ใช้แม่แบบมาตรฐาน เปิดแพลตฟอร์มใหม่ได้เร็วโดยไม่เริ่มจากศูนย์"
+        },
+        {
+          "title": "Connected Ecosystem",
+          "description": "แอป ชุมชน และ monetization ทำงานร่วมกันใน ecosystem เดียวของ Mr.FOX"
+        }
+      ]
+    },
     "roadmap": "Roadmap",
     "roadmapVisualTitle": "ROADMAP",
     "roadmapVisualCaption": "เส้นทางการเติบโตของ Mr.FOX Ecosystem ตั้งแต่ FOXY, PHOENIX ไปจนถึงแอปและแพลตฟอร์มใหม่ๆ",
+    "roadmapPhasesTitle": "เส้นทาง Ecosystem",
+    "roadmapPhasesSubtitle": "สรุป 3 ช่วงสำคัญของ Mr.FOX — จากจุดเริ่มต้น สู่การขยายแพลตฟอร์ม และ Creator Super App",
+    "roadmapStatus": {
+      "done": "ผ่านมาแล้ว",
+      "active": "กำลังทำ",
+      "upcoming": "ถัดไป"
+    },
     "roadmapPhases": [
       {
-        "phase": "Phase 1",
-        "title": "Public Showcase",
+        "era": "ยุคที่ 1",
+        "phase": "Foundation",
+        "title": "วางรากฐาน Ecosystem",
+        "summary": "เริ่มจาก Mr.FOX Token และแพลตฟอร์มแรกๆ ที่พิสูจน์แนวคิด Creator Economy",
+        "status": "done",
         "items": [
-          "Home, Platforms, Apps, Features",
-          "News, About, Contact",
-          "Data Model + Matrix seed"
+          "Mr.FOX Token และแพลตฟอร์มรุ่นแรก",
+          "FOXY และแอป Creator กลุ่มแรก",
+          "ระบบ Vote · Gift · Live พื้นฐาน"
         ]
       },
       {
-        "phase": "Phase 2",
-        "title": "CMS / Back Office",
+        "era": "ยุคที่ 2",
+        "phase": "Expansion",
+        "title": "ขยาย Platform Types & แอป",
+        "summary": "เติบโตเป็น ecosystem หลายประเภท — Creator, Community, Contest, Exhibition",
+        "status": "active",
         "items": [
-          "Admin CRUD ทุก module",
-          "Media Library + Analytics",
-          "SEO + Banner management"
+          "10 Platform Types และแอปหลายตัวในระบบ",
+          "Partnership กับพันธมิตรและชุมชน",
+          "Showcase + CMS สำหรับจัดการเนื้อหา"
         ]
       },
       {
-        "phase": "Phase 3",
-        "title": "Polish & Scale",
+        "era": "ยุคที่ 3",
+        "phase": "Super App",
+        "title": "Creator Super App ครบวงจร",
+        "summary": "รวมทุกแพลตฟอร์มในมือถือเครื่องเดียว — scale สู่ 100+ applications",
+        "status": "upcoming",
         "items": [
-          "Multi-language (th/en/zh)",
-          "Global Search ขั้นสูง",
-          "100+ Applications"
+          "แอปรวม Creator tools มากกว่า 20 รูปแบบ",
+          "เชื่อมต่อทุกแพลตฟอร์มใน ecosystem เดียว",
+          "ขยายตลาดและ use case ใหม่ๆ อย่างต่อเนื่อง"
         ]
       }
-    ]
+    ],
+    "eventVideo": {
+      "eyebrow": "Event Highlights",
+      "title": "บรรยากาศงาน Mr.FOX",
+      "description": "ย้อนชมบรรยากาศงานที่ผ่านมา — OPP DAY, เปิดตัวแพลตฟอร์ม และกิจกรรมจากชุมชน Creator",
+      "videos": [
+        {
+          "title": "Mr.FOX Awards 2022",
+          "videoId": "Fow9QyBH3fc",
+          "caption": "งานประกาศรางวัลครีเอเตอร์ยุคดิจิทัล"
+        },
+        {
+          "title": "เปิดตัว Mr.FOX TOKEN",
+          "videoId": "bxJmXIHLdkQ",
+          "caption": "งานเปิดตัว Mr.FOX TOKEN อย่างเป็นทางการ"
+        }
+      ]
+    },
+    "eventVideoPlaceholder": "ใส่ YouTube Video ID หรือลิงก์ใน about.eventVideo.videos"
   },
   "contact": {
     "title": "Contact",

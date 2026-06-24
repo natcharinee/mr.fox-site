@@ -41,8 +41,7 @@
       "platformTypes": "Platform Types",
       "applications": "Applications",
       "features": "Features",
-      "downloads": "Downloads",
-      "downloadsDisplay": "3K+"
+      "downloads": "Downloads"
     }
   },
   "apps": {
@@ -123,47 +122,117 @@
     "title": "News",
     "subtitle": "Latest news and updates from Mr.FOX",
     "backToNews": "Back to News",
-    "source": "Source"
+    "source": "Source",
+    "readAtSource": "Read the full article at the source"
   },
   "about": {
     "title": "About Mr.FOX",
     "subtitle": "Mr.FOX builds Platforms and Mobile Applications for the Creator Economy Ecosystem",
-    "vision": "Vision",
-    "visionBody": "Build an ecosystem where Creators earn directly from fans through scalable standard platforms",
-    "mission": "Mission",
-    "missionBody": "Develop data-driven Showcase + Engine — scale from 10 to 100+ apps by adding database records only",
+    "purpose": {
+      "eyebrow": "Why Mr.FOX",
+      "sectionTitle": "The vision behind the ecosystem",
+      "vision": {
+        "label": "Vision",
+        "headline": "Creators earn directly from their fans",
+        "body": "Build an ecosystem where Creators earn directly from fans through scalable standard platforms",
+        "highlights": [
+          "One ecosystem spanning Vote · Gift · Live · Chat",
+          "Creators own their community and revenue",
+          "Scale from a single app to many platform types"
+        ]
+      },
+      "mission": {
+        "label": "Mission",
+        "headline": "A data-driven engine for growth",
+        "body": "Develop data-driven Showcase + Engine — scale from 10 to 100+ apps by adding database records only",
+        "highlights": [
+          "Standard templates for every use case",
+          "Full CMS / Back Office for content teams",
+          "Scale without rebuilding the core architecture"
+        ]
+      },
+      "valuesTitle": "What we stand for",
+      "values": [
+        {
+          "title": "Creator First",
+          "description": "Every feature is designed to help Creators earn and grow sustainably"
+        },
+        {
+          "title": "Platform by Design",
+          "description": "Standard templates launch new platforms fast without starting from zero"
+        },
+        {
+          "title": "Connected Ecosystem",
+          "description": "Apps, communities, and monetization work together in one Mr.FOX ecosystem"
+        }
+      ]
+    },
     "roadmap": "Roadmap",
     "roadmapVisualTitle": "ROADMAP",
     "roadmapVisualCaption": "Mr.FOX ecosystem growth from FOXY and PHOENIX to upcoming apps and platforms.",
+    "roadmapPhasesTitle": "Ecosystem journey",
+    "roadmapPhasesSubtitle": "Three chapters of Mr.FOX — from foundation to platform expansion and the Creator Super App.",
+    "roadmapStatus": {
+      "done": "Completed",
+      "active": "In progress",
+      "upcoming": "Next"
+    },
     "roadmapPhases": [
       {
-        "phase": "Phase 1",
-        "title": "Public Showcase",
+        "era": "Chapter 1",
+        "phase": "Foundation",
+        "title": "Laying the ecosystem foundation",
+        "summary": "Starting with Mr.FOX Token and early platforms that proved the Creator Economy model.",
+        "status": "done",
         "items": [
-          "Home, Platforms, Apps, Features",
-          "News, About, Contact",
-          "Data Model + Matrix seed"
+          "Mr.FOX Token and first-generation platforms",
+          "FOXY and the first Creator apps",
+          "Core Vote · Gift · Live capabilities"
         ]
       },
       {
-        "phase": "Phase 2",
-        "title": "CMS / Back Office",
+        "era": "Chapter 2",
+        "phase": "Expansion",
+        "title": "Growing platform types & apps",
+        "summary": "Scaling into a multi-type ecosystem — Creator, Community, Contest, Exhibition.",
+        "status": "active",
         "items": [
-          "Admin CRUD for all modules",
-          "Media Library + Analytics",
-          "SEO + Banner management"
+          "10 platform types and multiple live apps",
+          "Partnerships with communities and brands",
+          "Showcase + CMS for content operations"
         ]
       },
       {
-        "phase": "Phase 3",
-        "title": "Polish & Scale",
+        "era": "Chapter 3",
+        "phase": "Super App",
+        "title": "All-in-one Creator Super App",
+        "summary": "One mobile home for the entire ecosystem — scaling toward 100+ applications.",
+        "status": "upcoming",
         "items": [
-          "Multi-language (th/en/zh)",
-          "Advanced Global Search",
-          "100+ Applications"
+          "20+ Creator earning tools in one app",
+          "Every platform connected in one ecosystem",
+          "Continuous expansion into new markets"
         ]
       }
-    ]
+    ],
+    "eventVideo": {
+      "eyebrow": "Event Highlights",
+      "title": "Mr.FOX event atmosphere",
+      "description": "Relive moments from past Mr.FOX events — OPP DAY, platform launches, and Creator community gatherings.",
+      "videos": [
+        {
+          "title": "Mr.FOX Awards 2022",
+          "videoId": "Fow9QyBH3fc",
+          "caption": "Digital creator awards ceremony"
+        },
+        {
+          "title": "Mr.FOX TOKEN Launch",
+          "videoId": "bxJmXIHLdkQ",
+          "caption": "Official Mr.FOX TOKEN launch event"
+        }
+      ]
+    },
+    "eventVideoPlaceholder": "Add a YouTube video ID or URL in about.eventVideo.videos"
   },
   "contact": {
     "title": "Contact",

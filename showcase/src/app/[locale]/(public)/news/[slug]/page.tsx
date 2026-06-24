@@ -73,6 +73,18 @@ export default async function NewsDetailPage({ params }: Props) {
         <div className={publicTheme.prose}>
           <p className="text-lg leading-relaxed whitespace-pre-wrap">{item.content}</p>
         </div>
+        {/^https?:\/\//i.test(item.source ?? "") ? (
+          <p className="mt-8">
+            <a
+              href={item.source!}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={publicTheme.link}
+            >
+              {t("readAtSource")} →
+            </a>
+          </p>
+        ) : null}
         <div className="mt-10">
           <Link href="/news" className={`text-sm ${publicTheme.link}`}>
             ← {t("backToNews")}

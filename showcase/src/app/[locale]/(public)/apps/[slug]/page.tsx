@@ -76,8 +76,8 @@ export default async function AppDetailPage({ params }: Props) {
 
       <div className={`${publicTheme.pageGrid} pb-0`}>
         <AppMedia
-          posterUrl={app.posterUrl}
-          posterFocus={app.posterFocus}
+          posterUrl={app.featuredPosterUrl ?? app.posterUrl}
+          posterFocus={app.featuredPosterFocus ?? app.posterFocus}
           name={app.name}
           className="aspect-[21/9] rounded-2xl"
         />

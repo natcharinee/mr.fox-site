@@ -46,6 +46,12 @@ async function applySchemaPatches(sql: ReturnType<typeof neon>) {
     `ALTER TABLE applications ADD COLUMN IF NOT EXISTS poster_focus text DEFAULT '50% 50%'`,
   );
   await sql.query(`ALTER TABLE news ADD COLUMN IF NOT EXISTS source text`);
+  await sql.query(
+    `ALTER TABLE applications ADD COLUMN IF NOT EXISTS featured_poster_url text`,
+  );
+  await sql.query(
+    `ALTER TABLE applications ADD COLUMN IF NOT EXISTS featured_poster_focus text DEFAULT '50% 50%'`,
+  );
 }
 
 async function main() {

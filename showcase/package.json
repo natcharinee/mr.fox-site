@@ -14,7 +14,8 @@
     "db:push": "drizzle-kit push",
     "db:push:remote": "tsx scripts/push-schema.ts",
     "db:generate": "drizzle-kit generate",
-    "db:seed": "tsx scripts/seed.ts"
+    "db:seed": "tsx scripts/seed.ts",
+    "news:import": "tsx scripts/import-info-mrfox-news.ts"
   },
   "dependencies": {
     "@base-ui/react": "^1.5.0",

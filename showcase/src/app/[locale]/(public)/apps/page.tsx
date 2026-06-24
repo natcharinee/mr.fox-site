@@ -112,8 +112,8 @@ export default async function AppsPage({
           {appsWithLinks.map((app) => (
             <Card key={app.slug} className={themedCard("flex flex-col overflow-hidden")}>
               <AppMedia
-                posterUrl={app.posterUrl}
-                posterFocus={app.posterFocus}
+                posterUrl={app.featuredPosterUrl ?? app.posterUrl}
+                posterFocus={app.featuredPosterFocus ?? app.posterFocus}
                 name={app.name}
                 className="aspect-[4/3]"
               />

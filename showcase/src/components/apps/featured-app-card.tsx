@@ -41,18 +41,25 @@ export function FeaturedAppCard({
         className,
       )}
     >
-      <div className="relative h-56 overflow-hidden sm:h-64">
+      <div
+        className={cn(
+          "relative aspect-[3/4] w-full overflow-hidden",
+          posterIsFallback ? "bg-[var(--fox-gold)]" : "bg-[var(--fox-charcoal)]",
+        )}
+      >
         <ContentImage
           src={app.posterUrl}
           fill
-          sizes="(max-width: 640px) 100vw, 25vw"
+          sizes="(max-width: 640px) 50vw, 25vw"
           objectPosition={app.posterFocus}
+          fit={posterIsFallback ? "contain" : "cover"}
+          fallbackClassName="p-8"
           className={cn(
             "transition-all duration-700 group-hover:scale-105",
             !posterIsFallback && "grayscale-[0.15] group-hover:grayscale-0",
           )}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-[var(--vulpine-background)] to-transparent opacity-80" />
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-[var(--vulpine-background)] to-transparent opacity-90" />
         <span className="vulpine-label absolute top-4 right-4 rounded-sm bg-[var(--vulpine-primary)] px-2 py-0.5 text-[10px] text-[var(--vulpine-on-primary)] shadow-[0_0_10px_rgba(255,184,0,0.5)]">
           {featuredLabel}
         </span>

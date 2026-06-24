@@ -16,6 +16,7 @@ import {
   getNewsPublishStatus,
 } from "@/lib/news-publish";
 import { NewsForm } from "@/components/admin/news-form";
+import { SyncInfoNewsButton } from "@/components/admin/sync-info-news-button";
 
 export const dynamic = "force-dynamic";
 
@@ -28,6 +29,8 @@ export default async function AdminNewsPage() {
         <h2 className="text-2xl font-bold">News Management</h2>
         <p className="text-muted-foreground">จัดการข่าวสารและบทความ</p>
       </div>
+
+      <SyncInfoNewsButton />
 
       <NewsForm />
 

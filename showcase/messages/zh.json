@@ -41,8 +41,7 @@
       "platformTypes": "平台类型",
       "applications": "应用",
       "features": "功能",
-      "downloads": "下载",
-      "downloadsDisplay": "3K+"
+      "downloads": "下载"
     }
   },
   "apps": {
@@ -123,47 +122,117 @@
     "title": "新闻",
     "subtitle": "Mr.FOX 最新新闻与更新",
     "backToNews": "返回新闻",
-    "source": "来源"
+    "source": "来源",
+    "readAtSource": "在来源网站阅读全文"
   },
   "about": {
     "title": "关于 Mr.FOX",
     "subtitle": "Mr.FOX 为创作者经济生态系统打造平台与移动应用",
-    "vision": "愿景",
-    "visionBody": "构建创作者可直接从粉丝获利的可扩展标准平台生态系统",
-    "mission": "使命",
-    "missionBody": "开发数据驱动的 Showcase + Engine — 仅通过添加数据库记录从 10 扩展到 100+ 应用",
+    "purpose": {
+      "eyebrow": "Why Mr.FOX",
+      "sectionTitle": "驱动生态系统的愿景",
+      "vision": {
+        "label": "愿景",
+        "headline": "创作者直接从粉丝获得收入",
+        "body": "构建创作者可直接从粉丝获利的可扩展标准平台生态系统",
+        "highlights": [
+          "统一生态涵盖投票 · 礼物 · 直播 · 聊天",
+          "创作者拥有自己的社区与收入",
+          "从单一应用扩展至多种平台类型"
+        ]
+      },
+      "mission": {
+        "label": "使命",
+        "headline": "数据驱动的增长引擎",
+        "body": "开发数据驱动的 Showcase + Engine — 仅通过添加数据库记录从 10 扩展到 100+ 应用",
+        "highlights": [
+          "适用于各类场景的标准模板",
+          "完整的 CMS / 后台内容管理",
+          "无需重构核心架构即可扩展"
+        ]
+      },
+      "valuesTitle": "我们的原则",
+      "values": [
+        {
+          "title": "Creator First",
+          "description": "每一项功能都旨在帮助创作者可持续地获利与成长"
+        },
+        {
+          "title": "Platform by Design",
+          "description": "标准模板让新平台快速上线，无需从零开始"
+        },
+        {
+          "title": "Connected Ecosystem",
+          "description": "应用、社区与变现在 Mr.FOX 统一生态中协同运作"
+        }
+      ]
+    },
     "roadmap": "路线图",
     "roadmapVisualTitle": "ROADMAP",
     "roadmapVisualCaption": "Mr.FOX 生态系统发展路线 — 从 FOXY、PHOENIX 到即将推出的应用与平台。",
+    "roadmapPhasesTitle": "生态发展路径",
+    "roadmapPhasesSubtitle": "Mr.FOX 的三个关键阶段 — 从奠基、平台扩张到创作者超级应用。",
+    "roadmapStatus": {
+      "done": "已完成",
+      "active": "进行中",
+      "upcoming": "下一步"
+    },
     "roadmapPhases": [
       {
-        "phase": "第一阶段",
-        "title": "公开展示",
+        "era": "第一阶段",
+        "phase": "Foundation",
+        "title": "奠定生态基础",
+        "summary": "从 Mr.FOX Token 与早期平台起步，验证创作者经济模式。",
+        "status": "done",
         "items": [
-          "首页、平台、应用、功能",
-          "新闻、关于、联系",
-          "数据模型 + 矩阵种子数据"
+          "Mr.FOX Token 与第一代平台",
+          "FOXY 及首批创作者应用",
+          "Vote · Gift · Live 核心能力"
         ]
       },
       {
-        "phase": "第二阶段",
-        "title": "CMS / 后台",
+        "era": "第二阶段",
+        "phase": "Expansion",
+        "title": "扩展平台类型与应用",
+        "summary": "成长为多类型生态 — 创作者、社区、赛事、展览。",
+        "status": "active",
         "items": [
-          "所有模块的管理 CRUD",
-          "媒体库 + 分析",
-          "SEO + 横幅管理"
+          "10 种平台类型与多款在线应用",
+          "与合作伙伴及社区的协作",
+          "Showcase + CMS 内容运营"
         ]
       },
       {
-        "phase": "第三阶段",
-        "title": "优化与扩展",
+        "era": "第三阶段",
+        "phase": "Super App",
+        "title": "一体化创作者超级应用",
+        "summary": "一部手机连接整个生态 — 迈向 100+ 应用规模。",
+        "status": "upcoming",
         "items": [
-          "多语言 (th/en/zh)",
-          "高级全局搜索",
-          "100+ 应用"
+          "20+ 种创作者变现工具",
+          "所有平台在同一生态中互联",
+          "持续拓展新市场与新场景"
         ]
       }
-    ]
+    ],
+    "eventVideo": {
+      "eyebrow": "Event Highlights",
+      "title": "Mr.FOX 活动现场",
+      "description": "回顾往期 Mr.FOX 活动氛围 — OPP DAY、平台发布与创作者社区活动。",
+      "videos": [
+        {
+          "title": "Mr.FOX Awards 2022",
+          "videoId": "Fow9QyBH3fc",
+          "caption": "数字创作者年度颁奖典礼"
+        },
+        {
+          "title": "Mr.FOX TOKEN 发布",
+          "videoId": "bxJmXIHLdkQ",
+          "caption": "Mr.FOX TOKEN 官方发布活动"
+        }
+      ]
+    },
+    "eventVideoPlaceholder": "在 about.eventVideo.videos 填入 YouTube 视频 ID 或链接"
   },
   "contact": {
     "title": "联系",

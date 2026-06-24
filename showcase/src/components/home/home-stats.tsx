@@ -20,6 +20,9 @@ export type HomeStatItem = {
   label: string;
   value: number;
   icon: keyof typeof ICONS;
+  /** Appended after the animated count, e.g. "K+" → 3K+ */
+  suffix?: string;
+  /** Static text with no animation (avoid unless necessary). */
   display?: string;
 };
 
@@ -66,6 +69,7 @@ function StatCard({
   label,
   value,
   display,
+  suffix,
   active,
   delayMs,
 }: HomeStatItem & { active: boolean; delayMs: number }) {
@@ -73,7 +77,9 @@ function StatCard({
 
   const shown =
     display ??
-    `${count.toLocaleString()}${label.toLowerCase().includes("download") && count >= 1000 ? "+" : ""}`;
+    (suffix
+      ? `${count}${suffix}`
+      : `${count.toLocaleString()}${label.toLowerCase().includes("download") && count >= 1000 ? "+" : ""}`);
 
   return (
     <div className="text-center">

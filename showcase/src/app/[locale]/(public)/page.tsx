@@ -93,9 +93,9 @@ export default async function HomePage({ params }: Props) {
           },
           {
             label: t("stats.downloads"),
-            value: stats.downloads,
+            value: 3,
             icon: "download",
-            display: t("stats.downloadsDisplay"),
+            suffix: "K+",
           },
         ]}
       />
@@ -104,7 +104,6 @@ export default async function HomePage({ params }: Props) {
         title={t("ecosystem")}
         description={t("ecosystemDesc")}
         includesLabel={t("ecosystemIncludes")}
-        typeCountLabel={t("ecosystemTypeCount")}
         viewPlatformLabel={t("ecosystemViewPlatform")}
         viewAllLabel={t("viewAll")}
         categories={localizedCategories}

@@ -46,7 +46,7 @@ export default async function AdminApplicationsPage() {
           ปุ่ม <span className="font-medium text-foreground">Applications</span> ควบคุมรายการในเมนู
           Applications ({publishedCount} แอป) · ปุ่ม{" "}
           <span className="font-medium text-foreground">หน้าแรก</span> ควบคุมส่วน Featured
-          Applications บนหน้าแรก ({featuredCount} แอป)
+          Applications บนหน้าแรก ({featuredCount} แอป) · รูป Poster สำหรับหน้าแรก · รูป Featured สำหรับหน้า Applications
         </p>
       </div>
 
@@ -84,7 +84,17 @@ export default async function AdminApplicationsPage() {
               <Label htmlFor="description">คำอธิบาย</Label>
               <Textarea id="description" name="description" rows={2} className="mt-1" />
             </div>
-            <AdminPosterUploadField />
+            <div className="sm:col-span-2 grid gap-4 sm:grid-cols-2">
+              <AdminPosterUploadField className="sm:col-span-1" />
+              <AdminPosterUploadField
+                name="featuredPosterUrl"
+                focusName="featuredPosterFocus"
+                label="รูป Featured (หน้า Applications)"
+                hint="อัปโหลดรูปสำหรับหน้า Applications — แนะนำแนวนอนอย่างน้อย 1200×600 px"
+                className="sm:col-span-1"
+                previewClassName="h-28 w-full max-w-[12rem]"
+              />
+            </div>
             <div>
               <Label htmlFor="iosUrl">iOS URL</Label>
               <Input id="iosUrl" name="iosUrl" className="mt-1" />
@@ -122,8 +132,8 @@ export default async function AdminApplicationsPage() {
               <TableRow key={item.id}>
                 <TableCell>
                   <AppMedia
-                    posterUrl={item.posterUrl}
-                    posterFocus={item.posterFocus}
+                    posterUrl={item.featuredPosterUrl ?? item.posterUrl}
+                    posterFocus={item.featuredPosterFocus ?? item.posterFocus}
                     name={item.name}
                     className="h-12 w-9 rounded-md"
                     imageClassName="p-1"
