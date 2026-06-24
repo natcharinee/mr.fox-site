@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
+import { uploadAdminFile } from "@/lib/admin-upload-client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -23,23 +24,31 @@ export function MediaUploadForm() {
     setUploading(true);
     setError("");
 
-    const formData = new FormData(e.currentTarget);
-    const res = await fetch("/api/admin/upload", {
-      method: "POST",
-      body: formData,
-    });
+    const fileInput = e.currentTarget.elements.namedItem("file");
+    const file =
+      fileInput instanceof HTMLInputElement ? fileInput.files?.[0] : null;
 
-    if (!res.ok) {
-      const data = await res.json();
-      setError(data.error ?? "อัปโหลดไม่สำเร็จ");
+    if (!file) {
+      setError("กรุณาเลือกไฟล์");
       setUploading(false);
       return;
     }
 
-    router.refresh();
-    setUploading(false);
-    e.currentTarget.reset();
-    toast.success("อัปโหลดไฟล์สำเร็จแล้ว");
+    try {
+      await uploadAdminFile(file);
+      router.refresh();
+      e.currentTarget.reset();
+      toast.success("อัปโหลดไฟล์สำเร็จแล้ว");
+    } catch (uploadError) {
+      const message =
+        uploadError instanceof Error
+          ? uploadError.message
+          : "อัปโหลดไม่สำเร็จ";
+      setError(message);
+      toast.error(message);
+    } finally {
+      setUploading(false);
+    }
   }
 
   return (

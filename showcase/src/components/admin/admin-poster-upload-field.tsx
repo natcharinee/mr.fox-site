@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useState } from "react";
 import { ImagePlus, X } from "lucide-react";
+import { uploadAdminFile } from "@/lib/admin-upload-client";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -36,21 +37,8 @@ export function AdminPosterUploadField({
     setUploading(true);
 
     try {
-      const formData = new FormData();
-      formData.append("file", file);
-
-      const res = await fetch("/api/admin/upload", {
-        method: "POST",
-        body: formData,
-      });
-
-      const data = (await res.json()) as { url?: string; error?: string };
-
-      if (!res.ok || !data.url) {
-        throw new Error(data.error ?? "อัปโหลดไม่สำเร็จ");
-      }
-
-      setPosterUrl(data.url);
+      const data = await uploadAdminFile(file);
+      setPosterUrl(data.url!);
       toast.success("อัปโหลดรูปสำเร็จแล้ว");
     } catch (error) {
       const message =

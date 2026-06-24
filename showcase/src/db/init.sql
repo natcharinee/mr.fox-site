@@ -198,6 +198,7 @@ CREATE TABLE IF NOT EXISTS "media" (
   "url" text NOT NULL,
   "mime_type" text NOT NULL,
   "size_bytes" integer NOT NULL,
+  "storage_data" text,
   "uploaded_by" integer,
   "created_at" timestamp with time zone DEFAULT now() NOT NULL,
   CONSTRAINT "media_uploaded_by_users_id_fk"

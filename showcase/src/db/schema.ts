@@ -227,6 +227,7 @@ export const media = pgTable("media", {
   url: text("url").notNull(),
   mimeType: text("mime_type").notNull(),
   sizeBytes: integer("size_bytes").notNull(),
+  storageData: text("storage_data"),
   uploadedBy: integer("uploaded_by").references(() => users.id),
   createdAt: timestamp("created_at", { withTimezone: true })
     .notNull()
