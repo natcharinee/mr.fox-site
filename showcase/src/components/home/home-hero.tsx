@@ -4,7 +4,7 @@ import { ArrowRight, Download, Layers, Smartphone, Sparkles } from "lucide-react
 import { LinkButton } from "@/components/ui/link-button";
 import { buttonVariants } from "@/components/ui/button";
 import { VulpineEyebrow } from "@/components/vulpine/vulpine-primitives";
-import { HeroScrollMockup } from "@/components/home/hero-scroll-mockup";
+import { HeroScrollVideo } from "@/components/home/hero-scroll-video";
 import { cn } from "@/lib/utils";
 
 type HomeHeroProps = {
@@ -37,7 +37,7 @@ export function HomeHero({
       <div className="vulpine-scanline" aria-hidden />
 
       <div className="relative">
-        <HeroScrollMockup />
+        <HeroScrollVideo />
         <div
           aria-hidden
           className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-28 bg-gradient-to-t from-[var(--vulpine-background)] via-[var(--vulpine-background)]/85 to-transparent sm:h-36 lg:h-44"

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { HeroPhoneMockup } from "@/components/home/hero-phone-mockup";
+import { HeroVideo } from "@/components/home/hero-video";
 import { cn } from "@/lib/utils";
 
 function getScrollProgress(section: HTMLElement) {
@@ -10,7 +10,7 @@ function getScrollProgress(section: HTMLElement) {
   return Math.min(Math.max(-rect.top / scrollRange, 0), 1);
 }
 
-export function HeroScrollMockup() {
+export function HeroScrollVideo() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [progress, setProgress] = useState(0);
   const [reduceMotion, setReduceMotion] = useState(false);
@@ -49,9 +49,9 @@ export function HeroScrollMockup() {
   }, [reduceMotion]);
 
   const activeProgress = reduceMotion ? 0 : progress;
-  const mockupTranslateY = -activeProgress * 120;
-  const mockupScale = 1 - activeProgress * 0.03;
-  const mockupOpacity = 1 - activeProgress * 0.25;
+  const videoTranslateY = -activeProgress * 120;
+  const videoScale = 1 - activeProgress * 0.03;
+  const videoOpacity = 1 - activeProgress * 0.25;
 
   return (
     <div
@@ -74,11 +74,11 @@ export function HeroScrollMockup() {
       <div
         className="relative z-10 w-full will-change-transform [backface-visibility:hidden] [transform:translateZ(0)] lg:max-w-none"
         style={{
-          transform: `translateY(${mockupTranslateY}px) scale(${mockupScale})`,
-          opacity: mockupOpacity,
+          transform: `translateY(${videoTranslateY}px) scale(${videoScale})`,
+          opacity: videoOpacity,
         }}
       >
-        <HeroPhoneMockup />
+        <HeroVideo />
       </div>
     </div>
   );

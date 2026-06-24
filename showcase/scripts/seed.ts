@@ -393,9 +393,9 @@ const SAMPLE_APPS = [
   { slug: "foxy", name: "FOXY", platformType: "creator-specific", description: "แพลตฟอร์ม Creator Economy หลักของ Mr.FOX — รองรับ Vote, Gift, Live และ monetization ครบ", targetAudience: "Creator และแฟนคลับ", featured: true, logoUrl: "/brand/mrfox-icon.png", posterUrl: "/apps/posters/foxy.png" },
   { slug: "the-expert", name: "The Expert", platformType: "creator-multi-category", description: "รวมผู้เชี่ยวชาญหลายสาขา — Consult, Coaching, Knowledge sharing", targetAudience: "ผู้เชี่ยวชาญและผู้เรียนรู้", featured: true, logoUrl: "/brand/mrfox-icon.png", posterUrl: "/apps/posters/the-expert.png" },
   { slug: "tom-thailand", name: "TOM Thailand", platformType: "community-specific", description: "ชุมชนออนไลน์ที่สมาชิกทุกคนมีส่วนร่วม", targetAudience: "สมาชิกชุมชน", featured: true, logoUrl: "/brand/mrfox-icon.png", posterUrl: "/apps/posters/tom-thailand.png" },
-  { slug: "the-alumni", name: "The Alumni", platformType: "the-company", description: "แพลตฟอร์มศิษย์เก่ารวมหลายสถาบัน", targetAudience: "ศิษย์เก่าและองค์กร", featured: false, logoUrl: "/brand/mrfox-icon.png", posterUrl: "/hero/mrfox-app-mockup@2x.png" },
+  { slug: "the-alumni", name: "The Alumni", platformType: "the-company", description: "แพลตฟอร์มศิษย์เก่ารวมหลายสถาบัน", targetAudience: "ศิษย์เก่าและองค์กร", featured: false, logoUrl: "/brand/mrfox-icon.png", posterUrl: "/brand/mrfox-icon.png" },
   { slug: "miss-grand", name: "Miss Grand", platformType: "contest-single", description: "แพลตฟอร์มประกวดนางงาม — โหวตและสนับสนุนผู้เข้าประกวด", targetAudience: "ผู้เข้าประกวดและแฟนคลับ", featured: true, logoUrl: "/brand/mrfox-icon.png", posterUrl: "/apps/posters/miss-grand.png" },
-  { slug: "exhibition-hub", name: "Exhibition Hub", platformType: "the-exhibition", description: "ศูนย์รวมนิทรรศการและงานแสดงสินค้า", targetAudience: "ผู้จัดงานและผู้ชม", featured: false, logoUrl: "/brand/mrfox-icon.png", posterUrl: "/hero/mrfox-app-mockup.png" },
+  { slug: "exhibition-hub", name: "Exhibition Hub", platformType: "the-exhibition", description: "ศูนย์รวมนิทรรศการและงานแสดงสินค้า", targetAudience: "ผู้จัดงานและผู้ชม", featured: false, logoUrl: "/brand/mrfox-icon.png", posterUrl: "/brand/mrfox-icon.png" },
 ];
 
 async function seed() {
