@@ -5,6 +5,7 @@ import {
   auditLogs,
   banners,
   downloadEvents,
+  downloadLinks,
   features,
   media,
   news,
@@ -131,6 +132,26 @@ export async function getAllApplicationsAdmin() {
     .from(applications)
     .innerJoin(platformTypes, eq(applications.platformTypeId, platformTypes.id))
     .orderBy(applications.sortOrder);
+}
+
+export async function getApplicationById(id: number) {
+  const [row] = await db
+    .select()
+    .from(applications)
+    .where(eq(applications.id, id))
+    .limit(1);
+
+  if (!row) return null;
+
+  const links = await db
+    .select({
+      type: downloadLinks.type,
+      url: downloadLinks.url,
+    })
+    .from(downloadLinks)
+    .where(eq(downloadLinks.applicationId, id));
+
+  return { ...row, links };
 }
 
 export async function getAllPlatformsAdmin() {

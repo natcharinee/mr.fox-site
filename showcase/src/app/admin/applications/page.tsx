@@ -22,6 +22,7 @@ import {
 } from "@/components/ui/card";
 import { AdminSaveForm } from "@/components/admin/admin-save-form";
 import { AdminPosterUploadField } from "@/components/admin/admin-poster-upload-field";
+import { ApplicationFormVisibilityFields } from "@/components/admin/application-form-visibility-fields";
 import { ApplicationVisibilityToggle } from "@/components/admin/application-visibility-toggle";
 import { createApplication, deleteApplication } from "@/lib/admin/actions";
 import { getAllApplicationsAdmin } from "@/lib/admin/queries";
@@ -78,22 +79,7 @@ export default async function AdminApplicationsPage() {
                 ))}
               </select>
             </div>
-            <div className="flex flex-col gap-3 sm:col-span-2 sm:flex-row sm:items-end">
-              <div className="flex items-end gap-2 pb-1">
-                <input
-                  type="checkbox"
-                  id="published"
-                  name="published"
-                  defaultChecked
-                  className="size-4"
-                />
-                <Label htmlFor="published">แสดงในหน้า Applications</Label>
-              </div>
-              <div className="flex items-end gap-2 pb-1">
-                <input type="checkbox" id="featured" name="featured" className="size-4" />
-                <Label htmlFor="featured">แสดงบนหน้าแรก (Featured)</Label>
-              </div>
-            </div>
+            <ApplicationFormVisibilityFields />
             <div className="sm:col-span-2">
               <Label htmlFor="description">คำอธิบาย</Label>
               <Textarea id="description" name="description" rows={2} className="mt-1" />
@@ -128,7 +114,7 @@ export default async function AdminApplicationsPage() {
               <TableHead title="เปิด/ปิดการแสดงในส่วน Featured Applications บนหน้าแรก">
                 หน้าแรก
               </TableHead>
-              <TableHead className="w-40">Actions</TableHead>
+              <TableHead className="w-52">Actions</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -163,7 +149,10 @@ export default async function AdminApplicationsPage() {
                   />
                 </TableCell>
                 <TableCell>
-                  <div className="flex gap-2">
+                  <div className="flex flex-wrap gap-2">
+                    <Button size="sm" variant="outline" nativeButton={false} render={<Link href={`/admin/applications/${item.id}`} />}>
+                      แก้ไข
+                    </Button>
                     <Button size="sm" variant="outline" nativeButton={false} render={<Link href={`/apps/${item.slug}`} />}>
                       ดู
                     </Button>

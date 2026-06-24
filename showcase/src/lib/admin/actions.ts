@@ -160,6 +160,71 @@ export async function createApplication(formData: FormData) {
   revalidateApplicationPaths();
 }
 
+export async function updateApplication(id: number, formData: FormData) {
+  const session = await auth();
+  const data = appSchema.parse({
+    name: formData.get("name"),
+    slug: formData.get("slug"),
+    platformTypeId: formData.get("platformTypeId"),
+    description: formData.get("description") || undefined,
+    targetAudience: formData.get("targetAudience") || undefined,
+    featured: formData.get("featured") === "on",
+    published: formData.get("published") === "on",
+    iosUrl: formData.get("iosUrl") || undefined,
+    androidUrl: formData.get("androidUrl") || undefined,
+    posterUrl: formData.get("posterUrl") || undefined,
+    logoUrl: formData.get("logoUrl") || undefined,
+  });
+
+  const [existing] = await db
+    .select({ slug: applications.slug })
+    .from(applications)
+    .where(eq(applications.id, id))
+    .limit(1);
+
+  if (!existing) {
+    throw new Error("ไม่พบแอปนี้");
+  }
+
+  const published = data.published ?? true;
+
+  await db
+    .update(applications)
+    .set({
+      name: data.name,
+      slug: data.slug,
+      platformTypeId: data.platformTypeId,
+      description: data.description,
+      targetAudience: data.targetAudience,
+      featured: published ? (data.featured ?? false) : false,
+      published,
+      logoUrl: data.logoUrl || COMPANY_LOGO,
+      posterUrl: data.posterUrl || undefined,
+    })
+    .where(eq(applications.id, id));
+
+  await db.delete(downloadLinks).where(eq(downloadLinks.applicationId, id));
+
+  const links = [];
+  if (data.iosUrl) {
+    links.push({ applicationId: id, type: "ios" as const, url: data.iosUrl });
+  }
+  if (data.androidUrl) {
+    links.push({
+      applicationId: id,
+      type: "android" as const,
+      url: data.androidUrl,
+    });
+  }
+  if (links.length) {
+    await db.insert(downloadLinks).values(links);
+  }
+
+  await logAudit(session, "update", "application", id, data.name);
+  revalidateApplicationPaths(data.slug, existing.slug);
+  revalidatePath(`/admin/applications/${id}`);
+}
+
 export async function deleteApplication(id: number) {
   const session = await auth();
   await db.delete(applications).where(eq(applications.id, id));
@@ -167,12 +232,24 @@ export async function deleteApplication(id: number) {
   revalidateApplicationPaths();
 }
 
-function revalidateApplicationPaths() {
+function revalidateApplicationPaths(slug?: string, previousSlug?: string) {
   revalidatePath("/apps");
   revalidatePath("/admin/applications");
   for (const locale of ["th", "en", "zh"]) {
     revalidatePath(`/${locale}`);
     revalidatePath(`/${locale}/apps`);
+  }
+  if (slug) {
+    revalidatePath(`/apps/${slug}`);
+    for (const locale of ["th", "en", "zh"]) {
+      revalidatePath(`/${locale}/apps/${slug}`);
+    }
+  }
+  if (previousSlug && previousSlug !== slug) {
+    revalidatePath(`/apps/${previousSlug}`);
+    for (const locale of ["th", "en", "zh"]) {
+      revalidatePath(`/${locale}/apps/${previousSlug}`);
+    }
   }
 }
 
