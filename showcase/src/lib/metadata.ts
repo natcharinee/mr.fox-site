@@ -4,6 +4,15 @@ import { routing, type Locale } from "@/i18n/routing";
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
 const SITE_NAME = "Mr.FOX";
 
+const SITE_ICONS: NonNullable<Metadata["icons"]> = {
+  icon: [
+    { url: "/brand/mrfox-favicon-32.png", sizes: "32x32", type: "image/png" },
+    { url: "/brand/mrfox-favicon.png", sizes: "512x512", type: "image/png" },
+  ],
+  apple: [{ url: "/apple-icon.png", sizes: "180x180", type: "image/png" }],
+  shortcut: "/brand/mrfox-favicon-32.png",
+};
+
 const OG_LOCALE: Record<Locale, string> = {
   th: "th_TH",
   en: "en_US",
@@ -36,6 +45,7 @@ export function buildMetadata({
     metadataBase: new URL(SITE_URL),
     title: fullTitle,
     description,
+    icons: SITE_ICONS,
     alternates: {
       canonical: url,
       languages,
