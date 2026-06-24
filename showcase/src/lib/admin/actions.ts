@@ -28,6 +28,29 @@ async function auth(role?: "admin") {
 
 // ─── News ───────────────────────────────────────────────
 
+const NEWS_LOCALES = ["th", "en", "zh"] as const;
+
+function revalidateNewsPaths(slug?: string, previousSlug?: string) {
+  revalidatePath("/news");
+  revalidatePath("/admin/news");
+  for (const locale of NEWS_LOCALES) {
+    revalidatePath(`/${locale}`);
+    revalidatePath(`/${locale}/news`);
+  }
+  if (slug) {
+    revalidatePath(`/news/${slug}`);
+    for (const locale of NEWS_LOCALES) {
+      revalidatePath(`/${locale}/news/${slug}`);
+    }
+  }
+  if (previousSlug && previousSlug !== slug) {
+    revalidatePath(`/news/${previousSlug}`);
+    for (const locale of NEWS_LOCALES) {
+      revalidatePath(`/${locale}/news/${previousSlug}`);
+    }
+  }
+}
+
 const newsSchema = z.object({
   title: z.string().min(1),
   slug: z.string().min(1),
@@ -59,9 +82,7 @@ export async function createNews(formData: FormData) {
     .returning();
 
   await logAudit(session, "create", "news", row.id, data.title);
-  revalidatePath("/news");
-  revalidatePath(`/news/${data.slug}`);
-  revalidatePath("/admin/news");
+  revalidateNewsPaths(data.slug);
 }
 
 export async function updateNews(id: number, formData: FormData) {
@@ -91,12 +112,7 @@ export async function updateNews(id: number, formData: FormData) {
     .where(eq(news.id, id));
 
   await logAudit(session, "update", "news", id, data.title);
-  revalidatePath("/news");
-  revalidatePath(`/news/${data.slug}`);
-  if (existing && existing.slug !== data.slug) {
-    revalidatePath(`/news/${existing.slug}`);
-  }
-  revalidatePath("/admin/news");
+  revalidateNewsPaths(data.slug, existing?.slug);
   revalidatePath(`/admin/news/${id}`);
 }
 
@@ -104,8 +120,7 @@ export async function deleteNews(id: number) {
   const session = await auth();
   await db.delete(news).where(eq(news.id, id));
   await logAudit(session, "delete", "news", id);
-  revalidatePath("/news");
-  revalidatePath("/admin/news");
+  revalidateNewsPaths();
 }
 
 export async function syncInfoMrfoxNews() {
@@ -120,9 +135,7 @@ export async function syncInfoMrfoxNews() {
     `Synced ${result.total} reviews from info.mrfox.com`,
   );
 
-  revalidatePath("/");
-  revalidatePath("/news");
-  revalidatePath("/admin/news");
+  revalidateNewsPaths();
 
   return result;
 }
