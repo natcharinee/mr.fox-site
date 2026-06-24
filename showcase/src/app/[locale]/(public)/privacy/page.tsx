@@ -23,7 +23,7 @@ export default async function PrivacyPage() {
   return (
     <PageShell>
       <PageHero title={t("privacyTitle")} description={t("privacyIntro")} />
-      <div className={`mx-auto max-w-3xl px-4 py-12 sm:px-6 lg:px-8 ${publicTheme.prose}`}>
+      <div className={`${publicTheme.contentNarrow} ${publicTheme.prose}`}>
         <h2>{t("dataCollection")}</h2>
         <p>{t("dataCollectionBody")}</p>
         <h2>{t("contact")}</h2>

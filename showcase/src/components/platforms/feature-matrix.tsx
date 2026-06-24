@@ -7,7 +7,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { themedCard } from "@/components/layout/public-theme";
+import { publicTheme, themedCard } from "@/components/layout/public-theme";
 import type { Locale } from "@/i18n/routing";
 import { localizeFeatureMatrixRow } from "@/lib/content-i18n";
 
@@ -44,33 +44,33 @@ export async function FeatureMatrix({
   return (
     <Card className={themedCard()}>
       <CardHeader>
-        <CardTitle className="text-[var(--fox-charcoal)]">{t("featuresMatrix")}</CardTitle>
-        <CardDescription>{t("featuresMatrixDesc")}</CardDescription>
+        <CardTitle className={publicTheme.cardTitle}>{t("featuresMatrix")}</CardTitle>
+        <CardDescription className={publicTheme.cardDescription}>
+          {t("featuresMatrixDesc")}
+        </CardDescription>
       </CardHeader>
       <CardContent>
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
-              <tr className="border-b border-[#f0e4c3] text-left">
-                <th className="pb-3 pr-4 font-semibold text-[var(--fox-charcoal)]">
+              <tr className="border-b border-white/10 text-left">
+                <th className={`pb-3 pr-4 font-semibold ${publicTheme.cardTitle}`}>
                   {t("matrixFeature")}
                 </th>
-                <th className="pb-3 font-semibold text-[var(--fox-charcoal)]">
+                <th className={`pb-3 font-semibold ${publicTheme.cardTitle}`}>
                   {t("matrixStatus")}
                 </th>
               </tr>
             </thead>
             <tbody>
               {showcaseRows.map((row) => (
-                <tr key={row.featureSlug} className="border-b border-[#f0e4c3]/60">
-                  <td className="py-2.5 pr-4 text-[var(--fox-charcoal)]">{row.featureName}</td>
+                <tr key={row.featureSlug} className="border-b border-white/5">
+                  <td className={`py-2.5 pr-4 ${publicTheme.cardTitle}`}>{row.featureName}</td>
                   <td className="py-2.5">
                     <Badge
                       variant={STATUS_VARIANT[row.status] ?? "outline"}
                       className={
-                        row.status === "core"
-                          ? "bg-[var(--fox-gold)] text-[var(--fox-charcoal)] hover:bg-[var(--fox-gold)]"
-                          : undefined
+                        row.status === "core" ? publicTheme.badgeGold : publicTheme.badgeOutline
                       }
                     >
                       {STATUS_KEY[row.status] ? t(STATUS_KEY[row.status]) : row.status}

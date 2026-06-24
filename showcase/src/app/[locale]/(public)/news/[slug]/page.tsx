@@ -44,7 +44,7 @@ export default async function NewsDetailPage({ params }: Props) {
     <PageShell>
       <PageHero title={item.title} description={publishedLabel} />
 
-      <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+      <div className={publicTheme.contentNarrow}>
         <NewsMedia
           thumbnailUrl={item.thumbnailUrl}
           title={item.title}
@@ -52,8 +52,8 @@ export default async function NewsDetailPage({ params }: Props) {
         />
       </div>
 
-      <article className="mx-auto max-w-3xl px-4 py-12 sm:px-6 lg:px-8">
-        <div className={`${publicTheme.prose} text-[var(--fox-charcoal)]`}>
+      <article className={publicTheme.contentNarrow}>
+        <div className={publicTheme.prose}>
           <p className="text-lg leading-relaxed whitespace-pre-wrap">{item.content}</p>
         </div>
         <div className="mt-10">

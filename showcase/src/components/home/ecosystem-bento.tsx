@@ -93,7 +93,7 @@ function CategoryCard({
   return (
     <article
       className={cn(
-        "flex h-full min-h-0 flex-col rounded-3xl border bg-[#1c1c1c] p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] sm:p-6",
+        "vulpine-hud-border vulpine-glow-hover flex h-full min-h-0 flex-col rounded-lg border border-white/8 bg-[rgba(18,20,20,0.4)] p-6 shadow-[0_4px_30px_rgba(0,0,0,0.1)] backdrop-blur-2xl transition-all sm:p-8",
         dark.card,
       )}
     >
@@ -110,14 +110,16 @@ function CategoryCard({
         ) : null}
         <div className="min-w-0 flex-1">
           <div className="flex flex-wrap items-center gap-2">
-            <h3 className="text-lg font-bold text-white">{category.name}</h3>
+          <h3 className="font-display text-lg font-bold uppercase text-[var(--vulpine-on-surface)]">
+            {category.name}
+          </h3>
             <span
               className={cn(
-                "rounded-full border px-2.5 py-0.5 text-xs font-semibold tabular-nums",
+                "vulpine-label rounded-sm border px-3 py-1 text-[10px] tabular-nums",
                 dark.iconWrap,
               )}
             >
-              {typeCountLabel.replace("{count}", String(types.length))}
+              {types.length} MODULES
             </span>
           </div>
           <p className="mt-2 text-sm leading-relaxed text-white/55">
@@ -159,7 +161,7 @@ function CategoryCard({
                   </div>
                   <span
                     className={cn(
-                      "mt-0.5 inline-flex shrink-0 items-center gap-1 text-xs font-medium opacity-0 transition-opacity group-hover:opacity-100",
+                      "vulpine-label mt-0.5 inline-flex shrink-0 items-center gap-1 text-xs opacity-0 transition-opacity group-hover:opacity-100",
                       dark.accent,
                     )}
                   >
@@ -234,15 +236,16 @@ export function EcosystemBento({
   const bySlug = Object.fromEntries(categories.map((c) => [c.slug, c]));
 
   return (
-    <section className="bg-[var(--fox-charcoal)] px-4 py-16 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-7xl">
-        <div className="max-w-3xl">
-          <h2 className="text-2xl font-bold tracking-tight text-white sm:text-3xl">
+    <section className="px-4 py-16 md:px-16 md:py-24" id="ecosystem">
+      <div className="mx-auto max-w-[1200px]">
+        <div className="mb-12 border-l-2 border-[var(--vulpine-primary-container)] pl-6">
+          <p className="vulpine-label mb-2 text-[var(--vulpine-primary-container)]">
+            System Architecture
+          </p>
+          <h2 className="font-display text-2xl font-bold tracking-wide text-[var(--vulpine-on-surface)] uppercase md:text-3xl">
             {title}
           </h2>
-          <p className="mt-3 text-sm leading-relaxed text-white/60 sm:text-base">
-            {description}
-          </p>
+          <p className="mt-2 max-w-2xl text-[var(--vulpine-on-surface-variant)]">{description}</p>
         </div>
 
         <div className="mt-10 grid gap-5 lg:grid-cols-2 lg:items-stretch lg:gap-6">
@@ -269,7 +272,7 @@ export function EcosystemBento({
         <div className="mt-8 text-center">
           <Link
             href="/platforms"
-            className="inline-flex items-center gap-1.5 text-sm font-medium text-[var(--fox-gold)] transition-colors hover:text-[var(--fox-gold)]/80"
+            className="vulpine-label inline-flex items-center gap-2 text-[var(--vulpine-primary-container)] transition-all hover:translate-x-1"
           >
             {viewAllLabel}
             <ArrowRight className="size-4" aria-hidden />

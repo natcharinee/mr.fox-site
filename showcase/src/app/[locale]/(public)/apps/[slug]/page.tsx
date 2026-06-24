@@ -68,13 +68,13 @@ export default async function AppDetailPage({ params }: Props) {
           <Badge variant="outline" className={publicTheme.heroBadge}>
             {app.categoryName}
           </Badge>
-          <Badge className="bg-white/10 text-[#fff4cc] hover:bg-white/10">
+          <Badge className={publicTheme.badgeOutline}>
             {platformTypeName}
           </Badge>
         </div>
       </PageHero>
 
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className={`${publicTheme.pageGrid} pb-0`}>
         <AppMedia
           posterUrl={app.posterUrl}
           posterFocus={app.posterFocus}
@@ -83,7 +83,7 @@ export default async function AppDetailPage({ params }: Props) {
         />
       </div>
 
-      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+      <div className={publicTheme.pageGrid}>
         <DownloadButtons
           appSlug={app.slug}
           appId={app.id}
@@ -94,10 +94,10 @@ export default async function AppDetailPage({ params }: Props) {
         <div className="mt-10 grid gap-6 lg:grid-cols-2">
           <Card className={themedCard()}>
             <CardHeader>
-              <CardTitle className="text-base text-[var(--fox-charcoal)]">
+              <CardTitle className={`text-base ${publicTheme.cardTitle}`}>
                 {t("platformType")}
               </CardTitle>
-              <CardDescription>
+              <CardDescription className={publicTheme.cardDescription}>
                 <Link href={`/platforms/${app.platformTypeSlug}`} className={publicTheme.link}>
                   {platformTypeName}
                 </Link>
@@ -107,10 +107,12 @@ export default async function AppDetailPage({ params }: Props) {
           {app.targetAudience ? (
             <Card className={themedCard()}>
               <CardHeader>
-                <CardTitle className="text-base text-[var(--fox-charcoal)]">
+                <CardTitle className={`text-base ${publicTheme.cardTitle}`}>
                   {t("targetAudience")}
                 </CardTitle>
-                <CardDescription>{app.targetAudience}</CardDescription>
+                <CardDescription className={publicTheme.cardDescription}>
+                  {app.targetAudience}
+                </CardDescription>
               </CardHeader>
             </Card>
           ) : null}

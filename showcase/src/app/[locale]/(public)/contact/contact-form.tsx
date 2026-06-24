@@ -33,29 +33,33 @@ export function ContactForm() {
   const [state, formAction, pending] = useActionState(contactAction, null);
 
   return (
-    <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+    <div className={publicTheme.pageGrid}>
       <div className="grid gap-8 lg:grid-cols-2">
         <Card className={themedCard()}>
           <CardHeader>
-            <CardTitle className="text-[var(--fox-charcoal)]">{t("formTitle")}</CardTitle>
-            <CardDescription>{t("formDesc")}</CardDescription>
+            <CardTitle className={publicTheme.cardTitle}>{t("formTitle")}</CardTitle>
+            <CardDescription className={publicTheme.cardDescription}>
+              {t("formDesc")}
+            </CardDescription>
           </CardHeader>
           <CardContent>
             {state?.submitted ? (
-              <p className="text-sm font-medium text-[var(--fox-gold-dark)]">{t("success")}</p>
+              <p className="text-sm font-medium text-[var(--vulpine-primary)]">
+                {t("success")}
+              </p>
             ) : (
               <form action={formAction} className="space-y-4">
                 {state?.error ? (
                   <p className="text-sm text-destructive">{t("error")}</p>
                 ) : null}
                 <div>
-                  <label htmlFor="name" className="text-sm font-medium text-[var(--fox-charcoal)]">
+                  <label htmlFor="name" className={publicTheme.label}>
                     {t("name")}
                   </label>
                   <Input id="name" name="name" required className={`mt-1 ${publicTheme.input}`} />
                 </div>
                 <div>
-                  <label htmlFor="email" className="text-sm font-medium text-[var(--fox-charcoal)]">
+                  <label htmlFor="email" className={publicTheme.label}>
                     {t("email")}
                   </label>
                   <Input
@@ -67,17 +71,22 @@ export function ContactForm() {
                   />
                 </div>
                 <div>
-                  <label htmlFor="subject" className="text-sm font-medium text-[var(--fox-charcoal)]">
+                  <label htmlFor="subject" className={publicTheme.label}>
                     {t("subject")}
                   </label>
-                  <select id="subject" name="subject" required className={`mt-1 w-full ${publicTheme.select}`}>
+                  <select
+                    id="subject"
+                    name="subject"
+                    required
+                    className={`mt-1 w-full ${publicTheme.select}`}
+                  >
                     <option value="general">{t("subjectGeneral")}</option>
                     <option value="business">{t("subjectBusiness")}</option>
                     <option value="partnership">{t("subjectPartnership")}</option>
                   </select>
                 </div>
                 <div>
-                  <label htmlFor="message" className="text-sm font-medium text-[var(--fox-charcoal)]">
+                  <label htmlFor="message" className={publicTheme.label}>
                     {t("message")}
                   </label>
                   <textarea
@@ -88,11 +97,7 @@ export function ContactForm() {
                     className={`mt-1 w-full ${publicTheme.textarea}`}
                   />
                 </div>
-                <Button
-                  type="submit"
-                  disabled={pending}
-                  className="bg-[var(--fox-gold)] text-[var(--fox-charcoal)] hover:bg-[var(--fox-gold-dark)]"
-                >
+                <Button type="submit" disabled={pending} className={publicTheme.submitButton}>
                   {pending ? t("sending") : t("submit")}
                 </Button>
               </form>
@@ -103,20 +108,32 @@ export function ContactForm() {
         <div className="space-y-4">
           <Card className={themedCard()}>
             <CardHeader>
-              <CardTitle className="text-base text-[var(--fox-charcoal)]">{t("businessInquiry")}</CardTitle>
-              <CardDescription>{t("businessInquiryDesc")}</CardDescription>
+              <CardTitle className={`text-base ${publicTheme.cardTitle}`}>
+                {t("businessInquiry")}
+              </CardTitle>
+              <CardDescription className={publicTheme.cardDescription}>
+                {t("businessInquiryDesc")}
+              </CardDescription>
             </CardHeader>
           </Card>
           <Card className={themedCard()}>
             <CardHeader>
-              <CardTitle className="text-base text-[var(--fox-charcoal)]">{t("partnership")}</CardTitle>
-              <CardDescription>{t("partnershipDesc")}</CardDescription>
+              <CardTitle className={`text-base ${publicTheme.cardTitle}`}>
+                {t("partnership")}
+              </CardTitle>
+              <CardDescription className={publicTheme.cardDescription}>
+                {t("partnershipDesc")}
+              </CardDescription>
             </CardHeader>
           </Card>
           <Card className={themedCard()}>
             <CardHeader>
-              <CardTitle className="text-base text-[var(--fox-charcoal)]">{t("social")}</CardTitle>
-              <CardDescription>{t("socialDesc")}</CardDescription>
+              <CardTitle className={`text-base ${publicTheme.cardTitle}`}>
+                {t("social")}
+              </CardTitle>
+              <CardDescription className={publicTheme.cardDescription}>
+                {t("socialDesc")}
+              </CardDescription>
             </CardHeader>
           </Card>
         </div>

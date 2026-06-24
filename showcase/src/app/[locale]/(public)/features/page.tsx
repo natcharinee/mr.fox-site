@@ -4,7 +4,7 @@ import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/ca
 import { Badge } from "@/components/ui/badge";
 import { PageHero } from "@/components/layout/page-hero";
 import { PageShell } from "@/components/layout/page-shell";
-import { themedCard } from "@/components/layout/public-theme";
+import { themedCard, publicTheme } from "@/components/layout/public-theme";
 import type { Locale } from "@/i18n/routing";
 import { localizeFeature } from "@/lib/content-i18n";
 import { buildMetadata } from "@/lib/metadata";
@@ -39,21 +39,21 @@ export default async function FeaturesPage({
     <PageShell>
       <PageHero title={t("title")} description={t("subtitle")} />
 
-      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+      <div className={publicTheme.pageGrid}>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {features.map((f) => (
             <Link key={f.slug} href={`/features/${f.slug}`}>
               <Card className={themedCard("h-full")}>
                 <CardHeader>
                   <div className="flex items-center justify-between gap-2">
-                    <CardTitle className="text-base text-[var(--fox-charcoal)]">{f.name}</CardTitle>
+                    <CardTitle className={`text-base ${publicTheme.cardTitle}`}>{f.name}</CardTitle>
                     {f.revenueModel ? (
-                      <Badge className="shrink-0 bg-[#fff4cc] text-[var(--fox-gold-dark)] hover:bg-[#fff4cc]">
-                        💰
-                      </Badge>
+                      <Badge className={publicTheme.badgeGold}>💰</Badge>
                     ) : null}
                   </div>
-                  <CardDescription className="line-clamp-3">{f.description}</CardDescription>
+                  <CardDescription className={`line-clamp-3 ${publicTheme.cardDescription}`}>
+                    {f.description}
+                  </CardDescription>
                 </CardHeader>
               </Card>
             </Link>

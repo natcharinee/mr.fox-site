@@ -59,7 +59,7 @@ export default async function SearchPage({ params, searchParams }: Props) {
             name="q"
             placeholder={t("placeholder")}
             defaultValue={q}
-            className={`flex-1 ${publicTheme.input} bg-white/95 placeholder:text-[#c9b98a]`}
+            className={`flex-1 ${publicTheme.input}`}
           />
           <button type="submit" className={publicTheme.submitButton}>
             {t("submit")}
@@ -67,10 +67,10 @@ export default async function SearchPage({ params, searchParams }: Props) {
         </form>
       </PageHero>
 
-      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+      <div className={publicTheme.pageGrid}>
         {q && q.length >= 2 && !hasResults ? (
-          <div className="rounded-2xl border border-dashed border-[#e8d49a] bg-white/60 px-6 py-12 text-center">
-            <p className="text-muted-foreground">{t("noResults")}</p>
+          <div className={publicTheme.emptyState}>
+            <p>{t("noResults")}</p>
           </div>
         ) : null}
 
@@ -78,13 +78,15 @@ export default async function SearchPage({ params, searchParams }: Props) {
           <div className="grid gap-8 md:grid-cols-2">
             {results.platforms.length > 0 ? (
               <section>
-                <h2 className="mb-4 font-semibold text-[var(--fox-charcoal)]">{t("platforms")}</h2>
+                <h2 className={publicTheme.sectionTitle}>{t("platforms")}</h2>
                 <div className="space-y-2">
                   {results.platforms.map((item) => (
                     <Link key={item.slug} href={`/platforms/${item.slug}`}>
                       <Card className={themedCard()}>
                         <CardHeader className="py-3">
-                          <CardTitle className="text-sm text-[var(--fox-charcoal)]">{item.name}</CardTitle>
+                          <CardTitle className={`text-sm ${publicTheme.cardTitle}`}>
+                            {item.name}
+                          </CardTitle>
                         </CardHeader>
                       </Card>
                     </Link>
@@ -94,13 +96,15 @@ export default async function SearchPage({ params, searchParams }: Props) {
             ) : null}
             {results.apps.length > 0 ? (
               <section>
-                <h2 className="mb-4 font-semibold text-[var(--fox-charcoal)]">{t("apps")}</h2>
+                <h2 className={publicTheme.sectionTitle}>{t("apps")}</h2>
                 <div className="space-y-2">
                   {results.apps.map((item) => (
                     <Link key={item.slug} href={`/apps/${item.slug}`}>
                       <Card className={themedCard()}>
                         <CardHeader className="py-3">
-                          <CardTitle className="text-sm text-[var(--fox-charcoal)]">{item.name}</CardTitle>
+                          <CardTitle className={`text-sm ${publicTheme.cardTitle}`}>
+                            {item.name}
+                          </CardTitle>
                         </CardHeader>
                       </Card>
                     </Link>
@@ -110,15 +114,17 @@ export default async function SearchPage({ params, searchParams }: Props) {
             ) : null}
             {results.features.length > 0 ? (
               <section>
-                <h2 className="mb-4 font-semibold text-[var(--fox-charcoal)]">{t("features")}</h2>
+                <h2 className={publicTheme.sectionTitle}>{t("features")}</h2>
                 <div className="space-y-2">
                   {results.features.map((item) => (
                     <Link key={item.slug} href={`/features/${item.slug}`}>
                       <Card className={themedCard()}>
                         <CardHeader className="py-3">
-                          <CardTitle className="flex items-center gap-2 text-sm text-[var(--fox-charcoal)]">
+                          <CardTitle
+                            className={`flex items-center gap-2 text-sm ${publicTheme.cardTitle}`}
+                          >
                             {item.name}
-                            <Badge className="bg-[#fff4cc] text-xs text-[var(--fox-gold-dark)]">
+                            <Badge className={`text-xs ${publicTheme.badgeGold}`}>
                               {t("featureBadge")}
                             </Badge>
                           </CardTitle>
@@ -131,13 +137,13 @@ export default async function SearchPage({ params, searchParams }: Props) {
             ) : null}
             {results.news.length > 0 ? (
               <section>
-                <h2 className="mb-4 font-semibold text-[var(--fox-charcoal)]">{t("news")}</h2>
+                <h2 className={publicTheme.sectionTitle}>{t("news")}</h2>
                 <div className="space-y-2">
                   {results.news.map((item) => (
                     <Link key={item.slug} href={`/news/${item.slug}`}>
                       <Card className={themedCard()}>
                         <CardHeader className="py-3">
-                          <CardTitle className="text-sm text-[var(--fox-charcoal)]">
+                          <CardTitle className={`text-sm ${publicTheme.cardTitle}`}>
                             {item.title}
                           </CardTitle>
                         </CardHeader>

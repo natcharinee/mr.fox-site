@@ -3,6 +3,7 @@
 import { ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { LinkButton } from "@/components/ui/link-button";
+import { publicTheme } from "@/components/layout/public-theme";
 import { cn } from "@/lib/utils";
 
 const LABELS: Record<string, string> = {
@@ -31,7 +32,7 @@ export function DownloadButtons({
         disabled
         size="sm"
         className={cn(
-          "border-[#e8d49a] bg-[#fff4cc]/50 text-muted-foreground",
+          "border-white/10 bg-white/5 text-[var(--vulpine-on-surface-variant)]",
           className,
         )}
       >
@@ -51,7 +52,7 @@ export function DownloadButtons({
           key={link.type}
           size="sm"
           variant="outline"
-          className="border-[#e8d49a] bg-white/80 text-[var(--fox-charcoal)] hover:border-[var(--fox-gold)]/50 hover:bg-[#fff4cc]"
+          className="border-white/15 bg-white/5 text-[var(--vulpine-on-surface)] hover:border-[var(--vulpine-primary-container)]/50 hover:bg-[var(--vulpine-primary-container)]/10 hover:text-[var(--vulpine-primary)]"
           nativeButton={false}
           render={
             <a
@@ -79,7 +80,7 @@ export function DownloadButtons({
         <LinkButton
           href={`/apps/${appSlug}`}
           size="sm"
-          className="bg-[var(--fox-charcoal)] text-white hover:bg-[var(--fox-charcoal)]/90"
+          className={publicTheme.submitButton}
         >
           รายละเอียด
         </LinkButton>

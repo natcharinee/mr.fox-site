@@ -78,18 +78,22 @@ export default async function PlatformDetailPage({ params }: Props) {
         </Badge>
       </PageHero>
 
-      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+      <div className={publicTheme.pageGrid}>
         <div className="grid gap-6 lg:grid-cols-2">
           <Card className={themedCard()}>
             <CardHeader>
-              <CardTitle className="text-[var(--fox-charcoal)]">{t("creatorModel")}</CardTitle>
-              <CardDescription className="text-foreground">{platform.creatorModel}</CardDescription>
+              <CardTitle className={publicTheme.cardTitle}>{t("creatorModel")}</CardTitle>
+              <CardDescription className={publicTheme.cardDescription}>
+                {platform.creatorModel}
+              </CardDescription>
             </CardHeader>
           </Card>
           <Card className={themedCard()}>
             <CardHeader>
-              <CardTitle className="text-[var(--fox-charcoal)]">{t("visitorModel")}</CardTitle>
-              <CardDescription className="text-foreground">{platform.visitorModel}</CardDescription>
+              <CardTitle className={publicTheme.cardTitle}>{t("visitorModel")}</CardTitle>
+              <CardDescription className={publicTheme.cardDescription}>
+                {platform.visitorModel}
+              </CardDescription>
             </CardHeader>
           </Card>
         </div>
@@ -101,16 +105,16 @@ export default async function PlatformDetailPage({ params }: Props) {
         <div className="mt-10 grid gap-6 lg:grid-cols-2">
           <Card className={themedCard()}>
             <CardHeader>
-              <CardTitle className="text-[var(--fox-charcoal)]">{t("permissionMatrix")}</CardTitle>
+              <CardTitle className={publicTheme.cardTitle}>{t("permissionMatrix")}</CardTitle>
             </CardHeader>
             <CardContent>
               <dl className="space-y-2 text-sm">
                 {permissions.map((p) => (
                   <div key={p.key} className="flex justify-between gap-4">
-                    <dt className="text-muted-foreground">
+                    <dt className={publicTheme.muted}>
                       {t.has(`perm.${p.key}`) ? t(`perm.${p.key}`) : p.key}
                     </dt>
-                    <dd className="font-medium text-[var(--fox-charcoal)]">
+                    <dd className={`font-medium ${publicTheme.cardTitle}`}>
                       {t.has(`permValue.${p.value}`)
                         ? t(`permValue.${p.value}`)
                         : p.value}
@@ -122,8 +126,8 @@ export default async function PlatformDetailPage({ params }: Props) {
           </Card>
           <Card className={themedCard()}>
             <CardHeader>
-              <CardTitle className="text-[var(--fox-charcoal)]">{t("revenueModel")}</CardTitle>
-              <CardDescription>
+              <CardTitle className={publicTheme.cardTitle}>{t("revenueModel")}</CardTitle>
+              <CardDescription className={publicTheme.cardDescription}>
                 {t("revenueCategoryNote")} — {platform.categoryName}
               </CardDescription>
             </CardHeader>
@@ -131,12 +135,12 @@ export default async function PlatformDetailPage({ params }: Props) {
               <dl className="space-y-2 text-sm">
                 {revenues.map((r) => (
                   <div key={r.revenueFeature} className="flex justify-between gap-4">
-                    <dt className="text-muted-foreground">
+                    <dt className={publicTheme.muted}>
                       {t.has(`revenue.${r.revenueFeature}`)
                         ? t(`revenue.${r.revenueFeature}`)
                         : r.revenueFeature}
                     </dt>
-                    <dd className="font-medium text-[var(--fox-charcoal)]">
+                    <dd className={`font-medium ${publicTheme.cardTitle}`}>
                       {t.has(`permValue.${r.value}`)
                         ? t(`permValue.${r.value}`)
                         : r.value}
@@ -155,8 +159,10 @@ export default async function PlatformDetailPage({ params }: Props) {
               {appsWithLinks.map((app) => (
                 <Card key={app.slug} className={themedCard()}>
                   <CardHeader>
-                    <CardTitle className="text-base text-[var(--fox-charcoal)]">{app.name}</CardTitle>
-                    <CardDescription className="line-clamp-2">{app.description}</CardDescription>
+                    <CardTitle className={`text-base ${publicTheme.cardTitle}`}>{app.name}</CardTitle>
+                    <CardDescription className={`line-clamp-2 ${publicTheme.cardDescription}`}>
+                      {app.description}
+                    </CardDescription>
                   </CardHeader>
                   <CardContent>
                     <DownloadButtons appSlug={app.slug} appId={app.id} links={app.links} />

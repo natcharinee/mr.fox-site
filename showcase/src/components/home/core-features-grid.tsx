@@ -9,6 +9,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import { Link } from "@/i18n/navigation";
+import { GlassCard } from "@/components/vulpine/vulpine-primitives";
 import { cn } from "@/lib/utils";
 
 type Feature = {
@@ -19,58 +20,57 @@ type Feature = {
 
 type FeatureVisual = {
   icon: LucideIcon;
+  borderHover: string;
   iconWrap: string;
-  cardHover: string;
-  accent: string;
+  iconColor: string;
   live?: boolean;
 };
 
 const FEATURE_VISUAL: Record<string, FeatureVisual> = {
   vote: {
     icon: HandCoins,
-    iconWrap: "bg-gradient-to-br from-rose-100 to-rose-50 text-rose-600 ring-rose-200/80",
-    cardHover: "hover:border-rose-200 hover:shadow-rose-100/80",
-    accent: "text-rose-600",
+    borderHover: "hover:border-pink-500/40",
+    iconWrap: "border-pink-500/20 bg-pink-500/5",
+    iconColor: "text-pink-400",
   },
   gift: {
     icon: Gift,
-    iconWrap:
-      "bg-gradient-to-br from-[#fff4cc] to-amber-50 text-[var(--fox-gold-dark)] ring-[#e8d49a]/90",
-    cardHover: "hover:border-[var(--fox-gold)]/40 hover:shadow-[var(--fox-gold)]/10",
-    accent: "text-[var(--fox-gold-dark)]",
+    borderHover: "hover:border-yellow-500/40",
+    iconWrap: "border-yellow-500/20 bg-yellow-500/5",
+    iconColor: "text-yellow-400",
   },
   chat: {
     icon: MessageCircle,
-    iconWrap: "bg-gradient-to-br from-sky-100 to-sky-50 text-sky-700 ring-sky-200/80",
-    cardHover: "hover:border-sky-200 hover:shadow-sky-100/80",
-    accent: "text-sky-700",
+    borderHover: "hover:border-blue-500/40",
+    iconWrap: "border-blue-500/20 bg-blue-500/5",
+    iconColor: "text-blue-400",
   },
   "voice-call": {
     icon: PhoneCall,
-    iconWrap: "bg-gradient-to-br from-teal-100 to-teal-50 text-teal-700 ring-teal-200/80",
-    cardHover: "hover:border-teal-200 hover:shadow-teal-100/80",
-    accent: "text-teal-700",
+    borderHover: "hover:border-teal-500/40",
+    iconWrap: "border-teal-500/20 bg-teal-500/5",
+    iconColor: "text-teal-400",
   },
   "video-call": {
     icon: Video,
-    iconWrap: "bg-gradient-to-br from-violet-100 to-violet-50 text-violet-700 ring-violet-200/80",
-    cardHover: "hover:border-violet-200 hover:shadow-violet-100/80",
-    accent: "text-violet-700",
+    borderHover: "hover:border-purple-500/40",
+    iconWrap: "border-purple-500/20 bg-purple-500/5",
+    iconColor: "text-purple-400",
   },
   live: {
     icon: Radio,
-    iconWrap: "bg-gradient-to-br from-orange-100 to-orange-50 text-orange-700 ring-orange-200/80",
-    cardHover: "hover:border-orange-200 hover:shadow-orange-100/80",
-    accent: "text-orange-700",
+    borderHover: "hover:border-red-500/40",
+    iconWrap: "border-red-500/20 bg-red-500/5",
+    iconColor: "text-red-400",
     live: true,
   },
 };
 
 const DEFAULT_VISUAL: FeatureVisual = {
   icon: Sparkles,
-  iconWrap: "bg-gradient-to-br from-[#fff4cc] to-white text-[var(--fox-gold-dark)] ring-[#e8d49a]/80",
-  cardHover: "hover:border-[var(--fox-gold)]/40 hover:shadow-[var(--fox-gold)]/10",
-  accent: "text-[var(--fox-gold-dark)]",
+  borderHover: "hover:border-[var(--vulpine-primary-container)]/40",
+  iconWrap: "border-[var(--vulpine-primary-container)]/20 bg-[var(--vulpine-primary-container)]/5",
+  iconColor: "text-[var(--vulpine-primary-container)]",
 };
 
 type CoreFeaturesGridProps = {
@@ -91,59 +91,47 @@ function FeatureCard({
 
   return (
     <Link href={`/features/${feature.slug}`} className="group block h-full">
-      <article
+      <GlassCard
+        hud
         className={cn(
-          "relative flex h-full flex-col overflow-hidden rounded-2xl border border-[#f0e4c3] bg-white p-5 shadow-sm transition-all duration-300",
-          "hover:-translate-y-1 hover:shadow-lg",
-          visual.cardHover,
+          "relative flex h-full flex-col items-center p-6 text-center transition-all",
+          visual.borderHover,
         )}
       >
+        {visual.live ? (
+          <div className="absolute top-2 right-2 flex items-center gap-1">
+            <span className="size-1.5 animate-pulse rounded-full bg-red-500" />
+            <span className="vulpine-label text-[8px] font-black text-red-500">LIVE</span>
+          </div>
+        ) : null}
         <div
           className={cn(
-            "flex size-12 items-center justify-center rounded-2xl ring-1 transition-transform duration-300 group-hover:scale-105",
+            "mb-4 flex size-16 items-center justify-center rounded-sm border transition-transform group-hover:scale-110",
             visual.iconWrap,
           )}
         >
-          <Icon className="size-6" strokeWidth={2.25} />
+          <Icon className={cn("size-7", visual.iconColor)} strokeWidth={2} />
         </div>
-
-        <div className="mt-4 flex items-center gap-2">
-          <h3 className="text-base font-bold text-[var(--fox-charcoal)]">{feature.name}</h3>
-          {visual.live ? (
-            <span className="inline-flex items-center gap-1 rounded-full bg-red-500/10 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-red-600">
-              <span className="size-1.5 animate-pulse rounded-full bg-red-500" />
-              Live
-            </span>
-          ) : null}
-        </div>
-
-        <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground line-clamp-3">
-          {feature.description}
+        <h3 className="vulpine-label text-xs font-bold text-[var(--vulpine-on-surface)] uppercase">
+          {feature.name}
+        </h3>
+        <p className="vulpine-label mt-1 text-[10px] text-[var(--vulpine-on-surface-variant)] opacity-60">
+          {feature.description?.slice(0, 24) ?? exploreLabel}
         </p>
-
-        <p
-          className={cn(
-            "mt-4 text-xs font-semibold uppercase tracking-wider opacity-0 transition-opacity duration-300 group-hover:opacity-100",
-            visual.accent,
-          )}
-        >
-          {exploreLabel} →
-        </p>
-      </article>
+      </GlassCard>
     </Link>
   );
 }
 
 export function CoreFeaturesGrid({ title, exploreLabel, features }: CoreFeaturesGridProps) {
   return (
-    <section className="border-t border-[#f0e4c3] bg-gradient-to-b from-white/80 to-[var(--fox-cream)]/40">
-      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-        <div className="flex items-center gap-3">
-          <span className="h-9 w-1 rounded-full bg-[var(--fox-gold)]" />
-          <h2 className="text-2xl font-bold text-[var(--fox-charcoal)]">{title}</h2>
-        </div>
-
-        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+    <section className="relative overflow-hidden border-y border-white/5 bg-[var(--vulpine-surface-container-lowest)] py-16 md:py-24">
+      <div className="vulpine-scanline opacity-20" aria-hidden />
+      <div className="relative mx-auto max-w-[1200px] px-4 md:px-16">
+        <h2 className="mb-12 text-center font-display text-2xl font-bold tracking-[0.2em] text-[var(--vulpine-on-surface)] uppercase md:text-3xl">
+          {title}
+        </h2>
+        <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-6 lg:gap-6">
           {features.map((feature) => (
             <FeatureCard key={feature.slug} feature={feature} exploreLabel={exploreLabel} />
           ))}

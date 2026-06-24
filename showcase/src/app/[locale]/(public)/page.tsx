@@ -1,12 +1,6 @@
 import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { LinkButton } from "@/components/ui/link-button";
-import {
-  Card,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 import { CoreFeaturesGrid } from "@/components/home/core-features-grid";
 import { HomePlatformTypesSection } from "@/components/home/home-platform-types-section";
 import { FeaturedAppCard } from "@/components/apps/featured-app-card";
@@ -14,6 +8,7 @@ import { HomeHero } from "@/components/home/home-hero";
 import { HomeStats } from "@/components/home/home-stats";
 import { EcosystemBento } from "@/components/home/ecosystem-bento";
 import { NewsMedia } from "@/components/news/news-media";
+import { GlassCard } from "@/components/vulpine/vulpine-primitives";
 import type { Locale } from "@/i18n/routing";
 import {
   localizeApp,
@@ -66,26 +61,17 @@ export default async function HomePage({ params }: Props) {
   );
 
   return (
-    <div className="bg-[var(--fox-cream)]">
+    <>
       <HomeHero
         badge={t("badge")}
+        brandName={t("brandName")}
         title={t("title")}
         titleHighlight={t("titleHighlight")}
         titleSuffix={t("titleSuffix")}
         subtitle={t("subtitle")}
+        pillars={[t("pillarPlatforms"), t("pillarFeatures"), t("pillarApps")]}
         explorePlatforms={t("explorePlatforms")}
         downloadApps={t("downloadApps")}
-      />
-
-      <EcosystemBento
-        title={t("ecosystem")}
-        description={t("ecosystemDesc")}
-        includesLabel={t("ecosystemIncludes")}
-        typeCountLabel={t("ecosystemTypeCount")}
-        viewPlatformLabel={t("ecosystemViewPlatform")}
-        viewAllLabel={t("viewAll")}
-        categories={localizedCategories}
-        platformTypes={localizedPlatforms}
       />
 
       <HomeStats
@@ -113,6 +99,17 @@ export default async function HomePage({ params }: Props) {
         ]}
       />
 
+      <EcosystemBento
+        title={t("ecosystem")}
+        description={t("ecosystemDesc")}
+        includesLabel={t("ecosystemIncludes")}
+        typeCountLabel={t("ecosystemTypeCount")}
+        viewPlatformLabel={t("ecosystemViewPlatform")}
+        viewAllLabel={t("viewAll")}
+        categories={localizedCategories}
+        platformTypes={localizedPlatforms}
+      />
+
       <HomePlatformTypesSection
         title={t("platformTypes")}
         description={t("platformTypesDesc")}
@@ -125,30 +122,34 @@ export default async function HomePage({ params }: Props) {
         platformTypes={localizedPlatforms}
       />
 
-      <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-        <div className="flex items-center gap-3">
-          <span className="h-9 w-1 rounded-full bg-[var(--fox-gold)]" />
-          <div>
-            <h2 className="text-2xl font-bold text-[var(--fox-charcoal)]">{t("featuredApps")}</h2>
-            <p className="mt-1 text-muted-foreground">{t("featuredAppsDesc")}</p>
-          </div>
-        </div>
-        <div className="mt-8 grid gap-6 sm:grid-cols-2">
-          {appsWithLinks.length > 0 ? (
-            appsWithLinks.map((app) => (
-              <FeaturedAppCard
-                key={app.slug}
-                app={app}
-                featuredLabel={tc("featured")}
-                downloadLabel={t("downloadApps")}
-                links={app.links}
-              />
-            ))
-          ) : (
-            <p className="text-muted-foreground sm:col-span-2">
-              {t("featuredAppsEmpty")}
+      <section className="px-4 py-16 md:px-16 md:py-24">
+        <div className="mx-auto max-w-[1200px]">
+          <div className="mb-12 border-l-2 border-[var(--vulpine-primary-container)] pl-6">
+            <p className="vulpine-label mb-2 text-[var(--vulpine-primary-container)]">
+              Deployed Modules
             </p>
-          )}
+            <h2 className="font-display text-2xl font-bold tracking-wide text-[var(--vulpine-on-surface)] uppercase md:text-3xl">
+              {t("featuredApps")}
+            </h2>
+            <p className="mt-2 text-[var(--vulpine-on-surface-variant)]">{t("featuredAppsDesc")}</p>
+          </div>
+          <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
+            {appsWithLinks.length > 0 ? (
+              appsWithLinks.map((app) => (
+                <FeaturedAppCard
+                  key={app.slug}
+                  app={app}
+                  featuredLabel={tc("featured")}
+                  downloadLabel={t("downloadApps")}
+                  links={app.links}
+                />
+              ))
+            ) : (
+              <p className="text-[var(--vulpine-on-surface-variant)] sm:col-span-2 xl:col-span-4">
+                {t("featuredAppsEmpty")}
+              </p>
+            )}
+          </div>
         </div>
       </section>
 
@@ -158,38 +159,72 @@ export default async function HomePage({ params }: Props) {
         features={localizedFeatures}
       />
 
-      <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-        <div className="flex items-end justify-between gap-4">
-          <div className="flex items-center gap-3">
-            <span className="h-9 w-1 rounded-full bg-[var(--fox-gold)]" />
-            <h2 className="text-2xl font-bold text-[var(--fox-charcoal)]">{t("latestNews")}</h2>
+      <section className="px-4 py-16 md:px-16 md:py-24">
+        <div className="mx-auto max-w-[1200px]">
+          <div className="mb-12 flex items-end justify-between gap-4 border-b border-white/5 pb-4">
+            <h2 className="font-display text-2xl font-bold tracking-wider text-[var(--vulpine-on-surface)] uppercase md:text-3xl">
+              {t("latestNews")}
+            </h2>
+            <LinkButton
+              href="/news"
+              variant="ghost"
+              className="vulpine-label text-[var(--vulpine-primary-container)]"
+            >
+              {t("viewAll")} →
+            </LinkButton>
           </div>
-          <LinkButton href="/news" variant="ghost" className="text-[var(--fox-charcoal)]">
-            {t("viewAll")} →
-          </LinkButton>
-        </div>
-        <div className="mt-8 grid gap-4 md:grid-cols-3">
-          {localizedNews.map((item) => (
-            <Link key={item.slug} href={`/news/${item.slug}`}>
-              <Card className="h-full overflow-hidden border-[#f0e4c3] bg-white/85 transition-all hover:-translate-y-0.5 hover:border-[var(--fox-gold)]/40 hover:shadow-md">
-                <NewsMedia
-                  thumbnailUrl={item.thumbnailUrl}
-                  title={item.title}
-                  className="aspect-[16/10]"
-                />
-                <CardHeader>
-                  <CardTitle className="text-base line-clamp-2">
+          <div className="grid gap-8 md:grid-cols-3">
+            {localizedNews.map((item) => (
+              <Link key={item.slug} href={`/news/${item.slug}`} className="group block">
+                <article>
+                  <GlassCard className="mb-6 overflow-hidden rounded-sm border-white/10 p-0">
+                    <NewsMedia
+                      thumbnailUrl={item.thumbnailUrl}
+                      title={item.title}
+                      className="aspect-video"
+                    />
+                  </GlassCard>
+                  <h4 className="font-display text-lg font-bold text-[var(--vulpine-on-surface)] uppercase transition-colors group-hover:text-[var(--vulpine-primary)] line-clamp-2">
                     {item.title}
-                  </CardTitle>
-                  <CardDescription className="line-clamp-2">
+                  </h4>
+                  <p className="mt-3 text-sm text-[var(--vulpine-on-surface-variant)] opacity-80 line-clamp-2">
                     {item.excerpt}
-                  </CardDescription>
-                </CardHeader>
-              </Card>
-            </Link>
-          ))}
+                  </p>
+                </article>
+              </Link>
+            ))}
+          </div>
         </div>
       </section>
-    </div>
+
+      <section className="px-4 py-16 md:px-16 md:pb-24">
+        <GlassCard hud className="vulpine-hud-border mx-auto max-w-4xl border-[var(--vulpine-primary-container)]/30 p-10 text-center md:p-12">
+          <span className="vulpine-label mb-4 inline-block text-[var(--vulpine-primary-container)]">
+            INITIALIZE_CONNECTION &gt;&gt;&gt;
+          </span>
+          <h2 className="font-display text-2xl font-bold tracking-wider text-[var(--vulpine-on-surface)] uppercase md:text-4xl">
+            Mr.FOX Ecosystem
+          </h2>
+          <p className="mx-auto mt-4 max-w-xl text-[var(--vulpine-on-surface-variant)]">
+            {t("ecosystemDesc")}
+          </p>
+          <div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
+            <LinkButton
+              href="/contact"
+              className="vulpine-label vulpine-btn-glow rounded-sm bg-[var(--vulpine-primary-container)] px-10 py-4 font-black text-[var(--vulpine-on-primary)] hover:brightness-110"
+            >
+              Contact
+            </LinkButton>
+            <LinkButton
+              href="/apps"
+              variant="outline"
+              className="vulpine-label rounded-sm border-white/20 bg-white/5 px-10 py-4 text-[var(--vulpine-on-surface)] hover:bg-white/10"
+            >
+              {t("viewAll")} Apps
+            </LinkButton>
+          </div>
+        </GlassCard>
+      </section>
+    </>
   );
 }

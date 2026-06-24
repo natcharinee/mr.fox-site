@@ -1,6 +1,6 @@
-import { Badge } from "@/components/ui/badge";
 import { ContentImage } from "@/components/ui/content-image";
 import { DownloadButtons } from "@/components/apps/download-buttons";
+import { GlassCard } from "@/components/vulpine/vulpine-primitives";
 import { isCompanyLogo, resolveImageUrl } from "@/lib/brand-assets";
 import { cn } from "@/lib/utils";
 
@@ -34,78 +34,63 @@ export function FeaturedAppCard({
   const posterIsFallback = isCompanyLogo(poster);
 
   return (
-    <article
+    <GlassCard
+      hud
       className={cn(
-        "group flex flex-col overflow-hidden rounded-2xl border border-[#f0e4c3] bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-[var(--fox-gold)]/35 hover:shadow-lg hover:shadow-[var(--fox-gold)]/10",
+        "group overflow-hidden rounded-lg border-white/10 vulpine-glow-hover",
         className,
       )}
     >
-      <div
-        className={cn(
-          "relative overflow-hidden",
-          "aspect-[4/5] sm:aspect-[3/4]",
-          posterIsFallback ? "bg-[var(--fox-gold)]" : "bg-[var(--fox-charcoal)]",
-        )}
-      >
+      <div className="relative h-56 overflow-hidden sm:h-64">
         <ContentImage
           src={app.posterUrl}
           fill
-          sizes="(max-width: 640px) 100vw, 50vw"
+          sizes="(max-width: 640px) 100vw, 25vw"
           objectPosition={app.posterFocus}
           className={cn(
-            "transition-transform duration-500 group-hover:scale-[1.03]",
-            posterIsFallback && "p-10 sm:p-12",
+            "transition-all duration-700 group-hover:scale-105",
+            !posterIsFallback && "grayscale-[0.15] group-hover:grayscale-0",
           )}
         />
-        {!posterIsFallback ? (
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-        ) : null}
-        <Badge className="absolute right-3 top-3 border-0 bg-[var(--fox-gold)] text-[var(--fox-charcoal)] shadow-md">
+        <div className="absolute inset-0 bg-gradient-to-t from-[var(--vulpine-background)] to-transparent opacity-80" />
+        <span className="vulpine-label absolute top-4 right-4 rounded-sm bg-[var(--vulpine-primary)] px-2 py-0.5 text-[10px] text-[var(--vulpine-on-primary)] shadow-[0_0_10px_rgba(255,184,0,0.5)]">
           {featuredLabel}
-        </Badge>
-        <div className="absolute bottom-3 left-3 flex items-center gap-3">
-          <div
-            className={cn(
-              "relative size-11 shrink-0 overflow-hidden rounded-xl ring-2 ring-white/25 backdrop-blur-sm",
-              isCompanyLogo(logo) ? "bg-[var(--fox-gold)]" : "bg-white/10",
-            )}
-          >
-            <ContentImage
-              src={app.logoUrl}
-              fill
-              sizes="44px"
-              fallbackClassName="p-1.5"
-            />
-          </div>
-        </div>
+        </span>
       </div>
 
-      <div className="flex flex-1 flex-col p-5">
-        <div className="space-y-2">
-          <h3 className="text-lg font-bold leading-tight text-[var(--fox-charcoal)]">
-            {app.name}
-          </h3>
-          <div className="flex flex-wrap items-center gap-2 text-xs">
-            <span className="rounded-full bg-[#fff4cc] px-2.5 py-1 font-medium text-[var(--fox-gold-dark)]">
-              {app.platformTypeName}
-            </span>
-            {app.categoryName ? (
-              <span className="text-muted-foreground">{app.categoryName}</span>
-            ) : null}
+      <div className="relative p-6">
+        {app.categoryName ? (
+          <span className="vulpine-label mb-3 inline-block rounded-sm border border-white/20 px-2 py-0.5 text-[9px] text-[var(--vulpine-on-surface-variant)]">
+            CAT:{app.categoryName.replace(/\s+/g, "_").toUpperCase()}
+          </span>
+        ) : null}
+
+        <div className="flex items-start gap-3">
+          <div
+            className={cn(
+              "relative size-10 shrink-0 overflow-hidden rounded-sm border border-white/15",
+              isCompanyLogo(logo) ? "bg-[var(--vulpine-primary-container)]/20" : "bg-white/5",
+            )}
+          >
+            <ContentImage src={app.logoUrl} fill sizes="40px" fallbackClassName="p-1" />
+          </div>
+          <div className="min-w-0">
+            <h3 className="font-display text-lg font-bold uppercase text-[var(--vulpine-on-surface)]">
+              {app.name}
+            </h3>
+            <p className="vulpine-label mt-1 text-[11px] text-[var(--vulpine-on-surface-variant)] opacity-70 line-clamp-2">
+              {app.description}
+            </p>
           </div>
         </div>
 
-        <p className="mt-3 flex-1 text-sm leading-relaxed text-muted-foreground line-clamp-3">
-          {app.description}
-        </p>
-
-        <div className="mt-5 border-t border-[#f0e4c3] pt-4">
-          <p className="mb-2.5 text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
+        <div className="mt-5 border-t border-white/5 pt-4">
+          <p className="vulpine-label mb-3 text-[10px] text-[var(--vulpine-on-surface-variant)]">
             {downloadLabel}
           </p>
           <DownloadButtons appSlug={app.slug} appId={app.id} links={links} />
         </div>
       </div>
-    </article>
+    </GlassCard>
   );
 }

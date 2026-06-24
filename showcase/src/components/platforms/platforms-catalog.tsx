@@ -1,6 +1,6 @@
 import { ArrowRight } from "lucide-react";
 import { Link } from "@/i18n/navigation";
-import { publicTheme } from "@/components/layout/public-theme";
+import { publicTheme, themedCard } from "@/components/layout/public-theme";
 import {
   CATEGORY_ORDER,
   CATEGORY_THEME,
@@ -75,14 +75,13 @@ export function PlatformsCatalog({
               key={category.slug}
               href={`#category-${category.slug}`}
               className={cn(
-                "inline-flex items-center gap-2 rounded-full border px-3.5 py-1.5 text-sm font-medium transition-colors",
+                "inline-flex items-center gap-2 rounded-full border px-3.5 py-1.5 text-sm font-medium transition-colors hover:brightness-110",
                 theme.pill,
-                "hover:brightness-95",
               )}
             >
               <Icon className="size-3.5 shrink-0" />
               {category.name}
-              <span className="rounded-full bg-white/70 px-1.5 text-xs font-semibold tabular-nums">
+              <span className="rounded-full bg-white/10 px-1.5 text-xs font-semibold tabular-nums">
                 {count}
               </span>
             </a>
@@ -120,14 +119,14 @@ export function PlatformsCatalog({
                     <Icon className="size-6" />
                   </div>
                   <div>
-                    <p className={cn("text-xs font-semibold uppercase tracking-wider", theme.accent)}>
+                    <p className={cn("vulpine-label text-[10px]", theme.accent)}>
                       {typeCountLabel(types.length)}
                     </p>
-                    <h2 className="mt-1 text-xl font-bold text-[var(--fox-charcoal)] sm:text-2xl">
+                    <h2 className={`mt-1 text-xl sm:text-2xl ${publicTheme.cardTitle}`}>
                       {category.name}
                     </h2>
                     {category.description ? (
-                      <p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted-foreground">
+                      <p className={`mt-2 max-w-2xl text-sm leading-relaxed ${publicTheme.muted}`}>
                         {category.description}
                       </p>
                     ) : null}
@@ -144,13 +143,14 @@ export function PlatformsCatalog({
                   >
                     <article
                       className={cn(
-                        "group relative flex h-full flex-col overflow-hidden rounded-2xl border border-[#f0e4c3] bg-white p-5 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg",
+                        themedCard(),
+                        "group relative flex h-full flex-col overflow-hidden p-5",
                         theme.cardHover,
                       )}
                     >
                       <span
                         aria-hidden
-                        className="pointer-events-none absolute -right-1 -top-2 text-5xl font-black tabular-nums text-[var(--fox-charcoal)]/[0.04]"
+                        className="pointer-events-none absolute -top-2 -right-1 text-5xl font-black tabular-nums text-white/[0.04]"
                       >
                         {String(index + 1).padStart(2, "0")}
                       </span>
@@ -158,7 +158,7 @@ export function PlatformsCatalog({
                       <div className="flex items-center gap-2">
                         <span
                           className={cn(
-                            "rounded-full border px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide",
+                            "rounded-full border px-2.5 py-0.5 text-[10px] font-semibold tracking-wide uppercase",
                             theme.pill,
                           )}
                         >
@@ -166,16 +166,16 @@ export function PlatformsCatalog({
                         </span>
                       </div>
 
-                      <h3 className="mt-3 text-lg font-bold leading-snug text-[var(--fox-charcoal)]">
+                      <h3 className={`mt-3 text-lg leading-snug ${publicTheme.cardTitle}`}>
                         {pt.name}
                       </h3>
 
-                      <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">
+                      <p className={`mt-2 flex-1 text-sm leading-relaxed ${publicTheme.muted}`}>
                         {pt.shortDescription ?? pt.concept}
                       </p>
 
                       {pt.shortDescription && pt.concept ? (
-                        <p className="mt-3 rounded-xl border border-[#f0e4c3] bg-[var(--fox-cream)]/80 px-3 py-2 text-xs leading-relaxed text-[var(--fox-charcoal)]/75">
+                        <p className="mt-3 rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-xs leading-relaxed text-[var(--vulpine-on-surface-variant)]">
                           {pt.concept}
                         </p>
                       ) : null}

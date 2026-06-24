@@ -1,5 +1,6 @@
 import { AppToaster } from "@/components/ui/app-toaster";
 import { lineSeedSansTH } from "@/lib/fonts/line-seed-sans-th";
+import { jetbrainsMono, montserrat } from "@/lib/fonts/vulpine-fonts";
 import { buildMetadata, SITE_NAME } from "@/lib/metadata";
 import "./globals.css";
 
@@ -15,7 +16,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="th" className={`${lineSeedSansTH.variable} h-full antialiased`}>
+    <html
+      lang="th"
+      className={`${lineSeedSansTH.variable} ${montserrat.variable} ${jetbrainsMono.variable} h-full antialiased`}
+    >
       <body className="min-h-full flex flex-col font-sans">
         {children}
         <AppToaster />

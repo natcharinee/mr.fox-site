@@ -51,20 +51,22 @@ export function HomePlatformTypesSection({
   const categoryBySlug = Object.fromEntries(categories.map((c) => [c.slug, c]));
 
   return (
-    <section className="border-t border-[#f0e4c3] bg-gradient-to-b from-white/90 to-[var(--fox-cream)]/50">
-      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-        <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
-          <div className="flex items-start gap-3">
-            <span className="mt-1 h-9 w-1 shrink-0 rounded-full bg-[var(--fox-gold)]" />
-            <div>
-              <h2 className="text-2xl font-bold text-[var(--fox-charcoal)]">{title}</h2>
-              <p className="mt-1 max-w-2xl text-muted-foreground">{description}</p>
-            </div>
+    <section className="border-y border-white/5 bg-[var(--vulpine-surface-container-low)]/30 py-16 md:py-24">
+      <div className="mx-auto max-w-[1200px] px-4 md:px-16">
+        <div className="mb-12 flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+          <div className="border-l-2 border-[var(--vulpine-primary-container)] pl-6">
+            <p className="vulpine-label mb-2 text-[var(--vulpine-primary-container)]">
+              Standard Templates
+            </p>
+            <h2 className="font-display text-2xl font-bold tracking-wide text-[var(--vulpine-on-surface)] uppercase md:text-3xl">
+              {title}
+            </h2>
+            <p className="mt-2 max-w-2xl text-[var(--vulpine-on-surface-variant)]">{description}</p>
           </div>
           <LinkButton
             href="/platforms"
             variant="ghost"
-            className="shrink-0 text-[var(--fox-charcoal)]"
+            className="vulpine-label shrink-0 text-[var(--vulpine-primary-container)]"
           >
             {viewAllLabel} →
           </LinkButton>
@@ -105,43 +107,36 @@ export function HomePlatformTypesSection({
               <Link key={pt.slug} href={`/platforms/${pt.slug}`} className="group block h-full">
                 <article
                   className={cn(
-                    "flex h-full flex-col rounded-2xl border border-[#f0e4c3] border-l-4 bg-white p-5 shadow-sm transition-all duration-300",
-                    theme.border,
-                    theme.cardHover,
-                    "hover:-translate-y-1 hover:shadow-lg",
+                    "vulpine-hud-border vulpine-glow-hover relative flex h-full flex-col rounded-lg border border-white/8 bg-[rgba(18,20,20,0.4)] p-6 backdrop-blur-2xl transition-all hover:-translate-y-0.5",
                   )}
                 >
+                  <span className="vulpine-label mb-2 block text-[10px] text-[var(--vulpine-primary-container)] opacity-70">
+                    DATA_TYPE: {pt.slug.replace(/-/g, "_").toUpperCase()}
+                  </span>
+                  <div className="absolute -top-1 -right-1 size-2 bg-[var(--vulpine-primary-container)] opacity-50" />
                   <div className="flex items-start gap-3">
                     <div
                       className={cn(
-                        "flex size-10 shrink-0 items-center justify-center rounded-xl",
+                        "flex size-10 shrink-0 items-center justify-center rounded-sm border",
                         theme.iconWrap,
                       )}
                     >
                       <Icon className="size-5" strokeWidth={2.25} />
                     </div>
                     <div className="min-w-0 flex-1">
-                      <span
-                        className={cn(
-                          "inline-flex rounded-full border px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide",
-                          theme.pill,
-                        )}
-                      >
-                        {pt.categoryName}
-                      </span>
-                      <h3 className="mt-2 text-base font-bold leading-snug text-[var(--fox-charcoal)]">
+                      <h3 className="font-display text-base font-bold text-[var(--vulpine-on-surface)]">
                         {pt.name}
                       </h3>
                     </div>
                   </div>
 
-                  <p className="mt-3 flex-1 text-sm leading-relaxed text-muted-foreground line-clamp-2">
+                  <p className="vulpine-label mt-3 flex-1 text-xs text-[var(--vulpine-on-surface-variant)] opacity-60 line-clamp-2">
                     {pt.shortDescription ?? pt.concept}
                   </p>
 
                   <p
                     className={cn(
-                      "mt-4 flex items-center gap-1 text-xs font-semibold uppercase tracking-wider opacity-70 transition-all group-hover:gap-2 group-hover:opacity-100",
+                      "vulpine-label mt-4 flex items-center gap-1 text-xs opacity-70 transition-all group-hover:gap-2 group-hover:opacity-100",
                       theme.accent,
                     )}
                   >
@@ -155,13 +150,11 @@ export function HomePlatformTypesSection({
         </div>
 
         {remaining > 0 ? (
-          <div className="mt-8 flex flex-col items-center justify-between gap-4 rounded-2xl border border-[#e8d49a] bg-gradient-to-r from-[#fff8e1]/90 to-white px-5 py-4 sm:flex-row">
-            <p className="text-sm font-medium text-[var(--fox-charcoal)]">
-              {moreTypesLabel}
-            </p>
+          <div className="mt-8 flex flex-col items-center justify-between gap-4 rounded-lg border border-white/10 bg-white/5 px-5 py-4 sm:flex-row">
+            <p className="text-sm text-[var(--vulpine-on-surface-variant)]">{moreTypesLabel}</p>
             <Link
               href="/platforms"
-              className="inline-flex items-center gap-1.5 text-sm font-semibold text-[var(--fox-gold-dark)] transition-colors hover:text-[var(--fox-gold)]"
+              className="vulpine-label inline-flex items-center gap-2 text-[var(--vulpine-primary-container)] transition-all hover:translate-x-1"
             >
               {viewAllLabel}
               <ArrowRight className="size-4" />

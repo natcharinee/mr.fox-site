@@ -1,5 +1,6 @@
 {
   "nav": {
+    "home": "หน้าแรก",
     "platforms": "Platforms",
     "apps": "Applications",
     "features": "Features",
@@ -10,11 +11,15 @@
     "download": "ดาวน์โหลดแอป"
   },
   "home": {
-    "badge": "Creator Economy Ecosystem",
-    "title": "แพลตฟอร์มครบวงจรสำหรับ",
-    "titleHighlight": "Creator",
-    "titleSuffix": "และชุมชน",
-    "subtitle": "Mr.FOX พัฒนา Platform และ Mobile Applications หลายประเภท — จาก Creator Economy ไปจนถึง Contest และ Exhibition ใน ecosystem เดียว",
+    "badge": "Creator Economy Super App",
+    "brandName": "Mr.FOX",
+    "title": "แพลตฟอร์มและแอปมือถือ",
+    "titleHighlight": "ครบวงจร",
+    "titleSuffix": "สำหรับ Creator และชุมชน",
+    "subtitle": "พัฒนา Platform 10 ประเภท พร้อม Vote, Gift, Live และ monetization — รวมทุกอย่างใน ecosystem เดียว",
+    "pillarPlatforms": "10 Platform Types",
+    "pillarFeatures": "Vote · Gift · Live · Chat",
+    "pillarApps": "ดาวน์โหลดแอป ≤ 3 คลิก",
     "explorePlatforms": "สำรวจ Platforms",
     "downloadApps": "ดาวน์โหลดแอป",
     "ecosystem": "Ecosystem Overview",
@@ -126,6 +131,8 @@
     "mission": "Mission",
     "missionBody": "พัฒนา Showcase + Engine ที่ data-driven — เพิ่มแอปจาก 10 เป็น 100+ โดยเพิ่ม record ใน database เท่านั้น",
     "roadmap": "Roadmap",
+    "roadmapVisualTitle": "ROADMAP",
+    "roadmapVisualCaption": "เส้นทางการเติบโตของ Mr.FOX Ecosystem ตั้งแต่ FOXY, PHOENIX ไปจนถึงแอปและแพลตฟอร์มใหม่ๆ",
     "roadmapPhases": [
       {
         "phase": "Phase 1",

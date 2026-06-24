@@ -1,6 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
+import { usePathname } from "next/navigation";
 import { Search } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { LinkButton } from "@/components/ui/link-button";
@@ -15,46 +16,50 @@ type HeaderProps = {
 
 export function Header({ variant = "brand" }: HeaderProps) {
   const t = useTranslations("nav");
+  const pathname = usePathname();
   const isBrand = variant === "brand";
 
   const NAV = [
-    { href: "/platforms" as const, label: t("platforms") },
-    { href: "/apps" as const, label: t("apps") },
-    { href: "/features" as const, label: t("features") },
-    { href: "/news" as const, label: t("news") },
-    { href: "/about" as const, label: t("about") },
-    { href: "/contact" as const, label: t("contact") },
+    { href: "/" as const, label: t("home"), match: (p: string) => /\/(th|en|zh)\/?$/.test(p) },
+    { href: "/platforms" as const, label: t("platforms"), match: (p: string) => p.includes("/platforms") },
+    { href: "/apps" as const, label: t("apps"), match: (p: string) => p.includes("/apps") },
+    { href: "/news" as const, label: t("news"), match: (p: string) => p.includes("/news") },
+    { href: "/about" as const, label: t("about"), match: (p: string) => p.includes("/about") },
+    { href: "/contact" as const, label: t("contact"), match: (p: string) => p.includes("/contact") },
   ];
 
   return (
     <header
       className={cn(
-        "sticky top-0 z-50 border-b backdrop-blur-md",
+        "sticky top-0 z-50 border-b backdrop-blur-3xl",
         isBrand
-          ? "border-white/10 bg-[var(--fox-charcoal)]/95 text-white shadow-lg shadow-black/10"
+          ? "border-white/5 bg-[var(--vulpine-surface)]/40 text-[var(--vulpine-on-surface)]"
           : "border-border/60 bg-background/80",
       )}
     >
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
-        <Link href="/" className="flex items-center">
+      <div className="mx-auto flex h-16 max-w-[1200px] items-center justify-between gap-4 px-4 md:px-16">
+        <Link href="/" className="flex items-center brightness-110">
           <BrandLogo priority />
         </Link>
 
-        <nav className="hidden items-center gap-0.5 lg:flex">
-          {NAV.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className={cn(
-                "rounded-md px-3.5 py-2 text-[15px] font-semibold tracking-wide transition-colors sm:text-base",
-                isBrand
-                  ? "text-white/90 hover:bg-white/10 hover:text-[var(--fox-gold)]"
-                  : "text-foreground/80 hover:bg-accent hover:text-foreground",
-              )}
-            >
-              {item.label}
-            </Link>
-          ))}
+        <nav className="hidden items-center gap-6 lg:flex">
+          {NAV.map((item) => {
+            const active = item.match(pathname);
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={cn(
+                  "vulpine-label text-xs transition-colors",
+                  active
+                    ? "border-b-2 border-[var(--vulpine-primary-container)] pb-1 text-[var(--vulpine-primary)]"
+                    : "text-[var(--vulpine-on-surface-variant)] hover:text-[var(--vulpine-primary)]",
+                )}
+              >
+                {item.label}
+              </Link>
+            );
+          })}
         </nav>
 
         <div className="flex items-center gap-2">
@@ -77,8 +82,9 @@ export function Header({ variant = "brand" }: HeaderProps) {
             rel="noopener noreferrer"
             className={cn(
               buttonVariants({ size: "sm" }),
+              "vulpine-label vulpine-btn-glow rounded-lg",
               isBrand &&
-                "bg-[var(--fox-gold)] text-[var(--fox-charcoal)] hover:bg-[var(--fox-gold-dark)] hover:text-[var(--fox-charcoal)]",
+                "bg-[var(--vulpine-primary-container)] text-[var(--vulpine-on-primary)] hover:brightness-110",
             )}
           >
             {t("download")}

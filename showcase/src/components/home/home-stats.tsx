@@ -64,22 +64,20 @@ function useCountUp(target: number, active: boolean, delayMs = 0) {
 function StatCard({
   label,
   value,
-  icon,
   active,
   delayMs,
 }: HomeStatItem & { active: boolean; delayMs: number }) {
   const count = useCountUp(value, active, delayMs);
-  const Icon: LucideIcon = ICONS[icon];
 
   return (
-    <div className="rounded-2xl border border-[#f0e4c3] bg-[var(--fox-cream)] px-4 py-6 text-center shadow-sm">
-      <div className="mx-auto mb-3 flex size-10 items-center justify-center rounded-full bg-[#fff4cc] text-[var(--fox-gold-dark)]">
-        <Icon className="size-5" />
-      </div>
-      <p className="text-3xl font-bold tabular-nums text-[var(--fox-charcoal)]">
+    <div className="text-center">
+      <div className="font-display text-3xl font-bold tabular-nums text-[var(--vulpine-primary-container)] drop-shadow-[0_0_5px_rgba(255,184,0,0.3)] md:text-4xl">
         {count.toLocaleString()}
-      </p>
-      <p className="mt-1 text-sm text-muted-foreground">{label}</p>
+        {label.toLowerCase().includes("download") && count >= 1000 ? "+" : ""}
+      </div>
+      <div className="vulpine-label mt-2 text-[var(--vulpine-on-surface-variant)]">
+        {label}
+      </div>
     </div>
   );
 }
@@ -106,7 +104,6 @@ export function HomeStats({ items }: HomeStatsProps) {
 
     observer.observe(el);
 
-    // Stats can already be in view on first paint (below hero).
     requestAnimationFrame(() => {
       const rect = el.getBoundingClientRect();
       if (rect.top < window.innerHeight * 0.85 && rect.bottom > 0) {
@@ -119,10 +116,10 @@ export function HomeStats({ items }: HomeStatsProps) {
   }, []);
 
   return (
-    <section className="border-b border-[#f0e4c3] bg-white/70">
+    <section className="relative border-y border-white/5 bg-[var(--vulpine-surface-container-lowest)]/50 py-12 md:py-16">
       <div
         ref={ref}
-        className="mx-auto grid max-w-7xl grid-cols-2 gap-4 px-4 py-10 sm:px-6 md:grid-cols-4 lg:gap-6 lg:px-8"
+        className="mx-auto grid max-w-[1200px] grid-cols-2 gap-6 px-4 md:grid-cols-4 md:gap-8 md:px-16"
       >
         {items.map((item, index) => (
           <StatCard

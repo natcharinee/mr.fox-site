@@ -1,5 +1,6 @@
 {
   "nav": {
+    "home": "首页",
     "platforms": "平台类型",
     "apps": "应用",
     "features": "功能",
@@ -10,11 +11,15 @@
     "download": "下载应用"
   },
   "home": {
-    "badge": "创作者经济生态系统",
-    "title": "面向",
-    "titleHighlight": "创作者",
-    "titleSuffix": "与社区的完整平台",
-    "subtitle": "Mr.FOX 打造多种平台与移动应用 — 涵盖创作者经济、社区、竞赛与展览生态系统。",
+    "badge": "创作者经济超级应用",
+    "brandName": "Mr.FOX",
+    "title": "面向创作者与社区的",
+    "titleHighlight": "一体化",
+    "titleSuffix": "平台与移动应用",
+    "subtitle": "10 种平台类型，涵盖投票、礼物、直播与变现 — 统一生态系统。",
+    "pillarPlatforms": "10 种平台类型",
+    "pillarFeatures": "投票 · 礼物 · 直播 · 聊天",
+    "pillarApps": "≤ 3 次点击下载应用",
     "explorePlatforms": "探索平台",
     "downloadApps": "下载应用",
     "ecosystem": "生态系统概览",
@@ -126,6 +131,8 @@
     "mission": "使命",
     "missionBody": "开发数据驱动的 Showcase + Engine — 仅通过添加数据库记录从 10 扩展到 100+ 应用",
     "roadmap": "路线图",
+    "roadmapVisualTitle": "ROADMAP",
+    "roadmapVisualCaption": "Mr.FOX 生态系统发展路线 — 从 FOXY、PHOENIX 到即将推出的应用与平台。",
     "roadmapPhases": [
       {
         "phase": "第一阶段",

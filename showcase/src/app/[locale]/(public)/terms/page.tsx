@@ -23,7 +23,7 @@ export default async function TermsPage() {
   return (
     <PageShell>
       <PageHero title={t("termsTitle")} description={t("termsIntro")} />
-      <div className={`mx-auto max-w-3xl px-4 py-12 sm:px-6 lg:px-8 ${publicTheme.prose}`}>
+      <div className={`${publicTheme.contentNarrow} ${publicTheme.prose}`}>
         <h2>{t("usage")}</h2>
         <p>{t("usageBody")}</p>
         <h2>{t("contact")}</h2>

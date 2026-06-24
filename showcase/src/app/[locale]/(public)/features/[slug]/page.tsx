@@ -54,19 +54,21 @@ export default async function FeatureDetailPage({ params }: Props) {
             {t("groupLabel", { group: feature.group })}
           </Badge>
           {feature.revenueModel ? (
-            <Badge className="bg-white/10 text-[#fff4cc] hover:bg-white/10">
+            <Badge className={publicTheme.badgeGold}>
               {t("revenueFeature")}
             </Badge>
           ) : null}
         </div>
       </PageHero>
 
-      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+      <div className={publicTheme.pageGrid}>
         {feature.workflow ? (
           <Card className={themedCard()}>
             <CardHeader>
-              <CardTitle className="text-base text-[var(--fox-charcoal)]">{t("workflow")}</CardTitle>
-              <CardDescription className="text-foreground">{feature.workflow}</CardDescription>
+              <CardTitle className={`text-base ${publicTheme.cardTitle}`}>{t("workflow")}</CardTitle>
+              <CardDescription className={publicTheme.cardDescription}>
+                {feature.workflow}
+              </CardDescription>
             </CardHeader>
           </Card>
         ) : null}
@@ -74,8 +76,12 @@ export default async function FeatureDetailPage({ params }: Props) {
         {feature.revenueModel ? (
           <Card className={themedCard(feature.workflow ? "mt-6" : undefined)}>
             <CardHeader>
-              <CardTitle className="text-base text-[var(--fox-charcoal)]">{t("revenueModel")}</CardTitle>
-              <CardDescription className="text-foreground">{feature.revenueModel}</CardDescription>
+              <CardTitle className={`text-base ${publicTheme.cardTitle}`}>
+                {t("revenueModel")}
+              </CardTitle>
+              <CardDescription className={publicTheme.cardDescription}>
+                {feature.revenueModel}
+              </CardDescription>
             </CardHeader>
           </Card>
         ) : null}

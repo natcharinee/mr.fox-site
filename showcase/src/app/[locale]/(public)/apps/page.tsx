@@ -80,7 +80,7 @@ export default async function AppsPage({
             name="q"
             placeholder={t("searchPlaceholder")}
             defaultValue={q}
-            className="max-w-xs border-[#e8d49a] bg-white/90 text-[var(--fox-charcoal)] placeholder:text-muted-foreground focus-visible:border-[var(--fox-gold)] focus-visible:ring-[var(--fox-gold)]/20"
+            className={`max-w-xs ${publicTheme.input}`}
           />
           <select name="category" defaultValue={category ?? ""} className={publicTheme.select}>
             <option value="">{t("allCategories")}</option>
@@ -107,7 +107,7 @@ export default async function AppsPage({
         </form>
       </PageHero>
 
-      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+      <div className={publicTheme.pageGrid}>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {appsWithLinks.map((app) => (
             <Card key={app.slug} className={themedCard("flex flex-col overflow-hidden")}>
@@ -119,21 +119,21 @@ export default async function AppsPage({
               />
               <CardHeader>
                 <div className="flex items-start justify-between gap-2">
-                  <CardTitle className="text-lg text-[var(--fox-charcoal)]">
+                  <CardTitle className={`text-lg ${publicTheme.cardTitle}`}>
                     <Link
                       href={`/apps/${app.slug}`}
-                      className="transition-colors hover:text-[var(--fox-gold-dark)]"
+                      className={publicTheme.cardTitleLink}
                     >
                       {app.name}
                     </Link>
                   </CardTitle>
                 </div>
-                <CardDescription>
+                <CardDescription className={publicTheme.cardDescription}>
                   {app.platformTypeName} · {app.categoryName}
                 </CardDescription>
               </CardHeader>
               <CardContent className="mt-auto">
-                <p className="mb-4 line-clamp-2 text-sm text-muted-foreground">
+                <p className={`mb-4 line-clamp-2 text-sm ${publicTheme.muted}`}>
                   {app.description}
                 </p>
                 <DownloadButtons
@@ -147,8 +147,8 @@ export default async function AppsPage({
         </div>
 
         {appsWithLinks.length === 0 ? (
-          <div className="mt-10 rounded-2xl border border-dashed border-[#e8d49a] bg-white/60 px-6 py-12 text-center">
-            <p className="text-muted-foreground">{t("noResults")}</p>
+          <div className={`mt-10 ${publicTheme.emptyState}`}>
+            <p>{t("noResults")}</p>
           </div>
         ) : null}
       </div>

@@ -1,5 +1,6 @@
 {
   "nav": {
+    "home": "Home",
     "platforms": "Platforms",
     "apps": "Applications",
     "features": "Features",
@@ -10,11 +11,15 @@
     "download": "Download Apps"
   },
   "home": {
-    "badge": "Creator Economy Ecosystem",
-    "title": "The complete platform for",
-    "titleHighlight": "Creators",
-    "titleSuffix": "and communities",
-    "subtitle": "Mr.FOX builds Platforms and Mobile Applications across Creator Economy, Community, Contest, and Exhibition — one ecosystem.",
+    "badge": "Creator Economy Super App",
+    "brandName": "Mr.FOX",
+    "title": "Platforms and mobile apps",
+    "titleHighlight": "built end-to-end",
+    "titleSuffix": "for creators and communities",
+    "subtitle": "10 platform types with Vote, Gift, Live, and monetization — one unified ecosystem.",
+    "pillarPlatforms": "10 Platform Types",
+    "pillarFeatures": "Vote · Gift · Live · Chat",
+    "pillarApps": "Download apps in ≤ 3 clicks",
     "explorePlatforms": "Explore Platforms",
     "downloadApps": "Download Apps",
     "ecosystem": "Ecosystem Overview",
@@ -126,6 +131,8 @@
     "mission": "Mission",
     "missionBody": "Develop data-driven Showcase + Engine — scale from 10 to 100+ apps by adding database records only",
     "roadmap": "Roadmap",
+    "roadmapVisualTitle": "ROADMAP",
+    "roadmapVisualCaption": "Mr.FOX ecosystem growth from FOXY and PHOENIX to upcoming apps and platforms.",
     "roadmapPhases": [
       {
         "phase": "Phase 1",

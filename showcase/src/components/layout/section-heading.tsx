@@ -3,14 +3,20 @@ import { cn } from "@/lib/utils";
 export function SectionHeading({
   title,
   className,
+  eyebrow,
 }: {
   title: string;
   className?: string;
+  eyebrow?: string;
 }) {
   return (
-    <div className={cn("mb-4 flex items-center gap-3", className)}>
-      <span className="h-8 w-1 shrink-0 rounded-full bg-[var(--fox-gold)]" />
-      <h2 className="text-xl font-bold text-[var(--fox-charcoal)]">{title}</h2>
+    <div className={cn("mb-8 border-l-2 border-[var(--vulpine-primary-container)] pl-6", className)}>
+      {eyebrow ? (
+        <p className="vulpine-label mb-2 text-[var(--vulpine-primary-container)]">{eyebrow}</p>
+      ) : null}
+      <h2 className="font-display text-xl font-bold tracking-wide text-[var(--vulpine-on-surface)] uppercase md:text-2xl">
+        {title}
+      </h2>
     </div>
   );
 }
