@@ -115,8 +115,8 @@ function FeatureCard({
         <h3 className="vulpine-label text-xs font-bold text-[var(--vulpine-on-surface)] uppercase">
           {feature.name}
         </h3>
-        <p className="vulpine-label mt-1 text-[10px] text-[var(--vulpine-on-surface-variant)] opacity-60">
-          {feature.description?.slice(0, 24) ?? exploreLabel}
+        <p className="mt-1 line-clamp-2 text-[10px] leading-relaxed text-[var(--vulpine-on-surface-variant)] opacity-70">
+          {feature.description ?? exploreLabel}
         </p>
       </GlassCard>
     </Link>

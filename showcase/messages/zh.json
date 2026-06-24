@@ -41,7 +41,8 @@
       "platformTypes": "平台类型",
       "applications": "应用",
       "features": "功能",
-      "downloads": "下载"
+      "downloads": "下载",
+      "downloadsDisplay": "3K+"
     }
   },
   "apps": {
@@ -121,7 +122,8 @@
   "news": {
     "title": "新闻",
     "subtitle": "Mr.FOX 最新新闻与更新",
-    "backToNews": "返回新闻"
+    "backToNews": "返回新闻",
+    "source": "来源"
   },
   "about": {
     "title": "关于 Mr.FOX",
@@ -200,10 +202,15 @@
   },
   "footer": {
     "tagline": "创作者经济、社区、竞赛与展览生态系统",
+    "explore": "探索",
+    "company": "公司",
     "links": "链接",
     "legal": "法律",
     "privacy": "隐私政策",
     "terms": "服务条款",
+    "downloadTitle": "下载 Mr.FOX 应用",
+    "downloadDesc": "投票、礼物、直播等 — 一键即达",
+    "backToTop": "返回顶部",
     "copyright": "版权所有"
   },
   "legal": {

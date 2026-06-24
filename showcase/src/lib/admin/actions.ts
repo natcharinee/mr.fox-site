@@ -32,6 +32,7 @@ const newsSchema = z.object({
   slug: z.string().min(1),
   excerpt: z.string().optional(),
   content: z.string().min(1),
+  source: z.string().optional(),
   thumbnailUrl: z.string().optional(),
   publishedAt: z.string().optional(),
 });
@@ -43,6 +44,7 @@ export async function createNews(formData: FormData) {
     slug: formData.get("slug"),
     excerpt: formData.get("excerpt") || undefined,
     content: formData.get("content"),
+    source: formData.get("source") || undefined,
     thumbnailUrl: formData.get("thumbnailUrl") || undefined,
     publishedAt: formData.get("publishedAt") || undefined,
   });
@@ -68,6 +70,7 @@ export async function updateNews(id: number, formData: FormData) {
     slug: formData.get("slug"),
     excerpt: formData.get("excerpt") || undefined,
     content: formData.get("content"),
+    source: formData.get("source") || undefined,
     thumbnailUrl: formData.get("thumbnailUrl") || undefined,
     publishedAt: formData.get("publishedAt") || undefined,
   });

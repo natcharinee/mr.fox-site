@@ -78,7 +78,7 @@ export function FeaturedAppCard({
             <h3 className="font-display text-lg font-bold uppercase text-[var(--vulpine-on-surface)]">
               {app.name}
             </h3>
-            <p className="vulpine-label mt-1 text-[11px] text-[var(--vulpine-on-surface-variant)] opacity-70 line-clamp-2">
+            <p className="mt-1 text-[11px] leading-relaxed text-[var(--vulpine-on-surface-variant)] opacity-80 line-clamp-2">
               {app.description}
             </p>
           </div>

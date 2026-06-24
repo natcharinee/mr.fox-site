@@ -33,6 +33,15 @@ export function NewsForm() {
             <Input id="excerpt" name="excerpt" className="mt-1" />
           </div>
           <div className="sm:col-span-2">
+            <Label htmlFor="source">แหล่งที่มา</Label>
+            <Input
+              id="source"
+              name="source"
+              placeholder="เช่น Mr.FOX PR, TechCrunch, https://..."
+              className="mt-1"
+            />
+          </div>
+          <div className="sm:col-span-2">
             <Label htmlFor="content">เนื้อหา</Label>
             <Textarea id="content" name="content" required rows={4} className="mt-1" />
           </div>

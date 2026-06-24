@@ -172,6 +172,7 @@ export const news = pgTable("news", {
   thumbnailUrl: text("thumbnail_url"),
   excerpt: text("excerpt"),
   content: text("content").notNull(),
+  source: text("source"),
   publishedAt: timestamp("published_at", { withTimezone: true }),
   createdAt: timestamp("created_at", { withTimezone: true })
     .notNull()

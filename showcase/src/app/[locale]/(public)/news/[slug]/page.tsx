@@ -53,6 +53,23 @@ export default async function NewsDetailPage({ params }: Props) {
       </div>
 
       <article className={publicTheme.contentNarrow}>
+        {item.source ? (
+          <p className={`mb-6 text-sm ${publicTheme.muted}`}>
+            {t("source")}:{" "}
+            {/^https?:\/\//i.test(item.source) ? (
+              <a
+                href={item.source}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={publicTheme.link}
+              >
+                {item.source}
+              </a>
+            ) : (
+              <span className="text-[var(--vulpine-on-surface)]">{item.source}</span>
+            )}
+          </p>
+        ) : null}
         <div className={publicTheme.prose}>
           <p className="text-lg leading-relaxed whitespace-pre-wrap">{item.content}</p>
         </div>

@@ -50,15 +50,17 @@ export function AboutRoadmapSection({
             {visualCaption}
           </p>
 
-          <div className="relative mx-auto mt-8 max-w-sm sm:max-w-md lg:max-w-lg">
+          <div className="relative mx-auto mt-8 max-w-md sm:max-w-lg lg:max-w-xl">
             <div className="overflow-hidden rounded-2xl border border-[#ffc20e]/25 bg-[#16120c] p-2 shadow-[inset_0_0_0_1px_rgba(255,194,14,0.08)]">
               <Image
-                src="/about/mrfox-roadmap.png"
+                src="/about/mrfox-roadmap.jpg"
                 alt={visualTitle}
-                width={900}
-                height={3600}
+                width={1200}
+                height={9864}
+                quality={95}
+                priority
                 className="h-auto w-full rounded-xl"
-                sizes="(max-width: 768px) 90vw, 480px"
+                sizes="(max-width: 768px) 92vw, (max-width: 1200px) 560px, 640px"
               />
             </div>
           </div>

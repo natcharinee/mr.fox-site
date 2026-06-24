@@ -41,7 +41,8 @@
       "platformTypes": "Platform Types",
       "applications": "Applications",
       "features": "Features",
-      "downloads": "Downloads"
+      "downloads": "Downloads",
+      "downloadsDisplay": "3K+"
     }
   },
   "apps": {
@@ -121,7 +122,8 @@
   "news": {
     "title": "News",
     "subtitle": "Latest news and updates from Mr.FOX",
-    "backToNews": "Back to News"
+    "backToNews": "Back to News",
+    "source": "Source"
   },
   "about": {
     "title": "About Mr.FOX",
@@ -200,10 +202,15 @@
   },
   "footer": {
     "tagline": "Creator Economy, Community, Contest & Exhibition ecosystem",
+    "explore": "Explore",
+    "company": "Company",
     "links": "Links",
     "legal": "Legal",
     "privacy": "Privacy Policy",
     "terms": "Terms of Service",
+    "downloadTitle": "Download Mr.FOX apps",
+    "downloadDesc": "Vote, Gift, Live, and more — one tap away.",
+    "backToTop": "Back to top",
     "copyright": "All rights reserved"
   },
   "legal": {

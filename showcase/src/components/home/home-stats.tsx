@@ -20,6 +20,7 @@ export type HomeStatItem = {
   label: string;
   value: number;
   icon: keyof typeof ICONS;
+  display?: string;
 };
 
 type HomeStatsProps = {
@@ -64,16 +65,20 @@ function useCountUp(target: number, active: boolean, delayMs = 0) {
 function StatCard({
   label,
   value,
+  display,
   active,
   delayMs,
 }: HomeStatItem & { active: boolean; delayMs: number }) {
-  const count = useCountUp(value, active, delayMs);
+  const count = useCountUp(display ? 0 : value, active && !display, delayMs);
+
+  const shown =
+    display ??
+    `${count.toLocaleString()}${label.toLowerCase().includes("download") && count >= 1000 ? "+" : ""}`;
 
   return (
     <div className="text-center">
       <div className="font-display text-3xl font-bold tabular-nums text-[var(--vulpine-primary-container)] drop-shadow-[0_0_5px_rgba(255,184,0,0.3)] md:text-4xl">
-        {count.toLocaleString()}
-        {label.toLowerCase().includes("download") && count >= 1000 ? "+" : ""}
+        {shown}
       </div>
       <div className="vulpine-label mt-2 text-[var(--vulpine-on-surface-variant)]">
         {label}

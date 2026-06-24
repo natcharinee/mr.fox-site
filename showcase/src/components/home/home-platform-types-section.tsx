@@ -130,7 +130,7 @@ export function HomePlatformTypesSection({
                     </div>
                   </div>
 
-                  <p className="vulpine-label mt-3 flex-1 text-xs text-[var(--vulpine-on-surface-variant)] opacity-60 line-clamp-2">
+                  <p className="mt-3 flex-1 text-xs leading-relaxed text-[var(--vulpine-on-surface-variant)] opacity-80 line-clamp-2">
                     {pt.shortDescription ?? pt.concept}
                   </p>
 

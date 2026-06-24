@@ -74,6 +74,16 @@ export default async function AdminNewsEditPage({ params }: Props) {
           <Input id="excerpt" name="excerpt" defaultValue={item.excerpt ?? ""} className="mt-1" />
         </div>
         <div className="sm:col-span-2">
+          <Label htmlFor="source">แหล่งที่มา</Label>
+          <Input
+            id="source"
+            name="source"
+            defaultValue={item.source ?? ""}
+            placeholder="เช่น Mr.FOX PR, TechCrunch, https://..."
+            className="mt-1"
+          />
+        </div>
+        <div className="sm:col-span-2">
           <Label htmlFor="content">เนื้อหา</Label>
           <Textarea
             id="content"

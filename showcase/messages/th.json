@@ -41,7 +41,8 @@
       "platformTypes": "Platform Types",
       "applications": "Applications",
       "features": "Features",
-      "downloads": "Downloads"
+      "downloads": "Downloads",
+      "downloadsDisplay": "3K+"
     }
   },
   "apps": {
@@ -121,7 +122,8 @@
   "news": {
     "title": "News",
     "subtitle": "ข่าวสารและอัปเดตล่าสุด",
-    "backToNews": "กลับไป News"
+    "backToNews": "กลับไป News",
+    "source": "แหล่งที่มา"
   },
   "about": {
     "title": "About Mr.FOX",
@@ -200,10 +202,15 @@
   },
   "footer": {
     "tagline": "Ecosystem แพลตฟอร์ม Creator Economy, Community, Contest และ Exhibition",
+    "explore": "สำรวจ",
+    "company": "บริษัท",
     "links": "ลิงก์",
     "legal": "กฎหมาย",
     "privacy": "Privacy Policy",
     "terms": "Terms of Service",
+    "downloadTitle": "ดาวน์โหลดแอป Mr.FOX",
+    "downloadDesc": "Vote, Gift, Live และอื่นๆ — แค่ไม่กี่แตะ",
+    "backToTop": "กลับด้านบน",
     "copyright": "สงวนลิขสิทธิ์"
   },
   "legal": {

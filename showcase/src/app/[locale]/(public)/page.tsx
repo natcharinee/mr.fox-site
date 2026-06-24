@@ -95,6 +95,7 @@ export default async function HomePage({ params }: Props) {
             label: t("stats.downloads"),
             value: stats.downloads,
             icon: "download",
+            display: t("stats.downloadsDisplay"),
           },
         ]}
       />

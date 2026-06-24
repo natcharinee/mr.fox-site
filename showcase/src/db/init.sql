@@ -146,6 +146,7 @@ CREATE TABLE IF NOT EXISTS "news" (
   "thumbnail_url" text,
   "excerpt" text,
   "content" text NOT NULL,
+  "source" text,
   "published_at" timestamp with time zone,
   "created_at" timestamp with time zone DEFAULT now() NOT NULL,
   CONSTRAINT "news_slug_unique" UNIQUE("slug")
