@@ -2,7 +2,7 @@ import { useTranslations } from "next-intl";
 import { ExternalLink } from "lucide-react";
 import { GlassCard } from "@/components/vulpine/vulpine-primitives";
 import { publicTheme } from "@/components/layout/public-theme";
-import { MRFOX_MAP_EMBED_URL } from "@/lib/contact/map";
+import { MRFOX_MAP_EMBED_URL, MRFOX_MAP_LINK } from "@/lib/contact/map";
 import { cn } from "@/lib/utils";
 
 export function ContactMapCard() {
@@ -35,7 +35,7 @@ export function ContactMapCard() {
 
       <div className="p-4">
         <a
-          href={t("openHref")}
+          href={MRFOX_MAP_LINK}
           target="_blank"
           rel="noopener noreferrer"
           className={cn(

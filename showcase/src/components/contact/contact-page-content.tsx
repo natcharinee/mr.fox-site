@@ -16,7 +16,12 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { GlassCard, VulpineSectionHeader } from "@/components/vulpine/vulpine-primitives";
 import { publicTheme } from "@/components/layout/public-theme";
+import { MRFOX_MAP_LINK } from "@/lib/contact/map";
 import { submitContactForm } from "@/lib/contact/actions";
+import {
+  ContactGuideCard,
+  type ContactGuideContent,
+} from "@/components/contact/contact-guide-card";
 import { ContactMapCard } from "@/components/contact/contact-map-card";
 import { SocialLinkButton } from "@/components/contact/social-platform-icon";
 import { MRFOX_SOCIAL_LINKS } from "@/lib/contact/social-links";
@@ -63,7 +68,7 @@ async function contactAction(
   }
 }
 
-export function ContactPageContent() {
+export function ContactPageContent({ guide }: { guide: ContactGuideContent }) {
   const t = useTranslations("contact");
   const [subject, setSubject] = useState<ContactSubject>("general");
   const [state, formAction, pending] = useActionState(contactAction, null);
@@ -199,6 +204,8 @@ export function ContactPageContent() {
             );
           })}
         </div>
+
+        <ContactGuideCard content={guide} />
         </div>
 
         <aside className="space-y-5 lg:col-span-2">
@@ -227,7 +234,7 @@ export function ContactPageContent() {
                 icon={MapPin}
                 label={t("direct.addressLabel")}
                 value={t("direct.addressValue")}
-                href={t("direct.addressHref")}
+                href={MRFOX_MAP_LINK}
                 external
               />
             </ul>
@@ -293,7 +300,7 @@ export function ContactPageContent() {
             </h3>
             <p className="mt-2 text-sm text-[var(--vulpine-on-surface-variant)]">
               <a
-                href={t("office.addressHref")}
+                href={MRFOX_MAP_LINK}
                 target="_blank"
                 rel="noopener noreferrer"
                 className={cn(publicTheme.link, "hover:underline")}

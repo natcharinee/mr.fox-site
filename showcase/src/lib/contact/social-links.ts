@@ -12,7 +12,7 @@ export const MRFOX_SOCIAL_LINKS = [
   {
     id: "line",
     label: "LINE",
-    href: "https://line.me/R/ti/p/@mrfox.token",
+    href: "https://line.me/R/ti/p/@989ubhfy",
   },
   {
     id: "telegram",

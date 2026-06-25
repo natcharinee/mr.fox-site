@@ -291,12 +291,49 @@
       "hoursLabel": "Business hours",
       "hoursValue": "Mon–Fri 09:00–18:00",
       "addressLabel": "Address",
-      "addressValue": "1323/1 Srivara Road (Lat Phrao 94) Town in Town PhlabPhla Wangthonglang",
-      "addressHref": "https://www.google.com/maps/search/?api=1&query=1323%2F1+Srivara+Road+Town+in+Town+PhlabPhla+Wangthonglang+Bangkok"
+      "addressValue": "1323/1 Srivara Road (Lat Phrao 94) Town in Town PhlabPhla Wangthonglang"
     },
     "response": {
       "title": "Response time",
       "desc": "We typically reply within 2–3 business days. For urgent app issues, choose Support as the subject."
+    },
+    "guide": {
+      "eyebrow": "WHAT'S NEXT",
+      "title": "After you submit",
+      "stepsTitle": "What happens next",
+      "steps": [
+        {
+          "title": "Send your message",
+          "description": "Fill out the form and pick the subject that best matches your inquiry."
+        },
+        {
+          "title": "We receive it",
+          "description": "Your message reaches the Mr.FOX team and is logged for follow-up."
+        },
+        {
+          "title": "Routed to the right team",
+          "description": "We assign Business, Partnership, Support, or General based on your subject."
+        },
+        {
+          "title": "Reply by email",
+          "description": "Our team responds within 2–3 business days (Mon–Fri 09:00–18:00)."
+        }
+      ],
+      "faqTitle": "Frequently asked",
+      "faq": [
+        {
+          "question": "How long until I hear back?",
+          "answer": "Usually within 2–3 business days. For urgent app issues, choose Support as the subject or call 02-9575771 ext. 75 during business hours."
+        },
+        {
+          "question": "What's the fastest way to reach you?",
+          "answer": "Call or email support@mrfox.com during business hours, Mon–Fri 09:00–18:00. For app issues, select Support in the form."
+        },
+        {
+          "question": "What's the difference between Support and Business?",
+          "answer": "Support is for app usage, accounts, and existing services. Business Inquiry is for organizations or brands interested in using the Mr.FOX platform or consulting on new projects."
+        }
+      ]
     },
     "social": {
       "title": "Follow us"
@@ -306,8 +343,7 @@
       "title": "Office map",
       "address": "1323/1 Srivara Road (Lat Phrao 94) Town in Town PhlabPhla Wangthonglang",
       "iframeTitle": "Mr.FOX office on Google Maps",
-      "openLabel": "Open in Google Maps",
-      "openHref": "https://www.google.com/maps/search/?api=1&query=1323%2F1+Srivara+Road+Town+in+Town+PhlabPhla+Wangthonglang+Bangkok"
+      "openLabel": "Open in Google Maps"
     },
     "help": {
       "eyebrow": "HOW WE HELP",
@@ -336,7 +372,6 @@
       "eyebrow": "OFFICE",
       "company": "Mr.FOX Co., Ltd.",
       "address": "1323/1 Srivara Road (Lat Phrao 94) Town in Town PhlabPhla Wangthonglang",
-      "addressHref": "https://www.google.com/maps/search/?api=1&query=1323%2F1+Srivara+Road+Town+in+Town+PhlabPhla+Wangthonglang+Bangkok",
       "note": "Contact us by email, phone, or the message form during business hours."
     }
   },
