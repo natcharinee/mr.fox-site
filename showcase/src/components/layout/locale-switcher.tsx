@@ -28,7 +28,7 @@ export function LocaleSwitcher({ inverted = false }: { inverted?: boolean }) {
     <DropdownMenu>
       <DropdownMenuTrigger
         className={cn(
-          "inline-flex h-8 items-center gap-2 rounded-lg border px-2.5 text-sm font-medium outline-none transition-colors select-none",
+          "inline-flex h-8 items-center gap-2 rounded-xl border px-2.5 text-sm font-medium outline-none transition-colors select-none",
           inverted
             ? "border-white/15 bg-white/5 text-white hover:bg-white/10 data-popup-open:bg-white/10"
             : "border-border bg-background hover:bg-muted data-popup-open:bg-muted",

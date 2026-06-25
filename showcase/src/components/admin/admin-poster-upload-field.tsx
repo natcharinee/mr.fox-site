@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { useState } from "react";
 import { ImagePlus, X } from "lucide-react";
 import { FocalPointPicker } from "@/components/admin/focal-point-picker";
@@ -16,6 +15,7 @@ type AdminPosterUploadFieldProps = {
   name?: string;
   focusName?: string;
   label?: string;
+  usage?: string;
   hint?: string;
   className?: string;
   defaultValue?: string;
@@ -27,11 +27,12 @@ export function AdminPosterUploadField({
   name = "posterUrl",
   focusName = "posterFocus",
   label = "รูป Poster (หน้าแรก)",
+  usage,
   hint = "อัปโหลดรูปสำหรับส่วน Featured Applications บนหน้าแรก — แนะนำแนวตั้งอย่างน้อย 600×800 px",
   className,
   defaultValue = "",
   defaultFocus = DEFAULT_IMAGE_FOCUS,
-  previewClassName = "h-40 w-28",
+  previewClassName = "h-44 w-32 sm:h-48 sm:w-36",
 }: AdminPosterUploadFieldProps) {
   const [fileInputKey, setFileInputKey] = useState(0);
   const [posterUrl, setPosterUrl] = useState(defaultValue);
@@ -65,77 +66,74 @@ export function AdminPosterUploadField({
   }
 
   return (
-    <div className={cn("sm:col-span-2", className)}>
+    <div
+      className={cn(
+        "sm:col-span-2 rounded-xl border border-border bg-muted/15 p-4 sm:p-5",
+        className,
+      )}
+    >
       <input type="hidden" name={name} value={posterUrl} />
       <input type="hidden" name={focusName} value={posterFocus} />
 
-      <Label htmlFor={`${name}-file`}>{label}</Label>
-      <p className="mt-1 text-xs text-muted-foreground">{hint}</p>
-
-      <div className="mt-3 flex flex-col gap-4 lg:flex-row lg:items-start">
-        {posterUrl ? (
-          <div className="relative shrink-0">
-            <FocalPointPicker
-              imageUrl={posterUrl}
-              value={posterFocus}
-              onChange={setPosterFocus}
-              previewClassName={previewClassName}
-            />
-            <Button
-              type="button"
-              size="icon-sm"
-              variant="secondary"
-              className="absolute top-1.5 right-1.5 z-10 size-7 bg-background/90"
-              onClick={clearPoster}
-              aria-label="ลบรูป"
-            >
-              <X className="size-3.5" />
-            </Button>
-          </div>
-        ) : (
-          <div
-            className={cn(
-              "relative shrink-0 overflow-hidden rounded-xl border border-dashed border-input bg-muted/30",
-              previewClassName,
-            )}
-          >
-            <div className="flex h-full flex-col items-center justify-center gap-2 px-2 text-center text-xs text-muted-foreground">
-              <ImagePlus className="size-5 opacity-60" aria-hidden />
-              ยังไม่มีรูป
-            </div>
-          </div>
-        )}
-
-        <div className="flex flex-1 flex-col gap-2">
-          <Input
-            key={fileInputKey}
-            id={`${name}-file`}
-            type="file"
-            accept="image/jpeg,image/png,image/webp,image/gif"
-            disabled={uploading}
-            className="mt-0"
-            onChange={(e) => void handleFileChange(e.target.files?.[0] ?? null)}
-          />
-          <p className="text-xs text-muted-foreground">
-            {uploading
-              ? "กำลังอัปโหลด..."
-              : "รองรับ JPG, PNG, WebP, GIF สูงสุด 10MB"}
-          </p>
-          {posterUrl ? (
-            <div className="relative mt-1 hidden h-24 w-full overflow-hidden rounded-lg border bg-[var(--fox-charcoal)] sm:block">
-              <Image
-                src={posterUrl}
-                alt=""
-                fill
-                unoptimized
-                className="object-contain"
-                style={{ objectPosition: posterFocus }}
-                sizes="320px"
-              />
-            </div>
-          ) : null}
-        </div>
+      <div className="space-y-1">
+        <Label htmlFor={`${name}-file`} className="text-sm font-semibold">
+          {label}
+        </Label>
+        {usage ? (
+          <p className="text-xs font-medium text-[var(--fox-gold-dark)]">{usage}</p>
+        ) : null}
+        <p className="text-xs leading-relaxed text-muted-foreground">{hint}</p>
       </div>
+
+      <div className="mt-4 flex flex-col gap-2 sm:flex-row sm:items-center">
+        <Input
+          key={fileInputKey}
+          id={`${name}-file`}
+          type="file"
+          accept="image/jpeg,image/png,image/webp,image/gif"
+          disabled={uploading}
+          className="max-w-md bg-background"
+          onChange={(e) => void handleFileChange(e.target.files?.[0] ?? null)}
+        />
+        <p className="text-xs text-muted-foreground">
+          {uploading ? "กำลังอัปโหลด..." : "JPG, PNG, WebP, GIF · สูงสุด 10MB"}
+        </p>
+        {posterUrl ? (
+          <Button
+            type="button"
+            size="sm"
+            variant="outline"
+            className="shrink-0 sm:ml-auto"
+            onClick={clearPoster}
+          >
+            <X className="mr-1.5 size-3.5" aria-hidden />
+            ลบรูป
+          </Button>
+        ) : null}
+      </div>
+
+      {posterUrl ? (
+        <div className="mt-5 border-t border-border/80 pt-5">
+          <p className="mb-3 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+            ตัวอย่างบนหน้าบ้าน
+          </p>
+          <FocalPointPicker
+            imageUrl={posterUrl}
+            value={posterFocus}
+            onChange={setPosterFocus}
+            previewClassName={previewClassName}
+          />
+        </div>
+      ) : (
+        <div
+          className={cn(
+            "mt-4 flex items-center justify-center gap-3 rounded-xl border border-dashed border-input bg-background/60 px-4 py-10 text-center",
+          )}
+        >
+          <ImagePlus className="size-5 shrink-0 text-muted-foreground/60" aria-hidden />
+          <p className="text-sm text-muted-foreground">ยังไม่มีรูป — เลือกไฟล์ด้านบนเพื่ออัปโหลด</p>
+        </div>
+      )}
     </div>
   );
 }

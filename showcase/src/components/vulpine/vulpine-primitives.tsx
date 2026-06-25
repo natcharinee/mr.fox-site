@@ -3,17 +3,14 @@ import { cn } from "@/lib/utils";
 export function GlassCard({
   className,
   children,
-  hud = false,
 }: {
   className?: string;
   children: React.ReactNode;
-  hud?: boolean;
 }) {
   return (
     <div
       className={cn(
-        "rounded-lg border border-white/8 bg-[rgba(18,20,20,0.4)] shadow-[0_4px_30px_rgba(0,0,0,0.1)] backdrop-blur-2xl transition-all",
-        hud && "vulpine-hud-border",
+        "rounded-2xl border border-white/8 bg-[rgba(18,20,20,0.4)] shadow-[0_4px_30px_rgba(0,0,0,0.1)] backdrop-blur-2xl transition-all",
         className,
       )}
     >
@@ -76,7 +73,7 @@ export function VulpineEyebrow({
   return (
     <span
       className={cn(
-        "inline-block rounded-sm border border-[var(--vulpine-primary-container)]/30 bg-[var(--vulpine-primary-container)]/10 px-4 py-1 text-[var(--vulpine-primary-container)] shadow-[0_0_10px_rgba(255,184,0,0.2)] vulpine-label",
+        "inline-block rounded-lg border border-[var(--vulpine-primary-container)]/30 bg-[var(--vulpine-primary-container)]/10 px-4 py-1 text-[var(--vulpine-primary-container)] shadow-[0_0_10px_rgba(255,184,0,0.2)] vulpine-label",
         className,
       )}
     >

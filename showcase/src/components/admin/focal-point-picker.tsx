@@ -92,7 +92,7 @@ export function FocalPointPicker({
         </button>
       </div>
 
-      <div className="flex items-end gap-3">
+      <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
         <FramePreview
           label="ตาราง admin"
           imageUrl={imageUrl}
@@ -109,7 +109,7 @@ export function FocalPointPicker({
           label="หน้าแรก"
           imageUrl={imageUrl}
           focus={focus}
-          className="h-20 w-16 rounded-lg"
+          className="col-span-2 h-20 w-full max-w-[5.5rem] rounded-lg sm:col-span-1 sm:w-16"
         />
       </div>
     </div>

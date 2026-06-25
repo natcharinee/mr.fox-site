@@ -84,15 +84,15 @@ export default async function AdminApplicationsPage() {
               <Label htmlFor="description">คำอธิบาย</Label>
               <Textarea id="description" name="description" rows={2} className="mt-1" />
             </div>
-            <div className="sm:col-span-2 grid gap-4 sm:grid-cols-2">
-              <AdminPosterUploadField className="sm:col-span-1" />
+            <div className="sm:col-span-2 space-y-4">
+              <AdminPosterUploadField usage="แสดงบนหน้าแรก · ส่วน Featured Applications" />
               <AdminPosterUploadField
                 name="featuredPosterUrl"
                 focusName="featuredPosterFocus"
                 label="รูป Featured (หน้า Applications)"
+                usage="แสดงบนหน้า Applications · รายการและรายละเอียดแอป"
                 hint="อัปโหลดรูปสำหรับหน้า Applications — แนะนำแนวนอนอย่างน้อย 1200×600 px"
-                className="sm:col-span-1"
-                previewClassName="h-28 w-full max-w-[12rem]"
+                previewClassName="h-32 w-full max-w-sm"
               />
             </div>
             <div>

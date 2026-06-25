@@ -39,9 +39,8 @@ export function FeaturedAppCard({
 
   return (
     <GlassCard
-      hud
       className={cn(
-        "group overflow-hidden rounded-lg border-white/10 vulpine-glow-hover",
+        "group overflow-hidden rounded-2xl border-white/10 vulpine-glow-hover",
         className,
       )}
     >
@@ -74,14 +73,14 @@ export function FeaturedAppCard({
           </div>
         )}
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-[var(--vulpine-background)] to-transparent opacity-90" />
-        <span className="vulpine-label absolute top-4 right-4 rounded-sm bg-[var(--vulpine-primary)] px-2 py-0.5 text-[10px] text-[var(--vulpine-on-primary)] shadow-[0_0_10px_rgba(255,184,0,0.5)]">
+        <span className="vulpine-label absolute top-4 right-4 rounded-lg bg-[var(--vulpine-primary)] px-2 py-0.5 text-[10px] text-[var(--vulpine-on-primary)] shadow-[0_0_10px_rgba(255,184,0,0.5)]">
           {featuredLabel}
         </span>
       </div>
 
       <div className="relative p-6">
         {app.categoryName ? (
-          <span className="vulpine-label mb-3 inline-block rounded-sm border border-white/20 px-2 py-0.5 text-[9px] text-[var(--vulpine-on-surface-variant)]">
+          <span className="vulpine-label mb-3 inline-block rounded-lg border border-white/20 px-2 py-0.5 text-[9px] text-[var(--vulpine-on-surface-variant)]">
             CAT:{app.categoryName.replace(/\s+/g, "_").toUpperCase()}
           </span>
         ) : null}
@@ -89,7 +88,7 @@ export function FeaturedAppCard({
         <div className="flex items-start gap-3">
           <div
             className={cn(
-              "relative size-10 shrink-0 overflow-hidden rounded-sm border border-white/15",
+              "relative size-10 shrink-0 overflow-hidden rounded-xl border border-white/15",
               isCompanyLogo(logo) ? "bg-[var(--vulpine-primary-container)]/20" : "bg-white/5",
             )}
           >

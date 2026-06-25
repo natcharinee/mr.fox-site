@@ -107,8 +107,7 @@ export function Footer() {
           <div className="lg:col-span-3">
             <div
               className={cn(
-                "rounded-lg border border-[var(--vulpine-primary-container)]/25 bg-gradient-to-br from-[var(--vulpine-primary-container)]/10 to-transparent p-5 backdrop-blur-sm",
-                "vulpine-hud-border",
+                "rounded-2xl border border-[var(--vulpine-primary-container)]/25 bg-gradient-to-br from-[var(--vulpine-primary-container)]/10 to-transparent p-5 backdrop-blur-sm",
               )}
             >
               <p className="vulpine-label text-[10px] text-[var(--vulpine-primary-container)]">
@@ -125,7 +124,7 @@ export function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className={cn(
-                  "mt-4 inline-flex w-full items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-sm font-bold",
+                  "mt-4 inline-flex w-full items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-bold",
                   publicTheme.submitButton,
                 )}
               >

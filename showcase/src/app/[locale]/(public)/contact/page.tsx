@@ -1,7 +1,7 @@
 import { getTranslations } from "next-intl/server";
+import { ContactPageContent } from "@/components/contact/contact-page-content";
 import { PageHero } from "@/components/layout/page-hero";
 import { PageShell } from "@/components/layout/page-shell";
-import { ContactForm } from "./contact-form";
 import type { Locale } from "@/i18n/routing";
 import { buildMetadata } from "@/lib/metadata";
 
@@ -26,7 +26,7 @@ export default async function ContactPage() {
   return (
     <PageShell>
       <PageHero title={t("title")} description={t("subtitle")} />
-      <ContactForm />
+      <ContactPageContent />
     </PageShell>
   );
 }

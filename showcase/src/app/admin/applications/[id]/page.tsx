@@ -30,7 +30,7 @@ export default async function AdminApplicationEditPage({ params }: Props) {
   const androidUrl = item.links.find((link) => link.type === "android")?.url ?? "";
 
   return (
-    <div className="mx-auto max-w-2xl space-y-6">
+    <div className="mx-auto max-w-3xl space-y-6">
       <div>
         <h2 className="text-2xl font-bold">แก้ไขแอป</h2>
         <p className="text-muted-foreground">{item.slug}</p>
@@ -79,21 +79,21 @@ export default async function AdminApplicationEditPage({ params }: Props) {
             className="mt-1"
           />
         </div>
-        <div className="sm:col-span-2 grid gap-4 sm:grid-cols-2">
+        <div className="sm:col-span-2 space-y-4">
           <AdminPosterUploadField
             defaultValue={item.posterUrl ?? ""}
             defaultFocus={item.posterFocus ?? undefined}
-            className="sm:col-span-1"
+            usage="แสดงบนหน้าแรก · ส่วน Featured Applications"
           />
           <AdminPosterUploadField
             name="featuredPosterUrl"
             focusName="featuredPosterFocus"
             label="รูป Featured (หน้า Applications)"
+            usage="แสดงบนหน้า Applications · รายการและรายละเอียดแอป"
             hint="อัปโหลดรูปสำหรับหน้า Applications — แนะนำแนวนอนอย่างน้อย 1200×600 px"
             defaultValue={item.featuredPosterUrl ?? ""}
             defaultFocus={item.featuredPosterFocus ?? undefined}
-            className="sm:col-span-1"
-            previewClassName="h-28 w-full max-w-[12rem]"
+            previewClassName="h-32 w-full max-w-sm"
           />
         </div>
         <div>

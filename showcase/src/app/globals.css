@@ -184,35 +184,6 @@
     background: radial-gradient(circle at 50% 0%, transparent 0%, var(--vulpine-background) 72%);
   }
 
-  .vulpine-hud-border {
-    position: relative;
-    border: 1px solid rgba(255, 184, 0, 0.2);
-  }
-
-  .vulpine-hud-border::before,
-  .vulpine-hud-border::after {
-    content: "";
-    position: absolute;
-    width: 8px;
-    height: 8px;
-    border: 1px solid var(--vulpine-primary-container);
-    pointer-events: none;
-  }
-
-  .vulpine-hud-border::before {
-    top: -1px;
-    left: -1px;
-    border-right: 0;
-    border-bottom: 0;
-  }
-
-  .vulpine-hud-border::after {
-    right: -1px;
-    bottom: -1px;
-    border-top: 0;
-    border-left: 0;
-  }
-
   .vulpine-glow-hover:hover {
     box-shadow: 0 0 15px rgba(255, 184, 0, 0.15);
     border-color: rgba(255, 184, 0, 0.3);
@@ -250,6 +221,175 @@
     100% {
       top: 100%;
       opacity: 0;
+    }
+  }
+
+  @keyframes feature-bob {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-5px);
+    }
+  }
+
+  @keyframes feature-wiggle {
+    0%,
+    100% {
+      transform: rotate(0deg);
+    }
+    25% {
+      transform: rotate(-7deg);
+    }
+    75% {
+      transform: rotate(7deg);
+    }
+  }
+
+  @keyframes feature-float {
+    0%,
+    100% {
+      transform: translateY(0) scale(1);
+    }
+    50% {
+      transform: translateY(-4px) scale(1.04);
+    }
+  }
+
+  @keyframes feature-ring {
+    0%,
+    100% {
+      transform: rotate(-10deg);
+    }
+    50% {
+      transform: rotate(10deg);
+    }
+  }
+
+  @keyframes feature-pulse-scale {
+    0%,
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    50% {
+      transform: scale(1.08);
+      opacity: 0.88;
+    }
+  }
+
+  @keyframes feature-broadcast {
+    0%,
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    50% {
+      transform: scale(1.06);
+      opacity: 0.82;
+    }
+  }
+
+  @keyframes feature-fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(14px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes feature-shimmer {
+    0% {
+      transform: translateX(-120%) skewX(-12deg);
+    }
+    100% {
+      transform: translateX(220%) skewX(-12deg);
+    }
+  }
+
+  .feature-card-enter {
+    animation: feature-fade-up 0.55s ease-out both;
+  }
+
+  .feature-icon-idle-vote {
+    animation: feature-bob 2.6s ease-in-out infinite;
+  }
+
+  .feature-icon-idle-gift {
+    animation: feature-wiggle 3.2s ease-in-out infinite;
+  }
+
+  .feature-icon-idle-chat {
+    animation: feature-float 2.8s ease-in-out infinite;
+  }
+
+  .feature-icon-idle-voice {
+    animation: feature-ring 2.4s ease-in-out infinite;
+  }
+
+  .feature-icon-idle-video {
+    animation: feature-pulse-scale 2.5s ease-in-out infinite;
+  }
+
+  .feature-icon-idle-live {
+    animation: feature-broadcast 1.8s ease-in-out infinite;
+  }
+
+  .feature-icon-wrap {
+    position: relative;
+    overflow: hidden;
+    transition:
+      transform 0.35s cubic-bezier(0.34, 1.4, 0.64, 1),
+      box-shadow 0.35s ease,
+      border-color 0.35s ease;
+  }
+
+  .feature-icon-wrap::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      105deg,
+      transparent 40%,
+      rgba(255, 184, 0, 0.22) 50%,
+      transparent 60%
+    );
+    transform: translateX(-120%) skewX(-12deg);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .group:hover .feature-icon-wrap::after {
+    opacity: 1;
+    animation: feature-shimmer 0.9s ease-out;
+  }
+
+  .group:hover .feature-icon-idle-vote,
+  .group:hover .feature-icon-idle-gift,
+  .group:hover .feature-icon-idle-chat,
+  .group:hover .feature-icon-idle-voice,
+  .group:hover .feature-icon-idle-video,
+  .group:hover .feature-icon-idle-live {
+    animation-play-state: paused;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .feature-card-enter,
+    .feature-icon-idle-vote,
+    .feature-icon-idle-gift,
+    .feature-icon-idle-chat,
+    .feature-icon-idle-voice,
+    .feature-icon-idle-video,
+    .feature-icon-idle-live {
+      animation: none;
+    }
+
+    .group:hover .feature-icon-wrap::after {
+      animation: none;
     }
   }
 }

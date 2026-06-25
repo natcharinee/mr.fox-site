@@ -237,6 +237,34 @@
   "contact": {
     "title": "Contact",
     "subtitle": "Contact Mr.FOX — Business Inquiry · Partnership · Support",
+    "pathways": {
+      "eyebrow": "GET IN TOUCH",
+      "title": "Contact us",
+      "subtitle": "Pick a contact type so we route you to the right team — or fill out the form below."
+    },
+    "pathwayItems": [
+      {
+        "id": "business",
+        "title": "Business Inquiry",
+        "description": "Interested in Mr.FOX for your organization, brand, or project"
+      },
+      {
+        "id": "partnership",
+        "title": "Partnership",
+        "description": "Co-develop the ecosystem with Mr.FOX — platforms, content, or technology"
+      },
+      {
+        "id": "support",
+        "title": "Support",
+        "description": "App issues, accounts, or general questions about our services"
+      },
+      {
+        "id": "general",
+        "title": "General",
+        "description": "Feedback, press, or anything that doesn't fit the categories above"
+      }
+    ],
+    "formEyebrow": "MESSAGE US",
     "formTitle": "Send a message",
     "formDesc": "Fill out the form below. Our team will respond within 2–3 business days.",
     "success": "Thank you! We received your message.",
@@ -250,12 +278,67 @@
     "subjectGeneral": "General",
     "subjectBusiness": "Business Inquiry",
     "subjectPartnership": "Partnership",
-    "businessInquiry": "Business Inquiry",
-    "businessInquiryDesc": "Interested in Mr.FOX platform for your organization",
-    "partnership": "Partnership",
-    "partnershipDesc": "Co-develop the ecosystem with Mr.FOX",
-    "social": "Social",
-    "socialDesc": "Facebook · Instagram · TikTok · YouTube · LinkedIn"
+    "subjectSupport": "Support",
+    "direct": {
+      "eyebrow": "DIRECT LINE",
+      "title": "Direct contact",
+      "emailLabel": "Email",
+      "emailValue": "support@mrfox.com",
+      "emailHref": "mailto:support@mrfox.com",
+      "phoneLabel": "Phone",
+      "phoneValue": "02-9575771 ext. 75",
+      "phoneHref": "tel:+6629575771;ext=75",
+      "hoursLabel": "Business hours",
+      "hoursValue": "Mon–Fri 09:00–18:00",
+      "addressLabel": "Address",
+      "addressValue": "1323/1 Srivara Road (Lat Phrao 94) Town in Town PhlabPhla Wangthonglang",
+      "addressHref": "https://www.google.com/maps/search/?api=1&query=1323%2F1+Srivara+Road+Town+in+Town+PhlabPhla+Wangthonglang+Bangkok"
+    },
+    "response": {
+      "title": "Response time",
+      "desc": "We typically reply within 2–3 business days. For urgent app issues, choose Support as the subject."
+    },
+    "social": {
+      "title": "Follow us"
+    },
+    "map": {
+      "eyebrow": "LOCATION",
+      "title": "Office map",
+      "address": "1323/1 Srivara Road (Lat Phrao 94) Town in Town PhlabPhla Wangthonglang",
+      "iframeTitle": "Mr.FOX office on Google Maps",
+      "openLabel": "Open in Google Maps",
+      "openHref": "https://www.google.com/maps/search/?api=1&query=1323%2F1+Srivara+Road+Town+in+Town+PhlabPhla+Wangthonglang+Bangkok"
+    },
+    "help": {
+      "eyebrow": "HOW WE HELP",
+      "title": "What we can help with",
+      "subtitle": "Examples of topics the Mr.FOX team handles — details will be updated with real information",
+      "items": [
+        {
+          "title": "Platforms for organizations",
+          "description": "Consulting on Mr.FOX for brands, events, or communities — from structure to launch"
+        },
+        {
+          "title": "Business partnerships",
+          "description": "Technology, content, or marketing partners interested in co-developing the ecosystem"
+        },
+        {
+          "title": "User support",
+          "description": "App usage, accounts, payments, or features across the platform"
+        },
+        {
+          "title": "Press & company info",
+          "description": "Interviews, company information, or media inquiries — use General as the subject"
+        }
+      ]
+    },
+    "office": {
+      "eyebrow": "OFFICE",
+      "company": "Mr.FOX Co., Ltd.",
+      "address": "1323/1 Srivara Road (Lat Phrao 94) Town in Town PhlabPhla Wangthonglang",
+      "addressHref": "https://www.google.com/maps/search/?api=1&query=1323%2F1+Srivara+Road+Town+in+Town+PhlabPhla+Wangthonglang+Bangkok",
+      "note": "Contact us by email, phone, or the message form during business hours."
+    }
   },
   "search": {
     "title": "Search",

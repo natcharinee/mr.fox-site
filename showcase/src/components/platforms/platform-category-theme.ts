@@ -22,7 +22,6 @@ export type CategoryTheme = {
   pill: string;
   cardHover: string;
   accent: string;
-  border: string;
 };
 
 export const CATEGORY_THEME: Record<string, CategoryTheme> = {
@@ -36,7 +35,6 @@ export const CATEGORY_THEME: Record<string, CategoryTheme> = {
     cardHover:
       "hover:border-[var(--vulpine-primary-container)]/45 hover:shadow-[var(--vulpine-primary-container)]/10",
     accent: "text-[var(--vulpine-primary)]",
-    border: "border-l-[var(--vulpine-primary-container)]",
   },
   community: {
     icon: Users,
@@ -46,7 +44,6 @@ export const CATEGORY_THEME: Record<string, CategoryTheme> = {
     pill: "border-teal-500/40 bg-teal-500/15 text-teal-300",
     cardHover: "hover:border-teal-400/50 hover:shadow-teal-500/10",
     accent: "text-teal-300",
-    border: "border-l-teal-400",
   },
   company: {
     icon: Building2,
@@ -56,7 +53,6 @@ export const CATEGORY_THEME: Record<string, CategoryTheme> = {
     pill: "border-slate-400/40 bg-slate-400/15 text-slate-300",
     cardHover: "hover:border-slate-300/50 hover:shadow-slate-400/10",
     accent: "text-slate-300",
-    border: "border-l-slate-400",
   },
   contest: {
     icon: Trophy,
@@ -66,7 +62,6 @@ export const CATEGORY_THEME: Record<string, CategoryTheme> = {
     pill: "border-rose-500/40 bg-rose-500/15 text-rose-300",
     cardHover: "hover:border-rose-400/50 hover:shadow-rose-500/10",
     accent: "text-rose-300",
-    border: "border-l-rose-400",
   },
   exhibition: {
     icon: CalendarRange,
@@ -76,6 +71,5 @@ export const CATEGORY_THEME: Record<string, CategoryTheme> = {
     pill: "border-violet-500/40 bg-violet-500/15 text-violet-300",
     cardHover: "hover:border-violet-400/50 hover:shadow-violet-500/10",
     accent: "text-violet-300",
-    border: "border-l-violet-400",
   },
 };

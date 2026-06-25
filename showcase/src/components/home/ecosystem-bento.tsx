@@ -36,44 +36,43 @@ const COLUMN_LAYOUT: { slugs: readonly string[]; rowCount: 2 | 3 }[] = [
   { slugs: ["community", "contest", "exhibition"], rowCount: 3 },
 ];
 
+const ITEM_HOVER =
+  "hover:border-[var(--vulpine-primary-container)]/30 hover:bg-[var(--vulpine-primary-container)]/6";
+const CARD_GLOW = "from-[var(--vulpine-primary-container)]/8";
+
 const DARK_THEME: Record<
   string,
-  { card: string; iconWrap: string; accent: string; itemHover: string; glow: string }
+  { iconWrap: string; accent: string; itemHover: string; glow: string }
 > = {
   creator: {
-    card: "border-[var(--fox-gold)]/25",
     iconWrap: "bg-[var(--fox-gold)]/15 text-[var(--fox-gold)]",
     accent: "text-[var(--fox-gold)]",
-    itemHover: "hover:border-[var(--fox-gold)]/40 hover:bg-[var(--fox-gold)]/8",
-    glow: "from-[var(--fox-gold)]/10",
+    itemHover: ITEM_HOVER,
+    glow: CARD_GLOW,
   },
   community: {
-    card: "border-teal-500/25",
-    iconWrap: "bg-teal-500/15 text-teal-300",
-    accent: "text-teal-300",
-    itemHover: "hover:border-teal-500/40 hover:bg-teal-500/8",
-    glow: "from-teal-500/10",
+    iconWrap: "bg-[var(--vulpine-primary-container)]/12 text-[var(--vulpine-primary-container)]",
+    accent: "text-[var(--vulpine-primary-container)]",
+    itemHover: ITEM_HOVER,
+    glow: CARD_GLOW,
   },
   company: {
-    card: "border-slate-400/25",
-    iconWrap: "bg-slate-400/15 text-slate-200",
-    accent: "text-slate-200",
-    itemHover: "hover:border-slate-400/40 hover:bg-white/6",
-    glow: "from-slate-400/10",
+    iconWrap: "bg-[var(--vulpine-primary-container)]/12 text-[var(--vulpine-primary-container)]",
+    accent: "text-[var(--vulpine-primary-container)]",
+    itemHover: ITEM_HOVER,
+    glow: CARD_GLOW,
   },
   contest: {
-    card: "border-rose-500/25",
-    iconWrap: "bg-rose-500/15 text-rose-300",
-    accent: "text-rose-300",
-    itemHover: "hover:border-rose-500/40 hover:bg-rose-500/8",
-    glow: "from-rose-500/10",
+    iconWrap: "bg-[var(--vulpine-primary-container)]/12 text-[var(--vulpine-primary-container)]",
+    accent: "text-[var(--vulpine-primary-container)]",
+    itemHover: ITEM_HOVER,
+    glow: CARD_GLOW,
   },
   exhibition: {
-    card: "border-violet-500/25",
-    iconWrap: "bg-violet-500/15 text-violet-300",
-    accent: "text-violet-300",
-    itemHover: "hover:border-violet-500/40 hover:bg-violet-500/8",
-    glow: "from-violet-500/10",
+    iconWrap: "bg-[var(--vulpine-primary-container)]/12 text-[var(--vulpine-primary-container)]",
+    accent: "text-[var(--vulpine-primary-container)]",
+    itemHover: ITEM_HOVER,
+    glow: CARD_GLOW,
   },
 };
 
@@ -101,8 +100,7 @@ function CategoryCard({
   return (
     <article
       className={cn(
-        "vulpine-hud-border vulpine-glow-hover relative flex h-full min-h-0 flex-col overflow-hidden rounded-xl border border-white/10 bg-[rgba(18,20,20,0.55)] shadow-[0_8px_40px_rgba(0,0,0,0.25)] backdrop-blur-2xl transition-all",
-        dark.card,
+        "vulpine-glow-hover relative flex h-full min-h-0 flex-col overflow-hidden rounded-2xl border border-white/10 bg-[rgba(18,20,20,0.55)] shadow-[0_8px_40px_rgba(0,0,0,0.25)] backdrop-blur-2xl transition-all",
       )}
     >
       <div
@@ -132,7 +130,7 @@ function CategoryCard({
               </h3>
               <span
                 className={cn(
-                  "vulpine-label rounded-sm border px-3 py-1.5 text-[11px] tabular-nums sm:text-xs",
+                  "vulpine-label rounded-lg border px-3 py-1.5 text-[11px] tabular-nums sm:text-xs",
                   dark.iconWrap,
                 )}
               >
@@ -161,10 +159,8 @@ function CategoryCard({
               <Link
                 href={`/platforms/${pt.slug}`}
                 className={cn(
-                  "group flex h-full flex-col rounded-xl border border-white/10 bg-white/[0.04] p-4 transition-all sm:p-5",
+                  "group flex h-full flex-col rounded-2xl border border-white/10 bg-white/[0.04] p-4 transition-all sm:p-5",
                   dark.itemHover,
-                  theme?.border && "border-l-2",
-                  theme?.border,
                 )}
               >
                 <div className="flex items-start justify-between gap-4">
@@ -301,7 +297,9 @@ export function EcosystemBento({
                 >
                   <Icon className="size-4 shrink-0" aria-hidden />
                   {category.name}
-                  <span className="tabular-nums opacity-80">{count}</span>
+                  <span className="rounded-full bg-[var(--vulpine-primary-container)] px-1.5 text-xs font-bold tabular-nums text-[var(--vulpine-on-primary)]">
+                    {count}
+                  </span>
                 </span>
               );
             })}

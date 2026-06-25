@@ -237,6 +237,34 @@
   "contact": {
     "title": "Contact",
     "subtitle": "ติดต่อ Mr.FOX — Business Inquiry · Partnership · Support",
+    "pathways": {
+      "eyebrow": "GET IN TOUCH",
+      "title": "ติดต่อเรา",
+      "subtitle": "เลือกประเภทการติดต่อเพื่อให้ทีมงานส่งต่อไปยังคนที่เหมาะสม — หรือกรอกแบบฟอร์มด้านล่างได้เลย"
+    },
+    "pathwayItems": [
+      {
+        "id": "business",
+        "title": "Business Inquiry",
+        "description": "สนใจใช้แพลตฟอร์ม Mr.FOX สำหรับองค์กร แบรนด์ หรือโปรเจกต์"
+      },
+      {
+        "id": "partnership",
+        "title": "Partnership",
+        "description": "ร่วมพัฒนา ecosystem กับ Mr.FOX — แพลตฟอร์ม คอนเทนต์ หรือเทคโนโลยี"
+      },
+      {
+        "id": "support",
+        "title": "Support",
+        "description": "ปัญหาการใช้งานแอป บัญชี หรือคำถามทั่วไปเกี่ยวกับบริการ"
+      },
+      {
+        "id": "general",
+        "title": "General",
+        "description": "ข้อเสนอแนะ สื่อมวลชน หรือหัวข้ออื่นๆ ที่ไม่เข้าหมวดข้างต้น"
+      }
+    ],
+    "formEyebrow": "MESSAGE US",
     "formTitle": "ส่งข้อความ",
     "formDesc": "กรอกแบบฟอร์มด้านล่าง ทีมงานจะติดต่อกลับภายใน 2–3 วันทำการ",
     "success": "ขอบคุณ! เราได้รับข้อความของคุณแล้ว",
@@ -250,12 +278,67 @@
     "subjectGeneral": "ทั่วไป",
     "subjectBusiness": "Business Inquiry",
     "subjectPartnership": "Partnership",
-    "businessInquiry": "Business Inquiry",
-    "businessInquiryDesc": "สนใจใช้แพลตฟอร์ม Mr.FOX สำหรับองค์กร",
-    "partnership": "Partnership",
-    "partnershipDesc": "ร่วมพัฒนา ecosystem กับ Mr.FOX",
-    "social": "Social",
-    "socialDesc": "Facebook · Instagram · TikTok · YouTube · LinkedIn"
+    "subjectSupport": "Support",
+    "direct": {
+      "eyebrow": "DIRECT LINE",
+      "title": "ช่องทางติดต่อโดยตรง",
+      "emailLabel": "อีเมล",
+      "emailValue": "support@mrfox.com",
+      "emailHref": "mailto:support@mrfox.com",
+      "phoneLabel": "โทรศัพท์",
+      "phoneValue": "02-9575771 ต่อ 75",
+      "phoneHref": "tel:+6629575771;ext=75",
+      "hoursLabel": "เวลาทำการ",
+      "hoursValue": "จันทร์–ศุกร์ 09:00–18:00 น.",
+      "addressLabel": "ที่อยู่",
+      "addressValue": "1323/1 ถนนศรีวรา (ลาดพร้าว 94) ทาวน์อินทาวน์ พลับพลา เขตวังทองหลาง กรุงเทพฯ",
+      "addressHref": "https://www.google.com/maps/search/?api=1&query=1323%2F1+Srivara+Road+Town+in+Town+PhlabPhla+Wangthonglang+Bangkok"
+    },
+    "response": {
+      "title": "เวลาตอบกลับ",
+      "desc": "ทีมงานจะตอบกลับภายใน 2–3 วันทำการ สำหรับเรื่องด่วนเกี่ยวกับการใช้งานแอป แนะนำเลือกหัวข้อ Support"
+    },
+    "social": {
+      "title": "ติดตามเรา"
+    },
+    "map": {
+      "eyebrow": "LOCATION",
+      "title": "แผนที่สำนักงาน",
+      "address": "1323/1 ถนนศรีวรา (ลาดพร้าว 94) ทาวน์อินทาวน์ พลับพลา เขตวังทองหลาง กรุงเทพฯ",
+      "iframeTitle": "แผนที่สำนักงาน Mr.FOX",
+      "openLabel": "เปิดใน Google Maps",
+      "openHref": "https://www.google.com/maps/search/?api=1&query=1323%2F1+Srivara+Road+Town+in+Town+PhlabPhla+Wangthonglang+Bangkok"
+    },
+    "help": {
+      "eyebrow": "HOW WE HELP",
+      "title": "เราช่วยเรื่องอะไรได้บ้าง",
+      "subtitle": "ตัวอย่างหัวข้อที่ทีม Mr.FOX พร้อมช่วยเหลือ — รายละเอียดจะอัปเดตตามข้อมูลจริง",
+      "items": [
+        {
+          "title": "แพลตฟอร์มสำหรับองค์กร",
+          "description": "ปรึกษาการใช้งาน Mr.FOX สำหรับแบรนด์ อีเวนต์ หรือชุมชน — ตั้งแต่โครงสร้างจนถึงการเปิดตัว"
+        },
+        {
+          "title": "ความร่วมมือทางธุรกิจ",
+          "description": "พันธมิตรด้านเทคโนโลยี คอนเทนต์ หรือการตลาดที่สนใจร่วมพัฒนา ecosystem"
+        },
+        {
+          "title": "การสนับสนุนผู้ใช้",
+          "description": "ปัญหาการใช้งานแอป บัญชี การชำระเงิน หรือฟีเจอร์ต่างๆ ในแพลตฟอร์ม"
+        },
+        {
+          "title": "สื่อและข้อมูลบริษัท",
+          "description": "ขอสัมภาษณ์ ข้อมูลบริษัท หรือสื่อประชาสัมพันธ์ — ติดต่อผ่านหัวข้อ General"
+        }
+      ]
+    },
+    "office": {
+      "eyebrow": "OFFICE",
+      "company": "บริษัท มิสเตอร์ ฟ็อกซ์ จำกัด",
+      "address": "1323/1 ถนนศรีวรา (ลาดพร้าว 94) ทาวน์อินทาวน์ พลับพลา เขตวังทองหลาง กรุงเทพฯ",
+      "addressHref": "https://www.google.com/maps/search/?api=1&query=1323%2F1+Srivara+Road+Town+in+Town+PhlabPhla+Wangthonglang+Bangkok",
+      "note": "ติดต่อผ่านอีเมล โทรศัพท์ หรือแบบฟอร์มส่งข้อความได้ในวันและเวลาทำการ"
+    }
   },
   "search": {
     "title": "ค้นหา",

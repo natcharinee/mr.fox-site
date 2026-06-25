@@ -81,7 +81,7 @@ export function Header({ variant = "brand" }: HeaderProps) {
             rel="noopener noreferrer"
             className={cn(
               buttonVariants({ size: "sm" }),
-              "vulpine-label vulpine-btn-glow rounded-lg",
+              "vulpine-label vulpine-btn-glow rounded-xl",
               isBrand &&
                 "bg-[var(--vulpine-primary-container)] text-[var(--vulpine-on-primary)] hover:brightness-110",
             )}

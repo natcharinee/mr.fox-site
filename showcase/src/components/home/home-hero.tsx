@@ -85,7 +85,7 @@ export function HomeHero({
           <LinkButton
             href="/platforms"
             size="lg"
-            className="vulpine-label vulpine-btn-glow rounded-lg bg-[var(--vulpine-primary-container)] text-[var(--vulpine-on-primary)] hover:brightness-110"
+            className="vulpine-label vulpine-btn-glow rounded-xl bg-[var(--vulpine-primary-container)] text-[var(--vulpine-on-primary)] hover:brightness-110"
           >
             {explorePlatforms}
             <ArrowRight className="ml-2 size-4" />
@@ -96,7 +96,7 @@ export function HomeHero({
             rel="noopener noreferrer"
             className={cn(
               buttonVariants({ size: "lg", variant: "outline" }),
-              "vulpine-label rounded-lg border-white/10 bg-white/5 text-[var(--vulpine-on-surface)] hover:bg-white/10",
+              "vulpine-label rounded-xl border-white/10 bg-white/5 text-[var(--vulpine-on-surface)] hover:bg-white/10",
             )}
           >
             <Download className="mr-2 size-4" />

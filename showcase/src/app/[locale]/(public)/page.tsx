@@ -177,7 +177,7 @@ export default async function HomePage({ params }: Props) {
             {localizedNews.map((item) => (
               <Link key={item.slug} href={`/news/${item.slug}`} className="group block">
                 <article>
-                  <GlassCard className="mb-6 overflow-hidden rounded-sm border-white/10 p-0">
+                  <GlassCard className="mb-6 overflow-hidden border-white/10 p-0">
                     <NewsMedia
                       thumbnailUrl={item.thumbnailUrl}
                       title={item.title}
@@ -198,7 +198,7 @@ export default async function HomePage({ params }: Props) {
       </section>
 
       <section className="px-4 py-16 md:px-16 md:pb-24">
-        <GlassCard hud className="vulpine-hud-border mx-auto max-w-4xl border-[var(--vulpine-primary-container)]/30 p-10 text-center md:p-12">
+        <GlassCard className="mx-auto max-w-4xl border-[var(--vulpine-primary-container)]/30 p-10 text-center md:p-12">
           <span className="vulpine-label mb-4 inline-block text-[var(--vulpine-primary-container)]">
             INITIALIZE_CONNECTION &gt;&gt;&gt;
           </span>
@@ -211,14 +211,14 @@ export default async function HomePage({ params }: Props) {
           <div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
             <LinkButton
               href="/contact"
-              className="vulpine-label vulpine-btn-glow rounded-sm bg-[var(--vulpine-primary-container)] px-10 py-4 font-black text-[var(--vulpine-on-primary)] hover:brightness-110"
+              className="vulpine-label vulpine-btn-glow rounded-xl bg-[var(--vulpine-primary-container)] px-10 py-4 font-black text-[var(--vulpine-on-primary)] hover:brightness-110"
             >
               Contact
             </LinkButton>
             <LinkButton
               href="/apps"
               variant="outline"
-              className="vulpine-label rounded-sm border-white/20 bg-white/5 px-10 py-4 text-[var(--vulpine-on-surface)] hover:bg-white/10"
+              className="vulpine-label rounded-xl border-white/20 bg-white/5 px-10 py-4 text-[var(--vulpine-on-surface)] hover:bg-white/10"
             >
               {t("viewAll")} Apps
             </LinkButton>

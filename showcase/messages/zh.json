@@ -237,6 +237,34 @@
   "contact": {
     "title": "联系",
     "subtitle": "联系 Mr.FOX — 商务咨询 · 合作 · 支持",
+    "pathways": {
+      "eyebrow": "GET IN TOUCH",
+      "title": "联系我们",
+      "subtitle": "选择联系类型以便我们转给合适的团队 — 或直接填写下方表单。"
+    },
+    "pathwayItems": [
+      {
+        "id": "business",
+        "title": "商务咨询",
+        "description": "有兴趣为组织、品牌或项目使用 Mr.FOX 平台"
+      },
+      {
+        "id": "partnership",
+        "title": "合作",
+        "description": "与 Mr.FOX 共同开发生态系统 — 平台、内容或技术"
+      },
+      {
+        "id": "support",
+        "title": "支持",
+        "description": "应用问题、账户或有关服务的一般问题"
+      },
+      {
+        "id": "general",
+        "title": "一般",
+        "description": "反馈、媒体或上述类别以外的其他话题"
+      }
+    ],
+    "formEyebrow": "MESSAGE US",
     "formTitle": "发送消息",
     "formDesc": "填写下方表单，团队将在 2–3 个工作日内回复。",
     "success": "谢谢！我们已收到您的消息。",
@@ -250,12 +278,67 @@
     "subjectGeneral": "一般",
     "subjectBusiness": "商务咨询",
     "subjectPartnership": "合作",
-    "businessInquiry": "商务咨询",
-    "businessInquiryDesc": "有兴趣为组织使用 Mr.FOX 平台",
-    "partnership": "合作",
-    "partnershipDesc": "与 Mr.FOX 共同开发生态系统",
-    "social": "社交媒体",
-    "socialDesc": "Facebook · Instagram · TikTok · YouTube · LinkedIn"
+    "subjectSupport": "支持",
+    "direct": {
+      "eyebrow": "DIRECT LINE",
+      "title": "直接联系",
+      "emailLabel": "邮箱",
+      "emailValue": "support@mrfox.com",
+      "emailHref": "mailto:support@mrfox.com",
+      "phoneLabel": "电话",
+      "phoneValue": "02-9575771 转分机 75",
+      "phoneHref": "tel:+6629575771;ext=75",
+      "hoursLabel": "营业时间",
+      "hoursValue": "周一至周五 09:00–18:00",
+      "addressLabel": "地址",
+      "addressValue": "1323/1 Srivara Road (Lat Phrao 94) Town in Town PhlabPhla Wangthonglang",
+      "addressHref": "https://www.google.com/maps/search/?api=1&query=1323%2F1+Srivara+Road+Town+in+Town+PhlabPhla+Wangthonglang+Bangkok"
+    },
+    "response": {
+      "title": "回复时间",
+      "desc": "我们通常会在 2–3 个工作日内回复。如有紧急应用问题，请选择支持作为主题。"
+    },
+    "social": {
+      "title": "关注我们"
+    },
+    "map": {
+      "eyebrow": "LOCATION",
+      "title": "办公地图",
+      "address": "1323/1 Srivara Road (Lat Phrao 94) Town in Town PhlabPhla Wangthonglang",
+      "iframeTitle": "Mr.FOX 办公室 Google 地图",
+      "openLabel": "在 Google 地图中打开",
+      "openHref": "https://www.google.com/maps/search/?api=1&query=1323%2F1+Srivara+Road+Town+in+Town+PhlabPhla+Wangthonglang+Bangkok"
+    },
+    "help": {
+      "eyebrow": "HOW WE HELP",
+      "title": "我们可以帮助什么",
+      "subtitle": "Mr.FOX 团队处理的话题示例 — 详细信息将随实际信息更新",
+      "items": [
+        {
+          "title": "组织平台",
+          "description": "为品牌、活动或社区咨询 Mr.FOX — 从架构到上线"
+        },
+        {
+          "title": "商业合作",
+          "description": "有兴趣共同开发生态系统的技术、内容或营销合作伙伴"
+        },
+        {
+          "title": "用户支持",
+          "description": "应用使用、账户、付款或平台各项功能"
+        },
+        {
+          "title": "媒体与公司信息",
+          "description": "采访、公司信息或媒体咨询 — 请使用一般作为主题"
+        }
+      ]
+    },
+    "office": {
+      "eyebrow": "OFFICE",
+      "company": "Mr.FOX Co., Ltd.",
+      "address": "1323/1 Srivara Road (Lat Phrao 94) Town in Town PhlabPhla Wangthonglang",
+      "addressHref": "https://www.google.com/maps/search/?api=1&query=1323%2F1+Srivara+Road+Town+in+Town+PhlabPhla+Wangthonglang+Bangkok",
+      "note": "请于营业时间内通过邮箱、电话或留言表单联系我们。"
+    }
   },
   "search": {
     "title": "搜索",

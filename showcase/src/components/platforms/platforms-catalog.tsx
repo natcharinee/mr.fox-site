@@ -81,7 +81,7 @@ export function PlatformsCatalog({
             >
               <Icon className="size-3.5 shrink-0" />
               {category.name}
-              <span className="rounded-full bg-white/10 px-1.5 text-xs font-semibold tabular-nums">
+              <span className="rounded-full bg-[var(--vulpine-primary-container)] px-1.5 text-xs font-semibold tabular-nums text-[var(--vulpine-on-primary)]">
                 {count}
               </span>
             </a>

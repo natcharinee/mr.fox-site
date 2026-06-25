@@ -23,54 +23,58 @@ type FeatureVisual = {
   borderHover: string;
   iconWrap: string;
   iconColor: string;
+  iconIdle: string;
+  iconGlow: string;
   live?: boolean;
 };
+
+const GOLD_FEATURE_STYLE = {
+  borderHover:
+    "hover:border-[var(--vulpine-primary-container)]/45 hover:shadow-[0_0_24px_rgba(255,184,0,0.14)]",
+  iconWrap:
+    "border-[var(--vulpine-primary-container)]/25 bg-[var(--vulpine-primary-container)]/8",
+  iconColor: "text-[var(--vulpine-primary-container)]",
+  iconGlow: "group-hover:shadow-[0_0_22px_rgba(255,184,0,0.32)]",
+} as const;
 
 const FEATURE_VISUAL: Record<string, FeatureVisual> = {
   vote: {
     icon: HandCoins,
-    borderHover: "hover:border-pink-500/40",
-    iconWrap: "border-pink-500/20 bg-pink-500/5",
-    iconColor: "text-pink-400",
+    ...GOLD_FEATURE_STYLE,
+    iconIdle: "feature-icon-idle-vote",
   },
   gift: {
     icon: Gift,
-    borderHover: "hover:border-yellow-500/40",
-    iconWrap: "border-yellow-500/20 bg-yellow-500/5",
-    iconColor: "text-yellow-400",
+    ...GOLD_FEATURE_STYLE,
+    iconIdle: "feature-icon-idle-gift",
   },
   chat: {
     icon: MessageCircle,
-    borderHover: "hover:border-blue-500/40",
-    iconWrap: "border-blue-500/20 bg-blue-500/5",
-    iconColor: "text-blue-400",
+    ...GOLD_FEATURE_STYLE,
+    iconIdle: "feature-icon-idle-chat",
   },
   "voice-call": {
     icon: PhoneCall,
-    borderHover: "hover:border-teal-500/40",
-    iconWrap: "border-teal-500/20 bg-teal-500/5",
-    iconColor: "text-teal-400",
+    ...GOLD_FEATURE_STYLE,
+    iconIdle: "feature-icon-idle-voice",
   },
   "video-call": {
     icon: Video,
-    borderHover: "hover:border-purple-500/40",
-    iconWrap: "border-purple-500/20 bg-purple-500/5",
-    iconColor: "text-purple-400",
+    ...GOLD_FEATURE_STYLE,
+    iconIdle: "feature-icon-idle-video",
   },
   live: {
     icon: Radio,
-    borderHover: "hover:border-red-500/40",
-    iconWrap: "border-red-500/20 bg-red-500/5",
-    iconColor: "text-red-400",
+    ...GOLD_FEATURE_STYLE,
+    iconIdle: "feature-icon-idle-live",
     live: true,
   },
 };
 
 const DEFAULT_VISUAL: FeatureVisual = {
   icon: Sparkles,
-  borderHover: "hover:border-[var(--vulpine-primary-container)]/40",
-  iconWrap: "border-[var(--vulpine-primary-container)]/20 bg-[var(--vulpine-primary-container)]/5",
-  iconColor: "text-[var(--vulpine-primary-container)]",
+  ...GOLD_FEATURE_STYLE,
+  iconIdle: "feature-icon-idle-chat",
 };
 
 type CoreFeaturesGridProps = {
@@ -82,40 +86,57 @@ type CoreFeaturesGridProps = {
 function FeatureCard({
   feature,
   exploreLabel,
+  index,
 }: {
   feature: Feature;
   exploreLabel: string;
+  index: number;
 }) {
   const visual = FEATURE_VISUAL[feature.slug] ?? DEFAULT_VISUAL;
   const Icon = visual.icon;
 
   return (
-    <Link href={`/features/${feature.slug}`} className="group block h-full">
+    <Link
+      href={`/features/${feature.slug}`}
+      className="feature-card-enter group block h-full motion-reduce:animate-none"
+      style={{ animationDelay: `${index * 70}ms` }}
+    >
       <GlassCard
-        hud
         className={cn(
-          "relative flex h-full flex-col items-center p-6 text-center transition-all",
+          "relative flex h-full flex-col items-center p-7 text-center transition-all duration-300 group-hover:-translate-y-1 sm:p-8",
           visual.borderHover,
         )}
       >
         {visual.live ? (
-          <div className="absolute top-2 right-2 flex items-center gap-1">
-            <span className="size-1.5 animate-pulse rounded-full bg-red-500" />
-            <span className="vulpine-label text-[8px] font-black text-red-500">LIVE</span>
+          <div className="absolute top-2.5 right-2.5 flex items-center gap-1.5">
+            <span className="size-2 animate-pulse rounded-full bg-[var(--vulpine-primary-container)] shadow-[0_0_8px_rgba(255,184,0,0.8)]" />
+            <span className="vulpine-label text-[10px] font-black text-[var(--vulpine-primary-container)]">
+              LIVE
+            </span>
           </div>
         ) : null}
         <div
           className={cn(
-            "mb-4 flex size-16 items-center justify-center rounded-sm border transition-transform group-hover:scale-110",
+            "feature-icon-wrap mb-5 flex size-[4.5rem] items-center justify-center rounded-2xl border sm:size-20",
+            "group-hover:scale-110 group-hover:border-[var(--vulpine-primary-container)]/40",
             visual.iconWrap,
+            visual.iconGlow,
           )}
         >
-          <Icon className={cn("size-7", visual.iconColor)} strokeWidth={2} />
+          <Icon
+            className={cn(
+              "relative z-10 size-8 sm:size-9",
+              visual.iconColor,
+              visual.iconIdle,
+              "motion-reduce:animate-none",
+            )}
+            strokeWidth={2}
+          />
         </div>
-        <h3 className="vulpine-label text-xs font-bold text-[var(--vulpine-on-surface)] uppercase">
+        <h3 className="font-display text-sm font-bold tracking-wide text-[var(--vulpine-on-surface)] uppercase transition-colors group-hover:text-[var(--vulpine-primary-container)] sm:text-base">
           {feature.name}
         </h3>
-        <p className="mt-1 line-clamp-2 text-[10px] leading-relaxed text-[var(--vulpine-on-surface-variant)] opacity-70">
+        <p className="mt-2 line-clamp-3 text-xs leading-relaxed text-[var(--vulpine-on-surface-variant)] transition-opacity group-hover:opacity-100 sm:text-sm sm:leading-relaxed">
           {feature.description ?? exploreLabel}
         </p>
       </GlassCard>
@@ -128,12 +149,17 @@ export function CoreFeaturesGrid({ title, exploreLabel, features }: CoreFeatures
     <section className="relative overflow-hidden border-y border-white/5 bg-[var(--vulpine-surface-container-lowest)] py-16 md:py-24">
       <div className="vulpine-scanline opacity-20" aria-hidden />
       <div className="relative mx-auto max-w-[1200px] px-4 md:px-16">
-        <h2 className="mb-12 text-center font-display text-2xl font-bold tracking-[0.2em] text-[var(--vulpine-on-surface)] uppercase md:text-3xl">
+        <h2 className="mb-12 text-center font-display text-3xl font-bold tracking-[0.15em] text-[var(--vulpine-on-surface)] uppercase sm:text-4xl">
           {title}
         </h2>
-        <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-6 lg:gap-6">
-          {features.map((feature) => (
-            <FeatureCard key={feature.slug} feature={feature} exploreLabel={exploreLabel} />
+        <div className="grid grid-cols-2 gap-5 md:grid-cols-3 md:gap-6 lg:grid-cols-6">
+          {features.map((feature, index) => (
+            <FeatureCard
+              key={feature.slug}
+              feature={feature}
+              exploreLabel={exploreLabel}
+              index={index}
+            />
           ))}
         </div>
       </div>

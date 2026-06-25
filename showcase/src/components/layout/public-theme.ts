@@ -6,18 +6,18 @@ export const publicTheme = {
   contentNarrow: "mx-auto max-w-3xl px-4 py-16 sm:px-6 md:px-16",
   section: "py-16 md:py-24",
   card:
-    "rounded-lg border border-white/8 bg-[rgba(18,20,20,0.4)] shadow-[0_4px_30px_rgba(0,0,0,0.1)] backdrop-blur-2xl",
+    "rounded-2xl border border-white/8 bg-[rgba(18,20,20,0.4)] shadow-[0_4px_30px_rgba(0,0,0,0.1)] backdrop-blur-2xl",
   cardHover:
     "transition-all hover:-translate-y-0.5 vulpine-glow-hover hover:border-[var(--vulpine-primary-container)]/30",
   link: "text-[var(--vulpine-primary-container)] transition-colors hover:text-[var(--vulpine-primary)]",
   input:
     "border-white/10 bg-[var(--vulpine-surface-container)] text-[var(--vulpine-on-surface)] focus-visible:border-[var(--vulpine-primary-container)] focus-visible:ring-[var(--vulpine-primary-container)]/20",
   select:
-    "h-9 rounded-lg border border-white/10 bg-[var(--vulpine-surface-container)] px-3 text-sm text-[var(--vulpine-on-surface)] outline-none focus:border-[var(--vulpine-primary-container)] focus:ring-2 focus:ring-[var(--vulpine-primary-container)]/20",
+    "h-9 rounded-xl border border-white/10 bg-[var(--vulpine-surface-container)] px-3 text-sm text-[var(--vulpine-on-surface)] outline-none focus:border-[var(--vulpine-primary-container)] focus:ring-2 focus:ring-[var(--vulpine-primary-container)]/20",
   textarea:
-    "rounded-lg border border-white/10 bg-[var(--vulpine-surface-container)] px-3 py-2 text-sm text-[var(--vulpine-on-surface)] outline-none focus:border-[var(--vulpine-primary-container)] focus:ring-2 focus:ring-[var(--vulpine-primary-container)]/20",
+    "rounded-xl border border-white/10 bg-[var(--vulpine-surface-container)] px-3 py-2 text-sm text-[var(--vulpine-on-surface)] outline-none focus:border-[var(--vulpine-primary-container)] focus:ring-2 focus:ring-[var(--vulpine-primary-container)]/20",
   submitButton:
-    "h-9 rounded-lg bg-[var(--vulpine-primary-container)] px-4 text-sm font-bold text-[var(--vulpine-on-primary)] transition-all hover:brightness-110 vulpine-btn-glow",
+    "h-9 rounded-xl bg-[var(--vulpine-primary-container)] px-4 text-sm font-bold text-[var(--vulpine-on-primary)] transition-all hover:brightness-110 vulpine-btn-glow",
   badgeGold:
     "bg-[var(--vulpine-primary-container)] text-[var(--vulpine-on-primary)] hover:bg-[var(--vulpine-primary-container)]",
   badgeOutline:

@@ -49,6 +49,9 @@ Vercel Dashboard → Project → Settings → Environment Variables:
 | `AUTH_SECRET` | ค่าเดียวกับที่ใช้ตอน deploy |
 | `NEXT_PUBLIC_SITE_URL` | `https://your-project.vercel.app` |
 | `CONTACT_WEBHOOK_URL` | (optional) Slack/Discord webhook |
+| `RESEND_API_KEY` | API key จาก [resend.com](https://resend.com) — ใช้ส่งฟอร์ม Contact |
+| `CONTACT_EMAIL_TO` | (optional) ปลายทางอีเมล — default `support@mrfox.com` |
+| `CONTACT_EMAIL_FROM` | (optional) ผู้ส่ง เช่น `Mr.FOX Contact <noreply@mrfox.com>` (ต้อง verify domain บน Resend) |
 
 Redeploy หลังตั้ง env
 

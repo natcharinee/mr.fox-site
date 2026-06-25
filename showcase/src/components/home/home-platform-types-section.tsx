@@ -90,7 +90,7 @@ export function HomePlatformTypesSection({
               >
                 <Icon className="size-3.5" />
                 {categoryBySlug[slug]?.name ?? slug}
-                <span className="rounded-full bg-white/80 px-1.5 text-xs font-bold tabular-nums">
+                <span className="rounded-full bg-[var(--vulpine-primary-container)] px-1.5 text-xs font-bold tabular-nums text-[var(--vulpine-on-primary)]">
                   {count}
                 </span>
               </Link>
@@ -107,17 +107,16 @@ export function HomePlatformTypesSection({
               <Link key={pt.slug} href={`/platforms/${pt.slug}`} className="group block h-full">
                 <article
                   className={cn(
-                    "vulpine-hud-border vulpine-glow-hover relative flex h-full flex-col rounded-lg border border-white/8 bg-[rgba(18,20,20,0.4)] p-6 backdrop-blur-2xl transition-all hover:-translate-y-0.5",
+                    "vulpine-glow-hover relative flex h-full flex-col rounded-2xl border border-white/8 bg-[rgba(18,20,20,0.4)] p-6 backdrop-blur-2xl transition-all hover:-translate-y-0.5",
                   )}
                 >
                   <span className="vulpine-label mb-2 block text-[10px] text-[var(--vulpine-primary-container)] opacity-70">
                     DATA_TYPE: {pt.slug.replace(/-/g, "_").toUpperCase()}
                   </span>
-                  <div className="absolute -top-1 -right-1 size-2 bg-[var(--vulpine-primary-container)] opacity-50" />
                   <div className="flex items-start gap-3">
                     <div
                       className={cn(
-                        "flex size-10 shrink-0 items-center justify-center rounded-sm border",
+                        "flex size-10 shrink-0 items-center justify-center rounded-xl border",
                         theme.iconWrap,
                       )}
                     >
@@ -150,7 +149,7 @@ export function HomePlatformTypesSection({
         </div>
 
         {remaining > 0 ? (
-          <div className="mt-8 flex flex-col items-center justify-between gap-4 rounded-lg border border-white/10 bg-white/5 px-5 py-4 sm:flex-row">
+          <div className="mt-8 flex flex-col items-center justify-between gap-4 rounded-2xl border border-white/10 bg-white/5 px-5 py-4 sm:flex-row">
             <p className="text-sm text-[var(--vulpine-on-surface-variant)]">{moreTypesLabel}</p>
             <Link
               href="/platforms"

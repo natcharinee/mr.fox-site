@@ -58,7 +58,7 @@ function EventVideoCard({
       </div>
 
       {item.caption ? (
-        <p className={`mt-3 text-sm ${publicTheme.muted}`}>
+        <p className={`mt-3 text-base leading-relaxed sm:text-lg ${publicTheme.muted}`}>
           {item.caption}
         </p>
       ) : null}
