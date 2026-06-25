@@ -106,7 +106,7 @@ export function AdminPosterUploadField({
         {usage ? (
           <p className="text-xs font-medium text-[var(--fox-gold-dark)]">{usage}</p>
         ) : null}
-        <p className="text-xs leading-relaxed text-muted-foreground">{hint}</p>
+        <p className="text-sm leading-relaxed text-muted-foreground">{hint}</p>
       </div>
 
       <div className="mt-4 flex flex-col gap-2 sm:flex-row sm:items-center">

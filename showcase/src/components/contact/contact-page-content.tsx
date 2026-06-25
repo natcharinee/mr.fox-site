@@ -352,7 +352,7 @@ function ContactDetail({
         <Icon className="size-4" aria-hidden />
       </div>
       <div className="min-w-0">
-        <p className="text-xs font-medium uppercase tracking-wide text-[var(--vulpine-on-surface-variant)]">
+        <p className="text-sm font-medium uppercase tracking-wide text-[var(--vulpine-on-surface-variant)]">
           {label}
         </p>
         {content}

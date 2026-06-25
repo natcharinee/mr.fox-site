@@ -25,14 +25,6 @@
     "ecosystem": "Ecosystem Overview",
     "ecosystemArchitecture": "System Architecture",
     "ecosystemDesc": "Five major groups — each contains Platform Types, our standard templates for different use cases.",
-    "ecosystemFlow": {
-      "mrfox": "Mr.FOX",
-      "category": "5 Categories",
-      "platformType": "10 Platform Types",
-      "application": "Applications",
-      "feature": "Features",
-      "download": "Download"
-    },
     "ecosystemIncludes": "Includes these Platform Types",
     "ecosystemModules": "{count} MODULES",
     "ecosystemTypeCount": "{count} types",
@@ -133,7 +125,8 @@
     "subtitle": "Latest news and updates from Mr.FOX",
     "backToNews": "Back to News",
     "source": "Source",
-    "readAtSource": "Read the full article at the source"
+    "readAtSource": "Read the full article at the source",
+    "readMore": "Read more"
   },
   "about": {
     "title": "About Mr.FOX",

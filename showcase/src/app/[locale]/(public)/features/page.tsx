@@ -51,7 +51,7 @@ export default async function FeaturesPage({
                       <Badge className={publicTheme.badgeGold}>💰</Badge>
                     ) : null}
                   </div>
-                  <CardDescription className={`line-clamp-3 ${publicTheme.cardDescription}`}>
+                  <CardDescription className={`line-clamp-3 text-base ${publicTheme.cardDescription}`}>
                     {f.description}
                   </CardDescription>
                 </CardHeader>

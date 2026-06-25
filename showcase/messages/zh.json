@@ -25,14 +25,6 @@
     "ecosystem": "生态系统概览",
     "ecosystemArchitecture": "系统架构",
     "ecosystemDesc": "分为 5 大类别 — 每类包含适用于不同场景的 Platform Types 标准模板。",
-    "ecosystemFlow": {
-      "mrfox": "Mr.FOX",
-      "category": "5 大类别",
-      "platformType": "10 种平台类型",
-      "application": "应用",
-      "feature": "功能",
-      "download": "下载"
-    },
     "ecosystemIncludes": "包含以下 Platform Types",
     "ecosystemModules": "{count} 个模块",
     "ecosystemTypeCount": "{count} 种类型",
@@ -133,7 +125,8 @@
     "subtitle": "Mr.FOX 最新新闻与更新",
     "backToNews": "返回新闻",
     "source": "来源",
-    "readAtSource": "在来源网站阅读全文"
+    "readAtSource": "在来源网站阅读全文",
+    "readMore": "阅读更多"
   },
   "about": {
     "title": "关于 Mr.FOX",

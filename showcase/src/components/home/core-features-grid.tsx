@@ -110,7 +110,7 @@ function FeatureCard({
         {visual.live ? (
           <div className="absolute top-2.5 right-2.5 flex items-center gap-1.5">
             <span className="size-2 animate-pulse rounded-full bg-[var(--vulpine-primary-container)] shadow-[0_0_8px_rgba(255,184,0,0.8)]" />
-            <span className="vulpine-label text-[10px] font-black text-[var(--vulpine-primary-container)]">
+            <span className="vulpine-label text-xs font-black text-[var(--vulpine-primary-container)] sm:text-sm">
               LIVE
             </span>
           </div>
@@ -136,7 +136,7 @@ function FeatureCard({
         <h3 className="font-display text-sm font-bold tracking-wide text-[var(--vulpine-on-surface)] uppercase transition-colors group-hover:text-[var(--vulpine-primary-container)] sm:text-base">
           {feature.name}
         </h3>
-        <p className="mt-2 line-clamp-3 text-xs leading-relaxed text-[var(--vulpine-on-surface-variant)] transition-opacity group-hover:opacity-100 sm:text-sm sm:leading-relaxed">
+        <p className="mt-2 line-clamp-3 text-sm leading-relaxed text-[var(--vulpine-on-surface-variant)] transition-opacity group-hover:opacity-100 sm:text-base sm:leading-relaxed">
           {feature.description ?? exploreLabel}
         </p>
       </GlassCard>

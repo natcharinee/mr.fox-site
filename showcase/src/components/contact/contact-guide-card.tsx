@@ -42,7 +42,7 @@ export function ContactGuideCard({
       </div>
 
       <div className="mt-6">
-        <p className="text-xs font-medium uppercase tracking-wide text-[var(--vulpine-on-surface-variant)]">
+        <p className="text-sm font-medium uppercase tracking-wide text-[var(--vulpine-on-surface-variant)]">
           {content.stepsTitle}
         </p>
         <ol className="relative mt-4 space-y-0">
@@ -76,7 +76,7 @@ export function ContactGuideCard({
       </div>
 
       <div className="mt-8 border-t border-white/8 pt-6">
-        <p className="text-xs font-medium uppercase tracking-wide text-[var(--vulpine-on-surface-variant)]">
+        <p className="text-sm font-medium uppercase tracking-wide text-[var(--vulpine-on-surface-variant)]">
           {content.faqTitle}
         </p>
         <div className="mt-4 space-y-2">

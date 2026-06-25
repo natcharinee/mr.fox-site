@@ -160,7 +160,7 @@ export default async function PlatformDetailPage({ params }: Props) {
                 <Card key={app.slug} className={themedCard()}>
                   <CardHeader>
                     <CardTitle className={`text-base ${publicTheme.cardTitle}`}>{app.name}</CardTitle>
-                    <CardDescription className={`line-clamp-2 ${publicTheme.cardDescription}`}>
+                    <CardDescription className={`line-clamp-2 text-base ${publicTheme.cardDescription}`}>
                       {app.description}
                     </CardDescription>
                   </CardHeader>

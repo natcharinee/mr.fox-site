@@ -1,8 +1,4 @@
-"use client";
-
-import { useState, type ReactNode } from "react";
-import { ArrowRight, ChevronRight } from "lucide-react";
-import { useTranslations } from "next-intl";
+import { ArrowRight } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { LinkButton } from "@/components/ui/link-button";
 import {
@@ -10,6 +6,7 @@ import {
   CATEGORY_THEME,
 } from "@/components/platforms/platform-category-theme";
 import { cn } from "@/lib/utils";
+import type { ReactNode } from "react";
 
 type Category = {
   name: string;
@@ -25,15 +22,6 @@ type PlatformType = {
   shortDescription: string | null;
 };
 
-type FlowLabels = {
-  mrfox: string;
-  category: string;
-  platformType: string;
-  application: string;
-  feature: string;
-  download: string;
-};
-
 type EcosystemBentoProps = {
   title: string;
   description: ReactNode;
@@ -41,195 +29,116 @@ type EcosystemBentoProps = {
   includesLabel: string;
   viewPlatformLabel: string;
   viewAllLabel: string;
-  flowLabels: FlowLabels;
   categories: Category[];
   platformTypes: PlatformType[];
+  modulesLabelFor: (count: number) => string;
 };
+
+const COLUMN_LAYOUT: { slugs: readonly string[] }[] = [
+  { slugs: ["creator", "company"] },
+  { slugs: ["community", "contest", "exhibition"] },
+];
 
 function categoryTypes(types: PlatformType[], slug: string) {
   return types.filter((t) => t.categorySlug === slug);
 }
 
-function ArchitectureFlow({ labels }: { labels: FlowLabels }) {
-  const steps = [
-    labels.mrfox,
-    labels.category,
-    labels.platformType,
-    labels.application,
-    labels.feature,
-    labels.download,
-  ];
-
-  return (
-    <div
-      className="mt-6 overflow-x-auto rounded-xl border border-white/8 bg-black/20 px-4 py-3 backdrop-blur-sm"
-      aria-label="Ecosystem architecture"
-    >
-      <ol className="flex min-w-max items-center gap-1.5 text-xs sm:text-sm">
-        {steps.map((label, index) => (
-          <li key={label} className="flex items-center gap-1.5">
-            <span
-              className={cn(
-                "whitespace-nowrap rounded-md px-2.5 py-1 font-medium",
-                index === 0
-                  ? "bg-[var(--vulpine-primary-container)]/20 text-[var(--vulpine-primary)]"
-                  : "bg-white/5 text-white/70",
-              )}
-            >
-              {label}
-            </span>
-            {index < steps.length - 1 ? (
-              <ChevronRight
-                className="size-3.5 shrink-0 text-white/25"
-                aria-hidden
-              />
-            ) : null}
-          </li>
-        ))}
-      </ol>
-    </div>
-  );
-}
-
-function CategoryTabs({
+function CategoryLegend({
   categories,
   categoryCounts,
-  activeSlug,
-  onSelect,
 }: {
   categories: Record<string, Category>;
   categoryCounts: Record<string, number>;
-  activeSlug: string;
-  onSelect: (slug: string) => void;
 }) {
-  const indicatorClass: Record<string, string> = {
-    creator: "bg-[var(--vulpine-primary-container)]",
-    community: "bg-teal-400",
-    company: "bg-slate-300",
-    contest: "bg-rose-400",
-    exhibition: "bg-violet-400",
-  };
-
   return (
-    <div className="relative mt-8">
-      <div
-        className={cn(
-          "absolute -left-4 top-2 bottom-2 w-1 rounded-full transition-colors duration-300 sm:-left-6",
-          indicatorClass[activeSlug] ?? "bg-[var(--vulpine-primary-container)]",
-        )}
-        aria-hidden
-      />
+    <div className="mt-8 flex flex-wrap gap-2.5" aria-label="Ecosystem categories overview">
+      {CATEGORY_ORDER.map((slug) => {
+        const theme = CATEGORY_THEME[slug];
+        const category = categories[slug];
+        const count = categoryCounts[slug] ?? 0;
+        if (!theme || !category || count === 0) return null;
 
-      <div
-        role="tablist"
-        aria-label="Platform categories"
-        className="flex flex-wrap gap-2.5"
-      >
-        {CATEGORY_ORDER.map((slug) => {
-          const theme = CATEGORY_THEME[slug];
-          const category = categories[slug];
-          const count = categoryCounts[slug] ?? 0;
-          if (!theme || !category || count === 0) return null;
+        const Icon = theme.icon;
 
-          const Icon = theme.icon;
-          const isActive = slug === activeSlug;
-
-          return (
-            <button
-              key={slug}
-              type="button"
-              role="tab"
-              id={`ecosystem-tab-${slug}`}
-              aria-selected={isActive}
-              aria-controls={`ecosystem-panel-${slug}`}
-              onClick={() => onSelect(slug)}
-              className={cn(
-                "inline-flex items-center gap-2 rounded-full border px-3.5 py-2 text-sm font-medium transition-all",
-                isActive
-                  ? cn(theme.pill, "shadow-[0_0_20px_rgba(255,184,0,0.12)]")
-                  : "border-white/10 bg-white/[0.03] text-white/55 hover:border-white/20 hover:text-white/80",
-              )}
-            >
-              <Icon className="size-4 shrink-0" aria-hidden />
-              {category.name}
-              <span
-                className={cn(
-                  "rounded-full px-1.5 text-xs font-bold tabular-nums",
-                  isActive
-                    ? "bg-[var(--vulpine-primary-container)] text-[var(--vulpine-on-primary)]"
-                    : "bg-white/10 text-white/70",
-                )}
-              >
-                {count}
-              </span>
-            </button>
-          );
-        })}
-      </div>
+        return (
+          <div
+            key={slug}
+            className={cn(
+              "inline-flex items-center gap-2 rounded-full border px-3.5 py-2 text-sm font-medium",
+              theme.pill,
+            )}
+          >
+            <Icon className="size-4 shrink-0" aria-hidden />
+            {category.name}
+            <span className="rounded-full bg-black/20 px-1.5 text-xs font-bold tabular-nums">
+              {count}
+            </span>
+          </div>
+        );
+      })}
     </div>
   );
 }
 
-function CategoryPanel({
+function CategoryCard({
   slug,
   category,
   types,
   includesLabel,
   viewPlatformLabel,
+  modulesLabel,
 }: {
   slug: string;
   category: Category;
   types: PlatformType[];
   includesLabel: string;
   viewPlatformLabel: string;
+  modulesLabel: string;
 }) {
-  const t = useTranslations("home");
   const theme = CATEGORY_THEME[slug];
   const Icon = theme?.icon;
 
   return (
     <article
-      id={`ecosystem-panel-${slug}`}
-      role="tabpanel"
-      aria-labelledby={`ecosystem-tab-${slug}`}
-      className="vulpine-glow-hover relative overflow-hidden rounded-2xl border border-white/10 bg-[rgba(18,20,20,0.55)] shadow-[0_8px_40px_rgba(0,0,0,0.25)] backdrop-blur-2xl"
+      id={`ecosystem-${slug}`}
+      className="vulpine-glow-hover relative flex h-full min-h-0 flex-col overflow-hidden rounded-2xl border border-white/10 bg-[rgba(18,20,20,0.55)] shadow-[0_8px_40px_rgba(0,0,0,0.25)] backdrop-blur-2xl"
     >
       <div
         className={cn(
-          "pointer-events-none absolute inset-x-0 top-0 h-32 bg-gradient-to-b to-transparent",
+          "pointer-events-none absolute inset-x-0 top-0 h-28 bg-gradient-to-b to-transparent",
           theme?.header,
         )}
         aria-hidden
       />
 
-      <div className="relative border-b border-white/8 px-6 py-6 sm:px-8 sm:py-7">
-        <div className="flex items-start gap-5">
+      <div className="relative border-b border-white/8 px-5 py-5 sm:px-6 sm:py-6">
+        <div className="flex items-start gap-4">
           {Icon ? (
             <div
               className={cn(
-                "flex size-14 shrink-0 items-center justify-center rounded-2xl ring-1 ring-white/10",
+                "flex size-12 shrink-0 items-center justify-center rounded-xl ring-1 ring-white/10 sm:size-14 sm:rounded-2xl",
                 theme?.iconWrap,
               )}
             >
-              <Icon className="size-7" aria-hidden />
+              <Icon className="size-6 sm:size-7" aria-hidden />
             </div>
           ) : null}
           <div className="min-w-0 flex-1">
-            <div className="flex flex-wrap items-center gap-3">
-              <h3 className="font-display text-xl font-bold uppercase tracking-wide text-[var(--vulpine-on-surface)] sm:text-2xl">
+            <div className="flex flex-wrap items-center gap-2.5">
+              <h3 className="font-display text-lg font-bold uppercase tracking-wide text-[var(--vulpine-on-surface)] sm:text-xl">
                 {category.name}
               </h3>
               <span
                 className={cn(
-                  "vulpine-label rounded-lg border px-3 py-1.5 text-[11px] tabular-nums sm:text-xs",
+                  "vulpine-label rounded-lg border px-2.5 py-1 text-xs tabular-nums sm:text-sm",
                   theme?.iconWrap,
                 )}
               >
-                {t("ecosystemModules", { count: types.length })}
+                {modulesLabel}
               </span>
             </div>
             {category.description ? (
-              <p className="mt-3 text-base leading-relaxed text-white/65 sm:text-[17px]">
+              <p className="mt-2.5 text-sm leading-relaxed text-white/65 sm:text-base">
                 {category.description}
               </p>
             ) : null}
@@ -237,46 +146,44 @@ function CategoryPanel({
         </div>
       </div>
 
-      <div className="relative px-6 py-5 sm:px-8 sm:py-6">
+      <div className="relative flex min-h-0 flex-1 flex-col px-5 py-4 sm:px-6 sm:py-5">
         <p
           className={cn(
-            "vulpine-label text-xs font-semibold uppercase tracking-[0.2em] sm:text-sm",
+            "vulpine-label text-xs font-semibold uppercase tracking-[0.18em] sm:text-sm",
             theme?.accent,
           )}
         >
           {includesLabel}
         </p>
-        <ul className="mt-4 flex flex-col gap-3">
+        <ul className="mt-3 flex flex-1 flex-col gap-2.5">
           {types.map((pt) => (
             <li key={pt.slug}>
               <Link
                 href={`/platforms/${pt.slug}`}
                 className={cn(
-                  "group flex flex-col rounded-2xl border border-white/10 bg-white/[0.04] p-4 transition-all sm:p-5",
+                  "group block rounded-xl border border-white/10 bg-white/[0.04] p-3.5 transition-all sm:p-4",
                   theme?.cardHover,
                 )}
               >
-                <div className="flex items-start justify-between gap-4">
-                  <p className="text-base font-bold text-white sm:text-lg">
-                    {pt.name}
-                  </p>
+                <div className="flex items-start justify-between gap-3">
+                  <p className="text-sm font-bold text-white sm:text-base">{pt.name}</p>
                   <span
                     className={cn(
-                      "vulpine-label inline-flex shrink-0 items-center gap-1.5 text-xs opacity-70 transition-all group-hover:translate-x-0.5 group-hover:opacity-100 sm:text-sm",
+                      "vulpine-label inline-flex shrink-0 items-center gap-1 text-sm opacity-70 transition-all group-hover:translate-x-0.5 group-hover:opacity-100",
                       theme?.accent,
                     )}
                   >
                     {viewPlatformLabel}
-                    <ArrowRight className="size-4" aria-hidden />
+                    <ArrowRight className="size-3.5" aria-hidden />
                   </span>
                 </div>
                 {pt.shortDescription ? (
-                  <p className="mt-2 text-sm leading-relaxed text-white/60 sm:text-base">
+                  <p className="mt-1.5 text-sm leading-relaxed text-white/65">
                     {pt.shortDescription}
                   </p>
                 ) : null}
                 {pt.concept ? (
-                  <p className="mt-2 text-sm leading-relaxed text-white/40">
+                  <p className="mt-1.5 text-sm leading-relaxed text-white/50">
                     {pt.concept}
                   </p>
                 ) : null}
@@ -289,6 +196,46 @@ function CategoryPanel({
   );
 }
 
+function CategoryColumn({
+  slugs,
+  bySlug,
+  platformTypes,
+  includesLabel,
+  viewPlatformLabel,
+  modulesLabelFor,
+}: {
+  slugs: readonly string[];
+  bySlug: Record<string, Category>;
+  platformTypes: PlatformType[];
+  includesLabel: string;
+  viewPlatformLabel: string;
+  modulesLabelFor: (count: number) => string;
+}) {
+  return (
+    <div className="grid gap-5 sm:gap-6">
+      {slugs.map((slug) => {
+        const category = bySlug[slug];
+        if (!category) return null;
+
+        const types = categoryTypes(platformTypes, slug);
+        if (types.length === 0) return null;
+
+        return (
+          <CategoryCard
+            key={slug}
+            slug={slug}
+            category={category}
+            types={types}
+            includesLabel={includesLabel}
+            viewPlatformLabel={viewPlatformLabel}
+            modulesLabel={modulesLabelFor(types.length)}
+          />
+        );
+      })}
+    </div>
+  );
+}
+
 export function EcosystemBento({
   title,
   description,
@@ -296,9 +243,9 @@ export function EcosystemBento({
   includesLabel,
   viewPlatformLabel,
   viewAllLabel,
-  flowLabels,
   categories,
   platformTypes,
+  modulesLabelFor,
 }: EcosystemBentoProps) {
   const bySlug = Object.fromEntries(categories.map((c) => [c.slug, c]));
   const categoryCounts = Object.fromEntries(
@@ -307,14 +254,6 @@ export function EcosystemBento({
       categoryTypes(platformTypes, slug).length,
     ]),
   );
-
-  const firstAvailable =
-    CATEGORY_ORDER.find((slug) => (categoryCounts[slug] ?? 0) > 0 && bySlug[slug]) ??
-    CATEGORY_ORDER[0];
-
-  const [activeSlug, setActiveSlug] = useState<string>(firstAvailable);
-  const activeCategory = bySlug[activeSlug];
-  const activeTypes = categoryTypes(platformTypes, activeSlug);
 
   return (
     <section
@@ -342,28 +281,22 @@ export function EcosystemBento({
             {description}
           </div>
 
-          <ArchitectureFlow labels={flowLabels} />
+          <CategoryLegend categories={bySlug} categoryCounts={categoryCounts} />
         </div>
 
-        <CategoryTabs
-          categories={bySlug}
-          categoryCounts={categoryCounts}
-          activeSlug={activeSlug}
-          onSelect={setActiveSlug}
-        />
-
-        {activeCategory && activeTypes.length > 0 ? (
-          <div className="mt-6 animate-in fade-in duration-300">
-            <CategoryPanel
-              key={activeSlug}
-              slug={activeSlug}
-              category={activeCategory}
-              types={activeTypes}
+        <div className="mt-8 grid gap-5 lg:grid-cols-2 lg:items-start lg:gap-6">
+          {COLUMN_LAYOUT.map(({ slugs }) => (
+            <CategoryColumn
+              key={slugs.join("-")}
+              slugs={slugs}
+              bySlug={bySlug}
+              platformTypes={platformTypes}
               includesLabel={includesLabel}
               viewPlatformLabel={viewPlatformLabel}
+              modulesLabelFor={modulesLabelFor}
             />
-          </div>
-        ) : null}
+          ))}
+        </div>
 
         <div className="mt-10 flex justify-center sm:mt-12">
           <LinkButton

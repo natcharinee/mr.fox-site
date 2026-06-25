@@ -119,7 +119,7 @@ export function PlatformsCatalog({
                     <Icon className="size-6" />
                   </div>
                   <div>
-                    <p className={cn("vulpine-label text-[10px]", theme.accent)}>
+                    <p className={cn("vulpine-label text-xs sm:text-sm", theme.accent)}>
                       {typeCountLabel(types.length)}
                     </p>
                     <h2 className={`mt-1 text-xl sm:text-2xl ${publicTheme.cardTitle}`}>
@@ -158,7 +158,7 @@ export function PlatformsCatalog({
                       <div className="flex items-center gap-2">
                         <span
                           className={cn(
-                            "rounded-full border px-2.5 py-0.5 text-[10px] font-semibold tracking-wide uppercase",
+                            "rounded-full border px-2.5 py-0.5 text-xs font-semibold tracking-wide uppercase",
                             theme.pill,
                           )}
                         >
@@ -175,7 +175,7 @@ export function PlatformsCatalog({
                       </p>
 
                       {pt.shortDescription && pt.concept ? (
-                        <p className="mt-3 rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-xs leading-relaxed text-[var(--vulpine-on-surface-variant)]">
+                        <p className="mt-3 rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm leading-relaxed text-[var(--vulpine-on-surface-variant)]">
                           {pt.concept}
                         </p>
                       ) : null}

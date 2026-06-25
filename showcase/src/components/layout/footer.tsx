@@ -28,9 +28,13 @@ export function Footer() {
   ];
 
   const LEGAL_LINKS = [
-    { href: "/privacy" as const, label: t("privacy") },
-    { href: "/terms" as const, label: t("terms") },
-  ];
+  {
+    href: "https://info.mrfox.com/privacypolicy.html",
+    label: t("privacy"),
+    external: true,
+  },
+  { href: "/terms" as const, label: t("terms"), external: false },
+  ] as const;
 
   return (
     <footer className="relative mt-auto overflow-hidden border-t border-white/5 bg-[var(--vulpine-surface-container-lowest)] text-[var(--vulpine-on-surface)]">
@@ -94,10 +98,22 @@ export function Footer() {
               <ul className="space-y-2.5">
                 {LEGAL_LINKS.map((link) => (
                   <li key={link.href}>
-                    <Link href={link.href} className={linkClass}>
-                      <span>{link.label}</span>
-                      <ArrowUpRight className="size-3.5 opacity-0 transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:opacity-60" />
-                    </Link>
+                    {link.external ? (
+                      <a
+                        href={link.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={linkClass}
+                      >
+                        <span>{link.label}</span>
+                        <ArrowUpRight className="size-3.5 opacity-0 transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:opacity-60" />
+                      </a>
+                    ) : (
+                      <Link href={link.href} className={linkClass}>
+                        <span>{link.label}</span>
+                        <ArrowUpRight className="size-3.5 opacity-0 transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:opacity-60" />
+                      </Link>
+                    )}
                   </li>
                 ))}
               </ul>
@@ -110,13 +126,13 @@ export function Footer() {
                 "rounded-2xl border border-[var(--vulpine-primary-container)]/25 bg-gradient-to-br from-[var(--vulpine-primary-container)]/10 to-transparent p-5 backdrop-blur-sm",
               )}
             >
-              <p className="vulpine-label text-[10px] text-[var(--vulpine-primary-container)]">
+              <p className="vulpine-label text-xs text-[var(--vulpine-primary-container)] sm:text-sm">
                 Mr.FOX Apps
               </p>
               <p className="mt-2 text-sm font-semibold leading-snug text-[var(--vulpine-on-surface)]">
                 {t("downloadTitle")}
               </p>
-              <p className="mt-1 text-xs leading-relaxed text-[var(--vulpine-on-surface-variant)]">
+              <p className="mt-1 text-sm leading-relaxed text-[var(--vulpine-on-surface-variant)]">
                 {t("downloadDesc")}
               </p>
               <a
@@ -136,13 +152,13 @@ export function Footer() {
         </div>
 
         <div className="mt-12 flex flex-col items-start justify-between gap-3 border-t border-white/5 pt-8 sm:flex-row sm:items-center">
-          <p className="text-xs text-[var(--vulpine-on-surface-variant)]">
+          <p className="text-sm text-[var(--vulpine-on-surface-variant)]">
             © {new Date().getFullYear()} Mr.FOX · {t("copyright")}
           </p>
           <button
             type="button"
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            className="text-xs text-[var(--vulpine-on-surface-variant)] transition-colors hover:text-[var(--vulpine-primary)]"
+            className="text-sm text-[var(--vulpine-on-surface-variant)] transition-colors hover:text-[var(--vulpine-primary)]"
           >
             {t("backToTop")}
           </button>

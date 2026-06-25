@@ -129,7 +129,7 @@ function FramePreview({
 }) {
   return (
     <div className="space-y-1">
-      <p className="text-[10px] font-medium text-muted-foreground">{label}</p>
+      <p className="text-xs font-medium text-muted-foreground sm:text-sm">{label}</p>
       <div
         className={cn(
           "relative overflow-hidden bg-[var(--fox-charcoal)]",

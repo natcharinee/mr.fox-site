@@ -69,7 +69,7 @@ export function HomeHero({
             return (
               <li
                 key={pillar}
-                className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3.5 py-2 text-xs text-[var(--vulpine-on-surface)] sm:text-sm"
+                className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3.5 py-2 text-sm text-[var(--vulpine-on-surface)] sm:text-base"
               >
                 <Icon
                   className="size-3.5 shrink-0 text-[var(--vulpine-primary-container)]"

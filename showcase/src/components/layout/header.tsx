@@ -49,7 +49,7 @@ export function Header({ variant = "brand" }: HeaderProps) {
                 key={item.href}
                 href={item.href}
                 className={cn(
-                  "vulpine-label text-xs transition-colors",
+                  "vulpine-label text-sm transition-colors",
                   active
                     ? "border-b-2 border-[var(--vulpine-primary-container)] pb-1 text-[var(--vulpine-primary)]"
                     : "text-[var(--vulpine-on-surface-variant)] hover:text-[var(--vulpine-primary)]",

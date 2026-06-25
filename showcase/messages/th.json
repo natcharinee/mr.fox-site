@@ -25,14 +25,6 @@
     "ecosystem": "Ecosystem Overview",
     "ecosystemArchitecture": "System Architecture",
     "ecosystemDesc": "แบ่งเป็น 5 กลุ่มใหญ่ แต่ละกลุ่มมี Platform Types เป็นแม่แบบมาตรฐาน<br></br>สำหรับ use case ที่ต่างกัน",
-    "ecosystemFlow": {
-      "mrfox": "Mr.FOX",
-      "category": "5 Categories",
-      "platformType": "10 Platform Types",
-      "application": "Applications",
-      "feature": "Features",
-      "download": "Download"
-    },
     "ecosystemIncludes": "ประกอบด้วย Platform Types",
     "ecosystemModules": "{count} MODULES",
     "ecosystemTypeCount": "{count} ประเภท",
@@ -133,7 +125,8 @@
     "subtitle": "ข่าวสารและอัปเดตล่าสุด",
     "backToNews": "กลับไป News",
     "source": "แหล่งที่มา",
-    "readAtSource": "อ่านข่าวฉบับเต็มที่แหล่งที่มา"
+    "readAtSource": "อ่านข่าวฉบับเต็มที่แหล่งที่มา",
+    "readMore": "อ่านต่อ"
   },
   "about": {
     "title": "About Mr.FOX",

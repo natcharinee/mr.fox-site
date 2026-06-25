@@ -1,4 +1,5 @@
 import { getTranslations } from "next-intl/server";
+import { ArrowRight } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { LinkButton } from "@/components/ui/link-button";
 import { CoreFeaturesGrid } from "@/components/home/core-features-grid";
@@ -36,6 +37,7 @@ export default async function HomePage({ params }: Props) {
   const locale = localeParam as Locale;
   const t = await getTranslations("home");
   const tc = await getTranslations("common");
+  const tNews = await getTranslations("news");
 
   const [stats, categories, platformTypes, featuredApps, coreFeatures, latestNews] =
     await Promise.all([
@@ -109,14 +111,7 @@ export default async function HomePage({ params }: Props) {
         includesLabel={t("ecosystemIncludes")}
         viewPlatformLabel={t("ecosystemViewPlatform")}
         viewAllLabel={t("viewAll")}
-        flowLabels={{
-          mrfox: t("ecosystemFlow.mrfox"),
-          category: t("ecosystemFlow.category"),
-          platformType: t("ecosystemFlow.platformType"),
-          application: t("ecosystemFlow.application"),
-          feature: t("ecosystemFlow.feature"),
-          download: t("ecosystemFlow.download"),
-        }}
+        modulesLabelFor={(count) => t("ecosystemModules", { count })}
         categories={localizedCategories}
         platformTypes={localizedPlatforms}
       />
@@ -198,9 +193,13 @@ export default async function HomePage({ params }: Props) {
                   <h4 className="font-display text-lg font-bold text-[var(--vulpine-on-surface)] uppercase transition-colors group-hover:text-[var(--vulpine-primary)] line-clamp-2">
                     {item.title}
                   </h4>
-                  <p className="mt-3 text-sm text-[var(--vulpine-on-surface-variant)] opacity-80 line-clamp-2">
+                  <p className="mt-3 text-base text-[var(--vulpine-on-surface-variant)] opacity-90 line-clamp-2">
                     {item.excerpt}
                   </p>
+                  <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-[var(--vulpine-primary-container)] transition-all group-hover:gap-2.5">
+                    {tNews("readMore")}
+                    <ArrowRight className="size-4" aria-hidden />
+                  </span>
                 </article>
               </Link>
             ))}

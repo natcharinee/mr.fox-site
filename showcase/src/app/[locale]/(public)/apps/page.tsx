@@ -133,7 +133,7 @@ export default async function AppsPage({
                 </CardDescription>
               </CardHeader>
               <CardContent className="mt-auto">
-                <p className={`mb-4 line-clamp-2 text-sm ${publicTheme.muted}`}>
+                <p className={`mb-4 line-clamp-2 text-base ${publicTheme.muted}`}>
                   {app.description}
                 </p>
                 <DownloadButtons

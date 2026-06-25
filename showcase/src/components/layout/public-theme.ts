@@ -30,7 +30,7 @@ export const publicTheme = {
   cardTitle: "font-display text-[var(--vulpine-on-surface)]",
   cardTitleLink:
     "transition-colors hover:text-[var(--vulpine-primary-container)]",
-  cardDescription: "text-[var(--vulpine-on-surface-variant)]",
+  cardDescription: "text-base text-[var(--vulpine-on-surface-variant)]",
   sectionTitle:
     "mb-4 font-display text-lg font-semibold text-[var(--vulpine-on-surface)]",
   label: "text-sm font-medium text-[var(--vulpine-on-surface)]",
