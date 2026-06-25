@@ -312,7 +312,7 @@ export function EcosystemBento({
     CATEGORY_ORDER.find((slug) => (categoryCounts[slug] ?? 0) > 0 && bySlug[slug]) ??
     CATEGORY_ORDER[0];
 
-  const [activeSlug, setActiveSlug] = useState(firstAvailable);
+  const [activeSlug, setActiveSlug] = useState<string>(firstAvailable);
   const activeCategory = bySlug[activeSlug];
   const activeTypes = categoryTypes(platformTypes, activeSlug);
 
