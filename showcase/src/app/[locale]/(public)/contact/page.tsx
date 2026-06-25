@@ -1,5 +1,6 @@
 import { getTranslations } from "next-intl/server";
 import { ContactPageContent } from "@/components/contact/contact-page-content";
+import type { ContactGuideContent } from "@/components/contact/contact-guide-card";
 import { PageHero } from "@/components/layout/page-hero";
 import { PageShell } from "@/components/layout/page-shell";
 import type { Locale } from "@/i18n/routing";
@@ -22,11 +23,12 @@ export async function generateMetadata({ params }: Props) {
 
 export default async function ContactPage() {
   const t = await getTranslations("contact");
+  const guide = t.raw("guide") as ContactGuideContent;
 
   return (
     <PageShell>
       <PageHero title={t("title")} description={t("subtitle")} />
-      <ContactPageContent />
+      <ContactPageContent guide={guide} />
     </PageShell>
   );
 }

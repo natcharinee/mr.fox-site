@@ -1,46 +1,54 @@
-"use client";
-
-import { useTranslations } from "next-intl";
-import { ChevronDown, Inbox, MessageSquare, Send, Users } from "lucide-react";
+import { Inbox, MessageSquare, Send, Users } from "lucide-react";
 import { GlassCard } from "@/components/vulpine/vulpine-primitives";
 import { cn } from "@/lib/utils";
 
-type GuideStep = {
+export type GuideStep = {
   title: string;
   description: string;
 };
 
-type FaqItem = {
+export type GuideFaqItem = {
   question: string;
   answer: string;
 };
 
+export type ContactGuideContent = {
+  eyebrow: string;
+  title: string;
+  stepsTitle: string;
+  steps: GuideStep[];
+  faqTitle: string;
+  faq: GuideFaqItem[];
+};
+
 const STEP_ICONS = [Send, Inbox, Users, MessageSquare] as const;
 
-export function ContactGuideCard({ className }: { className?: string }) {
-  const t = useTranslations("contact.guide");
-  const steps = t.raw("steps") as GuideStep[];
-  const faq = t.raw("faq") as FaqItem[];
-
+export function ContactGuideCard({
+  content,
+  className,
+}: {
+  content: ContactGuideContent;
+  className?: string;
+}) {
   return (
-    <GlassCard className={cn("flex h-full flex-col p-6 sm:p-8", className)}>
+    <GlassCard className={cn("p-6 sm:p-8", className)}>
       <div>
         <p className="vulpine-label mb-2 text-[var(--vulpine-primary-container)]">
-          {t("eyebrow")}
+          {content.eyebrow}
         </p>
         <h3 className="font-display text-lg font-bold uppercase text-[var(--vulpine-on-surface)]">
-          {t("title")}
+          {content.title}
         </h3>
       </div>
 
-      <div className="mt-6 flex-1">
+      <div className="mt-6">
         <p className="text-xs font-medium uppercase tracking-wide text-[var(--vulpine-on-surface-variant)]">
-          {t("stepsTitle")}
+          {content.stepsTitle}
         </p>
         <ol className="relative mt-4 space-y-0">
-          {steps.map((step, index) => {
+          {content.steps.map((step, index) => {
             const Icon = STEP_ICONS[index] ?? MessageSquare;
-            const isLast = index === steps.length - 1;
+            const isLast = index === content.steps.length - 1;
 
             return (
               <li key={step.title} className="relative flex gap-4 pb-6 last:pb-0">
@@ -69,27 +77,23 @@ export function ContactGuideCard({ className }: { className?: string }) {
 
       <div className="mt-8 border-t border-white/8 pt-6">
         <p className="text-xs font-medium uppercase tracking-wide text-[var(--vulpine-on-surface-variant)]">
-          {t("faqTitle")}
+          {content.faqTitle}
         </p>
-        <div className="mt-4 space-y-2">
-          {faq.map((item) => (
-            <details
+        <dl className="mt-4 space-y-4">
+          {content.faq.map((item) => (
+            <div
               key={item.question}
-              className="group rounded-xl border border-white/8 bg-white/[0.02] open:border-[var(--vulpine-primary-container)]/20 open:bg-[var(--vulpine-primary-container)]/[0.04]"
+              className="rounded-xl border border-white/8 bg-white/[0.02] px-4 py-3"
             >
-              <summary className="flex cursor-pointer list-none items-center justify-between gap-3 px-4 py-3 text-sm font-medium text-[var(--vulpine-on-surface)] marker:content-none [&::-webkit-details-marker]:hidden">
-                <span>{item.question}</span>
-                <ChevronDown
-                  className="size-4 shrink-0 text-[var(--vulpine-on-surface-variant)] transition-transform group-open:rotate-180"
-                  aria-hidden
-                />
-              </summary>
-              <p className="border-t border-white/5 px-4 py-3 text-sm leading-relaxed text-[var(--vulpine-on-surface-variant)]">
+              <dt className="text-sm font-medium text-[var(--vulpine-on-surface)]">
+                {item.question}
+              </dt>
+              <dd className="mt-2 text-sm leading-relaxed text-[var(--vulpine-on-surface-variant)]">
                 {item.answer}
-              </p>
-            </details>
+              </dd>
+            </div>
           ))}
-        </div>
+        </dl>
       </div>
     </GlassCard>
   );

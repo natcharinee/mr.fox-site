@@ -18,7 +18,10 @@ import { GlassCard, VulpineSectionHeader } from "@/components/vulpine/vulpine-pr
 import { publicTheme } from "@/components/layout/public-theme";
 import { MRFOX_MAP_LINK } from "@/lib/contact/map";
 import { submitContactForm } from "@/lib/contact/actions";
-import { ContactGuideCard } from "@/components/contact/contact-guide-card";
+import {
+  ContactGuideCard,
+  type ContactGuideContent,
+} from "@/components/contact/contact-guide-card";
 import { ContactMapCard } from "@/components/contact/contact-map-card";
 import { SocialLinkButton } from "@/components/contact/social-platform-icon";
 import { MRFOX_SOCIAL_LINKS } from "@/lib/contact/social-links";
@@ -65,7 +68,7 @@ async function contactAction(
   }
 }
 
-export function ContactPageContent() {
+export function ContactPageContent({ guide }: { guide: ContactGuideContent }) {
   const t = useTranslations("contact");
   const [subject, setSubject] = useState<ContactSubject>("general");
   const [state, formAction, pending] = useActionState(contactAction, null);
@@ -79,8 +82,8 @@ export function ContactPageContent() {
 
   return (
     <div className="mx-auto max-w-[1200px] px-4 py-12 md:px-16 md:py-16">
-      <div className="grid gap-8 lg:grid-cols-5 lg:items-stretch lg:gap-10">
-        <div className="flex flex-col gap-8 lg:col-span-3">
+      <div className="grid gap-8 lg:grid-cols-5 lg:gap-10">
+        <div className="space-y-8 lg:col-span-3">
         <GlassCard className="p-6 sm:p-8">
           <div className="mb-6 border-b border-white/8 pb-6">
             <p className="vulpine-label mb-2 text-[var(--vulpine-primary-container)]">
@@ -202,10 +205,10 @@ export function ContactPageContent() {
           })}
         </div>
 
-        <ContactGuideCard className="flex-1" />
+        <ContactGuideCard content={guide} />
         </div>
 
-        <aside className="flex flex-col gap-5 lg:col-span-2">
+        <aside className="space-y-5 lg:col-span-2">
           <GlassCard className="p-6">
             <p className="vulpine-label mb-2 text-[var(--vulpine-primary-container)]">
               {t("direct.eyebrow")}
@@ -262,7 +265,7 @@ export function ContactPageContent() {
             </div>
           </GlassCard>
 
-          <ContactMapCard className="flex-1" />
+          <ContactMapCard />
         </aside>
       </div>
 
