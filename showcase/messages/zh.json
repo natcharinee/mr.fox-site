@@ -291,12 +291,49 @@
       "hoursLabel": "营业时间",
       "hoursValue": "周一至周五 09:00–18:00",
       "addressLabel": "地址",
-      "addressValue": "1323/1 Srivara Road (Lat Phrao 94) Town in Town PhlabPhla Wangthonglang",
-      "addressHref": "https://www.google.com/maps/search/?api=1&query=1323%2F1+Srivara+Road+Town+in+Town+PhlabPhla+Wangthonglang+Bangkok"
+      "addressValue": "1323/1 Srivara Road (Lat Phrao 94) Town in Town PhlabPhla Wangthonglang"
     },
     "response": {
       "title": "回复时间",
       "desc": "我们通常会在 2–3 个工作日内回复。如有紧急应用问题，请选择支持作为主题。"
+    },
+    "guide": {
+      "eyebrow": "WHAT'S NEXT",
+      "title": "提交之后",
+      "stepsTitle": "处理流程",
+      "steps": [
+        {
+          "title": "发送消息",
+          "description": "填写表单并选择与您的咨询最匹配的主题。"
+        },
+        {
+          "title": "团队接收",
+          "description": "消息将送达 Mr.FOX 团队并记录在跟进系统中。"
+        },
+        {
+          "title": "转交合适团队",
+          "description": "根据您选择的主题，分配给商务、合作、支持或一般团队。"
+        },
+        {
+          "title": "邮件回复",
+          "description": "团队将在 2–3 个工作日内回复（周一至周五 09:00–18:00）。"
+        }
+      ],
+      "faqTitle": "常见问题",
+      "faq": [
+        {
+          "question": "多久能收到回复？",
+          "answer": "通常在 2–3 个工作日内。如有紧急应用问题，请选择支持作为主题，或在营业时间内致电 02-9575771 转分机 75。"
+        },
+        {
+          "question": "紧急联系用什么方式最快？",
+          "answer": "请于营业时间（周一至周五 09:00–18:00）致电或发送邮件至 support@mrfox.com。应用问题请在表单中选择支持。"
+        },
+        {
+          "question": "支持和商务咨询有什么区别？",
+          "answer": "支持适用于应用使用、账户和现有服务问题。商务咨询适用于有兴趣使用 Mr.FOX 平台或咨询新项目的组织或品牌。"
+        }
+      ]
     },
     "social": {
       "title": "关注我们"
@@ -306,8 +343,7 @@
       "title": "办公地图",
       "address": "1323/1 Srivara Road (Lat Phrao 94) Town in Town PhlabPhla Wangthonglang",
       "iframeTitle": "Mr.FOX 办公室 Google 地图",
-      "openLabel": "在 Google 地图中打开",
-      "openHref": "https://www.google.com/maps/search/?api=1&query=1323%2F1+Srivara+Road+Town+in+Town+PhlabPhla+Wangthonglang+Bangkok"
+      "openLabel": "在 Google 地图中打开"
     },
     "help": {
       "eyebrow": "HOW WE HELP",
@@ -336,7 +372,6 @@
       "eyebrow": "OFFICE",
       "company": "Mr.FOX Co., Ltd.",
       "address": "1323/1 Srivara Road (Lat Phrao 94) Town in Town PhlabPhla Wangthonglang",
-      "addressHref": "https://www.google.com/maps/search/?api=1&query=1323%2F1+Srivara+Road+Town+in+Town+PhlabPhla+Wangthonglang+Bangkok",
       "note": "请于营业时间内通过邮箱、电话或留言表单联系我们。"
     }
   },

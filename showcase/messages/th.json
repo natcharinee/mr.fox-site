@@ -291,12 +291,49 @@
       "hoursLabel": "เวลาทำการ",
       "hoursValue": "จันทร์–ศุกร์ 09:00–18:00 น.",
       "addressLabel": "ที่อยู่",
-      "addressValue": "1323/1 ถนนศรีวรา (ลาดพร้าว 94) ทาวน์อินทาวน์ พลับพลา เขตวังทองหลาง กรุงเทพฯ",
-      "addressHref": "https://www.google.com/maps/search/?api=1&query=1323%2F1+Srivara+Road+Town+in+Town+PhlabPhla+Wangthonglang+Bangkok"
+      "addressValue": "1323/1 ถนนศรีวรา (ลาดพร้าว 94) ทาวน์อินทาวน์ พลับพลา เขตวังทองหลาง กรุงเทพฯ"
     },
     "response": {
       "title": "เวลาตอบกลับ",
       "desc": "ทีมงานจะตอบกลับภายใน 2–3 วันทำการ สำหรับเรื่องด่วนเกี่ยวกับการใช้งานแอป แนะนำเลือกหัวข้อ Support"
+    },
+    "guide": {
+      "eyebrow": "WHAT'S NEXT",
+      "title": "หลังส่งฟอร์ม",
+      "stepsTitle": "ขั้นตอนการดำเนินการ",
+      "steps": [
+        {
+          "title": "ส่งข้อความ",
+          "description": "กรอกแบบฟอร์มและเลือกหัวข้อที่ตรงกับเรื่องของคุณ"
+        },
+        {
+          "title": "ทีมรับเรื่อง",
+          "description": "ข้อความจะถูกส่งถึงทีม Mr.FOX และบันทึกในระบบติดตาม"
+        },
+        {
+          "title": "ส่งต่อทีมที่เหมาะสม",
+          "description": "เราจะมอบหมายให้ทีม Business, Partnership, Support หรือ General ตามหัวข้อที่เลือก"
+        },
+        {
+          "title": "ตอบกลับทางอีเมล",
+          "description": "ทีมงานจะติดต่อกลับภายใน 2–3 วันทำการ (จันทร์–ศุกร์ 09:00–18:00 น.)"
+        }
+      ],
+      "faqTitle": "คำถามที่พบบ่อย",
+      "faq": [
+        {
+          "question": "ตอบกลับใช้เวลานานแค่ไหน?",
+          "answer": "โดยทั่วไปภายใน 2–3 วันทำการ หากเป็นเรื่องด่วนเกี่ยวกับการใช้งานแอป แนะนำเลือกหัวข้อ Support หรือโทร 02-9575771 ต่อ 75 ในวันและเวลาทำการ"
+        },
+        {
+          "question": "ติดต่อด่วนควรใช้ช่องทางไหน?",
+          "answer": "โทรศัพท์หรืออีเมล support@mrfox.com ในวันและเวลาทำการ จันทร์–ศุกร์ 09:00–18:00 น. สำหรับปัญหาการใช้งานแอปให้เลือกหัวข้อ Support ในฟอร์ม"
+        },
+        {
+          "question": "Support กับ Business ต่างกันยังไง?",
+          "answer": "Support สำหรับปัญหาการใช้งานแอป บัญชี และบริการที่มีอยู่แล้ว Business Inquiry สำหรับองค์กรหรือแบรนด์ที่สนใจใช้แพลตฟอร์ม Mr.FOX หรือปรึกษาโปรเจกต์ใหม่"
+        }
+      ]
     },
     "social": {
       "title": "ติดตามเรา"
@@ -306,8 +343,7 @@
       "title": "แผนที่สำนักงาน",
       "address": "1323/1 ถนนศรีวรา (ลาดพร้าว 94) ทาวน์อินทาวน์ พลับพลา เขตวังทองหลาง กรุงเทพฯ",
       "iframeTitle": "แผนที่สำนักงาน Mr.FOX",
-      "openLabel": "เปิดใน Google Maps",
-      "openHref": "https://www.google.com/maps/search/?api=1&query=1323%2F1+Srivara+Road+Town+in+Town+PhlabPhla+Wangthonglang+Bangkok"
+      "openLabel": "เปิดใน Google Maps"
     },
     "help": {
       "eyebrow": "HOW WE HELP",
@@ -336,7 +372,6 @@
       "eyebrow": "OFFICE",
       "company": "บริษัท มิสเตอร์ ฟ็อกซ์ จำกัด",
       "address": "1323/1 ถนนศรีวรา (ลาดพร้าว 94) ทาวน์อินทาวน์ พลับพลา เขตวังทองหลาง กรุงเทพฯ",
-      "addressHref": "https://www.google.com/maps/search/?api=1&query=1323%2F1+Srivara+Road+Town+in+Town+PhlabPhla+Wangthonglang+Bangkok",
       "note": "ติดต่อผ่านอีเมล โทรศัพท์ หรือแบบฟอร์มส่งข้อความได้ในวันและเวลาทำการ"
     }
   },

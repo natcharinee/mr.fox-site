@@ -1,4 +1,5 @@
-const MAP_QUERY =
-  "1323/1 Srivara Road Lat Phrao 94 Town in Town PhlabPhla Wangthonglang Bangkok Thailand";
+/** Official Mr.FOX office pin (Mr.FOX Live House). */
+export const MRFOX_MAP_LINK = "https://maps.app.goo.gl/qus7mchm1KEpMjRu5";
 
-export const MRFOX_MAP_EMBED_URL = `https://maps.google.com/maps?q=${encodeURIComponent(MAP_QUERY)}&hl=th&z=17&output=embed`;
+export const MRFOX_MAP_EMBED_URL =
+  "https://maps.google.com/maps?q=13.7737117,100.6103831&hl=th&z=17&output=embed";

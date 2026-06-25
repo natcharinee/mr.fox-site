@@ -16,7 +16,9 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { GlassCard, VulpineSectionHeader } from "@/components/vulpine/vulpine-primitives";
 import { publicTheme } from "@/components/layout/public-theme";
+import { MRFOX_MAP_LINK } from "@/lib/contact/map";
 import { submitContactForm } from "@/lib/contact/actions";
+import { ContactGuideCard } from "@/components/contact/contact-guide-card";
 import { ContactMapCard } from "@/components/contact/contact-map-card";
 import { SocialLinkButton } from "@/components/contact/social-platform-icon";
 import { MRFOX_SOCIAL_LINKS } from "@/lib/contact/social-links";
@@ -77,8 +79,8 @@ export function ContactPageContent() {
 
   return (
     <div className="mx-auto max-w-[1200px] px-4 py-12 md:px-16 md:py-16">
-      <div className="grid gap-8 lg:grid-cols-5 lg:gap-10">
-        <div className="space-y-8 lg:col-span-3">
+      <div className="grid gap-8 lg:grid-cols-5 lg:items-stretch lg:gap-10">
+        <div className="flex flex-col gap-8 lg:col-span-3">
         <GlassCard className="p-6 sm:p-8">
           <div className="mb-6 border-b border-white/8 pb-6">
             <p className="vulpine-label mb-2 text-[var(--vulpine-primary-container)]">
@@ -199,9 +201,11 @@ export function ContactPageContent() {
             );
           })}
         </div>
+
+        <ContactGuideCard className="flex-1" />
         </div>
 
-        <aside className="space-y-5 lg:col-span-2">
+        <aside className="flex flex-col gap-5 lg:col-span-2">
           <GlassCard className="p-6">
             <p className="vulpine-label mb-2 text-[var(--vulpine-primary-container)]">
               {t("direct.eyebrow")}
@@ -227,7 +231,7 @@ export function ContactPageContent() {
                 icon={MapPin}
                 label={t("direct.addressLabel")}
                 value={t("direct.addressValue")}
-                href={t("direct.addressHref")}
+                href={MRFOX_MAP_LINK}
                 external
               />
             </ul>
@@ -258,7 +262,7 @@ export function ContactPageContent() {
             </div>
           </GlassCard>
 
-          <ContactMapCard />
+          <ContactMapCard className="flex-1" />
         </aside>
       </div>
 
@@ -293,7 +297,7 @@ export function ContactPageContent() {
             </h3>
             <p className="mt-2 text-sm text-[var(--vulpine-on-surface-variant)]">
               <a
-                href={t("office.addressHref")}
+                href={MRFOX_MAP_LINK}
                 target="_blank"
                 rel="noopener noreferrer"
                 className={cn(publicTheme.link, "hover:underline")}
