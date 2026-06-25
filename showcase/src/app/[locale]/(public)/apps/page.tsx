@@ -108,40 +108,47 @@ export default async function AppsPage({
       </PageHero>
 
       <div className={publicTheme.pageGrid}>
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="flex flex-col gap-4">
           {appsWithLinks.map((app) => (
-            <Card key={app.slug} className={themedCard("flex flex-col overflow-hidden")}>
-              <AppMedia
-                posterUrl={app.featuredPosterUrl ?? app.posterUrl}
-                posterFocus={app.featuredPosterFocus ?? app.posterFocus}
-                name={app.name}
-                className="aspect-[4/3]"
-              />
-              <CardHeader>
-                <div className="flex items-start justify-between gap-2">
-                  <CardTitle className={`text-lg ${publicTheme.cardTitle}`}>
-                    <Link
-                      href={`/apps/${app.slug}`}
-                      className={publicTheme.cardTitleLink}
-                    >
-                      {app.name}
-                    </Link>
-                  </CardTitle>
-                </div>
-                <CardDescription className={publicTheme.cardDescription}>
-                  {app.platformTypeName} · {app.categoryName}
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="mt-auto">
-                <p className={`mb-4 line-clamp-2 text-base ${publicTheme.muted}`}>
-                  {app.description}
-                </p>
-                <DownloadButtons
-                  appSlug={app.slug}
-                  appId={app.id}
-                  links={app.links}
+            <Card
+              key={app.slug}
+              className={themedCard("flex flex-col overflow-hidden sm:flex-row")}
+            >
+              <div className="shrink-0 p-4 pb-0 sm:pb-4 sm:pr-0">
+                <AppMedia
+                  posterUrl={app.featuredPosterUrl ?? app.posterUrl}
+                  posterFocus={app.featuredPosterFocus ?? app.posterFocus}
+                  name={app.name}
+                  className="aspect-[4/3] w-full rounded-xl sm:aspect-[3/4] sm:w-44 lg:w-52"
                 />
-              </CardContent>
+              </div>
+              <div className="flex min-w-0 flex-1 flex-col">
+                <CardHeader>
+                  <div className="flex items-start justify-between gap-2">
+                    <CardTitle className={`text-lg ${publicTheme.cardTitle}`}>
+                      <Link
+                        href={`/apps/${app.slug}`}
+                        className={publicTheme.cardTitleLink}
+                      >
+                        {app.name}
+                      </Link>
+                    </CardTitle>
+                  </div>
+                  <CardDescription className={publicTheme.cardDescription}>
+                    {app.platformTypeName} · {app.categoryName}
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="mt-auto">
+                  <p className={`mb-4 line-clamp-2 text-base sm:line-clamp-none ${publicTheme.muted}`}>
+                    {app.description}
+                  </p>
+                  <DownloadButtons
+                    appSlug={app.slug}
+                    appId={app.id}
+                    links={app.links}
+                  />
+                </CardContent>
+              </div>
             </Card>
           ))}
         </div>

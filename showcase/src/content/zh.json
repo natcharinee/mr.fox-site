@@ -94,6 +94,42 @@
     }
   },
   "features": {
+    "public-post": {
+      "name": "公开帖子",
+      "description": "公开发布内容"
+    },
+    "photo-album": {
+      "name": "相册",
+      "description": "图片相册"
+    },
+    "video-post": {
+      "name": "视频帖子",
+      "description": "发布视频内容"
+    },
+    "follow": {
+      "name": "关注创作者",
+      "description": "关注创作者"
+    },
+    "like": {
+      "name": "点赞",
+      "description": "为内容点赞"
+    },
+    "comment": {
+      "name": "评论",
+      "description": "发表评论"
+    },
+    "share": {
+      "name": "分享",
+      "description": "分享内容"
+    },
+    "wallet": {
+      "name": "钱包",
+      "description": "应用内钱包"
+    },
+    "creator-directory": {
+      "name": "创作者目录",
+      "description": "创作者目录"
+    },
     "vote": {
       "name": "投票",
       "description": "付费投票支持创作者",

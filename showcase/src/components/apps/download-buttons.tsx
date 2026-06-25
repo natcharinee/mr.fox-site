@@ -9,39 +9,21 @@ import { cn } from "@/lib/utils";
 const LABELS: Record<string, string> = {
   ios: "App Store",
   android: "Google Play",
-  apk: "APK",
   web: "Website",
 };
 
-const LINK_ORDER = ["ios", "android", "apk", "web"] as const;
+const LINK_ORDER = ["ios", "android", "web"] as const;
 
-function defaultApkUrl(slug: string) {
-  return `https://download.mrfox.app/${slug}.apk`;
-}
-
-function normalizeDownloadLinks(
-  slug: string,
-  links: { type: string; url: string }[],
-) {
-  const uniqueLinks = Array.from(
-    new Map(links.map((link) => [link.type, link])).values(),
-  );
-
-  const hasStoreLink = uniqueLinks.some(
-    (link) => link.type === "ios" || link.type === "android",
-  );
-  const withApk =
-    uniqueLinks.some((link) => link.type === "apk") || !hasStoreLink
-      ? uniqueLinks
-      : [...uniqueLinks, { type: "apk", url: defaultApkUrl(slug) }];
-
-  return withApk.sort((a, b) => {
-    const order = (type: string) => {
-      const index = LINK_ORDER.indexOf(type as (typeof LINK_ORDER)[number]);
-      return index === -1 ? LINK_ORDER.length : index;
-    };
-    return order(a.type) - order(b.type);
-  });
+function normalizeDownloadLinks(links: { type: string; url: string }[]) {
+  return Array.from(new Map(links.map((link) => [link.type, link])).values())
+    .filter((link) => link.type !== "apk")
+    .sort((a, b) => {
+      const order = (type: string) => {
+        const index = LINK_ORDER.indexOf(type as (typeof LINK_ORDER)[number]);
+        return index === -1 ? LINK_ORDER.length : index;
+      };
+      return order(a.type) - order(b.type);
+    });
 }
 
 export function DownloadButtons({
@@ -57,7 +39,9 @@ export function DownloadButtons({
   className?: string;
   showDetailsLink?: boolean;
 }) {
-  if (links.length === 0) {
+  const uniqueLinks = normalizeDownloadLinks(links);
+
+  if (uniqueLinks.length === 0) {
     return (
       <Button
         disabled
@@ -71,8 +55,6 @@ export function DownloadButtons({
       </Button>
     );
   }
-
-  const uniqueLinks = normalizeDownloadLinks(appSlug, links);
 
   return (
     <div className={cn("flex flex-wrap gap-2", className)}>

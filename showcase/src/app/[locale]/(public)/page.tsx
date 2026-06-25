@@ -45,7 +45,7 @@ export default async function HomePage({ params }: Props) {
       getCategories(),
       getPlatformTypes(),
       getFeaturedApplications(),
-      getCoreFeatures(6),
+      getCoreFeatures(),
       getLatestNews(3),
     ]);
 

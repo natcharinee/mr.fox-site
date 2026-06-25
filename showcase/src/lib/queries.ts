@@ -13,6 +13,7 @@ import {
   platformTypePermissions,
   platformTypes,
 } from "@/db/schema";
+import { CORE_FEATURE_SLUGS } from "@/lib/core-features";
 import { newsPublicWhere } from "@/lib/news-publish-sql";
 
 export async function getActiveBanners() {
@@ -295,8 +296,13 @@ export async function getShowcaseFeatures() {
     .orderBy(features.sortOrder);
 }
 
-export async function getCoreFeatures(limit = 6) {
-  return getShowcaseFeatures().then((rows) => rows.slice(0, limit));
+export async function getCoreFeatures() {
+  const rows = await db.select().from(features);
+  const bySlug = new Map(rows.map((row) => [row.slug, row]));
+  return CORE_FEATURE_SLUGS.flatMap((slug) => {
+    const row = bySlug.get(slug);
+    return row ? [row] : [];
+  });
 }
 
 export async function getFeatureBySlug(slug: string) {

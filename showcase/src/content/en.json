@@ -94,6 +94,42 @@
     }
   },
   "features": {
+    "public-post": {
+      "name": "Public Post",
+      "description": "Public content posts"
+    },
+    "photo-album": {
+      "name": "Photo Album",
+      "description": "Photo albums"
+    },
+    "video-post": {
+      "name": "Video Post",
+      "description": "Video posts"
+    },
+    "follow": {
+      "name": "Follow Creator",
+      "description": "Follow creators"
+    },
+    "like": {
+      "name": "Like",
+      "description": "Like content"
+    },
+    "comment": {
+      "name": "Comment",
+      "description": "Comment on content"
+    },
+    "share": {
+      "name": "Share",
+      "description": "Share content"
+    },
+    "wallet": {
+      "name": "Wallet",
+      "description": "In-app wallet"
+    },
+    "creator-directory": {
+      "name": "Creator Directory",
+      "description": "Creator directory"
+    },
     "vote": {
       "name": "Vote",
       "description": "Paid voting to support creators",
