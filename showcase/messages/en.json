@@ -23,8 +23,18 @@
     "explorePlatforms": "Explore Platforms",
     "downloadApps": "Download Apps",
     "ecosystem": "Ecosystem Overview",
+    "ecosystemArchitecture": "System Architecture",
     "ecosystemDesc": "Five major groups — each contains Platform Types, our standard templates for different use cases.",
+    "ecosystemFlow": {
+      "mrfox": "Mr.FOX",
+      "category": "5 Categories",
+      "platformType": "10 Platform Types",
+      "application": "Applications",
+      "feature": "Features",
+      "download": "Download"
+    },
     "ecosystemIncludes": "Includes these Platform Types",
+    "ecosystemModules": "{count} MODULES",
     "ecosystemTypeCount": "{count} types",
     "ecosystemViewPlatform": "View details",
     "platformTypes": "10 Platform Types",

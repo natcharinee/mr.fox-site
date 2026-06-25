@@ -1,7 +1,7 @@
 import { ContentImage } from "@/components/ui/content-image";
 import { DownloadButtons } from "@/components/apps/download-buttons";
 import { GlassCard } from "@/components/vulpine/vulpine-primitives";
-import { isCompanyLogo, resolveImageUrl, resolvePosterUrl } from "@/lib/brand-assets";
+import { isCompanyLogo, isUploadedMediaUrl, resolveImageUrl, resolvePosterUrl } from "@/lib/brand-assets";
 import { cn } from "@/lib/utils";
 
 type FeaturedAppCardProps = {
@@ -52,9 +52,7 @@ export function FeaturedAppCard({
             sizes="(max-width: 640px) 50vw, 25vw"
             objectPosition={posterFocus}
             fit="cover"
-            unoptimized={
-              posterSrc.startsWith("/api/media/") || posterSrc.startsWith("/uploads/")
-            }
+            unoptimized={isUploadedMediaUrl(posterSrc)}
             className="transition-all duration-700 group-hover:scale-105 grayscale-[0.15] group-hover:grayscale-0"
           />
         ) : (

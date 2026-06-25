@@ -102,10 +102,21 @@ export default async function HomePage({ params }: Props) {
 
       <EcosystemBento
         title={t("ecosystem")}
-        description={t("ecosystemDesc")}
+        description={t.rich("ecosystemDesc", {
+          br: () => <br />,
+        })}
+        architectureLabel={t("ecosystemArchitecture")}
         includesLabel={t("ecosystemIncludes")}
         viewPlatformLabel={t("ecosystemViewPlatform")}
         viewAllLabel={t("viewAll")}
+        flowLabels={{
+          mrfox: t("ecosystemFlow.mrfox"),
+          category: t("ecosystemFlow.category"),
+          platformType: t("ecosystemFlow.platformType"),
+          application: t("ecosystemFlow.application"),
+          feature: t("ecosystemFlow.feature"),
+          download: t("ecosystemFlow.download"),
+        }}
         categories={localizedCategories}
         platformTypes={localizedPlatforms}
       />
@@ -205,8 +216,10 @@ export default async function HomePage({ params }: Props) {
           <h2 className="font-display text-2xl font-bold tracking-wider text-[var(--vulpine-on-surface)] uppercase md:text-4xl">
             Mr.FOX Ecosystem
           </h2>
-          <p className="mx-auto mt-4 max-w-xl text-[var(--vulpine-on-surface-variant)]">
-            {t("ecosystemDesc")}
+          <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-[var(--vulpine-on-surface)]/90 sm:text-lg">
+            {t.rich("ecosystemDesc", {
+              br: () => <br />,
+            })}
           </p>
           <div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
             <LinkButton

@@ -104,6 +104,15 @@ export default async function AdminApplicationsPage() {
               <Input id="androidUrl" name="androidUrl" className="mt-1" />
             </div>
             <div className="sm:col-span-2">
+              <Label htmlFor="apkUrl">APK URL</Label>
+              <Input
+                id="apkUrl"
+                name="apkUrl"
+                placeholder="https://download.mrfox.app/{slug}.apk"
+                className="mt-1"
+              />
+            </div>
+            <div className="sm:col-span-2">
               <Button type="submit">บันทึกแอป</Button>
             </div>
           </AdminSaveForm>

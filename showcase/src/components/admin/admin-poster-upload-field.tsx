@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ImagePlus, X } from "lucide-react";
 import { FocalPointPicker } from "@/components/admin/focal-point-picker";
 import { uploadAdminFile } from "@/lib/admin-upload-client";
@@ -38,6 +38,20 @@ export function AdminPosterUploadField({
   const [posterUrl, setPosterUrl] = useState(defaultValue);
   const [posterFocus, setPosterFocus] = useState(defaultFocus);
   const [uploading, setUploading] = useState(false);
+  const urlInputRef = useRef<HTMLInputElement>(null);
+  const focusInputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    if (urlInputRef.current) {
+      urlInputRef.current.value = posterUrl;
+    }
+  }, [posterUrl]);
+
+  useEffect(() => {
+    if (focusInputRef.current) {
+      focusInputRef.current.value = posterFocus;
+    }
+  }, [posterFocus]);
 
   async function handleFileChange(file: File | null) {
     if (!file) return;
@@ -48,7 +62,7 @@ export function AdminPosterUploadField({
       const data = await uploadAdminFile(file);
       setPosterUrl(data.url!);
       setPosterFocus(DEFAULT_IMAGE_FOCUS);
-      toast.success("อัปโหลดรูปสำเร็จแล้ว");
+      toast.success("อัปโหลดสำเร็จ — กดบันทึกด้านล่างเพื่อใช้รูปนี้บนหน้าบ้าน");
     } catch (error) {
       const message =
         error instanceof Error ? error.message : "อัปโหลดไม่สำเร็จ";
@@ -72,8 +86,18 @@ export function AdminPosterUploadField({
         className,
       )}
     >
-      <input type="hidden" name={name} value={posterUrl} />
-      <input type="hidden" name={focusName} value={posterFocus} />
+      <input
+        ref={urlInputRef}
+        type="hidden"
+        name={name}
+        defaultValue={defaultValue}
+      />
+      <input
+        ref={focusInputRef}
+        type="hidden"
+        name={focusName}
+        defaultValue={defaultFocus}
+      />
 
       <div className="space-y-1">
         <Label htmlFor={`${name}-file`} className="text-sm font-semibold">

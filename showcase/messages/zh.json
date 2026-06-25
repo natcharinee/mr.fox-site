@@ -23,8 +23,18 @@
     "explorePlatforms": "探索平台",
     "downloadApps": "下载应用",
     "ecosystem": "生态系统概览",
+    "ecosystemArchitecture": "系统架构",
     "ecosystemDesc": "分为 5 大类别 — 每类包含适用于不同场景的 Platform Types 标准模板。",
+    "ecosystemFlow": {
+      "mrfox": "Mr.FOX",
+      "category": "5 大类别",
+      "platformType": "10 种平台类型",
+      "application": "应用",
+      "feature": "功能",
+      "download": "下载"
+    },
     "ecosystemIncludes": "包含以下 Platform Types",
+    "ecosystemModules": "{count} 个模块",
     "ecosystemTypeCount": "{count} 种类型",
     "ecosystemViewPlatform": "查看详情",
     "platformTypes": "10 种平台类型",

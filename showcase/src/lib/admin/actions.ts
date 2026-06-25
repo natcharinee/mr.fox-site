@@ -142,6 +142,31 @@ export async function syncInfoMrfoxNews() {
 
 // ─── Applications ───────────────────────────────────────
 
+function defaultApkUrl(slug: string) {
+  return `https://download.mrfox.app/${slug}.apk`;
+}
+
+function buildApplicationDownloadLinks(
+  applicationId: number,
+  slug: string,
+  urls: { iosUrl?: string; androidUrl?: string; apkUrl?: string },
+) {
+  const links = [];
+  if (urls.iosUrl) {
+    links.push({ applicationId, type: "ios" as const, url: urls.iosUrl });
+  }
+  if (urls.androidUrl) {
+    links.push({ applicationId, type: "android" as const, url: urls.androidUrl });
+  }
+  const apkUrl =
+    urls.apkUrl ||
+    (urls.iosUrl || urls.androidUrl ? defaultApkUrl(slug) : undefined);
+  if (apkUrl) {
+    links.push({ applicationId, type: "apk" as const, url: apkUrl });
+  }
+  return links;
+}
+
 const appSchema = z.object({
   name: z.string().min(1),
   slug: z.string().min(1),
@@ -152,6 +177,7 @@ const appSchema = z.object({
   published: z.coerce.boolean().optional(),
   iosUrl: z.string().optional(),
   androidUrl: z.string().optional(),
+  apkUrl: z.string().optional(),
   posterUrl: z.string().optional(),
   posterFocus: z.string().optional(),
   featuredPosterUrl: z.string().optional(),
@@ -171,6 +197,7 @@ export async function createApplication(formData: FormData) {
     published: formData.get("published") === "on",
     iosUrl: formData.get("iosUrl") || undefined,
     androidUrl: formData.get("androidUrl") || undefined,
+    apkUrl: formData.get("apkUrl") || undefined,
     posterUrl: formData.get("posterUrl") || undefined,
     posterFocus: formData.get("posterFocus") || undefined,
     featuredPosterUrl: formData.get("featuredPosterUrl") || undefined,
@@ -196,9 +223,11 @@ export async function createApplication(formData: FormData) {
     })
     .returning();
 
-  const links = [];
-  if (data.iosUrl) links.push({ applicationId: row.id, type: "ios" as const, url: data.iosUrl });
-  if (data.androidUrl) links.push({ applicationId: row.id, type: "android" as const, url: data.androidUrl });
+  const links = buildApplicationDownloadLinks(row.id, data.slug, {
+    iosUrl: data.iosUrl,
+    androidUrl: data.androidUrl,
+    apkUrl: data.apkUrl,
+  });
   if (links.length) await db.insert(downloadLinks).values(links);
 
   await logAudit(session, "create", "application", row.id, data.name);
@@ -217,6 +246,7 @@ export async function updateApplication(id: number, formData: FormData) {
     published: formData.get("published") === "on",
     iosUrl: formData.get("iosUrl") || undefined,
     androidUrl: formData.get("androidUrl") || undefined,
+    apkUrl: formData.get("apkUrl") || undefined,
     posterUrl: formData.get("posterUrl") || undefined,
     posterFocus: formData.get("posterFocus") || undefined,
     featuredPosterUrl: formData.get("featuredPosterUrl") || undefined,
@@ -256,17 +286,11 @@ export async function updateApplication(id: number, formData: FormData) {
 
   await db.delete(downloadLinks).where(eq(downloadLinks.applicationId, id));
 
-  const links = [];
-  if (data.iosUrl) {
-    links.push({ applicationId: id, type: "ios" as const, url: data.iosUrl });
-  }
-  if (data.androidUrl) {
-    links.push({
-      applicationId: id,
-      type: "android" as const,
-      url: data.androidUrl,
-    });
-  }
+  const links = buildApplicationDownloadLinks(id, data.slug, {
+    iosUrl: data.iosUrl,
+    androidUrl: data.androidUrl,
+    apkUrl: data.apkUrl,
+  });
   if (links.length) {
     await db.insert(downloadLinks).values(links);
   }

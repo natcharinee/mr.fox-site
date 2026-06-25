@@ -28,6 +28,9 @@ export default async function AdminApplicationEditPage({ params }: Props) {
   const update = updateApplication.bind(null, item.id);
   const iosUrl = item.links.find((link) => link.type === "ios")?.url ?? "";
   const androidUrl = item.links.find((link) => link.type === "android")?.url ?? "";
+  const apkUrl =
+    item.links.find((link) => link.type === "apk")?.url ??
+    (iosUrl || androidUrl ? `https://download.mrfox.app/${item.slug}.apk` : "");
 
   return (
     <div className="mx-auto max-w-3xl space-y-6">
@@ -103,6 +106,16 @@ export default async function AdminApplicationEditPage({ params }: Props) {
         <div>
           <Label htmlFor="androidUrl">Android URL</Label>
           <Input id="androidUrl" name="androidUrl" defaultValue={androidUrl} className="mt-1" />
+        </div>
+        <div className="sm:col-span-2">
+          <Label htmlFor="apkUrl">APK URL</Label>
+          <Input
+            id="apkUrl"
+            name="apkUrl"
+            defaultValue={apkUrl}
+            placeholder={`https://download.mrfox.app/${item.slug}.apk`}
+            className="mt-1"
+          />
         </div>
         <div className="flex gap-2 sm:col-span-2">
           <Button type="submit">บันทึก</Button>
