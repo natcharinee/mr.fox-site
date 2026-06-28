@@ -50,9 +50,12 @@ const PATHWAY_ICONS: Record<ContactSubject, typeof Building2> = {
 };
 
 const PATHWAY_ACCENTS: Record<ContactSubject, string> = {
-  business: "border-amber-500/25 bg-amber-500/5 text-amber-300",
-  partnership: "border-violet-500/25 bg-violet-500/5 text-violet-300",
-  support: "border-teal-500/25 bg-teal-500/5 text-teal-300",
+  business:
+    "border-[var(--vulpine-primary-container)]/35 bg-[var(--vulpine-primary-container)]/10 text-[var(--vulpine-primary-container)]",
+  partnership:
+    "border-[var(--vulpine-primary-container)]/30 bg-[var(--vulpine-primary-container)]/8 text-[var(--vulpine-primary)]",
+  support:
+    "border-[var(--vulpine-primary-container)]/25 bg-[var(--vulpine-primary-container)]/6 text-[var(--vulpine-primary)]",
   general: "border-white/15 bg-white/5 text-white/70",
 };
 
@@ -68,7 +71,13 @@ async function contactAction(
   }
 }
 
-export function ContactPageContent({ guide }: { guide: ContactGuideContent }) {
+export function ContactPageContent({
+  guide,
+  embedded = false,
+}: {
+  guide: ContactGuideContent;
+  embedded?: boolean;
+}) {
   const t = useTranslations("contact");
   const [subject, setSubject] = useState<ContactSubject>("general");
   const [state, formAction, pending] = useActionState(contactAction, null);
@@ -81,7 +90,22 @@ export function ContactPageContent({ guide }: { guide: ContactGuideContent }) {
   }
 
   return (
-    <div className="mx-auto max-w-[1200px] px-4 py-12 md:px-16 md:py-16">
+    <div
+      id={embedded ? "contact" : undefined}
+      className={cn(
+        embedded
+          ? "mt-16 scroll-mt-24 border-t border-white/5 pt-16 md:mt-20 md:pt-20"
+          : "mx-auto max-w-[1200px] px-4 py-12 md:px-16 md:py-16",
+      )}
+    >
+      {embedded ? (
+        <VulpineSectionHeader
+          eyebrow={t("formEyebrow")}
+          title={t("title")}
+          description={t("subtitle")}
+          className="mb-10"
+        />
+      ) : null}
       <div className="grid gap-8 lg:grid-cols-5 lg:gap-10">
         <div className="space-y-8 lg:col-span-3">
         <GlassCard className="p-6 sm:p-8">
@@ -208,7 +232,7 @@ export function ContactPageContent({ guide }: { guide: ContactGuideContent }) {
         <ContactGuideCard content={guide} />
         </div>
 
-        <aside className="space-y-5 lg:col-span-2">
+        <aside className="flex flex-col gap-5 lg:col-span-2">
           <GlassCard className="p-6">
             <p className="vulpine-label mb-2 text-[var(--vulpine-primary-container)]">
               {t("direct.eyebrow")}
@@ -265,7 +289,7 @@ export function ContactPageContent({ guide }: { guide: ContactGuideContent }) {
             </div>
           </GlassCard>
 
-          <ContactMapCard />
+          <ContactMapCard className="flex-1" />
         </aside>
       </div>
 

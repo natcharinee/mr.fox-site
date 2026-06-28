@@ -3,10 +3,8 @@ import { ArrowRight } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { LinkButton } from "@/components/ui/link-button";
 import { CoreFeaturesGrid } from "@/components/home/core-features-grid";
-import { HomePlatformTypesSection } from "@/components/home/home-platform-types-section";
 import { FeaturedAppCard } from "@/components/apps/featured-app-card";
 import { HomeHero } from "@/components/home/home-hero";
-import { HomeStats } from "@/components/home/home-stats";
 import { EcosystemBento } from "@/components/home/ecosystem-bento";
 import { NewsMedia } from "@/components/news/news-media";
 import { GlassCard } from "@/components/vulpine/vulpine-primitives";
@@ -25,7 +23,6 @@ import {
   getFeaturedApplications,
   getLatestNews,
   getPlatformTypes,
-  getSiteStats,
 } from "@/lib/queries";
 
 export const dynamic = "force-dynamic";
@@ -39,9 +36,8 @@ export default async function HomePage({ params }: Props) {
   const tc = await getTranslations("common");
   const tNews = await getTranslations("news");
 
-  const [stats, categories, platformTypes, featuredApps, coreFeatures, latestNews] =
+  const [categories, platformTypes, featuredApps, coreFeatures, latestNews] =
     await Promise.all([
-      getSiteStats(),
       getCategories(),
       getPlatformTypes(),
       getFeaturedApplications(),
@@ -76,32 +72,6 @@ export default async function HomePage({ params }: Props) {
         downloadApps={t("downloadApps")}
       />
 
-      <HomeStats
-        items={[
-          {
-            label: t("stats.platformTypes"),
-            value: stats.platformTypes,
-            icon: "layers",
-          },
-          {
-            label: t("stats.applications"),
-            value: stats.applications,
-            icon: "zap",
-          },
-          {
-            label: t("stats.features"),
-            value: stats.features,
-            icon: "sparkles",
-          },
-          {
-            label: t("stats.downloads"),
-            value: 3,
-            icon: "download",
-            suffix: "K+",
-          },
-        ]}
-      />
-
       <EcosystemBento
         title={t("ecosystem")}
         description={t.rich("ecosystemDesc", {
@@ -112,18 +82,6 @@ export default async function HomePage({ params }: Props) {
         viewPlatformLabel={t("ecosystemViewPlatform")}
         viewAllLabel={t("viewAll")}
         modulesLabelFor={(count) => t("ecosystemModules", { count })}
-        categories={localizedCategories}
-        platformTypes={localizedPlatforms}
-      />
-
-      <HomePlatformTypesSection
-        title={t("platformTypes")}
-        description={t("platformTypesDesc")}
-        viewAllLabel={t("viewAll")}
-        exploreLabel={t("exploreFeature")}
-        moreTypesLabel={t("morePlatformTypes", {
-          count: Math.max(localizedPlatforms.length - 6, 0),
-        })}
         categories={localizedCategories}
         platformTypes={localizedPlatforms}
       />
@@ -205,37 +163,6 @@ export default async function HomePage({ params }: Props) {
             ))}
           </div>
         </div>
-      </section>
-
-      <section className="px-4 py-16 md:px-16 md:pb-24">
-        <GlassCard className="mx-auto max-w-4xl border-[var(--vulpine-primary-container)]/30 p-10 text-center md:p-12">
-          <span className="vulpine-label mb-4 inline-block text-[var(--vulpine-primary-container)]">
-            INITIALIZE_CONNECTION &gt;&gt;&gt;
-          </span>
-          <h2 className="font-display text-2xl font-bold tracking-wider text-[var(--vulpine-on-surface)] uppercase md:text-4xl">
-            Mr.FOX Ecosystem
-          </h2>
-          <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-[var(--vulpine-on-surface)]/90 sm:text-lg">
-            {t.rich("ecosystemDesc", {
-              br: () => <br />,
-            })}
-          </p>
-          <div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
-            <LinkButton
-              href="/contact"
-              className="vulpine-label vulpine-btn-glow rounded-xl bg-[var(--vulpine-primary-container)] px-10 py-4 font-black text-[var(--vulpine-on-primary)] hover:brightness-110"
-            >
-              Contact
-            </LinkButton>
-            <LinkButton
-              href="/apps"
-              variant="outline"
-              className="vulpine-label rounded-xl border-white/20 bg-white/5 px-10 py-4 text-[var(--vulpine-on-surface)] hover:bg-white/10"
-            >
-              {t("viewAll")} Apps
-            </LinkButton>
-          </div>
-        </GlassCard>
       </section>
     </>
   );

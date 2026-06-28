@@ -1,9 +1,11 @@
 "use client";
 
 import { ExternalLink } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import { LinkButton } from "@/components/ui/link-button";
 import { publicTheme } from "@/components/layout/public-theme";
+import { resolveStoreDownloadUrl } from "@/lib/app-download";
 import { cn } from "@/lib/utils";
 
 const LABELS: Record<string, string> = {
@@ -32,13 +34,20 @@ export function DownloadButtons({
   links,
   className,
   showDetailsLink = true,
+  layout = "inline",
+  align = "start",
+  compact = false,
 }: {
   appSlug: string;
   appId: number;
   links: { type: string; url: string }[];
   className?: string;
   showDetailsLink?: boolean;
+  layout?: "inline" | "split";
+  align?: "start" | "center";
+  compact?: boolean;
 }) {
+  const t = useTranslations("apps");
   const uniqueLinks = normalizeDownloadLinks(links);
 
   if (uniqueLinks.length === 0) {
@@ -47,55 +56,100 @@ export function DownloadButtons({
         disabled
         size="sm"
         className={cn(
-          "border-white/10 bg-white/5 text-[var(--vulpine-on-surface-variant)]",
+          publicTheme.badgeOutline,
+          "text-[var(--vulpine-on-surface-variant)] opacity-70",
           className,
         )}
       >
-        เร็วๆ นี้
+        {t("comingSoon")}
       </Button>
     );
   }
 
+  const storeButtons = uniqueLinks.map((link) => (
+    <Button
+      key={link.type}
+      size="sm"
+      variant="outline"
+      className={cn(
+        "shrink-0 rounded-xl font-medium",
+        compact ? "h-8 max-w-full px-2.5 text-xs" : "h-9 px-3.5 text-sm",
+        publicTheme.badgeOutline,
+        "hover:text-[var(--vulpine-primary)]",
+      )}
+      nativeButton={false}
+      render={
+        <a
+          href={resolveStoreDownloadUrl(link.type, link.url)}
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={() => {
+            void fetch("/api/downloads/track", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                applicationId: appId,
+                linkType: link.type,
+              }),
+            });
+          }}
+        />
+      }
+    >
+      {LABELS[link.type] ?? link.type}
+      <ExternalLink className={cn("opacity-70", compact ? "ml-1 size-3" : "ml-1.5 size-3.5")} />
+    </Button>
+  ));
+
+  const detailsButton = showDetailsLink ? (
+    <LinkButton
+      href={`/apps/${appSlug}`}
+      size="sm"
+      className={cn(
+        publicTheme.submitButton,
+        compact ? "h-8 w-full max-w-[11rem] px-3 text-xs" : "h-9 px-4",
+      )}
+    >
+      {t("viewDetails")}
+    </LinkButton>
+  ) : null;
+
+  const storeButtonRow = (
+    <div
+      className={cn(
+        "flex w-full max-w-full gap-2",
+        compact || align === "center" ? "justify-center" : "justify-start",
+        compact ? "flex-wrap" : "flex-nowrap",
+      )}
+    >
+      {storeButtons}
+    </div>
+  );
+
+  if (layout === "split") {
+    return (
+      <div
+        className={cn(
+          "flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between",
+          className,
+        )}
+      >
+        {storeButtonRow}
+        {detailsButton}
+      </div>
+    );
+  }
+
   return (
-    <div className={cn("flex flex-wrap gap-2", className)}>
-      {uniqueLinks.map((link) => (
-        <Button
-          key={link.type}
-          size="sm"
-          variant="outline"
-          className="border-white/15 bg-white/5 text-[var(--vulpine-on-surface)] hover:border-[var(--vulpine-primary-container)]/50 hover:bg-[var(--vulpine-primary-container)]/10 hover:text-[var(--vulpine-primary)]"
-          nativeButton={false}
-          render={
-            <a
-              href={link.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => {
-                void fetch("/api/downloads/track", {
-                  method: "POST",
-                  headers: { "Content-Type": "application/json" },
-                  body: JSON.stringify({
-                    applicationId: appId,
-                    linkType: link.type,
-                  }),
-                });
-              }}
-            />
-          }
-        >
-          {LABELS[link.type] ?? link.type}
-          <ExternalLink className="ml-1 size-3" />
-        </Button>
-      ))}
-      {showDetailsLink ? (
-        <LinkButton
-          href={`/apps/${appSlug}`}
-          size="sm"
-          className={publicTheme.submitButton}
-        >
-          รายละเอียด
-        </LinkButton>
-      ) : null}
+    <div
+      className={cn(
+        "flex w-full max-w-full flex-col gap-2",
+        align === "center" ? "items-center" : "items-start",
+        className,
+      )}
+    >
+      {storeButtonRow}
+      {detailsButton}
     </div>
   );
 }

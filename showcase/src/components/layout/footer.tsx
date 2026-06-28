@@ -5,6 +5,7 @@ import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { BrandLogo } from "@/components/brand/brand-logo";
 import { publicTheme } from "@/components/layout/public-theme";
+import { MRFOX_APP_DOWNLOAD_URL } from "@/lib/app-download";
 import { cn } from "@/lib/utils";
 
 const linkClass =
@@ -23,7 +24,6 @@ export function Footer() {
 
   const COMPANY_LINKS = [
     { href: "/about" as const, label: nav("about") },
-    { href: "/contact" as const, label: nav("contact") },
     { href: "/search" as const, label: nav("search") },
   ];
 
@@ -136,7 +136,7 @@ export function Footer() {
                 {t("downloadDesc")}
               </p>
               <a
-                href="https://link.mrfox.app"
+                href={MRFOX_APP_DOWNLOAD_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className={cn(

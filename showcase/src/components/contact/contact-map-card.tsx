@@ -5,12 +5,12 @@ import { publicTheme } from "@/components/layout/public-theme";
 import { MRFOX_MAP_EMBED_URL, MRFOX_MAP_LINK } from "@/lib/contact/map";
 import { cn } from "@/lib/utils";
 
-export function ContactMapCard() {
+export function ContactMapCard({ className }: { className?: string }) {
   const t = useTranslations("contact.map");
 
   return (
-    <GlassCard className="overflow-hidden">
-      <div className="p-6 pb-4">
+    <GlassCard className={cn("flex flex-col overflow-hidden", className)}>
+      <div className="shrink-0 p-6 pb-4">
         <p className="vulpine-label mb-2 text-[var(--vulpine-primary-container)]">
           {t("eyebrow")}
         </p>
@@ -22,7 +22,7 @@ export function ContactMapCard() {
         </p>
       </div>
 
-      <div className="relative aspect-[4/3] w-full border-y border-white/8 bg-[#0d0f0f]">
+      <div className="relative min-h-[240px] w-full flex-1 border-y border-white/8 bg-[#0d0f0f] aspect-[4/3] lg:aspect-auto lg:min-h-[320px]">
         <iframe
           src={MRFOX_MAP_EMBED_URL}
           title={t("iframeTitle")}
@@ -33,7 +33,7 @@ export function ContactMapCard() {
         />
       </div>
 
-      <div className="p-4">
+      <div className="shrink-0 p-4">
         <a
           href={MRFOX_MAP_LINK}
           target="_blank"

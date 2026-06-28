@@ -166,6 +166,7 @@ export async function getApplications(filters?: {
       featuredPosterFocus: applications.featuredPosterFocus,
       description: applications.description,
       featured: applications.featured,
+      sortOrder: applications.sortOrder,
       platformTypeName: platformTypes.name,
       platformTypeSlug: platformTypes.slug,
       categoryName: platformCategories.name,
@@ -230,6 +231,7 @@ export async function getApplicationBySlug(slug: string) {
       platformTypeName: platformTypes.name,
       platformTypeSlug: platformTypes.slug,
       categoryName: platformCategories.name,
+      categorySlug: platformCategories.slug,
     })
     .from(applications)
     .innerJoin(platformTypes, eq(applications.platformTypeId, platformTypes.id))

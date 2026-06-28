@@ -10,6 +10,8 @@ import {
   AboutPurposeSection,
   type AboutPurposeContent,
 } from "@/components/about/about-purpose-section";
+import { ContactPageContent } from "@/components/contact/contact-page-content";
+import type { ContactGuideContent } from "@/components/contact/contact-guide-card";
 import type { AboutEventVideoContent } from "@/lib/youtube";
 import { PageHero } from "@/components/layout/page-hero";
 import { PageShell } from "@/components/layout/page-shell";
@@ -34,9 +36,11 @@ export async function generateMetadata({ params }: Props) {
 export default async function AboutPage({ params }: Props) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "about" });
+  const tContact = await getTranslations({ locale, namespace: "contact" });
   const roadmap = t.raw("roadmapPhases") as RoadmapPhase[];
   const purpose = t.raw("purpose") as AboutPurposeContent;
   const eventVideo = t.raw("eventVideo") as AboutEventVideoContent;
+  const guide = tContact.raw("guide") as ContactGuideContent;
 
   return (
     <PageShell>
@@ -63,6 +67,8 @@ export default async function AboutPage({ params }: Props) {
           content={eventVideo}
           placeholderLabel={t("eventVideoPlaceholder")}
         />
+
+        <ContactPageContent guide={guide} embedded />
       </div>
     </PageShell>
   );

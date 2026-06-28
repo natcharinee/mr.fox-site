@@ -2,23 +2,15 @@
   "categories": {
     "creator": {
       "name": "创作者",
-      "description": "创作者经济平台——从独立创作者到多品类多种形态"
+      "description": "18+ 创作者站点 — 从独立创作者到多品类多种形态"
     },
     "community": {
       "name": "社区",
       "description": "每位成员均可发帖、互动与交流的在线社区"
     },
-    "company": {
-      "name": "机构",
-      "description": "面向企业、大学和校友组织的机构平台"
-    },
     "contest": {
       "name": "竞赛",
       "description": "竞赛与投票平台——支持单项赛事和多项竞赛合集"
-    },
-    "exhibition": {
-      "name": "展览",
-      "description": "展览与展销会——票务销售与参展商管理"
     }
   },
   "platforms": {
@@ -29,40 +21,12 @@
       "creatorModel": "创作者发布内容、接收投票与礼物、开启直播并使用变现工具",
       "visitorModel": "访客浏览内容、投票、送礼、订阅——不可发帖"
     },
-    "creator-multi-category": {
-      "name": "创作者多品类",
-      "concept": "多位创作者、多个品类，访客不可发帖",
-      "shortDescription": "汇聚多领域创作者，例如 The Expert、The Consult",
-      "creatorModel": "创作者按品类划分，自主设定服务价格",
-      "visitorModel": "访客按感兴趣的品类关注创作者"
-    },
-    "creator-single": {
-      "name": "创作者个人",
-      "concept": "单一创作者——官方平台",
-      "shortDescription": "专为明星或个体创作者打造的专属平台",
-      "creatorModel": "单一创作者掌控全部内容与变现",
-      "visitorModel": "粉丝通过投票、礼物和订阅予以支持"
-    },
     "community-specific": {
-      "name": "社区专属",
+      "name": "社区",
       "concept": "每位成员均可发帖，不区分创作者与访客",
       "shortDescription": "在线社区，例如 TOM Thailand、Silom",
       "creatorModel": "每位成员均可成为创作者",
       "visitorModel": "所有人发帖、评论并参与互动"
-    },
-    "the-company": {
-      "name": "机构 / 校友 / 政府",
-      "concept": "多个组织汇聚于同一平台",
-      "shortDescription": "例如 The Alumni、地方政府",
-      "creatorModel": "组织与成员发布资讯",
-      "visitorModel": "成员与关注者获取组织动态"
-    },
-    "company-single": {
-      "name": "单一机构",
-      "concept": "单一组织",
-      "shortDescription": "例如 SRICHA、大学平台",
-      "creatorModel": "单一组织管理全部内容",
-      "visitorModel": "组织成员与关注者"
     },
     "the-contest": {
       "name": "竞赛合集",
@@ -70,27 +34,6 @@
       "shortDescription": "例如音乐竞赛、摄影竞赛",
       "creatorModel": "参赛者发布参赛作品",
       "visitorModel": "观众投票并支持参赛者"
-    },
-    "contest-single": {
-      "name": "单项竞赛",
-      "concept": "单一竞赛活动",
-      "shortDescription": "例如 Miss Grand、MUT",
-      "creatorModel": "参赛者发布作品并参与角逐",
-      "visitorModel": "粉丝投票并赠送礼物"
-    },
-    "the-exhibition": {
-      "name": "展览合集",
-      "concept": "汇聚多场展览活动",
-      "shortDescription": "Exhibition Hub 汇聚各类展销活动",
-      "creatorModel": "参展商注册并管理展位",
-      "visitorModel": "观众购票并参观活动"
-    },
-    "exhibition-single": {
-      "name": "单场展览",
-      "concept": "单一展览活动",
-      "shortDescription": "例如博物馆活动、博览会",
-      "creatorModel": "主办方管理参展商与内容",
-      "visitorModel": "观众购票入场"
     }
   },
   "features": {
@@ -208,10 +151,6 @@
       "name": "竞赛",
       "description": "竞赛与排名系统"
     },
-    "exhibition": {
-      "name": "展览",
-      "description": "展览与展位管理"
-    },
     "ticketing": {
       "name": "票务",
       "description": "活动门票销售",
@@ -229,34 +168,58 @@
   },
   "apps": {
     "foxy": {
-      "description": "Mr.FOX 旗舰创作者经济平台——全面支持投票、礼物、直播与变现",
+      "description": "Mr.FOX 旗舰 18+ 创作者站点 — 全面支持投票、礼物、直播与变现",
       "targetAudience": "创作者与粉丝"
     },
-    "the-expert": {
-      "description": "汇聚多领域专家——咨询、辅导与知识分享",
-      "targetAudience": "专家与学习者"
+    "cupe": {
+      "description": "18+ Cup E 创作者站点 — 投票、送礼与直播",
+      "targetAudience": "创作者与粉丝"
     },
-    "tom-thailand": {
-      "description": "每位成员均可参与的在线社区",
+    "cliq": {
+      "description": "18+ CLIQ 风格创作者站点 — 拉近创作者与粉丝的距离",
+      "targetAudience": "创作者与粉丝"
+    },
+    "himbo": {
+      "description": "18+ Himbo 社区单人创作者站点 — 投票、礼物与直播",
+      "targetAudience": "创作者与粉丝"
+    },
+    "lesbie": {
+      "description": "18+ 女同社区创作者站点 — 投票与礼物支持",
+      "targetAudience": "创作者与粉丝"
+    },
+    "tomboi": {
+      "description": "18+ Tom 社区单人创作者站点 — 完整变现工具",
+      "targetAudience": "创作者与粉丝"
+    },
+    "bargirl": {
+      "description": "18+ 酒吧女郎与演艺创作者站点 — 投票、礼物与直播",
+      "targetAudience": "创作者与粉丝"
+    },
+    "silom": {
+      "description": "18+ Silom 社区 — 每位成员均可发帖与互动",
       "targetAudience": "社区成员"
     },
-    "the-alumni": {
-      "description": "汇聚多所院校的校友平台",
-      "targetAudience": "校友与组织"
+    "cosplay-plus": {
+      "description": "多品类 Cosplay 创作者中心 — 多种风格汇聚一站",
+      "targetAudience": "Cosplay 创作者与粉丝"
     },
-    "miss-grand": {
-      "description": "选美竞赛平台——投票并支持参赛者",
+    "expat-idols": {
+      "description": "18+ Expat Idols 创作者站点 — 投票、礼物与直播",
+      "targetAudience": "创作者与粉丝"
+    },
+    "beauty-queen": {
+      "description": "Beauty Queen 赛事平台 — 投票与支持参赛者",
       "targetAudience": "参赛者与粉丝"
     },
-    "exhibition-hub": {
-      "description": "展览与展销活动汇聚中心",
-      "targetAudience": "主办方与观众"
+    "nak-sueksa": {
+      "description": "18+ 学生社区 — 成员发帖、分享想法与交流",
+      "targetAudience": "学生与社区成员"
     }
   },
   "news": {
     "mrfox-ecosystem-launch": {
       "title": "Mr.FOX 发布创作者经济平台生态",
-      "excerpt": "涵盖创作者、社区、机构、竞赛与展览的 10 种平台类型",
+      "excerpt": "涵盖创作者、社区与竞赛的 3 种平台类型",
       "content": "Mr.FOX 宣布推出面向创作者经济的全栈平台生态，支持投票、礼物、直播、订阅等多种变现方式。"
     },
     "foxy-app-update": {

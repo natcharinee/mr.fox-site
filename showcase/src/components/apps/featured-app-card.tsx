@@ -103,10 +103,16 @@ export function FeaturedAppCard({
         </div>
 
         <div className="mt-5 border-t border-white/5 pt-4">
-          <p className="vulpine-label mb-3 text-xs text-[var(--vulpine-on-surface-variant)] sm:text-sm">
+          <p className="vulpine-label mb-3 text-center text-xs text-[var(--vulpine-on-surface-variant)] sm:text-sm">
             {downloadLabel}
           </p>
-          <DownloadButtons appSlug={app.slug} appId={app.id} links={links} />
+          <DownloadButtons
+            appSlug={app.slug}
+            appId={app.id}
+            links={links}
+            align="center"
+            compact
+          />
         </div>
       </div>
     </GlassCard>

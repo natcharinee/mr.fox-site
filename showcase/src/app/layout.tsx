@@ -6,7 +6,7 @@ import "./globals.css";
 export const metadata = buildMetadata({
   title: SITE_NAME,
   description:
-    "Mr.FOX Ecosystem — Platform Showcase, Application Directory และ Download Hub สำหรับ Creator Economy",
+    "Mr.FOX — แพลตฟอร์ม Creator 18+ รวมหลายไซต์ Creator, Community และ Contest",
 });
 
 export default function RootLayout({

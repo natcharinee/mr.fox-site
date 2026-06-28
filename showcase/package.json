@@ -15,6 +15,7 @@
     "db:push:remote": "tsx scripts/push-schema.ts",
     "db:generate": "drizzle-kit generate",
     "db:seed": "tsx scripts/seed.ts",
+    "posters:generate": "tsx scripts/generate-app-posters.ts",
     "news:import": "tsx scripts/import-info-mrfox-news.ts"
   },
   "dependencies": {
@@ -48,6 +49,7 @@
     "drizzle-kit": "^0.31.10",
     "eslint": "^9",
     "eslint-config-next": "16.2.9",
+    "sharp": "^0.35.2",
     "tailwindcss": "^4",
     "tsx": "^4.22.4",
     "typescript": "^5"

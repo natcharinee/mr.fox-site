@@ -2,35 +2,36 @@
   "nav": {
     "home": "Home",
     "platforms": "Platforms",
+    "creator": "Creator",
     "apps": "Applications",
     "features": "Features",
     "news": "News",
-    "about": "About",
+    "about": "About Us",
     "contact": "Contact",
     "search": "Search",
     "download": "Download Apps"
   },
   "home": {
-    "badge": "Creator Economy Super App",
+    "badge": "18+ Creator Platform",
     "brandName": "Mr.FOX",
-    "title": "Platforms and mobile apps",
-    "titleHighlight": "built end-to-end",
-    "titleSuffix": "for creators and communities",
-    "subtitle": "10 platform types with Vote, Gift, Live, and monetization — one unified ecosystem.",
-    "pillarPlatforms": "10 Platform Types",
+    "title": "18+ creator platform",
+    "titleHighlight": "multiple sites",
+    "titleSuffix": "one unified hub",
+    "subtitle": "Mr.FOX unites Creator, Community, and Contest sites — Vote, Gift, Live, and monetization in one ecosystem.",
+    "pillarPlatforms": "Creator · Community · Contest",
     "pillarFeatures": "Vote · Gift · Live · Chat",
     "pillarApps": "Download apps in ≤ 3 clicks",
     "explorePlatforms": "Explore Platforms",
     "downloadApps": "Download Apps",
-    "ecosystem": "Ecosystem Overview",
+    "ecosystem": "Ecosystem Creator",
     "ecosystemArchitecture": "System Architecture",
-    "ecosystemDesc": "Five major groups — each contains Platform Types, our standard templates for different use cases.",
+    "ecosystemDesc": "Three core groups — Creator · Community · Contest<br></br>each a standard template for sites in the Mr.FOX network.",
     "ecosystemIncludes": "Includes these Platform Types",
     "ecosystemModules": "{count} MODULES",
     "ecosystemTypeCount": "{count} types",
     "ecosystemViewPlatform": "View details",
-    "platformTypes": "10 Platform Types",
-    "platformTypesDesc": "Standard templates — scale to 100+ apps without changing architecture",
+    "platformTypes": "3 Platform Types",
+    "platformTypesDesc": "3 Platform Types — Creator Specific, Community, and The Contest",
     "viewAll": "View all",
     "featuredApps": "Featured Applications",
     "featuredAppsDesc": "Download in ≤ 3 clicks",
@@ -48,7 +49,7 @@
   },
   "apps": {
     "title": "Applications",
-    "subtitle": "Search and download apps in the Mr.FOX ecosystem",
+    "subtitle": "Search and download apps across Mr.FOX sites",
     "searchPlaceholder": "Search apps...",
     "allCategories": "All categories",
     "allPlatforms": "All platform types",
@@ -58,11 +59,135 @@
     "related": "Related Applications",
     "platformType": "Platform Type",
     "targetAudience": "Target Audience",
-    "comingSoon": "Coming soon"
+    "comingSoon": "Coming soon",
+    "viewDetails": "Details",
+    "downloadLabel": "Download"
+  },
+  "creator": {
+    "title": "Creator",
+    "subtitle": "Your Mr.FOX Creator guide — what makes us different, what you get, and how to start",
+    "guide": {
+      "intro": {
+        "eyebrow": "Creator Guide",
+        "title": "Why be a Creator on Mr.FOX?",
+        "description": "Mr.FOX is not just another profile on a giant feed — it is an ecosystem where you get your own site, app, and revenue channels. Fans can vote, send gifts, watch live, and support you directly in one place."
+      },
+      "benefits": {
+        "eyebrow": "What you get",
+        "title": "What Creators get from Mr.FOX",
+        "items": [
+          {
+            "title": "Multiple revenue streams",
+            "description": "Vote, Gift, Live, Chat, voice/video calls, and subscriptions — full monetization in one stack, not ads alone."
+          },
+          {
+            "title": "Fans reach you faster",
+            "description": "Fans download the Mr.FOX app and reach multiple Creator sites in ≤ 3 taps — no scattered links."
+          },
+          {
+            "title": "Launch quickly",
+            "description": "Ready-made platform types with CMS, mobile app, and payments — no need to build everything from scratch."
+          },
+          {
+            "title": "A platform that feels yours",
+            "description": "From multi-creator niche hubs to a solo official platform for one Creator."
+          }
+        ]
+      },
+      "compare": {
+        "eyebrow": "How we're different",
+        "title": "Mr.FOX vs typical platforms",
+        "columns": {
+          "fox": "Mr.FOX",
+          "others": "Typical platforms"
+        },
+        "rows": [
+          {
+            "label": "Revenue",
+            "fox": "Vote · Gift · Live · Chat · Subscription — fans pay Creators directly",
+            "others": "Mostly ads, tips, or platform-controlled commission"
+          },
+          {
+            "label": "Fans",
+            "fox": "One app reaches many Creator platforms across the Mr.FOX network",
+            "others": "Fans chase separate apps, links, and channels"
+          },
+          {
+            "label": "In-app activities",
+            "fox": "Turn activities on or off freely — choose only the features you want, nothing forced",
+            "others": "Features are set by the platform — little room to customize, often mandatory"
+          },
+          {
+            "label": "Getting started",
+            "fox": "Pick a platform type and launch fast with team support",
+            "others": "Build yourself, wait for invite, or compete in one crowded feed"
+          }
+        ]
+      },
+      "registration": {
+        "eyebrow": "App registration",
+        "title": "How to register the app",
+        "description": "How to register the app and fill in Creator details in the video — using CupE as an example.",
+        "posterAlt": "Download Mr.FOX app — King of Creator Platform",
+        "videoId": "https://youtu.be/8EfR8_7c0k4",
+        "caption": "Mr.FOX app registration guide for Creators",
+        "openLabel": "Open on YouTube",
+        "placeholder": "Add a YouTube link in creator.guide.registration.videoId"
+      },
+      "steps": {
+        "eyebrow": "Easy start",
+        "title": "4 steps to become a Creator",
+        "items": [
+          {
+            "title": "Pick your platform format",
+            "description": "See the 3 types below — Creator Specific, Community, and The Contest — and choose what fits your goal."
+          },
+          {
+            "title": "Wait for team approval",
+            "description": "Some sites don't require waiting — it depends on the platform type you choose."
+          },
+          {
+            "title": "Set up your platform",
+            "description": "We help configure profiles, Vote/Gift/Live pricing, content rules, and branding before launch."
+          },
+          {
+            "title": "Launch to your fans",
+            "description": "Fans download the app, follow, vote, send gifts, and start monetization right away."
+          }
+        ]
+      },
+      "formats": {
+        "eyebrow": "Choose a format",
+        "title": "3 Platform Types",
+        "description": "Pick the type that fits your goal — Creator, Community, or Contest — then open each for full details.",
+        "pickLabel": "Best for",
+        "viewDetails": "View details",
+        "types": [
+          {
+            "slug": "creator-specific",
+            "fit": "Creators in one niche — e.g. FOXY, CupE — many Creators, one category"
+          },
+          {
+            "slug": "community-specific",
+            "fit": "Communities where every member can post and participate — e.g. Silom"
+          },
+          {
+            "slug": "the-contest",
+            "fit": "Contest platforms — contestants post entries, fans vote and support"
+          }
+        ]
+      },
+      "cta": {
+        "title": "Ready?",
+        "description": "Browse live Creator apps or contact us to plan a new platform.",
+        "apps": "View all apps",
+        "contact": "Contact us"
+      }
+    }
   },
   "platforms": {
     "title": "Platform Types",
-    "subtitle": "10 standard templates — each defines Feature set and Permission via Matrix",
+    "subtitle": "12 platforms across 3 groups — Creator, Community, and Contest",
     "catalog": {
       "viewDetails": "View details",
       "typeCount": "{count} types"
@@ -130,7 +255,7 @@
   },
   "about": {
     "title": "About Mr.FOX",
-    "subtitle": "Mr.FOX builds Platforms and Mobile Applications for the Creator Economy Ecosystem",
+    "subtitle": "Mr.FOX is an 18+ creator platform hub — uniting Creator, Community, and Contest sites",
     "purpose": {
       "eyebrow": "Why Mr.FOX",
       "sectionTitle": "The vision behind the ecosystem",
@@ -139,9 +264,9 @@
         "headline": "Creators earn directly from their fans",
         "body": "Build an ecosystem where Creators earn directly from fans through scalable standard platforms",
         "highlights": [
-          "One ecosystem spanning Vote · Gift · Live · Chat",
+          "Multiple sites across Creator · Community · Contest",
           "Creators own their community and revenue",
-          "Scale from a single app to many platform types"
+          "Launch new sites with standard Platform Types"
         ]
       },
       "mission": {
@@ -174,7 +299,7 @@
     "roadmapVisualTitle": "ROADMAP",
     "roadmapVisualCaption": "Mr.FOX ecosystem growth from FOXY and PHOENIX to upcoming apps and platforms.",
     "roadmapPhasesTitle": "Ecosystem journey",
-    "roadmapPhasesSubtitle": "Three chapters of Mr.FOX — from foundation to platform expansion and the Creator Super App.",
+    "roadmapPhasesSubtitle": "Three chapters of Mr.FOX — from foundation to site expansion and the 18+ unified hub.",
     "roadmapStatus": {
       "done": "Completed",
       "active": "In progress",
@@ -185,7 +310,7 @@
         "era": "Chapter 1",
         "phase": "Foundation",
         "title": "Laying the ecosystem foundation",
-        "summary": "Starting with Mr.FOX Token and early platforms that proved the Creator Economy model.",
+        "summary": "Starting with Mr.FOX Token and early sites that proved the 18+ creator platform model.",
         "status": "done",
         "items": [
           "Mr.FOX Token and first-generation platforms",
@@ -197,23 +322,23 @@
         "era": "Chapter 2",
         "phase": "Expansion",
         "title": "Growing platform types & apps",
-        "summary": "Scaling into a multi-type ecosystem — Creator, Community, Contest, Exhibition.",
+        "summary": "Scaling into a multi-type ecosystem — Creator, Community, and Contest.",
         "status": "active",
         "items": [
-          "10 platform types and multiple live apps",
+          "3 platform types and multiple live apps",
           "Partnerships with communities and brands",
           "Showcase + CMS for content operations"
         ]
       },
       {
         "era": "Chapter 3",
-        "phase": "Super App",
-        "title": "All-in-one Creator Super App",
-        "summary": "One mobile home for the entire ecosystem — scaling toward 100+ applications.",
+        "phase": "Unified Hub",
+        "title": "18+ multi-site creator hub",
+        "summary": "Uniting Creator, Community, and Contest sites under one entry point — growing the network continuously.",
         "status": "upcoming",
         "items": [
-          "20+ Creator earning tools in one app",
-          "Every platform connected in one ecosystem",
+          "Multiple sites and apps from a single entry point",
+          "Every site connected across the Mr.FOX network",
           "Continuous expansion into new markets"
         ]
       }
@@ -391,7 +516,7 @@
     "featureBadge": "Feature"
   },
   "footer": {
-    "tagline": "Creator Economy, Community, Contest & Exhibition ecosystem",
+    "tagline": "18+ creator platform — Creator · Community · Contest",
     "explore": "Explore",
     "company": "Company",
     "links": "Links",

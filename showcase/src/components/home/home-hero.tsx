@@ -5,6 +5,7 @@ import { LinkButton } from "@/components/ui/link-button";
 import { buttonVariants } from "@/components/ui/button";
 import { VulpineEyebrow } from "@/components/vulpine/vulpine-primitives";
 import { HeroScrollVideo } from "@/components/home/hero-scroll-video";
+import { MRFOX_APP_DOWNLOAD_URL } from "@/lib/app-download";
 import { cn } from "@/lib/utils";
 
 type HomeHeroProps = {
@@ -91,7 +92,7 @@ export function HomeHero({
             <ArrowRight className="ml-2 size-4" />
           </LinkButton>
           <a
-            href="https://link.mrfox.app"
+            href={MRFOX_APP_DOWNLOAD_URL}
             target="_blank"
             rel="noopener noreferrer"
             className={cn(

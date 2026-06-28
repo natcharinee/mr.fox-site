@@ -8,6 +8,7 @@ import { LinkButton } from "@/components/ui/link-button";
 import { buttonVariants } from "@/components/ui/button";
 import { LocaleSwitcher } from "@/components/layout/locale-switcher";
 import { BrandLogo } from "@/components/brand/brand-logo";
+import { MRFOX_APP_DOWNLOAD_URL } from "@/lib/app-download";
 import { cn } from "@/lib/utils";
 
 type HeaderProps = {
@@ -22,9 +23,9 @@ export function Header({ variant = "brand" }: HeaderProps) {
   const NAV = [
     { href: "/platforms" as const, label: t("platforms"), match: (p: string) => p.includes("/platforms") },
     { href: "/apps" as const, label: t("apps"), match: (p: string) => p.includes("/apps") },
+    { href: "/creator" as const, label: t("creator"), match: (p: string) => p.includes("/creator") },
     { href: "/news" as const, label: t("news"), match: (p: string) => p.includes("/news") },
     { href: "/about" as const, label: t("about"), match: (p: string) => p.includes("/about") },
-    { href: "/contact" as const, label: t("contact"), match: (p: string) => p.includes("/contact") },
   ];
 
   return (
@@ -76,7 +77,7 @@ export function Header({ variant = "brand" }: HeaderProps) {
           </LinkButton>
           <LocaleSwitcher inverted={isBrand} />
           <a
-            href="https://link.mrfox.app"
+            href={MRFOX_APP_DOWNLOAD_URL}
             target="_blank"
             rel="noopener noreferrer"
             className={cn(

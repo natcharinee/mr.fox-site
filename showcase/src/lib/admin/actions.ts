@@ -19,6 +19,7 @@ import { logAudit } from "@/lib/audit";
 import { requireSession } from "@/lib/auth";
 import { parseNewsPublishDate } from "@/lib/news-publish";
 import { COMPANY_LOGO } from "@/lib/brand-assets";
+import { MRFOX_APP_DOWNLOAD_URL } from "@/lib/app-download";
 import { hashPassword } from "@/lib/password";
 import { syncInfoMrfoxNewsToDatabase } from "@/lib/sync-info-mrfox-news";
 
@@ -153,10 +154,10 @@ function buildApplicationDownloadLinks(
 ) {
   const links = [];
   if (urls.iosUrl) {
-    links.push({ applicationId, type: "ios" as const, url: urls.iosUrl });
+    links.push({ applicationId, type: "ios" as const, url: MRFOX_APP_DOWNLOAD_URL });
   }
   if (urls.androidUrl) {
-    links.push({ applicationId, type: "android" as const, url: urls.androidUrl });
+    links.push({ applicationId, type: "android" as const, url: MRFOX_APP_DOWNLOAD_URL });
   }
   const apkUrl =
     urls.apkUrl ||

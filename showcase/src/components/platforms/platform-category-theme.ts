@@ -1,19 +1,6 @@
-import {
-  Building2,
-  CalendarRange,
-  Sparkles,
-  Trophy,
-  Users,
-  type LucideIcon,
-} from "lucide-react";
+import { Sparkles, Trophy, Users, type LucideIcon } from "lucide-react";
 
-export const CATEGORY_ORDER = [
-  "creator",
-  "community",
-  "company",
-  "contest",
-  "exhibition",
-] as const;
+export const CATEGORY_ORDER = ["creator", "community", "contest"] as const;
 
 export type CategoryTheme = {
   icon: LucideIcon;
@@ -22,54 +9,47 @@ export type CategoryTheme = {
   pill: string;
   cardHover: string;
   accent: string;
+  borderAccent: string;
+};
+
+const GOLD_BRIGHT: Omit<CategoryTheme, "icon"> = {
+  header:
+    "border-[var(--vulpine-primary-container)]/30 bg-gradient-to-br from-[var(--vulpine-primary-container)]/14 to-[var(--vulpine-surface-container-low)]",
+  iconWrap:
+    "bg-[var(--vulpine-primary-container)]/22 text-[var(--vulpine-primary)] ring-1 ring-[var(--vulpine-primary-container)]/25",
+  pill: "border-[var(--vulpine-primary-container)]/40 bg-[var(--vulpine-primary-container)]/16 text-[var(--vulpine-primary)]",
+  cardHover:
+    "hover:border-[var(--vulpine-primary-container)]/45 hover:shadow-[var(--vulpine-primary-container)]/12",
+  accent: "text-[var(--vulpine-primary-container)]",
+  borderAccent: "border-l-[var(--vulpine-primary-container)]",
+};
+
+const GOLD_SOFT: Omit<CategoryTheme, "icon"> = {
+  header:
+    "border-[var(--vulpine-primary-container)]/25 bg-gradient-to-br from-[var(--vulpine-primary-container)]/10 to-[var(--vulpine-surface-container-low)]",
+  iconWrap:
+    "bg-[var(--vulpine-primary-container)]/18 text-[var(--vulpine-primary)] ring-1 ring-[var(--vulpine-primary-container)]/20",
+  pill: "border-[var(--vulpine-primary-container)]/35 bg-[var(--vulpine-primary-container)]/12 text-[var(--vulpine-primary)]",
+  cardHover:
+    "hover:border-[var(--vulpine-primary-container)]/40 hover:shadow-[var(--vulpine-primary-container)]/10",
+  accent: "text-[var(--vulpine-primary-container)]",
+  borderAccent: "border-l-[var(--vulpine-primary-container)]/85",
+};
+
+const GOLD_MUTED: Omit<CategoryTheme, "icon"> = {
+  header:
+    "border-[var(--vulpine-primary-container)]/20 bg-gradient-to-br from-[var(--vulpine-primary-container)]/8 to-[var(--vulpine-surface-container-low)]",
+  iconWrap:
+    "bg-[var(--vulpine-primary-container)]/14 text-[var(--vulpine-primary)] ring-1 ring-[var(--vulpine-primary-container)]/18",
+  pill: "border-[var(--vulpine-primary-container)]/30 bg-[var(--vulpine-primary-container)]/10 text-[var(--vulpine-primary)]",
+  cardHover:
+    "hover:border-[var(--vulpine-primary-container)]/35 hover:shadow-[var(--vulpine-primary-container)]/8",
+  accent: "text-[var(--vulpine-primary-container)]",
+  borderAccent: "border-l-[var(--vulpine-primary-container)]/70",
 };
 
 export const CATEGORY_THEME: Record<string, CategoryTheme> = {
-  creator: {
-    icon: Sparkles,
-    header:
-      "border-[var(--vulpine-primary-container)]/30 bg-gradient-to-br from-[var(--vulpine-primary-container)]/12 to-[var(--vulpine-surface-container)]",
-    iconWrap:
-      "bg-[var(--vulpine-primary-container)]/20 text-[var(--vulpine-primary)]",
-    pill: "border-[var(--vulpine-primary-container)]/40 bg-[var(--vulpine-primary-container)]/15 text-[var(--vulpine-primary)]",
-    cardHover:
-      "hover:border-[var(--vulpine-primary-container)]/45 hover:shadow-[var(--vulpine-primary-container)]/10",
-    accent: "text-[var(--vulpine-primary)]",
-  },
-  community: {
-    icon: Users,
-    header:
-      "border-teal-500/30 bg-gradient-to-br from-teal-500/10 to-[var(--vulpine-surface-container)]",
-    iconWrap: "bg-teal-500/20 text-teal-300",
-    pill: "border-teal-500/40 bg-teal-500/15 text-teal-300",
-    cardHover: "hover:border-teal-400/50 hover:shadow-teal-500/10",
-    accent: "text-teal-300",
-  },
-  company: {
-    icon: Building2,
-    header:
-      "border-slate-400/30 bg-gradient-to-br from-slate-400/10 to-[var(--vulpine-surface-container)]",
-    iconWrap: "bg-slate-400/20 text-slate-300",
-    pill: "border-slate-400/40 bg-slate-400/15 text-slate-300",
-    cardHover: "hover:border-slate-300/50 hover:shadow-slate-400/10",
-    accent: "text-slate-300",
-  },
-  contest: {
-    icon: Trophy,
-    header:
-      "border-rose-500/30 bg-gradient-to-br from-rose-500/10 to-[var(--vulpine-surface-container)]",
-    iconWrap: "bg-rose-500/20 text-rose-300",
-    pill: "border-rose-500/40 bg-rose-500/15 text-rose-300",
-    cardHover: "hover:border-rose-400/50 hover:shadow-rose-500/10",
-    accent: "text-rose-300",
-  },
-  exhibition: {
-    icon: CalendarRange,
-    header:
-      "border-violet-500/30 bg-gradient-to-br from-violet-500/10 to-[var(--vulpine-surface-container)]",
-    iconWrap: "bg-violet-500/20 text-violet-300",
-    pill: "border-violet-500/40 bg-violet-500/15 text-violet-300",
-    cardHover: "hover:border-violet-400/50 hover:shadow-violet-500/10",
-    accent: "text-violet-300",
-  },
+  creator: { icon: Sparkles, ...GOLD_BRIGHT },
+  community: { icon: Users, ...GOLD_SOFT },
+  contest: { icon: Trophy, ...GOLD_MUTED },
 };

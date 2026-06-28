@@ -16,11 +16,11 @@ export const dynamic = "force-dynamic";
 const STATIC_PATHS = [
   "",
   "/platforms",
+  "/creator",
   "/apps",
   "/features",
   "/news",
   "/about",
-  "/contact",
   "/search",
 ];
 
