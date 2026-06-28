@@ -164,6 +164,10 @@
     "ranking": {
       "name": "排行榜",
       "description": "根据投票与礼物排名的创作者榜单"
+    },
+    "download-app-links": {
+      "name": "应用下载链接",
+      "description": "应用下载链接"
     }
   },
   "apps": {

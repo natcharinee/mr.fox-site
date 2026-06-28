@@ -13,7 +13,7 @@ type ContentPack = typeof en;
 
 const PACKS: Record<Exclude<Locale, "th">, ContentPack> = {
   en,
-  zh,
+  zh: zh as unknown as ContentPack,
 };
 
 export function contentText(
