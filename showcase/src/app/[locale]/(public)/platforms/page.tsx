@@ -1,6 +1,7 @@
 import { getTranslations } from "next-intl/server";
 import { PageHero } from "@/components/layout/page-hero";
 import { PageShell } from "@/components/layout/page-shell";
+import { PlatformsOverview, type PlatformsOverviewContent } from "@/components/platforms/platforms-overview";
 import { PlatformsCatalog } from "@/components/platforms/platforms-catalog";
 import type { Locale } from "@/i18n/routing";
 import { localizeCategory, localizePlatform } from "@/lib/content-i18n";
@@ -38,10 +39,13 @@ export default async function PlatformsPage({
 
   const localizedCategories = categories.map((c) => localizeCategory(locale, c));
   const localizedPlatforms = platformTypes.map((p) => localizePlatform(locale, p));
+  const overview = t.raw("overview") as PlatformsOverviewContent;
 
   return (
     <PageShell>
       <PageHero title={t("title")} description={t("subtitle")} />
+
+      <PlatformsOverview content={overview} />
 
       <PlatformsCatalog
         categories={localizedCategories}

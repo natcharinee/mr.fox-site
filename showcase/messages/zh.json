@@ -9,7 +9,9 @@
     "about": "关于我们",
     "contact": "联系",
     "search": "搜索",
-    "download": "下载应用"
+    "download": "下载应用",
+    "openMenu": "打开菜单",
+    "menuTitle": "菜单"
   },
   "home": {
     "badge": "18+ 创作者平台",
@@ -23,7 +25,7 @@
     "pillarApps": "≤ 3 次点击下载应用",
     "explorePlatforms": "探索平台",
     "downloadApps": "下载应用",
-    "ecosystem": "Creator 生态系统",
+    "ecosystem": "Creator 生态系统概览",
     "ecosystemArchitecture": "系统架构",
     "ecosystemDesc": "三大核心类别 — Creator · Community · Contest<br></br>每类均为 Mr.FOX 旗下站点的标准模板。",
     "ecosystemIncludes": "包含以下 Platform Types",
@@ -187,7 +189,84 @@
   },
   "platforms": {
     "title": "平台类型",
-    "subtitle": "12 Platform，分属 Creator、Community、Contest 三大类别",
+    "subtitle": "一个应用 — 汇聚 Creator、Community 与 Contest 多个站点",
+    "overview": {
+      "eyebrow": "一分钟读懂",
+      "title": "一个应用，多个站点，规则清晰",
+      "description": "Mr.FOX 不是单一应用体验 — 而是在一个入口中汇聚多个站点。每个站点采用下列三种模板之一，规定谁可以发帖、粉丝可以做什么。",
+      "layers": [
+        {
+          "label": "Mr.FOX 应用",
+          "text": "下载一次 — 从同一入口访问 FOXY、Silom、Beauty Queen 等站点"
+        },
+        {
+          "label": "Platform Type",
+          "text": "三种规则模板之一 — 谁发帖、投票、送礼或直播"
+        },
+        {
+          "label": "站点 / 应用",
+          "text": "网络中的每个品牌 — 如 FOXY 或 Silom — 选择适合其社区的模板"
+        }
+      ],
+      "coexistTitle": "为什么同时有 Creator 和 Community？",
+      "coexistDescription": "部分站点以创作者为核心 — 粉丝可投票送礼但不能发帖（Creator Specific）。部分是开放社区，每位成员均可发帖互动（Community）。部分是竞赛平台，仅参赛者发帖、观众投票（The Contest）。全部在同一生态中 — 用户进入符合需求的站点即可。",
+      "typesTitle": "3 种 Platform Types — 谁可以做什么？",
+      "types": [
+        {
+          "slug": "creator-specific",
+          "categorySlug": "creator",
+          "name": "Creator Specific",
+          "tagline": "Creator",
+          "summary": "创作者主导 — 粉丝观看、投票、送礼、看直播，但不能发帖。如 FOXY、CupE、Himbo",
+          "example": "FOXY、CupE、Himbo、Lesbie",
+          "permissions": [
+            { "label": "创作者发帖", "value": "yes" },
+            { "label": "粉丝 / 成员发帖", "value": "no" },
+            { "label": "创作者直播", "value": "yes" },
+            { "label": "粉丝投票", "value": "yes" },
+            { "label": "粉丝送礼", "value": "yes" }
+          ]
+        },
+        {
+          "slug": "community-specific",
+          "categorySlug": "community",
+          "name": "Community",
+          "tagline": "Community",
+          "summary": "每位成员均可发帖、评论与参与 — 不严格区分创作者与粉丝。如 Silom、学生社区",
+          "example": "Silom、นักศึกษา",
+          "permissions": [
+            { "label": "创作者发帖", "value": "yes" },
+            { "label": "成员发帖", "value": "yes" },
+            { "label": "创作者直播", "value": "optional" },
+            { "label": "粉丝投票", "value": "optional" },
+            { "label": "粉丝送礼", "value": "no" }
+          ]
+        },
+        {
+          "slug": "the-contest",
+          "categorySlug": "contest",
+          "name": "The Contest",
+          "tagline": "Contest",
+          "summary": "竞赛平台 — 仅参赛者发布作品；粉丝可投票支持但不能发帖",
+          "example": "Beauty Queen",
+          "permissions": [
+            { "label": "参赛者发帖", "value": "contestant" },
+            { "label": "粉丝 / 成员发帖", "value": "no" },
+            { "label": "创作者直播", "value": "optional" },
+            { "label": "粉丝投票", "value": "yes" },
+            { "label": "粉丝送礼", "value": "optional" }
+          ]
+        }
+      ],
+      "valueLabels": {
+        "yes": "可以",
+        "no": "不可以",
+        "optional": "视站点而定",
+        "contestant": "仅参赛者"
+      },
+      "exampleLabel": "示例：",
+      "catalogHint": "向下滚动查看各类型的完整详情与在线应用"
+    },
     "catalog": {
       "viewDetails": "查看详情",
       "typeCount": "{count} 种类型"

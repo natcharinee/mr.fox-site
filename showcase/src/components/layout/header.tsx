@@ -2,11 +2,12 @@
 
 import { useTranslations } from "next-intl";
 import { usePathname } from "next/navigation";
-import { Search } from "lucide-react";
+import { Download, Search } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { LinkButton } from "@/components/ui/link-button";
 import { buttonVariants } from "@/components/ui/button";
 import { LocaleSwitcher } from "@/components/layout/locale-switcher";
+import { MobileNav } from "@/components/layout/mobile-nav";
 import { BrandLogo } from "@/components/brand/brand-logo";
 import { MRFOX_APP_DOWNLOAD_URL } from "@/lib/app-download";
 import { cn } from "@/lib/utils";
@@ -14,6 +15,71 @@ import { cn } from "@/lib/utils";
 type HeaderProps = {
   variant?: "default" | "brand";
 };
+
+function HeaderActions({
+  isBrand,
+  searchLabel,
+  downloadLabel,
+  showLocale,
+  showSearch = true,
+  showSearchText = false,
+  compactLocale = false,
+}: {
+  isBrand: boolean;
+  searchLabel: string;
+  downloadLabel: string;
+  showLocale: boolean;
+  showSearch?: boolean;
+  showSearchText?: boolean;
+  compactLocale?: boolean;
+}) {
+  return (
+    <div className="flex shrink-0 items-center gap-2 xl:gap-2.5">
+      {showSearch ? (
+        <LinkButton
+          href="/search"
+          variant="ghost"
+          size={showSearchText ? "sm" : "icon-sm"}
+          className={cn(
+            showSearchText
+              ? "vulpine-label h-9 gap-2 rounded-xl border px-3 text-sm font-medium"
+              : "size-9 sm:size-8",
+            isBrand &&
+              (showSearchText
+                ? "border-white/15 bg-white/5 text-white hover:bg-white/10"
+                : "text-white/75 hover:bg-white/10 hover:text-white"),
+          )}
+          aria-label={searchLabel}
+        >
+          <Search className="size-4 shrink-0" />
+          {showSearchText ? <span>{searchLabel}</span> : null}
+        </LinkButton>
+      ) : null}
+
+      {showLocale ? (
+        <div className="hidden lg:block">
+          <LocaleSwitcher inverted={isBrand} compact={compactLocale} />
+        </div>
+      ) : null}
+
+      <a
+        href={MRFOX_APP_DOWNLOAD_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={cn(
+          buttonVariants({ size: "sm" }),
+          "vulpine-label vulpine-btn-glow h-9 rounded-xl px-3 xl:px-3.5",
+          isBrand &&
+            "bg-[var(--vulpine-primary-container)] text-[var(--vulpine-on-primary)] hover:brightness-110",
+        )}
+      >
+        <Download className="size-4 lg:hidden" aria-hidden />
+        <span className="hidden sm:inline">{downloadLabel}</span>
+        <span className="sr-only sm:hidden">{downloadLabel}</span>
+      </a>
+    </div>
+  );
+}
 
 export function Header({ variant = "brand" }: HeaderProps) {
   const t = useTranslations("nav");
@@ -28,6 +94,14 @@ export function Header({ variant = "brand" }: HeaderProps) {
     { href: "/about" as const, label: t("about"), match: (p: string) => p.includes("/about") },
   ];
 
+  const navLinkClass = (active: boolean) =>
+    cn(
+      "vulpine-label whitespace-nowrap text-[15px] transition-colors xl:text-base",
+      active
+        ? "border-b-2 border-[var(--vulpine-primary-container)] pb-1 text-[var(--vulpine-primary)]"
+        : "text-[var(--vulpine-on-surface-variant)] hover:text-[var(--vulpine-primary)]",
+    );
+
   return (
     <header
       className={cn(
@@ -37,58 +111,52 @@ export function Header({ variant = "brand" }: HeaderProps) {
           : "border-border/60 bg-background/80",
       )}
     >
-      <div className="mx-auto flex h-16 max-w-[1200px] items-center justify-between gap-4 px-4 md:px-16">
-        <Link href="/" className="flex items-center brightness-110">
-          <BrandLogo priority />
-        </Link>
+      <div className="mx-auto h-14 max-w-[1200px] px-3 sm:h-16 sm:px-4 md:px-10 lg:px-12">
+        {/* Mobile & tablet */}
+        <div className="flex h-full items-center gap-2 lg:hidden">
+          <MobileNav items={NAV} isBrand={isBrand} />
 
-        <nav className="hidden items-center gap-6 lg:flex">
-          {NAV.map((item) => {
-            const active = item.match(pathname);
-            return (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={cn(
-                  "vulpine-label text-sm transition-colors",
-                  active
-                    ? "border-b-2 border-[var(--vulpine-primary-container)] pb-1 text-[var(--vulpine-primary)]"
-                    : "text-[var(--vulpine-on-surface-variant)] hover:text-[var(--vulpine-primary)]",
-                )}
-              >
-                {item.label}
-              </Link>
-            );
-          })}
-        </nav>
+          <Link href="/" className="flex min-w-0 flex-1 items-center justify-center brightness-110">
+            <BrandLogo
+              priority
+              wordmarkClassName="h-6 sm:h-7"
+              iconClassName="size-8 sm:size-9"
+            />
+          </Link>
 
-        <div className="flex items-center gap-2">
-          <LinkButton
-            href="/search"
-            variant="ghost"
-            size="icon-sm"
-            className={cn(
-              "hidden sm:inline-flex",
-              isBrand && "text-white/75 hover:bg-white/10 hover:text-white",
-            )}
-            aria-label={t("search")}
-          >
-            <Search className="size-4" />
-          </LinkButton>
-          <LocaleSwitcher inverted={isBrand} />
-          <a
-            href={MRFOX_APP_DOWNLOAD_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={cn(
-              buttonVariants({ size: "sm" }),
-              "vulpine-label vulpine-btn-glow rounded-xl",
-              isBrand &&
-                "bg-[var(--vulpine-primary-container)] text-[var(--vulpine-on-primary)] hover:brightness-110",
-            )}
-          >
-            {t("download")}
-          </a>
+          <HeaderActions
+            isBrand={isBrand}
+            searchLabel={t("search")}
+            downloadLabel={t("download")}
+            showLocale={false}
+          />
+        </div>
+
+        {/* Desktop — เมนูกลางระหว่างโลโก้กับ actions */}
+        <div className="hidden h-full w-full items-center lg:flex">
+          <Link href="/" className="shrink-0 brightness-110 transition-opacity hover:opacity-90">
+            <BrandLogo priority wordmarkClassName="h-7" iconClassName="size-9" />
+          </Link>
+
+          <nav className="flex min-w-0 flex-1 items-center justify-center gap-4 px-4 xl:gap-5 xl:px-6">
+            {NAV.map((item) => {
+              const active = item.match(pathname);
+              return (
+                <Link key={item.href} href={item.href} className={navLinkClass(active)}>
+                  {item.label}
+                </Link>
+              );
+            })}
+          </nav>
+
+          <div className="shrink-0">
+            <HeaderActions
+              isBrand={isBrand}
+              searchLabel={t("search")}
+              downloadLabel={t("download")}
+              showLocale
+            />
+          </div>
         </div>
       </div>
     </header>

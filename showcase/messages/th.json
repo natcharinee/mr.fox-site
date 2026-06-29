@@ -9,7 +9,9 @@
     "about": "About Us",
     "contact": "Contact",
     "search": "ค้นหา",
-    "download": "ดาวน์โหลดแอป"
+    "download": "ดาวน์โหลดแอป",
+    "openMenu": "เปิดเมนู",
+    "menuTitle": "เมนู"
   },
   "home": {
     "badge": "Creator Platform 18+",
@@ -23,7 +25,7 @@
     "pillarApps": "ดาวน์โหลดแอป ≤ 3 คลิก",
     "explorePlatforms": "สำรวจ Platforms",
     "downloadApps": "ดาวน์โหลดแอป",
-    "ecosystem": "Ecosystem Creator",
+    "ecosystem": "ภาพรวม Creator Ecosystem",
     "ecosystemArchitecture": "System Architecture",
     "ecosystemDesc": "3 กลุ่มหลัก — Creator · Community · Contest<br></br>แต่ละกลุ่มเป็นแม่แบบมาตรฐานสำหรับไซต์ย่อยในเครือ Mr.FOX",
     "ecosystemIncludes": "ประกอบด้วย Platform Types",
@@ -187,7 +189,84 @@
   },
   "platforms": {
     "title": "Platform Types",
-    "subtitle": "12 Platform ใน 3 กลุ่ม — Creator, Community และ Contest",
+    "subtitle": "ดาวน์โหลดแอปเดียว — เข้าได้หลายไซต์ ทั้ง Creator, Community และ Contest",
+    "overview": {
+      "eyebrow": "เข้าใจง่ายใน 1 นาที",
+      "title": "แอปเดียว หลายไซต์ กฎชัดเจน",
+      "description": "Mr.FOX ไม่ใช่แอปเดียวแบบเดียว — แต่เป็นระบบที่รวมหลายไซต์ไว้ในแอปเดียว แต่ละไซต์เลือกใช้กฎ 1 ใน 3 แบบด้านล่าง ว่าใครโพสต์ได้ แฟนทำอะไรได้บ้าง",
+      "layers": [
+        {
+          "label": "แอป Mr.FOX",
+          "text": "ดาวน์โหลดครั้งเดียว เข้า FOXY, Silom, Beauty Queen และไซต์อื่นๆ ได้จากจุดเดียว"
+        },
+        {
+          "label": "Platform Type",
+          "text": "แม่แบบกฎ 3 แบบ — กำหนดว่าใครโพสต์ โหวต Gift หรือ Live ได้หรือไม่"
+        },
+        {
+          "label": "ไซต์ / แอปย่อย",
+          "text": "แต่ละแบรนด์ในเครือ เช่น FOXY หรือ Silom เลือกใช้ Platform Type ที่เหมาะกับชุมชนของตัวเอง"
+        }
+      ],
+      "coexistTitle": "ทำไมถึงมีทั้ง Creator และ Community?",
+      "coexistDescription": "บางไซต์เน้น Creator ที่แฟนโหวตและส่ง Gift (Creator Specific) บางไซต์เป็นชุมชนที่สมาชิกทุกคนโพสต์และคุยกันได้ (Community) และบางไซต์จัดประกวดที่ผู้เข้าประกวดโพสต์ผลงาน แฟนโหวตสนับสนุน (The Contest) — ทั้งหมดอยู่ใน ecosystem เดียว ผู้ใช้เลือกเข้าไซต์ที่ตรงกับสิ่งที่อยากทำ",
+      "typesTitle": "3 Platform Types — ใครทำอะไรได้บ้าง?",
+      "types": [
+        {
+          "slug": "creator-specific",
+          "categorySlug": "creator",
+          "name": "Creator Specific",
+          "tagline": "Creator",
+          "summary": "ไซต์ Creator ที่แฟนดู โหวต ส่ง Gift และ Live ได้ — แต่แฟนโพสต์เองไม่ได้ เหมาะกับ FOXY, CupE, Himbo",
+          "example": "FOXY, CupE, Himbo, Lesbie",
+          "permissions": [
+            { "label": "Creator โพสต์", "value": "yes" },
+            { "label": "แฟน / สมาชิกโพสต์", "value": "no" },
+            { "label": "Creator Live", "value": "yes" },
+            { "label": "แฟนโหวต", "value": "yes" },
+            { "label": "แฟนส่ง Gift", "value": "yes" }
+          ]
+        },
+        {
+          "slug": "community-specific",
+          "categorySlug": "community",
+          "name": "Community",
+          "tagline": "Community",
+          "summary": "ชุมชนที่สมาชิกทุกคนโพสต์ แสดงความคิดเห็น และมีส่วนร่วมได้ — ไม่แยก Creator กับแฟนแบบเดิม เหมาะกับ Silom, นักศึกษา",
+          "example": "Silom, นักศึกษา",
+          "permissions": [
+            { "label": "Creator โพสต์", "value": "yes" },
+            { "label": "สมาชิกโพสต์", "value": "yes" },
+            { "label": "Creator Live", "value": "optional" },
+            { "label": "แฟนโหวต", "value": "optional" },
+            { "label": "แฟนส่ง Gift", "value": "no" }
+          ]
+        },
+        {
+          "slug": "the-contest",
+          "categorySlug": "contest",
+          "name": "The Contest",
+          "tagline": "Contest",
+          "summary": "แพลตฟอร์มประกวด — เฉพาะผู้เข้าประกวดโพสต์ผลงาน แฟนโหวตและสนับสนุนได้ แต่โพสต์เองไม่ได้",
+          "example": "Beauty Queen",
+          "permissions": [
+            { "label": "ผู้เข้าประกวดโพสต์", "value": "contestant" },
+            { "label": "แฟน / สมาชิกโพสต์", "value": "no" },
+            { "label": "Creator Live", "value": "optional" },
+            { "label": "แฟนโหวต", "value": "yes" },
+            { "label": "แฟนส่ง Gift", "value": "optional" }
+          ]
+        }
+      ],
+      "valueLabels": {
+        "yes": "ได้",
+        "no": "ไม่ได้",
+        "optional": "แล้วแต่ไซต์",
+        "contestant": "เฉพาะผู้ประกวด"
+      },
+      "exampleLabel": "ตัวอย่าง:",
+      "catalogHint": "เลื่อนลงเพื่อดูรายละเอียดแต่ละประเภทและแอปที่เปิดให้บริการ"
+    },
     "catalog": {
       "viewDetails": "ดูรายละเอียด",
       "typeCount": "{count} ประเภท"

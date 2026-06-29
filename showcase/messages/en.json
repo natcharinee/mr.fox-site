@@ -9,7 +9,9 @@
     "about": "About Us",
     "contact": "Contact",
     "search": "Search",
-    "download": "Download Apps"
+    "download": "Download Apps",
+    "openMenu": "Open menu",
+    "menuTitle": "Menu"
   },
   "home": {
     "badge": "18+ Creator Platform",
@@ -23,7 +25,7 @@
     "pillarApps": "Download apps in ≤ 3 clicks",
     "explorePlatforms": "Explore Platforms",
     "downloadApps": "Download Apps",
-    "ecosystem": "Ecosystem Creator",
+    "ecosystem": "Creator Ecosystem Overview",
     "ecosystemArchitecture": "System Architecture",
     "ecosystemDesc": "Three core groups — Creator · Community · Contest<br></br>each a standard template for sites in the Mr.FOX network.",
     "ecosystemIncludes": "Includes these Platform Types",
@@ -187,7 +189,84 @@
   },
   "platforms": {
     "title": "Platform Types",
-    "subtitle": "12 platforms across 3 groups — Creator, Community, and Contest",
+    "subtitle": "One app — many sites across Creator, Community, and Contest",
+    "overview": {
+      "eyebrow": "Understand in 1 minute",
+      "title": "One app, many sites, clear rules",
+      "description": "Mr.FOX is not a single app experience — it is one hub that unites many sites. Each site runs on one of three templates below that define who can post and what fans can do.",
+      "layers": [
+        {
+          "label": "Mr.FOX App",
+          "text": "Download once — access FOXY, Silom, Beauty Queen, and more from one place"
+        },
+        {
+          "label": "Platform Type",
+          "text": "One of three rule templates — who posts, votes, gifts, or goes live"
+        },
+        {
+          "label": "Site / Application",
+          "text": "Each brand in the network — e.g. FOXY or Silom — picks the type that fits its community"
+        }
+      ],
+      "coexistTitle": "Why both Creator and Community?",
+      "coexistDescription": "Some sites are creator-led — fans vote and send gifts but cannot post (Creator Specific). Some are open communities where every member posts and participates (Community). Some run contests where only contestants post and the audience votes (The Contest). All live in one ecosystem — users enter the site that matches what they want to do.",
+      "typesTitle": "3 Platform Types — who can do what?",
+      "types": [
+        {
+          "slug": "creator-specific",
+          "categorySlug": "creator",
+          "name": "Creator Specific",
+          "tagline": "Creator",
+          "summary": "Creator-led sites — fans watch, vote, gift, and join live streams, but cannot post. e.g. FOXY, CupE, Himbo",
+          "example": "FOXY, CupE, Himbo, Lesbie",
+          "permissions": [
+            { "label": "Creator posts", "value": "yes" },
+            { "label": "Fans / members post", "value": "no" },
+            { "label": "Creator live", "value": "yes" },
+            { "label": "Fans vote", "value": "yes" },
+            { "label": "Fans send gifts", "value": "yes" }
+          ]
+        },
+        {
+          "slug": "community-specific",
+          "categorySlug": "community",
+          "name": "Community",
+          "tagline": "Community",
+          "summary": "Everyone can post, comment, and participate — no strict creator vs fan split. e.g. Silom, student communities",
+          "example": "Silom, Nak Sueksa",
+          "permissions": [
+            { "label": "Creator posts", "value": "yes" },
+            { "label": "Members post", "value": "yes" },
+            { "label": "Creator live", "value": "optional" },
+            { "label": "Fans vote", "value": "optional" },
+            { "label": "Fans send gifts", "value": "no" }
+          ]
+        },
+        {
+          "slug": "the-contest",
+          "categorySlug": "contest",
+          "name": "The Contest",
+          "tagline": "Contest",
+          "summary": "Contest platforms — only contestants post entries; fans vote and support but cannot post",
+          "example": "Beauty Queen",
+          "permissions": [
+            { "label": "Contestant posts", "value": "contestant" },
+            { "label": "Fans / members post", "value": "no" },
+            { "label": "Creator live", "value": "optional" },
+            { "label": "Fans vote", "value": "yes" },
+            { "label": "Fans send gifts", "value": "optional" }
+          ]
+        }
+      ],
+      "valueLabels": {
+        "yes": "Yes",
+        "no": "No",
+        "optional": "Per site",
+        "contestant": "Contestants only"
+      },
+      "exampleLabel": "Examples:",
+      "catalogHint": "Scroll down for full details and live applications in each type"
+    },
     "catalog": {
       "viewDetails": "View details",
       "typeCount": "{count} types"

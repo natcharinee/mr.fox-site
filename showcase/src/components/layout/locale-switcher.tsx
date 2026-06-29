@@ -18,7 +18,13 @@ const LOCALES: { code: Locale; label: string; flag: string }[] = [
   { code: "zh", label: "จีน", flag: "🇨🇳" },
 ];
 
-export function LocaleSwitcher({ inverted = false }: { inverted?: boolean }) {
+export function LocaleSwitcher({
+  inverted = false,
+  compact = false,
+}: {
+  inverted?: boolean;
+  compact?: boolean;
+}) {
   const locale = useLocale() as Locale;
   const router = useRouter();
   const pathname = usePathname();
@@ -29,6 +35,7 @@ export function LocaleSwitcher({ inverted = false }: { inverted?: boolean }) {
       <DropdownMenuTrigger
         className={cn(
           "inline-flex h-8 items-center gap-2 rounded-xl border px-2.5 text-sm font-medium outline-none transition-colors select-none",
+          compact && "gap-1.5 px-2",
           inverted
             ? "border-white/15 bg-white/5 text-white hover:bg-white/10 data-popup-open:bg-white/10"
             : "border-border bg-background hover:bg-muted data-popup-open:bg-muted",
@@ -38,8 +45,10 @@ export function LocaleSwitcher({ inverted = false }: { inverted?: boolean }) {
         <span className="text-base leading-none" aria-hidden>
           {current.flag}
         </span>
-        <span className="max-w-24 truncate">{current.label}</span>
-        <ChevronDown className="size-4 shrink-0 opacity-70" />
+        <span className={cn("max-w-24 truncate", compact && "sr-only")}>
+          {current.label}
+        </span>
+        <ChevronDown className={cn("size-4 shrink-0 opacity-70", compact && "size-3.5")} />
       </DropdownMenuTrigger>
 
       <DropdownMenuContent align="end" className="min-w-40">
