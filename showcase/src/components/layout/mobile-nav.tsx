@@ -90,6 +90,9 @@ export function MobileNav({ items, isBrand = true }: MobileNavProps) {
               </SheetDescription>
             </div>
           </div>
+          <div className="mt-4">
+            <LocaleSwitcher inverted={isBrand} fullWidth />
+          </div>
         </SheetHeader>
 
         <nav className="flex-1 overflow-y-auto px-3 py-4" aria-label={t("menuTitle")}>
@@ -143,8 +146,7 @@ export function MobileNav({ items, isBrand = true }: MobileNavProps) {
           </div>
         </nav>
 
-        <div className="mt-auto space-y-3 border-t border-white/10 p-4">
-          <LocaleSwitcher inverted={isBrand} />
+        <div className="mt-auto border-t border-white/10 p-4">
           <a
             href={MRFOX_APP_DOWNLOAD_URL}
             target="_blank"
