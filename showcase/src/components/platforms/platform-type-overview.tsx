@@ -1,5 +1,9 @@
 import { Check } from "lucide-react";
 import { CATEGORY_THEME } from "@/components/platforms/platform-category-theme";
+import {
+  PlatformSampleLinkCard,
+  type PlatformSampleLink,
+} from "@/components/platforms/platform-sample-link-card";
 import { GlassCard } from "@/components/vulpine/vulpine-primitives";
 import { cn } from "@/lib/utils";
 
@@ -8,6 +12,7 @@ export type PlatformTypeDetailContent = {
   paragraphs: string[];
   suitableForTitle?: string;
   suitableFor?: string[];
+  sampleLink?: PlatformSampleLink;
 };
 
 type PlatformTypeOverviewProps = {
@@ -39,7 +44,7 @@ export function PlatformTypeOverview({
   categorySlug = "creator",
   variant = "default",
 }: PlatformTypeOverviewProps) {
-  const { paragraphs, suitableForTitle, suitableFor, subtitle } = content;
+  const { paragraphs, suitableForTitle, suitableFor, subtitle, sampleLink } = content;
   const theme = CATEGORY_THEME[categorySlug];
   const Icon = theme?.icon;
   const { lead, middle, closing } = splitParagraphs(paragraphs);
@@ -195,6 +200,13 @@ export function PlatformTypeOverview({
             </ul>
           </GlassCard>
         )
+      ) : null}
+
+      {sampleLink ? (
+        <PlatformSampleLinkCard
+          sampleLink={sampleLink}
+          categorySlug={categorySlug}
+        />
       ) : null}
     </div>
   );
