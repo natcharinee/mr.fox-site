@@ -19,7 +19,7 @@ import { logAudit } from "@/lib/audit";
 import { requireSession } from "@/lib/auth";
 import { parseNewsPublishDate } from "@/lib/news-publish";
 import { COMPANY_LOGO } from "@/lib/brand-assets";
-import { MRFOX_APP_DOWNLOAD_URL } from "@/lib/app-download";
+import { GOOGLE_PLAY_URL, MRFOX_APP_DOWNLOAD_URL } from "@/lib/app-download";
 import { hashPassword } from "@/lib/password";
 import { syncInfoMrfoxNewsToDatabase } from "@/lib/sync-info-mrfox-news";
 
@@ -119,9 +119,15 @@ export async function updateNews(id: number, formData: FormData) {
 
 export async function deleteNews(id: number) {
   const session = await auth();
+  const [existing] = await db
+    .select({ slug: news.slug })
+    .from(news)
+    .where(eq(news.id, id))
+    .limit(1);
+
   await db.delete(news).where(eq(news.id, id));
   await logAudit(session, "delete", "news", id);
-  revalidateNewsPaths();
+  revalidateNewsPaths(existing?.slug);
 }
 
 export async function syncInfoMrfoxNews() {
@@ -157,7 +163,7 @@ function buildApplicationDownloadLinks(
     links.push({ applicationId, type: "ios" as const, url: MRFOX_APP_DOWNLOAD_URL });
   }
   if (urls.androidUrl) {
-    links.push({ applicationId, type: "android" as const, url: MRFOX_APP_DOWNLOAD_URL });
+    links.push({ applicationId, type: "android" as const, url: GOOGLE_PLAY_URL });
   }
   const apkUrl =
     urls.apkUrl ||

@@ -16,22 +16,22 @@
   "platforms": {
     "creator-specific": {
       "name": "创作者专属",
-      "concept": "多位创作者、单一品类，访客不可发帖",
-      "shortDescription": "单一品类的创作者平台，例如 FOXY",
+      "concept": "为每个创作者社群量身打造的平台",
+      "shortDescription": "为每个创作者社群量身打造的平台——为每个细分领域定制体验",
       "creatorModel": "创作者发布内容、接收投票与礼物、开启直播并使用变现工具",
       "visitorModel": "访客浏览内容、投票、送礼、订阅——不可发帖"
     },
     "community-specific": {
       "name": "社区",
-      "concept": "每位成员均可发帖，不区分创作者与访客",
-      "shortDescription": "在线社区，例如 TOM Thailand、Silom",
+      "concept": "当每个人都能为社群创造价值",
+      "shortDescription": "当每个人都能为社群创造价值——人人参与的在线社群空间",
       "creatorModel": "每位成员均可成为创作者",
       "visitorModel": "所有人发帖、评论并参与互动"
     },
     "the-contest": {
       "name": "竞赛合集",
-      "concept": "汇聚多项竞赛活动",
-      "shortDescription": "例如音乐竞赛、摄影竞赛",
+      "concept": "为创作者量身打造的竞赛平台",
+      "shortDescription": "为创作者量身打造的竞赛平台——从报名、投票到直播全流程",
       "creatorModel": "参赛者发布参赛作品",
       "visitorModel": "观众投票并支持参赛者"
     }

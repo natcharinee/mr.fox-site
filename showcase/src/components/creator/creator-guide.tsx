@@ -52,6 +52,7 @@ export type CreatorGuideContent = {
     title: string;
     description: string;
     posterAlt: string;
+    posterDownloadLabel: string;
     videoId: string;
     caption?: string;
     openLabel: string;
@@ -76,6 +77,20 @@ export type CreatorGuideContent = {
 
 const BENEFIT_ICONS = [Coins, Smartphone, Layers, Sparkles] as const;
 const STEP_ICONS = [Sparkles, MessageCircle, Layers, Rocket] as const;
+
+function renderTitleWithBrand(title: string) {
+  const parts = title.split(/(M[Rr]\.FOX)/g);
+
+  return parts.map((part, index) =>
+    /^M[Rr]\.FOX$/.test(part) ? (
+      <span key={index} className="text-[var(--vulpine-primary-container)]">
+        {part}
+      </span>
+    ) : (
+      <span key={index}>{part}</span>
+    ),
+  );
+}
 
 function RegistrationVideo({
   content,
@@ -105,16 +120,21 @@ function RegistrationVideo({
         href={MRFOX_APP_DOWNLOAD_URL}
         target="_blank"
         rel="noopener noreferrer"
-        className="mb-6 block overflow-hidden rounded-2xl border border-[var(--vulpine-primary-container)]/25 bg-black transition-opacity hover:opacity-95"
+        aria-label={content.posterDownloadLabel}
+        className="group relative mb-6 block cursor-pointer overflow-hidden rounded-2xl border border-[var(--vulpine-primary-container)]/25 bg-black transition-all hover:border-[var(--vulpine-primary-container)]/50 hover:opacity-95 hover:shadow-[0_12px_40px_rgba(255,184,0,0.15)]"
       >
         <Image
           src="/creator/download-promo.png"
           alt={content.posterAlt}
           width={1024}
           height={576}
-          className="h-auto w-full"
+          className="h-auto w-full transition-transform duration-300 group-hover:scale-[1.01]"
           sizes="(max-width: 768px) 100vw, 768px"
         />
+        <span className="pointer-events-none absolute inset-x-0 bottom-0 flex items-center justify-center gap-2 bg-gradient-to-t from-black/80 via-black/45 to-transparent px-4 py-5 text-sm font-bold text-[var(--vulpine-primary-container)] opacity-0 transition-opacity duration-300 group-hover:opacity-100 sm:text-base">
+          {content.posterDownloadLabel}
+          <ExternalLink className="size-4" aria-hidden />
+        </span>
       </a>
 
       <GlassCard className="overflow-hidden border-[var(--vulpine-primary-container)]/25">
@@ -195,7 +215,7 @@ export function CreatorGuide({
               {content.intro.eyebrow}
             </p>
             <h2 className="font-display text-2xl font-bold uppercase tracking-wide text-[var(--vulpine-on-surface)] sm:text-3xl">
-              {content.intro.title}
+              {renderTitleWithBrand(content.intro.title)}
             </h2>
             <p className="mt-4 text-base leading-relaxed text-[var(--vulpine-on-surface-variant)] sm:text-lg">
               {content.intro.description}

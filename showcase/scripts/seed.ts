@@ -7,6 +7,7 @@ import {
   categoryRevenue,
   downloadLinks,
   features,
+  news,
   platformCategories,
   platformTypeFeatures,
   platformTypePermissions,
@@ -15,7 +16,10 @@ import {
 } from "../src/db/schema";
 
 const MRFOX_APP_DOWNLOAD_URL = "https://link.mrfox.app/";
+const GOOGLE_PLAY_URL =
+  "https://play.google.com/store/apps/details?id=com.mrfox.app";
 import { hashPassword } from "../src/lib/password";
+import { EXCLUDED_NEWS_SLUGS } from "../src/lib/excluded-news-slugs";
 
 type Status = "core" | "optional" | "custom" | "no";
 type PtSlug = "creator-specific" | "community-specific" | "the-contest";
@@ -85,8 +89,9 @@ const PLATFORM_TYPES: {
     slug: "creator-specific",
     categorySlug: "creator",
     name: "Creator Specific",
-    concept: "หลาย Creator, 1 Category, Visitor โพสต์ไม่ได้",
-    shortDescription: "แพลตฟอร์ม Creator ใน Category เดียว เช่น FOXY",
+    concept: "แพลตฟอร์มที่ออกแบบมาเพื่อครีเอเตอร์แต่ละกลุ่มโดยเฉพาะ",
+    shortDescription:
+      "แพลตฟอร์มที่ออกแบบมาเพื่อครีเอเตอร์แต่ละกลุ่มโดยเฉพาะ — ปรับประสบการณ์ให้เหมาะกับแต่ละคอมมูนิตี้",
     creatorModel: "Creator โพสต์ content, รับ Vote/Gift, เปิด Live และบริการ monetization",
     visitorModel: "Visitor ดู content, โหวต, ส่ง Gift, Subscribe — โพสต์ไม่ได้",
     sortOrder: 1,
@@ -95,8 +100,9 @@ const PLATFORM_TYPES: {
     slug: "community-specific",
     categorySlug: "community",
     name: "Community",
-    concept: "สมาชิกทุกคนโพสต์ได้ ไม่แยก Creator/Visitor",
-    shortDescription: "ชุมชนออนไลน์ เช่น Silom, นักศึกษา",
+    concept: "เมื่อทุกคนสามารถเป็นผู้สร้างคุณค่าให้กับชุมชน",
+    shortDescription:
+      "เมื่อทุกคนสามารถเป็นผู้สร้างคุณค่าให้กับชุมชน — สร้างสังคมออนไลน์ที่ทุกคนมีส่วนร่วม",
     creatorModel: "ทุกสมาชิกเป็น Creator ได้",
     visitorModel: "ทุกคนโพสต์ แสดงความคิดเห็น และมีส่วนร่วม",
     sortOrder: 2,
@@ -105,8 +111,9 @@ const PLATFORM_TYPES: {
     slug: "the-contest",
     categorySlug: "contest",
     name: "The Contest",
-    concept: "รวมหลายรายการประกวด",
-    shortDescription: "เช่น Music Contest, Photo Contest, Beauty Queen",
+    concept: "แพลตฟอร์มสำหรับการแข่งขันที่ออกแบบมาเพื่อครีเอเตอร์โดยเฉพาะ",
+    shortDescription:
+      "แพลตฟอร์มสำหรับการแข่งขันที่ออกแบบมาเพื่อครีเอเตอร์โดยเฉพาะ — ครบวงจรตั้งแต่สมัครถึงโหวตและถ่ายทอดสด",
     creatorModel: "ผู้เข้าประกวด (Contestant) โพสต์ผลงาน",
     visitorModel: "ผู้ชมโหวตและสนับสนุนผู้เข้าประกวด",
     sortOrder: 3,
@@ -446,6 +453,10 @@ async function migrateDeprecatedPlatformTypes() {
   }
 }
 
+async function purgeExcludedNews() {
+  await db.delete(news).where(inArray(news.slug, [...EXCLUDED_NEWS_SLUGS]));
+}
+
 async function purgeRemovedEcosystem() {
   await migrateDeprecatedPlatformTypes();
 
@@ -506,6 +517,7 @@ async function seed() {
   console.log("🌱 Seeding Mr.FOX Showcase database...");
 
   await purgeRemovedEcosystem();
+  await purgeExcludedNews();
   await db.execute(sql`
     DELETE FROM download_links a
     USING download_links b
@@ -663,7 +675,7 @@ async function seed() {
       if (existingLinks.length === 0) {
         await db.insert(downloadLinks).values([
           { applicationId: appId, type: "ios", url: MRFOX_APP_DOWNLOAD_URL },
-          { applicationId: appId, type: "android", url: MRFOX_APP_DOWNLOAD_URL },
+          { applicationId: appId, type: "android", url: GOOGLE_PLAY_URL },
           { applicationId: appId, type: "apk", url: `https://download.mrfox.app/${app.slug}.apk` },
         ]);
       }
@@ -673,7 +685,12 @@ async function seed() {
   await db
     .update(downloadLinks)
     .set({ url: MRFOX_APP_DOWNLOAD_URL })
-    .where(inArray(downloadLinks.type, ["ios", "android"]));
+    .where(eq(downloadLinks.type, "ios"));
+
+  await db
+    .update(downloadLinks)
+    .set({ url: GOOGLE_PLAY_URL })
+    .where(eq(downloadLinks.type, "android"));
 
   // News is imported from info.mrfox.com via `npm run news:import` or Admin → Sync ข่าว.
 

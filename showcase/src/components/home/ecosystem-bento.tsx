@@ -5,6 +5,7 @@ import {
   CATEGORY_ORDER,
   CATEGORY_THEME,
 } from "@/components/platforms/platform-category-theme";
+import { isActivePlatformTypeSlug } from "@/lib/platform-type-slugs";
 import { cn } from "@/lib/utils";
 import type { ReactNode } from "react";
 
@@ -35,7 +36,9 @@ type EcosystemBentoProps = {
 };
 
 function categoryTypes(types: PlatformType[], slug: string) {
-  return types.filter((t) => t.categorySlug === slug);
+  return types.filter(
+    (t) => t.categorySlug === slug && isActivePlatformTypeSlug(t.slug),
+  );
 }
 
 function CategoryLegend({
@@ -165,20 +168,21 @@ function CategoryCard({
                   <p className="text-sm font-bold text-[var(--vulpine-on-surface)] sm:text-base">
                     {pt.name}
                   </p>
-                  <span
-                    className={cn(
-                      "vulpine-label inline-flex shrink-0 items-center gap-1 text-xs opacity-70 transition-all group-hover:translate-x-0.5 group-hover:opacity-100 sm:text-sm",
-                      theme?.accent,
-                    )}
-                  >
-                    <ArrowRight className="size-3.5" aria-hidden />
-                  </span>
                 </div>
                 {pt.shortDescription ? (
-                  <p className="mt-2 text-sm leading-relaxed text-[var(--vulpine-on-surface-variant)] line-clamp-3">
+                  <p className="mt-2 text-sm leading-relaxed text-[var(--vulpine-on-surface-variant)] line-clamp-2">
                     {pt.shortDescription}
                   </p>
                 ) : null}
+                <span
+                  className={cn(
+                    "vulpine-label mt-2.5 inline-flex items-center gap-1 text-xs opacity-70 transition-all group-hover:translate-x-0.5 group-hover:opacity-100 sm:text-sm",
+                    theme?.accent,
+                  )}
+                >
+                  {viewPlatformLabel}
+                  <ArrowRight className="size-3" aria-hidden />
+                </span>
               </Link>
             </li>
           ))}

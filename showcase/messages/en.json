@@ -31,7 +31,7 @@
     "ecosystemIncludes": "Includes these Platform Types",
     "ecosystemModules": "{count} MODULES",
     "ecosystemTypeCount": "{count} types",
-    "ecosystemViewPlatform": "View details",
+    "ecosystemViewPlatform": "Read more",
     "platformTypes": "3 Platform Types",
     "platformTypesDesc": "3 Platform Types — Creator Specific, Community, and The Contest",
     "viewAll": "View all",
@@ -131,6 +131,7 @@
         "title": "How to register the app",
         "description": "How to register the app and fill in Creator details in the video — using CupE as an example.",
         "posterAlt": "Download Mr.FOX app — King of Creator Platform",
+        "posterDownloadLabel": "Download Mr.FOX app",
         "videoId": "https://youtu.be/8EfR8_7c0k4",
         "caption": "Mr.FOX app registration guide for Creators",
         "openLabel": "Open on YouTube",
@@ -267,11 +268,72 @@
       "exampleLabel": "Examples:",
       "catalogHint": "Scroll down for full details and live applications in each type"
     },
+    "typeDetails": {
+      "creator-specific": {
+        "subtitle": "Platforms designed for each creator community",
+        "paragraphs": [
+          "Creator Specific is built around how each creator niche actually works. Every community creates content, grows an audience, and earns differently — so one generic platform rarely fits everyone.",
+          "With Mr.FOX, each platform can shape the full experience for its audience: profiles, content categories, discovery, fan engagement, and features tailored to that community.",
+          "Creators can publish content, go live, talk to fans, run memberships, receive digital gifts, and earn from their audience in one place. Fans can discover creators they care about, engage with content, and grow with the community they belong to.",
+          "Whether you are building for pageants, cosplay, models, gamers, or any niche creator community, Mr.FOX can turn that idea into a ready-to-run platform built for long-term growth."
+        ],
+        "suitableForTitle": "Ideal for",
+        "suitableFor": [
+          "Pageants and beauty communities",
+          "Cosplay and fandom",
+          "Models and photographers",
+          "Fitness and sports",
+          "Gaming and streaming",
+          "LGBTQ+",
+          "Premium creators",
+          "Any niche creator community"
+        ]
+      },
+      "community-specific": {
+        "subtitle": "When everyone can create value for the community",
+        "paragraphs": [
+          "Community is a platform for building online societies where everyone can participate — sharing knowledge, discussing ideas, exchanging opinions, or creating content together, without a single person at the center.",
+          "Members can form interest groups, run their own communities, open spaces for conversation, host online activities, and build relationships naturally. Communities grow through participation from everyone, not follower counts alone.",
+          "Whether for brands, learning groups, fan clubs, hobbies, or organizations, Community provides the tools for communication, engagement, and member growth to continue in one platform."
+        ],
+        "suitableForTitle": "Ideal for",
+        "suitableFor": [
+          "18+ creator communities",
+          "LGBTQ+",
+          "Nightlife & entertainment",
+          "Creator fan clubs",
+          "Cosplay & fandom",
+          "Models & photographers",
+          "Gamers & streamers",
+          "Student creator groups"
+        ]
+      },
+      "the-contest": {
+        "subtitle": "A competition platform designed for creators",
+        "paragraphs": [
+          "The Contest makes creator competitions simple, end-to-end, and fully engaging — from contestant registration and profile management to publishing entries, voting, scoring, comments, live streaming, and activities throughout the event.",
+          "More than finding a winner, The Contest is designed so every competition becomes a space where creators can showcase their potential, build a following, increase engagement, and unlock new opportunities after the event ends. Audiences can vote, follow, and support their favorite contestants throughout.",
+          "Whether pageants, cosplay contests, live-stream competitions, content contests, or creator events of any kind, The Contest turns every competition into an experience that creates value for organizers, contestants, and viewers alike."
+        ],
+        "suitableForTitle": "Ideal for",
+        "suitableFor": [
+          "Pageant competitions",
+          "Cosplay contests",
+          "Creator awards",
+          "Content competitions",
+          "Talent competitions",
+          "Live-stream competitions",
+          "Brand activations",
+          "Creator competitions of every kind"
+        ]
+      }
+    },
     "catalog": {
       "viewDetails": "View details",
       "typeCount": "{count} types"
     },
     "backToPlatforms": "Back to Platform Types",
+    "typeDetailBannerAlt": "Content to Earn — Users Enjoy, Creators Make Money",
     "creatorModel": "Creator Model",
     "visitorModel": "Visitor Model",
     "featuresMatrix": "Features Matrix",
@@ -596,6 +658,14 @@
   },
   "footer": {
     "tagline": "18+ creator platform — Creator · Community · Contest",
+    "companyName": "Mr.FOX Co., Ltd.",
+    "address": "1323/1 Srivara Road (Lat Phrao 94) Town in Town Phlabphla, Wang Thonglang, Bangkok",
+    "emailLabel": "Email",
+    "email": "support@mrfox.com",
+    "emailHref": "mailto:support@mrfox.com",
+    "phoneLabel": "Phone",
+    "phone": "02-9575771 ext. 75",
+    "phoneHref": "tel:+6629575771;ext=75",
     "explore": "Explore",
     "company": "Company",
     "links": "Links",

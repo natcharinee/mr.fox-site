@@ -1,10 +1,15 @@
 import { ArrowRight } from "lucide-react";
 import { Link } from "@/i18n/navigation";
-import { publicTheme, themedCard } from "@/components/layout/public-theme";
+import { publicTheme } from "@/components/layout/public-theme";
 import {
   CATEGORY_ORDER,
   CATEGORY_THEME,
 } from "@/components/platforms/platform-category-theme";
+import {
+  PlatformTypeOverview,
+  type PlatformTypeDetailContent,
+} from "@/components/platforms/platform-type-overview";
+import { isActivePlatformTypeSlug } from "@/lib/platform-type-slugs";
 import { cn } from "@/lib/utils";
 
 type PlatformType = {
@@ -25,6 +30,7 @@ type Category = {
 type PlatformsCatalogProps = {
   categories: Category[];
   platformTypes: PlatformType[];
+  typeDetails: Record<string, PlatformTypeDetailContent>;
   viewDetailsLabel: string;
   typeCountLabel: (count: number) => string;
 };
@@ -32,6 +38,7 @@ type PlatformsCatalogProps = {
 function groupByCategory(platformTypes: PlatformType[]) {
   const map = new Map<string, PlatformType[]>();
   for (const pt of platformTypes) {
+    if (!isActivePlatformTypeSlug(pt.slug)) continue;
     const list = map.get(pt.categorySlug) ?? [];
     list.push(pt);
     map.set(pt.categorySlug, list);
@@ -39,15 +46,10 @@ function groupByCategory(platformTypes: PlatformType[]) {
   return map;
 }
 
-function gridClass(count: number) {
-  if (count === 1) return "max-w-xl";
-  if (count === 2) return "grid gap-4 sm:grid-cols-2";
-  return "grid gap-4 sm:grid-cols-2 xl:grid-cols-3";
-}
-
 export function PlatformsCatalog({
   categories,
   platformTypes,
+  typeDetails,
   viewDetailsLabel,
   typeCountLabel,
 }: PlatformsCatalogProps) {
@@ -89,7 +91,7 @@ export function PlatformsCatalog({
         })}
       </nav>
 
-      <div className="space-y-14">
+      <div className="space-y-16 sm:space-y-20">
         {orderedCategories.map((category) => {
           const types = byCategory.get(category.slug) ?? [];
           if (types.length === 0) return null;
@@ -101,32 +103,46 @@ export function PlatformsCatalog({
             <section
               key={category.slug}
               id={`category-${category.slug}`}
-              className="scroll-mt-24"
+              className="scroll-mt-24 overflow-hidden rounded-3xl border border-white/10 bg-[rgba(18,20,20,0.45)] shadow-[0_12px_48px_rgba(0,0,0,0.28)] backdrop-blur-xl"
             >
               <header
                 className={cn(
-                  "mb-6 flex flex-col gap-4 rounded-2xl border p-5 sm:flex-row sm:items-center sm:justify-between sm:p-6",
+                  "relative overflow-hidden border-b border-white/8 p-6 sm:p-8",
                   theme.header,
                 )}
               >
-                <div className="flex items-start gap-4">
+                <div
+                  className="pointer-events-none absolute -right-16 -top-16 size-48 rounded-full bg-[var(--vulpine-primary-container)]/12 blur-3xl"
+                  aria-hidden
+                />
+                <div className="relative flex items-start gap-5">
                   <div
                     className={cn(
-                      "flex size-12 shrink-0 items-center justify-center rounded-2xl",
+                      "flex size-14 shrink-0 items-center justify-center rounded-2xl sm:size-16",
                       theme.iconWrap,
                     )}
                   >
-                    <Icon className="size-6" />
+                    <Icon className="size-7 sm:size-8" aria-hidden />
                   </div>
-                  <div>
-                    <p className={cn("vulpine-label text-xs sm:text-sm", theme.accent)}>
+                  <div className="min-w-0 flex-1">
+                    <p
+                      className={cn(
+                        "vulpine-label text-xs font-semibold uppercase tracking-[0.18em] sm:text-sm",
+                        theme.accent,
+                      )}
+                    >
                       {typeCountLabel(types.length)}
                     </p>
-                    <h2 className={`mt-1 text-xl sm:text-2xl ${publicTheme.cardTitle}`}>
+                    <h2 className="font-display mt-2 text-2xl font-bold uppercase tracking-wide text-[var(--vulpine-on-surface)] sm:text-3xl">
                       {category.name}
                     </h2>
+                    {types[0]?.name ? (
+                      <p className={cn("mt-2 text-lg font-semibold sm:text-xl", theme.accent)}>
+                        {types[0].name}
+                      </p>
+                    ) : null}
                     {category.description ? (
-                      <p className={`mt-2 max-w-2xl text-sm leading-relaxed ${publicTheme.muted}`}>
+                      <p className="mt-3 max-w-3xl text-base leading-relaxed text-[var(--vulpine-on-surface)] sm:text-lg">
                         {category.description}
                       </p>
                     ) : null}
@@ -134,65 +150,66 @@ export function PlatformsCatalog({
                 </div>
               </header>
 
-              <div className={gridClass(types.length)}>
-                {types.map((pt, index) => (
-                  <Link
-                    key={pt.slug}
-                    href={`/platforms/${pt.slug}`}
-                    className={cn(types.length === 1 && "block")}
-                  >
-                    <article
-                      className={cn(
-                        themedCard(),
-                        "group relative flex h-full flex-col overflow-hidden p-5",
-                        theme.cardHover,
-                      )}
-                    >
-                      <span
-                        aria-hidden
-                        className="pointer-events-none absolute -top-2 -right-1 text-5xl font-black tabular-nums text-white/[0.04]"
-                      >
-                        {String(index + 1).padStart(2, "0")}
-                      </span>
+              <div className="px-5 py-8 sm:px-8 sm:py-10 lg:px-10">
+                {types.map((pt) => {
+                  const detail = typeDetails[pt.slug];
 
-                      <div className="flex items-center gap-2">
-                        <span
+                  if (detail) {
+                    return (
+                      <div key={pt.slug}>
+                        <PlatformTypeOverview
+                          content={detail}
+                          categorySlug={category.slug}
+                          variant="catalog"
+                        />
+                        <Link
+                          href={`/platforms/${pt.slug}`}
                           className={cn(
-                            "rounded-full border px-2.5 py-0.5 text-xs font-semibold tracking-wide uppercase",
-                            theme.pill,
+                            "mt-8 inline-flex items-center gap-2 rounded-xl border px-5 py-3 text-sm font-semibold transition-all",
+                            "border-[var(--vulpine-primary-container)]/35 bg-[var(--vulpine-primary-container)]/10",
+                            theme.accent,
+                            "hover:border-[var(--vulpine-primary-container)]/55 hover:bg-[var(--vulpine-primary-container)]/16 hover:gap-2.5",
                           )}
                         >
-                          {pt.categoryName}
-                        </span>
+                          {viewDetailsLabel}
+                          <ArrowRight className="size-4" />
+                        </Link>
                       </div>
+                    );
+                  }
 
-                      <h3 className={`mt-3 text-lg leading-snug ${publicTheme.cardTitle}`}>
-                        {pt.name}
-                      </h3>
-
-                      <p className={`mt-2 flex-1 text-sm leading-relaxed ${publicTheme.muted}`}>
-                        {pt.shortDescription ?? pt.concept}
-                      </p>
-
-                      {pt.shortDescription && pt.concept ? (
-                        <p className="mt-3 rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm leading-relaxed text-[var(--vulpine-on-surface-variant)]">
-                          {pt.concept}
-                        </p>
-                      ) : null}
-
-                      <p
+                  return (
+                    <Link
+                      key={pt.slug}
+                      href={`/platforms/${pt.slug}`}
+                      className="block"
+                    >
+                      <article
                         className={cn(
-                          "mt-4 flex items-center gap-1.5 text-sm font-medium transition-colors",
-                          theme.accent,
-                          "group-hover:gap-2.5",
+                          "group relative flex h-full flex-col overflow-hidden rounded-2xl border border-white/8 bg-[rgba(18,20,20,0.4)] p-5 shadow-[0_4px_30px_rgba(0,0,0,0.1)] backdrop-blur-2xl transition-all hover:-translate-y-0.5 vulpine-glow-hover",
+                          theme.cardHover,
                         )}
                       >
-                        {viewDetailsLabel}
-                        <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
-                      </p>
-                    </article>
-                  </Link>
-                ))}
+                        <h3 className={`text-lg leading-snug ${publicTheme.cardTitle}`}>
+                          {pt.name}
+                        </h3>
+                        <p className={`mt-2 flex-1 text-sm leading-relaxed ${publicTheme.muted}`}>
+                          {pt.shortDescription ?? pt.concept}
+                        </p>
+                        <p
+                          className={cn(
+                            "mt-4 flex items-center gap-1.5 text-sm font-medium transition-colors",
+                            theme.accent,
+                            "group-hover:gap-2.5",
+                          )}
+                        >
+                          {viewDetailsLabel}
+                          <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
+                        </p>
+                      </article>
+                    </Link>
+                  );
+                })}
               </div>
             </section>
           );

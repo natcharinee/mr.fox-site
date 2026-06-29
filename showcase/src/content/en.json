@@ -16,22 +16,22 @@
   "platforms": {
     "creator-specific": {
       "name": "Creator Specific",
-      "concept": "Multiple creators, one category; visitors cannot post",
-      "shortDescription": "Single-category creator platform, e.g. FOXY",
+      "concept": "Platforms tailored to each creator community",
+      "shortDescription": "Platforms tailored to each creator community — experiences built for every niche",
       "creatorModel": "Creators post content, receive votes and gifts, go live, and access monetization tools",
       "visitorModel": "Visitors view content, vote, send gifts, and subscribe — cannot post"
     },
     "community-specific": {
       "name": "Community",
-      "concept": "Every member can post; no creator/visitor split",
-      "shortDescription": "Online community, e.g. TOM Thailand, Silom",
+      "concept": "When everyone can create value for the community",
+      "shortDescription": "When everyone can create value for the community — an online space where all members participate",
       "creatorModel": "Every member can be a creator",
       "visitorModel": "Everyone posts, comments, and participates"
     },
     "the-contest": {
       "name": "The Contest",
-      "concept": "Multiple contest programs",
-      "shortDescription": "e.g. Music Contest, Photo Contest",
+      "concept": "A competition platform designed for creators",
+      "shortDescription": "A competition platform designed for creators — end-to-end from registration to voting and live streaming",
       "creatorModel": "Contestants post their entries",
       "visitorModel": "Viewers vote and support contestants"
     }

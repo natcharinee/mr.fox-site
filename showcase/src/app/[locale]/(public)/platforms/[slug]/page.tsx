@@ -10,7 +10,11 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { DownloadButtons } from "@/components/apps/download-buttons";
-import { FeatureMatrix } from "@/components/platforms/feature-matrix";
+import {
+  PlatformTypeOverview,
+  type PlatformTypeDetailContent,
+} from "@/components/platforms/platform-type-overview";
+import { PlatformTypeBanner } from "@/components/platforms/platform-type-banner";
 import { PageHero } from "@/components/layout/page-hero";
 import { PageShell } from "@/components/layout/page-shell";
 import { SectionHeading } from "@/components/layout/section-heading";
@@ -20,10 +24,7 @@ import { localizeApp, localizePlatform } from "@/lib/content-i18n";
 import { buildMetadata } from "@/lib/metadata";
 import {
   getAppsByPlatformType,
-  getCategoryRevenue,
   getDownloadLinks,
-  getPlatformFeatureMatrix,
-  getPlatformPermissions,
   getPlatformTypeBySlug,
 } from "@/lib/queries";
 
@@ -52,13 +53,12 @@ export default async function PlatformDetailPage({ params }: Props) {
   const platformRow = await getPlatformTypeBySlug(slug);
   if (!platformRow) notFound();
   const platform = localizePlatform(locale, platformRow);
+  const typeDetails = t.raw("typeDetails") as Record<string, PlatformTypeDetailContent>;
+  const typeDetail = typeDetails[slug];
+  const heroDescription =
+    typeDetail?.subtitle ?? platform.concept ?? platform.shortDescription ?? undefined;
 
-  const [matrix, permissions, revenues, apps] = await Promise.all([
-    getPlatformFeatureMatrix(platformRow.id),
-    getPlatformPermissions(platformRow.id),
-    getCategoryRevenue(platformRow.categoryId),
-    getAppsByPlatformType(platformRow.id),
-  ]);
+  const apps = await getAppsByPlatformType(platformRow.id);
 
   const appsWithLinks = await Promise.all(
     apps.map(async (app) => {
@@ -72,13 +72,23 @@ export default async function PlatformDetailPage({ params }: Props) {
 
   return (
     <PageShell>
-      <PageHero title={platform.name} description={platform.concept ?? undefined}>
+      <PageHero title={platform.name} description={heroDescription}>
         <Badge variant="outline" className={publicTheme.heroBadge}>
           {platform.categoryName}
         </Badge>
       </PageHero>
 
       <div className={publicTheme.pageGrid}>
+        {typeDetail ? (
+          <section className="mb-10">
+            <PlatformTypeBanner alt={t("typeDetailBannerAlt")} className="mb-6 sm:mb-8" />
+            <PlatformTypeOverview
+              content={typeDetail}
+              categorySlug={platformRow.categorySlug}
+            />
+          </section>
+        ) : null}
+
         <div className="grid gap-6 lg:grid-cols-2">
           <Card className={themedCard()}>
             <CardHeader>
@@ -95,60 +105,6 @@ export default async function PlatformDetailPage({ params }: Props) {
                 {platform.visitorModel}
               </CardDescription>
             </CardHeader>
-          </Card>
-        </div>
-
-        <div className="mt-10">
-          <FeatureMatrix locale={locale} rows={matrix} />
-        </div>
-
-        <div className="mt-10 grid gap-6 lg:grid-cols-2">
-          <Card className={themedCard()}>
-            <CardHeader>
-              <CardTitle className={publicTheme.cardTitle}>{t("permissionMatrix")}</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <dl className="space-y-2 text-sm">
-                {permissions.map((p) => (
-                  <div key={p.key} className="flex justify-between gap-4">
-                    <dt className={publicTheme.muted}>
-                      {t.has(`perm.${p.key}`) ? t(`perm.${p.key}`) : p.key}
-                    </dt>
-                    <dd className={`font-medium ${publicTheme.cardTitle}`}>
-                      {t.has(`permValue.${p.value}`)
-                        ? t(`permValue.${p.value}`)
-                        : p.value}
-                    </dd>
-                  </div>
-                ))}
-              </dl>
-            </CardContent>
-          </Card>
-          <Card className={themedCard()}>
-            <CardHeader>
-              <CardTitle className={publicTheme.cardTitle}>{t("revenueModel")}</CardTitle>
-              <CardDescription className={publicTheme.cardDescription}>
-                {t("revenueCategoryNote")} — {platform.categoryName}
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <dl className="space-y-2 text-sm">
-                {revenues.map((r) => (
-                  <div key={r.revenueFeature} className="flex justify-between gap-4">
-                    <dt className={publicTheme.muted}>
-                      {t.has(`revenue.${r.revenueFeature}`)
-                        ? t(`revenue.${r.revenueFeature}`)
-                        : r.revenueFeature}
-                    </dt>
-                    <dd className={`font-medium ${publicTheme.cardTitle}`}>
-                      {t.has(`permValue.${r.value}`)
-                        ? t(`permValue.${r.value}`)
-                        : r.value}
-                    </dd>
-                  </div>
-                ))}
-              </dl>
-            </CardContent>
           </Card>
         </div>
 

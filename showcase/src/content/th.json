@@ -1,0 +1,39 @@
+{
+  "categories": {
+    "creator": {
+      "name": "Creator",
+      "description": "ไซต์ Creator 18+ — หลายรูปแบบตั้งแต่ Creator คนเดียวถึงหลาย Category"
+    },
+    "community": {
+      "name": "Community",
+      "description": "ชุมชนที่สมาชิกทุกคนมีส่วนร่วม โพสต์และแลกเปลี่ยนได้"
+    },
+    "contest": {
+      "name": "Contest",
+      "description": "แพลตฟอร์มประกวดและโหวต — รองรับหลายรายการประกวด"
+    }
+  },
+  "platforms": {
+    "creator-specific": {
+      "name": "Creator Specific",
+      "concept": "แพลตฟอร์มที่ออกแบบมาเพื่อครีเอเตอร์แต่ละกลุ่มโดยเฉพาะ",
+      "shortDescription": "แพลตฟอร์มที่ออกแบบมาเพื่อครีเอเตอร์แต่ละกลุ่มโดยเฉพาะ — ปรับประสบการณ์ให้เหมาะกับแต่ละคอมมูนิตี้",
+      "creatorModel": "Creator โพสต์ content, รับ Vote/Gift, เปิด Live และบริการ monetization",
+      "visitorModel": "Visitor ดู content, โหวต, ส่ง Gift, Subscribe — โพสต์ไม่ได้"
+    },
+    "community-specific": {
+      "name": "Community",
+      "concept": "เมื่อทุกคนสามารถเป็นผู้สร้างคุณค่าให้กับชุมชน",
+      "shortDescription": "เมื่อทุกคนสามารถเป็นผู้สร้างคุณค่าให้กับชุมชน — สร้างสังคมออนไลน์ที่ทุกคนมีส่วนร่วม",
+      "creatorModel": "ทุกสมาชิกเป็น Creator ได้",
+      "visitorModel": "ทุกคนโพสต์ แสดงความคิดเห็น และมีส่วนร่วม"
+    },
+    "the-contest": {
+      "name": "The Contest",
+      "concept": "แพลตฟอร์มสำหรับการแข่งขันที่ออกแบบมาเพื่อครีเอเตอร์โดยเฉพาะ",
+      "shortDescription": "แพลตฟอร์มสำหรับการแข่งขันที่ออกแบบมาเพื่อครีเอเตอร์โดยเฉพาะ — ครบวงจรตั้งแต่สมัครถึงโหวตและถ่ายทอดสด",
+      "creatorModel": "ผู้เข้าประกวด (Contestant) โพสต์ผลงาน",
+      "visitorModel": "ผู้ชมโหวตและสนับสนุนผู้เข้าประกวด"
+    }
+  }
+}

@@ -27,13 +27,11 @@ export type AboutPurposeContent = {
 const VALUE_ICONS = [Users, Layers, Sparkles] as const;
 
 type PurposePanelProps = AboutPurposeBlock & {
-  index: string;
   icon: LucideIcon;
   featured?: boolean;
 };
 
 function PurposePanel({
-  index,
   label,
   headline,
   body,
@@ -70,19 +68,24 @@ function PurposePanel({
           <div className="flex items-center gap-3">
             <span
               className={cn(
-                "inline-flex size-11 items-center justify-center rounded-2xl border",
+                "inline-flex shrink-0 items-center justify-center rounded-2xl border",
+                featured ? "size-14" : "size-11",
                 "border-[var(--vulpine-primary-container)]/35 bg-[var(--vulpine-primary-container)]/12",
                 "text-[var(--vulpine-primary-container)] shadow-[0_0_20px_rgba(255,184,0,0.12)]",
               )}
             >
-              <Icon className="size-5" aria-hidden />
+              <Icon className={featured ? "size-7" : "size-5"} aria-hidden />
             </span>
-            <div>
-              <p className="vulpine-label text-[var(--vulpine-primary-container)]">{label}</p>
-              <p className="mt-0.5 font-display text-4xl font-bold leading-none text-white/10">
-                {index}
-              </p>
-            </div>
+            <p
+              className={cn(
+                "font-display font-bold uppercase tracking-[0.12em] text-[var(--vulpine-primary-container)]",
+                featured
+                  ? "text-2xl sm:text-3xl lg:text-4xl"
+                  : "text-xl sm:text-2xl",
+              )}
+            >
+              {label}
+            </p>
           </div>
         </div>
 
@@ -139,10 +142,10 @@ export function AboutPurposeSection({ content }: { content: AboutPurposeContent 
 
       <div className="grid gap-5 lg:grid-cols-12 lg:gap-6">
         <div className="lg:col-span-7">
-          <PurposePanel index="01" icon={Eye} featured {...content.vision} />
+          <PurposePanel icon={Eye} featured {...content.vision} />
         </div>
         <div className="flex lg:col-span-5">
-          <PurposePanel index="02" icon={Target} {...content.mission} />
+          <PurposePanel icon={Target} {...content.mission} />
         </div>
       </div>
 

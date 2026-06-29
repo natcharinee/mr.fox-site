@@ -31,7 +31,7 @@
     "ecosystemIncludes": "包含以下 Platform Types",
     "ecosystemModules": "{count} 个模块",
     "ecosystemTypeCount": "{count} 种类型",
-    "ecosystemViewPlatform": "查看详情",
+    "ecosystemViewPlatform": "阅读更多",
     "platformTypes": "3 种平台类型",
     "platformTypesDesc": "3 种平台类型 — Creator Specific、Community 与 The Contest",
     "viewAll": "查看全部",
@@ -131,6 +131,7 @@
         "title": "应用注册教程视频",
         "description": "演示如何注册应用并填写 Creator 资料 — 以 CupE 为例。",
         "posterAlt": "下载 Mr.FOX 应用 — King of Creator Platform",
+        "posterDownloadLabel": "下载 Mr.FOX 应用",
         "videoId": "https://youtu.be/8EfR8_7c0k4",
         "caption": "Mr.FOX Creator 应用注册指南",
         "openLabel": "在 YouTube 打开",
@@ -267,11 +268,72 @@
       "exampleLabel": "示例：",
       "catalogHint": "向下滚动查看各类型的完整详情与在线应用"
     },
+    "typeDetails": {
+      "creator-specific": {
+        "subtitle": "为每个创作者社群量身打造的平台",
+        "paragraphs": [
+          "创作者专属平台源于对每个创作者圈层身份与工作方式的理解。不同圈层的创作方式、粉丝关系与变现路径各不相同，不应被限制在同一套通用平台中。",
+          "借助 Mr.FOX，每个平台都能为目标受众完整定制体验——从个人主页、内容分类、搜索发现、粉丝互动，到契合该社群的专属功能。",
+          "创作者可在同一平台发布内容、直播、与粉丝沟通、开通会员、接收数字礼物并从观众获得收入；粉丝也能发现感兴趣的创作者、参与内容互动，并与所属社群共同成长。",
+          "无论您想为选美、Cosplay、模特、游戏主播或任何垂直创作者社群搭建平台，Mr.FOX 都能将想法落地为可运营的平台，并支持社群长期成长。"
+        ],
+        "suitableForTitle": "适合",
+        "suitableFor": [
+          "选美赛事与美妆社群",
+          "Cosplay 与同人圈",
+          "模特与摄影师",
+          "健身与运动",
+          "游戏与直播",
+          "LGBTQ+",
+          "高端创作者",
+          "各类垂直创作者社群"
+        ]
+      },
+      "community-specific": {
+        "subtitle": "当每个人都能为社群创造价值",
+        "paragraphs": [
+          "社区平台用于打造人人可参与的在线社会——分享知识、交流讨论、互换观点或共同创作内容，而不以某一个人为中心。",
+          "用户可以按兴趣建群、运营自己的社群、开辟讨论空间、组织线上活动并自然建立成员关系，让社群因每个人的参与而成长，而非仅靠粉丝数量。",
+          "无论是品牌社群、学习小组、粉丝团、兴趣爱好或组织，社区都提供工具，让沟通、参与与成员成长在同一平台持续发生。"
+        ],
+        "suitableForTitle": "适合",
+        "suitableFor": [
+          "18+ 创作者社群",
+          "LGBTQ+",
+          "夜生活与娱乐",
+          "创作者粉丝团",
+          "Cosplay 与同人",
+          "模特与摄影师",
+          "游戏与直播",
+          "学生创作者群组"
+        ]
+      },
+      "the-contest": {
+        "subtitle": "为创作者量身打造的竞赛平台",
+        "paragraphs": [
+          "竞赛合集让创作者的赛事与竞赛变得简单、全流程且充分互动——从参赛者报名、资料管理、作品发布、投票评分、评论互动，到直播与赛间活动一应俱全。",
+          "不止于选出冠军，竞赛合集让每场比赛成为创作者展示潜力、积累粉丝、提升参与度并在赛后延续机会的场域；观众也可全程投票、关注并支持喜爱的参赛者。",
+          "无论是选美、Cosplay 赛事、直播竞赛、内容比赛或各类创作者活动，竞赛合集都能将每场比赛转化为对主办方、参赛者与观众皆有价值的体验。"
+        ],
+        "suitableForTitle": "适合",
+        "suitableFor": [
+          "选美赛事",
+          "Cosplay 竞赛",
+          "创作者奖项",
+          "内容竞赛",
+          "才艺比赛",
+          "直播竞赛",
+          "品牌活动",
+          "各类创作者竞赛"
+        ]
+      }
+    },
     "catalog": {
       "viewDetails": "查看详情",
       "typeCount": "{count} 种类型"
     },
     "backToPlatforms": "返回平台类型",
+    "typeDetailBannerAlt": "Content to Earn — 用户享受，创作者赚钱",
     "creatorModel": "创作者模式",
     "visitorModel": "访客模式",
     "featuresMatrix": "功能矩阵",
@@ -596,6 +658,14 @@
   },
   "footer": {
     "tagline": "18+ 创作者平台 — Creator · Community · Contest",
+    "companyName": "Mr.FOX Co., Ltd.",
+    "address": "1323/1 Srivara Road (Lat Phrao 94) Town in Town Phlabphla, Wang Thonglang, Bangkok",
+    "emailLabel": "邮箱",
+    "email": "support@mrfox.com",
+    "emailHref": "mailto:support@mrfox.com",
+    "phoneLabel": "电话",
+    "phone": "02-9575771 转分机 75",
+    "phoneHref": "tel:+6629575771;ext=75",
     "explore": "探索",
     "company": "公司",
     "links": "链接",

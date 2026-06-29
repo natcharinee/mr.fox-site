@@ -45,7 +45,7 @@ export function HomeHero({
         />
       </div>
 
-      <div className="relative z-30 mx-auto max-w-4xl px-4 pb-16 pt-4 text-center sm:px-6 md:px-16 lg:-mt-16 lg:pb-20">
+      <div className="relative z-30 mx-auto max-w-4xl px-4 pb-16 pt-6 text-center sm:px-6 md:px-16 md:pt-4 lg:-mt-16 lg:pb-20">
         <VulpineEyebrow className="mb-6">{badge}</VulpineEyebrow>
 
         <p className="font-display text-3xl font-extrabold tracking-tight text-[var(--vulpine-primary-container)] drop-shadow-[0_0_8px_rgba(255,184,0,0.35)] sm:text-4xl lg:text-5xl">

@@ -97,7 +97,7 @@ export default async function HomePage({ params }: Props) {
             </h2>
             <p className="mt-2 text-[var(--vulpine-on-surface-variant)]">{t("featuredAppsDesc")}</p>
           </div>
-          <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
+          <div className="grid grid-cols-1 gap-4 lg:grid-cols-2 lg:gap-6">
             {appsWithLinks.length > 0 ? (
               appsWithLinks.map((app) => (
                 <FeaturedAppCard
@@ -109,7 +109,7 @@ export default async function HomePage({ params }: Props) {
                 />
               ))
             ) : (
-              <p className="text-[var(--vulpine-on-surface-variant)] sm:col-span-2 xl:col-span-4">
+              <p className="text-[var(--vulpine-on-surface-variant)] lg:col-span-2">
                 {t("featuredAppsEmpty")}
               </p>
             )}

@@ -49,7 +49,7 @@ export function FeaturedAppCard({
           <ContentImage
             src={posterSrc}
             fill
-            sizes="(max-width: 640px) 50vw, 25vw"
+            sizes="(max-width: 1024px) 100vw, 50vw"
             objectPosition={posterFocus}
             fit="cover"
             unoptimized={isUploadedMediaUrl(posterSrc)}

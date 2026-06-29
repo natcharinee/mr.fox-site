@@ -89,19 +89,14 @@ export function PlatformsOverview({ content }: { content: PlatformsOverviewConte
           </p>
 
           <ol className="mt-8 grid gap-3 sm:grid-cols-3">
-            {content.layers.map((layer, index) => (
+            {content.layers.map((layer) => (
               <li
                 key={layer.label}
                 className="rounded-xl border border-[var(--vulpine-primary-container)]/20 bg-[var(--vulpine-primary-container)]/[0.05] p-4"
               >
-                <div className="flex items-center gap-2">
-                  <span className="flex size-7 shrink-0 items-center justify-center rounded-full bg-[var(--vulpine-primary-container)]/20 text-xs font-bold text-[var(--vulpine-primary-container)]">
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-                  <p className="text-sm font-semibold text-[var(--vulpine-on-surface)]">
-                    {layer.label}
-                  </p>
-                </div>
+                <p className="text-sm font-semibold text-[var(--vulpine-on-surface)]">
+                  {layer.label}
+                </p>
                 <p className="mt-2 text-sm leading-relaxed text-[var(--vulpine-on-surface-variant)]">
                   {layer.text}
                 </p>
