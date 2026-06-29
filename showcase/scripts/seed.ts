@@ -18,6 +18,14 @@ import {
 const MRFOX_APP_DOWNLOAD_URL = "https://link.mrfox.app/";
 const GOOGLE_PLAY_URL =
   "https://play.google.com/store/apps/details?id=com.mrfox.app";
+
+/** Apps shown in homepage Featured Applications (synced on every seed/deploy). */
+const HOMEPAGE_FEATURED_SLUGS = [
+  "foxy",
+  "cosplay-plus",
+  "nak-sueksa",
+  "cupe",
+] as const;
 import { hashPassword } from "../src/lib/password";
 import { EXCLUDED_NEWS_SLUGS } from "../src/lib/excluded-news-slugs";
 
@@ -326,7 +334,7 @@ const SAMPLE_APPS = [
     platformType: "creator-specific",
     description: "ไซต์ Creator 18+ สำหรับคอนเทนต์ Cup E — โหวต ส่งของขวัญ และ Live",
     targetAudience: "Creator และแฟนคลับ",
-    featured: false,
+    featured: true,
     logoUrl: "/brand/mrfox-icon.png",
     posterUrl: "/apps/posters/cupe.png",
   },
@@ -396,7 +404,7 @@ const SAMPLE_APPS = [
     platformType: "creator-specific",
     description: "ศูนย์รวม Creator Cosplay หลายสไตล์ — หลายหมวดหมู่ในไซต์เดียว",
     targetAudience: "Creator Cosplay และแฟนคลับ",
-    featured: false,
+    featured: true,
     logoUrl: "/brand/mrfox-icon.png",
     posterUrl: "/apps/posters/cosplay-plus.png",
   },
@@ -426,7 +434,7 @@ const SAMPLE_APPS = [
     platformType: "community-specific",
     description: "ชุมชนนักศึกษา 18+ — สมาชิกมีส่วนร่วม โพสต์และแลกเปลี่ยนไอเดีย",
     targetAudience: "นักศึกษาและสมาชิกชุมชน",
-    featured: false,
+    featured: true,
     logoUrl: "/brand/mrfox-icon.png",
     posterUrl: "/apps/posters/nak-sueksa.png",
   },
@@ -666,6 +674,11 @@ async function seed() {
     }
 
     if (appId) {
+      await db
+        .update(applications)
+        .set({ featured: app.featured })
+        .where(eq(applications.id, appId));
+
       const existingLinks = await db
         .select({ id: downloadLinks.id })
         .from(downloadLinks)
@@ -680,6 +693,14 @@ async function seed() {
         ]);
       }
     }
+  }
+
+  for (let i = 0; i < HOMEPAGE_FEATURED_SLUGS.length; i++) {
+    const slug = HOMEPAGE_FEATURED_SLUGS[i]!;
+    await db
+      .update(applications)
+      .set({ featured: true, sortOrder: i + 1 })
+      .where(eq(applications.slug, slug));
   }
 
   await db
