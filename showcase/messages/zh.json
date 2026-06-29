@@ -306,7 +306,13 @@
           "模特与摄影师",
           "游戏与直播",
           "学生创作者群组"
-        ]
+        ],
+        "sampleLink": {
+          "eyebrow": "社区示例",
+          "title": "查看平台社区示例",
+          "label": "打开社区示例",
+          "href": "https://youtu.be/jCy9EUSQGPU?si=oNlQsWhndxOLTE2m"
+        }
       },
       "the-contest": {
         "subtitle": "为创作者量身打造的竞赛平台",
@@ -325,7 +331,13 @@
           "直播竞赛",
           "品牌活动",
           "各类创作者竞赛"
-        ]
+        ],
+        "sampleLink": {
+          "eyebrow": "竞赛示例",
+          "title": "查看平台竞赛示例",
+          "label": "打开竞赛示例",
+          "href": "https://youtu.be/Oy0WAw4cQx8?si=w4AQ9wouvaPCeiuV"
+        }
       }
     },
     "catalog": {

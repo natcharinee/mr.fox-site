@@ -306,7 +306,13 @@
           "Models & photographers",
           "Gamers & streamers",
           "Student creator groups"
-        ]
+        ],
+        "sampleLink": {
+          "eyebrow": "Community sample",
+          "title": "See a Community example on the platform",
+          "label": "Open Community sample",
+          "href": "https://youtu.be/jCy9EUSQGPU?si=oNlQsWhndxOLTE2m"
+        }
       },
       "the-contest": {
         "subtitle": "A competition platform designed for creators",
@@ -325,7 +331,13 @@
           "Live-stream competitions",
           "Brand activations",
           "Creator competitions of every kind"
-        ]
+        ],
+        "sampleLink": {
+          "eyebrow": "Contest sample",
+          "title": "See a live contest example",
+          "label": "Open contest sample",
+          "href": "https://youtu.be/Oy0WAw4cQx8?si=w4AQ9wouvaPCeiuV"
+        }
       }
     },
     "catalog": {
