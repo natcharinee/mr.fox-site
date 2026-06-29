@@ -63,6 +63,7 @@ export function buildMetadata({
       card: "summary_large_image",
       title: fullTitle,
       description,
+      images: [`${SITE_URL}/twitter-image`],
     },
   };
 }
