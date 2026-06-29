@@ -1,7 +1,5 @@
 import Link from "next/link";
-import { db } from "@/db";
 import { AppMedia } from "@/components/apps/app-media";
-import { platformTypes } from "@/db/schema";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -25,14 +23,14 @@ import { AdminPosterUploadField } from "@/components/admin/admin-poster-upload-f
 import { ApplicationFormVisibilityFields } from "@/components/admin/application-form-visibility-fields";
 import { ApplicationVisibilityToggle } from "@/components/admin/application-visibility-toggle";
 import { createApplication, deleteApplication } from "@/lib/admin/actions";
-import { getAllApplicationsAdmin } from "@/lib/admin/queries";
+import { getAllApplicationsAdmin, getAllPlatformsAdmin } from "@/lib/admin/queries";
 
 export const dynamic = "force-dynamic";
 
 export default async function AdminApplicationsPage() {
   const [items, types] = await Promise.all([
     getAllApplicationsAdmin(),
-    db.select({ id: platformTypes.id, name: platformTypes.name }).from(platformTypes),
+    getAllPlatformsAdmin(),
   ]);
 
   const publishedCount = items.filter((item) => item.published).length;

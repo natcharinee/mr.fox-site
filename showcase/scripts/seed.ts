@@ -1,5 +1,5 @@
 import "dotenv/config";
-import { and, eq, inArray, isNull, or, sql } from "drizzle-orm";
+import { and, eq, inArray, isNull, notInArray, or, sql } from "drizzle-orm";
 import { db } from "../src/db/index";
 import {
   applications,
@@ -464,7 +464,7 @@ async function purgeRemovedEcosystem() {
   const removedPts = await db
     .select({ id: platformTypes.id })
     .from(platformTypes)
-    .where(inArray(platformTypes.slug, [...REMOVED_PT_SLUGS]));
+    .where(notInArray(platformTypes.slug, [...PT_ORDER]));
   const removedPtIds = removedPts.map((row) => row.id);
   if (removedPtIds.length > 0) {
     await db.delete(applications).where(inArray(applications.platformTypeId, removedPtIds));

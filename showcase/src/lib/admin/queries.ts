@@ -1,4 +1,4 @@
-import { count, desc, eq, sql } from "drizzle-orm";
+import { count, desc, eq, inArray, sql } from "drizzle-orm";
 import { db } from "@/db";
 import {
   applications,
@@ -12,6 +12,7 @@ import {
   platformTypes,
   users,
 } from "@/db/schema";
+import { ACTIVE_PLATFORM_TYPE_SLUGS } from "@/lib/platform-type-slugs";
 
 export async function getAdminDashboardStats() {
   const [
@@ -27,7 +28,10 @@ export async function getAdminDashboardStats() {
     db.select({ count: count() }).from(applications),
     db.select({ count: count() }).from(news),
     db.select({ count: count() }).from(features),
-    db.select({ count: count() }).from(platformTypes),
+    db
+      .select({ count: count() })
+      .from(platformTypes)
+      .where(inArray(platformTypes.slug, [...ACTIVE_PLATFORM_TYPE_SLUGS])),
     db.select({ count: count() }).from(downloadEvents),
     db.select({ count: count() }).from(users),
     db
@@ -158,7 +162,11 @@ export async function getApplicationById(id: number) {
 }
 
 export async function getAllPlatformsAdmin() {
-  return db.select().from(platformTypes).orderBy(platformTypes.sortOrder);
+  return db
+    .select()
+    .from(platformTypes)
+    .where(inArray(platformTypes.slug, [...ACTIVE_PLATFORM_TYPE_SLUGS]))
+    .orderBy(platformTypes.sortOrder);
 }
 
 export async function getAllFeaturesAdmin() {

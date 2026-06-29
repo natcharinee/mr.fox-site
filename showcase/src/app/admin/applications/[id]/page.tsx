@@ -1,12 +1,10 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { db } from "@/db";
-import { platformTypes } from "@/db/schema";
 import { AdminSaveForm } from "@/components/admin/admin-save-form";
 import { AdminPosterUploadField } from "@/components/admin/admin-poster-upload-field";
 import { ApplicationFormVisibilityFields } from "@/components/admin/application-form-visibility-fields";
 import { updateApplication } from "@/lib/admin/actions";
-import { getApplicationById } from "@/lib/admin/queries";
+import { getApplicationById, getAllPlatformsAdmin } from "@/lib/admin/queries";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -20,7 +18,7 @@ export default async function AdminApplicationEditPage({ params }: Props) {
   const { id } = await params;
   const [item, types] = await Promise.all([
     getApplicationById(Number(id)),
-    db.select({ id: platformTypes.id, name: platformTypes.name }).from(platformTypes),
+    getAllPlatformsAdmin(),
   ]);
 
   if (!item) notFound();
