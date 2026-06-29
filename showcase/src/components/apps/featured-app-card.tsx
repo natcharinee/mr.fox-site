@@ -22,6 +22,7 @@ type FeaturedAppCardProps = {
   downloadLabel: string;
   links: { type: string; url: string }[];
   className?: string;
+  compactBelowLg?: boolean;
 };
 
 export function FeaturedAppCard({
@@ -30,6 +31,7 @@ export function FeaturedAppCard({
   downloadLabel,
   links,
   className,
+  compactBelowLg = false,
 }: FeaturedAppCardProps) {
   const posterSrc = resolvePosterUrl(app.posterUrl, app.featuredPosterUrl);
   const posterFocus = posterSrc === app.posterUrl?.trim()
@@ -44,12 +46,21 @@ export function FeaturedAppCard({
         className,
       )}
     >
-      <div className="relative aspect-[3/4] w-full overflow-hidden bg-black">
+      <div
+        className={cn(
+          "relative w-full overflow-hidden bg-black",
+          compactBelowLg ? "aspect-[16/10] lg:aspect-[3/4]" : "aspect-[3/4]",
+        )}
+      >
         {posterSrc ? (
           <ContentImage
             src={posterSrc}
             fill
-            sizes="(max-width: 1024px) 100vw, 50vw"
+            sizes={
+              compactBelowLg
+                ? "(max-width: 1024px) 100vw, 50vw"
+                : "(max-width: 1024px) 100vw, 50vw"
+            }
             objectPosition={posterFocus}
             fit="cover"
             unoptimized={isUploadedMediaUrl(posterSrc)}
@@ -71,39 +82,69 @@ export function FeaturedAppCard({
           </div>
         )}
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-[var(--vulpine-background)] to-transparent opacity-90" />
-        <span className="vulpine-label absolute top-4 right-4 rounded-lg bg-[var(--vulpine-primary)] px-2 py-0.5 text-xs text-[var(--vulpine-on-primary)] shadow-[0_0_10px_rgba(255,184,0,0.5)]">
+        <span
+          className={cn(
+            "vulpine-label absolute rounded-lg bg-[var(--vulpine-primary)] text-[var(--vulpine-on-primary)] shadow-[0_0_10px_rgba(255,184,0,0.5)]",
+            compactBelowLg
+              ? "top-3 right-3 px-1.5 py-0.5 text-[10px] lg:top-4 lg:right-4 lg:px-2 lg:text-xs"
+              : "top-4 right-4 px-2 py-0.5 text-xs",
+          )}
+        >
           {featuredLabel}
         </span>
       </div>
 
-      <div className="relative p-6">
+      <div className={cn("relative", compactBelowLg ? "p-4 lg:p-6" : "p-6")}>
         {app.categoryName ? (
-          <span className="vulpine-label mb-3 inline-block rounded-lg border border-white/20 px-2 py-0.5 text-xs text-[var(--vulpine-on-surface-variant)]">
+          <span
+            className={cn(
+              "vulpine-label mb-3 inline-block rounded-lg border border-white/20 px-2 py-0.5 text-xs text-[var(--vulpine-on-surface-variant)]",
+              compactBelowLg && "mb-2 text-[10px] lg:mb-3 lg:text-xs",
+            )}
+          >
             CAT:{app.categoryName.replace(/\s+/g, "_").toUpperCase()}
           </span>
         ) : null}
 
-        <div className="flex items-start gap-3">
+        <div className={cn("flex items-start", compactBelowLg ? "gap-2.5 lg:gap-3" : "gap-3")}>
           <div
             className={cn(
-              "relative size-10 shrink-0 overflow-hidden rounded-xl border border-white/15",
+              "relative shrink-0 overflow-hidden border border-white/15",
+              compactBelowLg
+                ? "size-9 rounded-lg lg:size-10 lg:rounded-xl"
+                : "size-10 rounded-xl",
               isCompanyLogo(logo) ? "bg-[var(--vulpine-primary-container)]/20" : "bg-white/5",
             )}
           >
             <ContentImage src={app.logoUrl} fill sizes="40px" fallbackClassName="p-1" />
           </div>
           <div className="min-w-0">
-            <h3 className="font-display text-lg font-bold uppercase text-[var(--vulpine-on-surface)]">
+            <h3
+              className={cn(
+                "font-display font-bold uppercase text-[var(--vulpine-on-surface)]",
+                compactBelowLg ? "text-base lg:text-lg" : "text-lg",
+              )}
+            >
               {app.name}
             </h3>
-            <p className="mt-1.5 text-sm leading-relaxed text-[var(--vulpine-on-surface-variant)] opacity-90 line-clamp-2">
+            <p
+              className={cn(
+                "leading-relaxed text-[var(--vulpine-on-surface-variant)] opacity-90 line-clamp-2",
+                compactBelowLg ? "mt-1 text-sm lg:mt-1.5" : "mt-1.5 text-sm",
+              )}
+            >
               {app.description}
             </p>
           </div>
         </div>
 
-        <div className="mt-5 border-t border-white/5 pt-4">
-          <p className="vulpine-label mb-3 text-center text-xs text-[var(--vulpine-on-surface-variant)] sm:text-sm">
+        <div className={cn("border-t border-white/5", compactBelowLg ? "mt-4 pt-3 lg:mt-5 lg:pt-4" : "mt-5 pt-4")}>
+          <p
+            className={cn(
+              "vulpine-label mb-3 text-center text-[var(--vulpine-on-surface-variant)]",
+              compactBelowLg ? "mb-2 text-[10px] sm:text-xs lg:mb-3 lg:text-sm" : "text-xs sm:text-sm",
+            )}
+          >
             {downloadLabel}
           </p>
           <DownloadButtons

@@ -21,9 +21,11 @@ const LOCALES: { code: Locale; label: string; flag: string }[] = [
 export function LocaleSwitcher({
   inverted = false,
   compact = false,
+  fullWidth = false,
 }: {
   inverted?: boolean;
   compact?: boolean;
+  fullWidth?: boolean;
 }) {
   const locale = useLocale() as Locale;
   const router = useRouter();
@@ -32,26 +34,40 @@ export function LocaleSwitcher({
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger
+      <div className={cn(fullWidth && "w-full")}>
+        <DropdownMenuTrigger
         className={cn(
-          "inline-flex h-8 items-center gap-2 rounded-xl border px-2.5 text-sm font-medium outline-none transition-colors select-none",
-          compact && "gap-1.5 px-2",
+          "items-center gap-2 rounded-xl border font-medium outline-none transition-colors select-none",
+          fullWidth
+            ? "flex h-11 w-full justify-between px-4 text-sm"
+            : cn("inline-flex h-8 px-2.5 text-sm", compact && "gap-1.5 px-2"),
           inverted
             ? "border-white/15 bg-white/5 text-white hover:bg-white/10 data-popup-open:bg-white/10"
             : "border-border bg-background hover:bg-muted data-popup-open:bg-muted",
         )}
         aria-label="เปลี่ยนภาษา"
       >
-        <span className="text-base leading-none" aria-hidden>
-          {current.flag}
+        <span className="inline-flex min-w-0 items-center gap-2">
+          <span className="text-base leading-none" aria-hidden>
+            {current.flag}
+          </span>
+          <span className={cn("truncate", compact && !fullWidth && "sr-only")}>
+            {current.label}
+          </span>
         </span>
-        <span className={cn("max-w-24 truncate", compact && "sr-only")}>
-          {current.label}
-        </span>
-        <ChevronDown className={cn("size-4 shrink-0 opacity-70", compact && "size-3.5")} />
+        <ChevronDown
+          className={cn(
+            "size-4 shrink-0 opacity-70",
+            compact && !fullWidth && "size-3.5",
+          )}
+        />
       </DropdownMenuTrigger>
+      </div>
 
-      <DropdownMenuContent align="end" className="min-w-40">
+      <DropdownMenuContent
+        align={fullWidth ? "start" : "end"}
+        className={cn(fullWidth ? "w-[var(--anchor-width)]" : "min-w-40")}
+      >
         {LOCALES.map((item) => (
           <DropdownMenuItem
             key={item.code}

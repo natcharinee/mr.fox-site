@@ -316,18 +316,13 @@ export function CreatorGuide({
                 key={step.title}
                 className={cn(themedCard(), "flex gap-4 p-5 sm:p-6", theme.cardHover)}
               >
-                <div className="flex flex-col items-center gap-2">
-                  <span className="vulpine-label text-xs text-[var(--vulpine-primary-container)]">
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-                  <div
-                    className={cn(
-                      "flex size-10 items-center justify-center rounded-xl",
-                      theme.iconWrap,
-                    )}
-                  >
-                    <Icon className="size-4" aria-hidden />
-                  </div>
+                <div
+                  className={cn(
+                    "flex size-10 shrink-0 items-center justify-center rounded-xl",
+                    theme.iconWrap,
+                  )}
+                >
+                  <Icon className="size-4" aria-hidden />
                 </div>
                 <div className="min-w-0">
                   <h3 className={`text-base font-bold ${publicTheme.cardTitle}`}>
@@ -352,7 +347,7 @@ export function CreatorGuide({
           {content.formats.description}
         </p>
         <div className="grid gap-4 lg:grid-cols-3">
-          {platformTypes.map((pt, index) => {
+          {platformTypes.map((pt) => {
             const cardTheme =
               CATEGORY_THEME[pt.categorySlug as keyof typeof CATEGORY_THEME] ??
               CATEGORY_THEME.creator;
@@ -365,12 +360,6 @@ export function CreatorGuide({
                   cardTheme.cardHover,
                 )}
               >
-                <span
-                  aria-hidden
-                  className="pointer-events-none absolute -top-2 -right-1 text-5xl font-black tabular-nums text-white/[0.04]"
-                >
-                  {String(index + 1).padStart(2, "0")}
-                </span>
                 <span
                   className={cn(
                     "inline-flex w-fit rounded-full border px-2.5 py-0.5 text-xs font-semibold uppercase tracking-wide",

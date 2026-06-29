@@ -106,6 +106,7 @@ export default async function HomePage({ params }: Props) {
                   featuredLabel={tc("featured")}
                   downloadLabel={t("downloadApps")}
                   links={app.links}
+                  compactBelowLg
                 />
               ))
             ) : (
