@@ -1,5 +1,5 @@
 import "dotenv/config";
-import { and, eq, isNull, or, sql } from "drizzle-orm";
+import { and, eq, inArray, isNull, notInArray, or, sql } from "drizzle-orm";
 import { db } from "../src/db/index";
 import {
   applications,
@@ -7,45 +7,58 @@ import {
   categoryRevenue,
   downloadLinks,
   features,
+  news,
   platformCategories,
   platformTypeFeatures,
   platformTypePermissions,
   platformTypes,
   users,
 } from "../src/db/schema";
+
+const MRFOX_APP_DOWNLOAD_URL = "https://link.mrfox.app/";
+const GOOGLE_PLAY_URL =
+  "https://play.google.com/store/apps/details?id=com.mrfox.app";
 import { hashPassword } from "../src/lib/password";
+import { EXCLUDED_NEWS_SLUGS } from "../src/lib/excluded-news-slugs";
 
 type Status = "core" | "optional" | "custom" | "no";
-type PtSlug =
-  | "creator-specific"
-  | "creator-multi-category"
-  | "creator-single"
-  | "community-specific"
-  | "the-company"
-  | "company-single"
-  | "the-contest"
-  | "contest-single"
-  | "the-exhibition"
-  | "exhibition-single";
+type PtSlug = "creator-specific" | "community-specific" | "the-contest";
 
-const PT_ORDER: PtSlug[] = [
-  "creator-specific",
-  "creator-multi-category",
-  "creator-single",
-  "community-specific",
+const PT_ORDER: PtSlug[] = ["creator-specific", "community-specific", "the-contest"];
+
+const REMOVED_PT_SLUGS = [
   "the-company",
   "company-single",
-  "the-contest",
-  "contest-single",
   "the-exhibition",
   "exhibition-single",
-];
+  "creator-single",
+  "creator-multi-category",
+  "contest-single",
+] as const;
+
+const PLATFORM_TYPE_MIGRATIONS: Record<string, PtSlug> = {
+  "creator-single": "creator-specific",
+  "creator-multi-category": "creator-specific",
+  "contest-single": "the-contest",
+};
+
+const REMOVED_CAT_SLUGS = ["company", "exhibition"] as const;
+
+const REMOVED_APP_SLUGS = [
+  "the-alumni",
+  "exhibition-hub",
+  "the-expert",
+  "tom-thailand",
+  "miss-grand",
+] as const;
+
+const REMOVED_FEATURE_SLUGS = ["exhibition", "organization-directory"] as const;
 
 const CATEGORIES = [
   {
     slug: "creator",
     name: "Creator",
-    description: "แพลตฟอร์มสำหรับ Creator Economy — หลายรูปแบบตั้งแต่ Creator คนเดียวถึงหลาย Category",
+    description: "ไซต์ Creator 18+ — หลายรูปแบบตั้งแต่ Creator คนเดียวถึงหลาย Category",
     sortOrder: 1,
   },
   {
@@ -55,22 +68,10 @@ const CATEGORIES = [
     sortOrder: 2,
   },
   {
-    slug: "company",
-    name: "Company",
-    description: "แพลตฟอร์มองค์กร บริษัท มหาวิทยาลัย และ Alumni",
-    sortOrder: 3,
-  },
-  {
     slug: "contest",
     name: "Contest",
-    description: "แพลตฟอร์มประกวดและโหวต — รองรับทั้งหลายรายการและรายการเดียว",
-    sortOrder: 4,
-  },
-  {
-    slug: "exhibition",
-    name: "Exhibition",
-    description: "นิทรรศการและงานแสดงสินค้า — ขายบัตรและจัดการผู้จัดแสดง",
-    sortOrder: 5,
+    description: "แพลตฟอร์มประกวดและโหวต — รองรับหลายรายการประกวด",
+    sortOrder: 3,
   },
 ] as const;
 
@@ -88,101 +89,34 @@ const PLATFORM_TYPES: {
     slug: "creator-specific",
     categorySlug: "creator",
     name: "Creator Specific",
-    concept: "หลาย Creator, 1 Category, Visitor โพสต์ไม่ได้",
-    shortDescription: "แพลตฟอร์ม Creator ใน Category เดียว เช่น FOXY",
+    concept: "แพลตฟอร์มที่ออกแบบมาเพื่อครีเอเตอร์แต่ละกลุ่มโดยเฉพาะ",
+    shortDescription:
+      "แพลตฟอร์มที่ออกแบบมาเพื่อครีเอเตอร์แต่ละกลุ่มโดยเฉพาะ — ปรับประสบการณ์ให้เหมาะกับแต่ละคอมมูนิตี้",
     creatorModel: "Creator โพสต์ content, รับ Vote/Gift, เปิด Live และบริการ monetization",
     visitorModel: "Visitor ดู content, โหวต, ส่ง Gift, Subscribe — โพสต์ไม่ได้",
     sortOrder: 1,
   },
   {
-    slug: "creator-multi-category",
-    categorySlug: "creator",
-    name: "Creator Multi Category",
-    concept: "หลาย Creator, หลาย Category, Visitor โพสต์ไม่ได้",
-    shortDescription: "รวม Creator หลายสาขา เช่น The Expert, The Consult",
-    creatorModel: "Creator แยกตาม Category, ตั้งราคาบริการเอง",
-    visitorModel: "Visitor เลือกติดตาม Creator ตาม Category ที่สนใจ",
-    sortOrder: 2,
-  },
-  {
-    slug: "creator-single",
-    categorySlug: "creator",
-    name: "Creator Single",
-    concept: "Creator คนเดียว — Official Platform",
-    shortDescription: "แพลตฟอร์มเฉพาะ Celebrity หรือ Creator รายบุคคล",
-    creatorModel: "Creator คนเดียวควบคุมทุก content และ monetization",
-    visitorModel: "แฟนคลับสนับสนุนผ่าน Vote, Gift, Subscription",
-    sortOrder: 3,
-  },
-  {
     slug: "community-specific",
     categorySlug: "community",
-    name: "Community Specific",
-    concept: "สมาชิกทุกคนโพสต์ได้ ไม่แยก Creator/Visitor",
-    shortDescription: "ชุมชนออนไลน์ เช่น TOM Thailand, Silom",
+    name: "Community",
+    concept: "เมื่อทุกคนสามารถเป็นผู้สร้างคุณค่าให้กับชุมชน",
+    shortDescription:
+      "เมื่อทุกคนสามารถเป็นผู้สร้างคุณค่าให้กับชุมชน — สร้างสังคมออนไลน์ที่ทุกคนมีส่วนร่วม",
     creatorModel: "ทุกสมาชิกเป็น Creator ได้",
     visitorModel: "ทุกคนโพสต์ แสดงความคิดเห็น และมีส่วนร่วม",
-    sortOrder: 4,
-  },
-  {
-    slug: "the-company",
-    categorySlug: "company",
-    name: "The Company / Alumni / Gov",
-    concept: "รวมหลายองค์กรในแพลตฟอร์มเดียว",
-    shortDescription: "เช่น The Alumni, Local Government",
-    creatorModel: "องค์กรและสมาชิกโพสต์ข่าวสาร",
-    visitorModel: "สมาชิกและผู้สนใจติดตามข่าวสารองค์กร",
-    sortOrder: 5,
-  },
-  {
-    slug: "company-single",
-    categorySlug: "company",
-    name: "Company Single",
-    concept: "องค์กรเดียว",
-    shortDescription: "เช่น SRICHA, University Platform",
-    creatorModel: "องค์กรเดียวจัดการ content ทั้งหมด",
-    visitorModel: "สมาชิกและผู้สนใจในองค์กร",
-    sortOrder: 6,
+    sortOrder: 2,
   },
   {
     slug: "the-contest",
     categorySlug: "contest",
     name: "The Contest",
-    concept: "รวมหลายรายการประกวด",
-    shortDescription: "เช่น Music Contest, Photo Contest",
+    concept: "แพลตฟอร์มสำหรับการแข่งขันที่ออกแบบมาเพื่อครีเอเตอร์โดยเฉพาะ",
+    shortDescription:
+      "แพลตฟอร์มสำหรับการแข่งขันที่ออกแบบมาเพื่อครีเอเตอร์โดยเฉพาะ — ครบวงจรตั้งแต่สมัครถึงโหวตและถ่ายทอดสด",
     creatorModel: "ผู้เข้าประกวด (Contestant) โพสต์ผลงาน",
     visitorModel: "ผู้ชมโหวตและสนับสนุนผู้เข้าประกวด",
-    sortOrder: 7,
-  },
-  {
-    slug: "contest-single",
-    categorySlug: "contest",
-    name: "Contest Single",
-    concept: "ประกวดรายการเดียว",
-    shortDescription: "เช่น Miss Grand, MUT",
-    creatorModel: "ผู้เข้าประกวดโพสต์และแข่งขัน",
-    visitorModel: "แฟนคลับโหวตและส่ง Gift",
-    sortOrder: 8,
-  },
-  {
-    slug: "the-exhibition",
-    categorySlug: "exhibition",
-    name: "The Exhibition",
-    concept: "รวมนิทรรศการหลายงาน",
-    shortDescription: "Exhibition Hub รวมงานแสดงสินค้า",
-    creatorModel: "ผู้จัดแสดง (Exhibitor) ลงทะเบียนและจัดบูธ",
-    visitorModel: "ผู้ชมซื้อบัตรและเยี่ยมชมงาน",
-    sortOrder: 9,
-  },
-  {
-    slug: "exhibition-single",
-    categorySlug: "exhibition",
-    name: "Exhibition Single",
-    concept: "นิทรรศการเฉพาะงาน",
-    shortDescription: "เช่น Museum Event, Expo",
-    creatorModel: "ผู้จัดงานจัดการ Exhibitor และ content",
-    visitorModel: "ผู้ชมซื้อบัตรเข้างาน",
-    sortOrder: 10,
+    sortOrder: 3,
   },
 ];
 
@@ -310,7 +244,6 @@ const FEATURES_LIST: {
   },
   { slug: "event", name: "Event", group: "B", description: "จัดการงานอีเวนต์", sortOrder: 20 },
   { slug: "contest", name: "Contest", group: "B", description: "ระบบประกวดและจัดอันดับ", sortOrder: 21 },
-  { slug: "exhibition", name: "Exhibition", group: "B", description: "จัดการนิทรรศการและบูธ", sortOrder: 22 },
   {
     slug: "ticketing",
     name: "Ticketing",
@@ -330,76 +263,261 @@ const FEATURES_LIST: {
   { slug: "ranking", name: "Ranking", group: "B", description: "อันดับ Creator ตาม Vote/Gift", sortOrder: 25 },
   { slug: "wallet", name: "Wallet", group: "C", description: "กระเป๋าเงินในแอป", sortOrder: 26 },
   { slug: "creator-directory", name: "Creator Directory", group: "C", description: "ไดเรกทอรี Creator", sortOrder: 27 },
-  { slug: "organization-directory", name: "Organization Directory", group: "C", description: "ไดเรกทอรีองค์กร", sortOrder: 28 },
   { slug: "download-app-links", name: "Download App Links", group: "C", description: "ลิงก์ดาวน์โหลดแอป", sortOrder: 29 },
 ];
 
 // Matrix §5: rows = feature slug, cols = PT_ORDER
 const FEATURE_MATRIX: Record<string, Status[]> = {
-  "public-post": ["core", "core", "core", "core", "core", "core", "core", "core", "core", "core"],
-  "photo-album": ["core", "core", "core", "core", "core", "core", "optional", "optional", "core", "core"],
-  "video-post": ["core", "core", "core", "core", "core", "core", "optional", "optional", "core", "core"],
-  "follow": ["core", "core", "core", "no", "no", "no", "optional", "optional", "no", "no"],
-  "like": ["core", "core", "core", "core", "core", "core", "core", "core", "core", "core"],
-  "comment": ["core", "core", "core", "core", "core", "core", "core", "core", "optional", "optional"],
-  "share": ["core", "core", "core", "core", "core", "core", "core", "core", "core", "core"],
-  "ranking": ["core", "core", "optional", "optional", "no", "no", "core", "core", "no", "no"],
-  "vote": ["core", "core", "optional", "optional", "no", "no", "core", "core", "no", "no"],
-  "gift": ["core", "core", "core", "optional", "optional", "optional", "core", "core", "no", "no"],
-  "wallet": ["core", "core", "core", "optional", "optional", "optional", "core", "core", "optional", "optional"],
-  "chat": ["core", "core", "core", "optional", "custom", "custom", "optional", "optional", "no", "no"],
-  "voice-call": ["core", "core", "core", "no", "no", "no", "no", "no", "no", "no"],
-  "video-call": ["core", "core", "core", "no", "no", "no", "no", "no", "no", "no"],
-  "live": ["core", "core", "core", "optional", "optional", "optional", "core", "core", "optional", "optional"],
-  "live-archive": ["core", "core", "core", "optional", "optional", "optional", "optional", "optional", "optional", "optional"],
-  "unlock-photo": ["core", "core", "core", "no", "no", "no", "no", "no", "no", "no"],
-  "unlock-video": ["core", "core", "core", "no", "no", "no", "no", "no", "no", "no"],
-  "subscription": ["core", "core", "core", "optional", "optional", "optional", "no", "no", "no", "no"],
-  "fan-club": ["core", "core", "core", "optional", "no", "no", "optional", "optional", "no", "no"],
-  "marketplace": ["optional", "optional", "optional", "core", "optional", "optional", "optional", "optional", "optional", "optional"],
-  "event": ["optional", "optional", "optional", "optional", "core", "core", "core", "core", "core", "core"],
-  "contest": ["optional", "optional", "optional", "optional", "optional", "optional", "core", "core", "no", "no"],
-  "exhibition": ["no", "no", "no", "optional", "optional", "optional", "no", "no", "core", "core"],
-  "ticketing": ["no", "no", "no", "optional", "optional", "optional", "optional", "optional", "core", "core"],
-  "membership": ["optional", "optional", "optional", "optional", "core", "core", "optional", "optional", "optional", "optional"],
-  "organization-directory": ["no", "no", "no", "no", "core", "core", "no", "no", "no", "no"],
-  "creator-directory": ["core", "core", "optional", "optional", "no", "no", "core", "core", "optional", "optional"],
-  "download-app-links": ["core", "core", "core", "core", "core", "core", "core", "core", "core", "core"],
+  "public-post": ["core", "core", "core"],
+  "photo-album": ["core", "core", "optional"],
+  "video-post": ["core", "core", "optional"],
+  "follow": ["core", "no", "optional"],
+  "like": ["core", "core", "core"],
+  "comment": ["core", "core", "core"],
+  "share": ["core", "core", "core"],
+  "ranking": ["core", "optional", "core"],
+  "vote": ["core", "optional", "core"],
+  "gift": ["core", "optional", "core"],
+  "wallet": ["core", "optional", "core"],
+  "chat": ["core", "optional", "optional"],
+  "voice-call": ["core", "no", "no"],
+  "video-call": ["core", "no", "no"],
+  "live": ["core", "optional", "core"],
+  "live-archive": ["core", "optional", "optional"],
+  "unlock-photo": ["core", "no", "no"],
+  "unlock-video": ["core", "no", "no"],
+  "subscription": ["core", "optional", "no"],
+  "fan-club": ["core", "optional", "optional"],
+  "marketplace": ["optional", "core", "optional"],
+  "event": ["optional", "optional", "core"],
+  "contest": ["optional", "optional", "core"],
+  "ticketing": ["no", "optional", "optional"],
+  "membership": ["optional", "optional", "optional"],
+  "creator-directory": ["core", "optional", "core"],
+  "download-app-links": ["core", "core", "core"],
 };
 
 const PERMISSIONS: Record<PtSlug, Record<string, string>> = {
   "creator-specific": { creator_post: "yes", visitor_post: "no", creator_live: "yes", visitor_comment: "yes", visitor_vote: "yes", visitor_gift: "yes" },
-  "creator-multi-category": { creator_post: "yes", visitor_post: "no", creator_live: "yes", visitor_comment: "yes", visitor_vote: "yes", visitor_gift: "yes" },
-  "creator-single": { creator_post: "yes", visitor_post: "no", creator_live: "yes", visitor_comment: "yes", visitor_vote: "optional", visitor_gift: "yes" },
   "community-specific": { creator_post: "yes", visitor_post: "yes", creator_live: "optional", visitor_comment: "yes", visitor_vote: "optional", visitor_gift: "optional" },
-  "the-company": { creator_post: "yes", visitor_post: "yes", creator_live: "optional", visitor_comment: "yes", visitor_vote: "no", visitor_gift: "no" },
-  "company-single": { creator_post: "yes", visitor_post: "yes", creator_live: "optional", visitor_comment: "yes", visitor_vote: "no", visitor_gift: "no" },
   "the-contest": { creator_post: "contestant_only", visitor_post: "no", creator_live: "optional", visitor_comment: "yes", visitor_vote: "yes", visitor_gift: "optional" },
-  "contest-single": { creator_post: "contestant_only", visitor_post: "no", creator_live: "optional", visitor_comment: "yes", visitor_vote: "yes", visitor_gift: "optional" },
-  "the-exhibition": { creator_post: "exhibitor_only", visitor_post: "no", creator_live: "no", visitor_comment: "optional", visitor_vote: "no", visitor_gift: "no" },
-  "exhibition-single": { creator_post: "exhibitor_only", visitor_post: "no", creator_live: "no", visitor_comment: "optional", visitor_vote: "no", visitor_gift: "no" },
 };
 
 const REVENUE_MATRIX: Record<string, Record<string, string>> = {
   creator: { vote: "yes", gift: "yes", chat: "yes", voice: "yes", video: "yes", subscription: "yes", live: "yes", ticket: "no", marketplace: "optional", membership: "optional" },
   community: { vote: "optional", gift: "optional", chat: "no", voice: "no", video: "no", subscription: "optional", live: "optional", ticket: "optional", marketplace: "yes", membership: "optional" },
-  company: { vote: "no", gift: "optional", chat: "no", voice: "no", video: "no", subscription: "optional", live: "optional", ticket: "optional", marketplace: "optional", membership: "yes" },
   contest: { vote: "yes", gift: "optional", chat: "no", voice: "no", video: "no", subscription: "no", live: "optional", ticket: "optional", marketplace: "optional", membership: "optional" },
-  exhibition: { vote: "no", gift: "no", chat: "no", voice: "no", video: "no", subscription: "no", live: "optional", ticket: "yes", marketplace: "optional", membership: "optional" },
 };
 
 const SAMPLE_APPS = [
-  { slug: "foxy", name: "FOXY", platformType: "creator-specific", description: "แพลตฟอร์ม Creator Economy หลักของ Mr.FOX — รองรับ Vote, Gift, Live และ monetization ครบ", targetAudience: "Creator และแฟนคลับ", featured: true, logoUrl: "/brand/mrfox-icon.png", posterUrl: "/apps/posters/foxy.png" },
-  { slug: "the-expert", name: "The Expert", platformType: "creator-multi-category", description: "รวมผู้เชี่ยวชาญหลายสาขา — Consult, Coaching, Knowledge sharing", targetAudience: "ผู้เชี่ยวชาญและผู้เรียนรู้", featured: true, logoUrl: "/brand/mrfox-icon.png", posterUrl: "/apps/posters/the-expert.png" },
-  { slug: "tom-thailand", name: "TOM Thailand", platformType: "community-specific", description: "ชุมชนออนไลน์ที่สมาชิกทุกคนมีส่วนร่วม", targetAudience: "สมาชิกชุมชน", featured: true, logoUrl: "/brand/mrfox-icon.png", posterUrl: "/apps/posters/tom-thailand.png" },
-  { slug: "the-alumni", name: "The Alumni", platformType: "the-company", description: "แพลตฟอร์มศิษย์เก่ารวมหลายสถาบัน", targetAudience: "ศิษย์เก่าและองค์กร", featured: false, logoUrl: "/brand/mrfox-icon.png", posterUrl: "/brand/mrfox-icon.png" },
-  { slug: "miss-grand", name: "Miss Grand", platformType: "contest-single", description: "แพลตฟอร์มประกวดนางงาม — โหวตและสนับสนุนผู้เข้าประกวด", targetAudience: "ผู้เข้าประกวดและแฟนคลับ", featured: true, logoUrl: "/brand/mrfox-icon.png", posterUrl: "/apps/posters/miss-grand.png" },
-  { slug: "exhibition-hub", name: "Exhibition Hub", platformType: "the-exhibition", description: "ศูนย์รวมนิทรรศการและงานแสดงสินค้า", targetAudience: "ผู้จัดงานและผู้ชม", featured: false, logoUrl: "/brand/mrfox-icon.png", posterUrl: "/brand/mrfox-icon.png" },
+  {
+    slug: "foxy",
+    name: "FOXY",
+    platformType: "creator-specific",
+    description: "ไซต์ Creator 18+ หลักของ Mr.FOX — รองรับ Vote, Gift, Live และ monetization ครบ",
+    targetAudience: "Creator และแฟนคลับ",
+    featured: true,
+    logoUrl: "/brand/mrfox-icon.png",
+    posterUrl: "/apps/posters/foxy.png",
+  },
+  {
+    slug: "cupe",
+    name: "CupE",
+    platformType: "creator-specific",
+    description: "ไซต์ Creator 18+ สำหรับคอนเทนต์ Cup E — โหวต ส่งของขวัญ และ Live",
+    targetAudience: "Creator และแฟนคลับ",
+    featured: false,
+    logoUrl: "/brand/mrfox-icon.png",
+    posterUrl: "/apps/posters/cupe.png",
+  },
+  {
+    slug: "cliq",
+    name: "CLIQ",
+    platformType: "creator-specific",
+    description: "ไซต์ Creator 18+ แบบ CLIQ — เชื่อมต่อ Creator กับแฟนคลับอย่างใกล้ชิด",
+    targetAudience: "Creator และแฟนคลับ",
+    featured: false,
+    logoUrl: "/brand/mrfox-icon.png",
+    posterUrl: "/apps/posters/cliq.png",
+  },
+  {
+    slug: "himbo",
+    name: "Himbo",
+    platformType: "creator-specific",
+    description: "ไซต์ Creator 18+ สำหรับ Himbo — Vote, Gift และ Live",
+    targetAudience: "Creator และแฟนคลับ",
+    featured: false,
+    logoUrl: "/brand/mrfox-icon.png",
+    posterUrl: "/apps/posters/himbo.png",
+  },
+  {
+    slug: "lesbie",
+    name: "Lesbie",
+    platformType: "creator-specific",
+    description: "ไซต์ Creator 18+ สำหรับ Lesbian community — สนับสนุน Creator ด้วย Vote และ Gift",
+    targetAudience: "Creator และแฟนคลับ",
+    featured: false,
+    logoUrl: "/brand/mrfox-icon.png",
+    posterUrl: "/apps/posters/lesbie.png",
+  },
+  {
+    slug: "tomboi",
+    name: "Tomboi",
+    platformType: "creator-specific",
+    description: "ไซต์ Creator 18+ สำหรับ Tom community — โปรไฟล์เดี่ยวและ monetization ครบ",
+    targetAudience: "Creator และแฟนคลับ",
+    featured: false,
+    logoUrl: "/brand/mrfox-icon.png",
+    posterUrl: "/apps/posters/tomboi.png",
+  },
+  {
+    slug: "bargirl",
+    name: "BarGirl",
+    platformType: "creator-specific",
+    description: "ไซต์ Creator 18+ สำหรับ Bar Girl / entertainer — Vote, Gift และ Live",
+    targetAudience: "Creator และแฟนคลับ",
+    featured: false,
+    logoUrl: "/brand/mrfox-icon.png",
+    posterUrl: "/apps/posters/bargirl.png",
+  },
+  {
+    slug: "silom",
+    name: "Silom",
+    platformType: "community-specific",
+    description: "ชุมชน Silom 18+ — สมาชิกทุกคนมีส่วนร่วม โพสต์และแลกเปลี่ยนได้",
+    targetAudience: "สมาชิกชุมชน",
+    featured: false,
+    logoUrl: "/brand/mrfox-icon.png",
+    posterUrl: "/apps/posters/silom.png",
+  },
+  {
+    slug: "cosplay-plus",
+    name: "Cosplay Plus",
+    platformType: "creator-specific",
+    description: "ศูนย์รวม Creator Cosplay หลายสไตล์ — หลายหมวดหมู่ในไซต์เดียว",
+    targetAudience: "Creator Cosplay และแฟนคลับ",
+    featured: false,
+    logoUrl: "/brand/mrfox-icon.png",
+    posterUrl: "/apps/posters/cosplay-plus.png",
+  },
+  {
+    slug: "expat-idols",
+    name: "Expat Idols",
+    platformType: "creator-specific",
+    description: "ไซต์ Creator 18+ สำหรับ Expat Idols — โหวต ส่งของขวัญ และ Live",
+    targetAudience: "Creator และแฟนคลับ",
+    featured: false,
+    logoUrl: "/brand/mrfox-icon.png",
+    posterUrl: "/apps/posters/expat-idols.png",
+  },
+  {
+    slug: "beauty-queen",
+    name: "Beauty Queen",
+    platformType: "the-contest",
+    description: "แพลตฟอร์มประกวด Beauty Queen — โหวตและสนับสนุนผู้เข้าประกวด",
+    targetAudience: "ผู้เข้าประกวดและแฟนคลับ",
+    featured: false,
+    logoUrl: "/brand/mrfox-icon.png",
+    posterUrl: "/apps/posters/beauty-queen.png",
+  },
+  {
+    slug: "nak-sueksa",
+    name: "นักศึกษา",
+    platformType: "community-specific",
+    description: "ชุมชนนักศึกษา 18+ — สมาชิกมีส่วนร่วม โพสต์และแลกเปลี่ยนไอเดีย",
+    targetAudience: "นักศึกษาและสมาชิกชุมชน",
+    featured: false,
+    logoUrl: "/brand/mrfox-icon.png",
+    posterUrl: "/apps/posters/nak-sueksa.png",
+  },
 ];
+
+async function migrateDeprecatedPlatformTypes() {
+  for (const [fromSlug, toSlug] of Object.entries(PLATFORM_TYPE_MIGRATIONS)) {
+    const [fromPt] = await db
+      .select({ id: platformTypes.id })
+      .from(platformTypes)
+      .where(eq(platformTypes.slug, fromSlug))
+      .limit(1);
+    const [toPt] = await db
+      .select({ id: platformTypes.id })
+      .from(platformTypes)
+      .where(eq(platformTypes.slug, toSlug))
+      .limit(1);
+    if (fromPt && toPt) {
+      await db
+        .update(applications)
+        .set({ platformTypeId: toPt.id })
+        .where(eq(applications.platformTypeId, fromPt.id));
+    }
+  }
+}
+
+async function purgeExcludedNews() {
+  await db.delete(news).where(inArray(news.slug, [...EXCLUDED_NEWS_SLUGS]));
+}
+
+async function purgeRemovedEcosystem() {
+  await migrateDeprecatedPlatformTypes();
+
+  for (const slug of REMOVED_APP_SLUGS) {
+    const [app] = await db
+      .select({ id: applications.id })
+      .from(applications)
+      .where(eq(applications.slug, slug))
+      .limit(1);
+    if (app) {
+      await db.delete(downloadLinks).where(eq(downloadLinks.applicationId, app.id));
+      await db.delete(applications).where(eq(applications.id, app.id));
+    }
+  }
+
+  const removedPts = await db
+    .select({ id: platformTypes.id })
+    .from(platformTypes)
+    .where(notInArray(platformTypes.slug, [...PT_ORDER]));
+  const removedPtIds = removedPts.map((row) => row.id);
+  if (removedPtIds.length > 0) {
+    await db.delete(applications).where(inArray(applications.platformTypeId, removedPtIds));
+    await db
+      .delete(platformTypeFeatures)
+      .where(inArray(platformTypeFeatures.platformTypeId, removedPtIds));
+    await db
+      .delete(platformTypePermissions)
+      .where(inArray(platformTypePermissions.platformTypeId, removedPtIds));
+    await db.delete(platformTypes).where(inArray(platformTypes.id, removedPtIds));
+  }
+
+  const removedCats = await db
+    .select({ id: platformCategories.id })
+    .from(platformCategories)
+    .where(inArray(platformCategories.slug, [...REMOVED_CAT_SLUGS]));
+  const removedCatIds = removedCats.map((row) => row.id);
+  if (removedCatIds.length > 0) {
+    await db.delete(categoryRevenue).where(inArray(categoryRevenue.categoryId, removedCatIds));
+    await db.delete(platformCategories).where(inArray(platformCategories.id, removedCatIds));
+  }
+
+  const removedFeatures = await db
+    .select({ id: features.id })
+    .from(features)
+    .where(inArray(features.slug, [...REMOVED_FEATURE_SLUGS]));
+  const removedFeatureIds = removedFeatures.map((row) => row.id);
+  if (removedFeatureIds.length > 0) {
+    await db
+      .delete(platformTypeFeatures)
+      .where(inArray(platformTypeFeatures.featureId, removedFeatureIds));
+    await db.delete(features).where(inArray(features.id, removedFeatureIds));
+  }
+
+  await db.delete(platformTypeFeatures);
+}
 
 async function seed() {
   console.log("🌱 Seeding Mr.FOX Showcase database...");
 
+  await purgeRemovedEcosystem();
+  await purgeExcludedNews();
   await db.execute(sql`
     DELETE FROM download_links a
     USING download_links b
@@ -441,7 +559,21 @@ async function seed() {
         .from(platformTypes)
         .where(eq(platformTypes.slug, pt.slug))
         .limit(1);
-      if (existing) ptMap.set(pt.slug, existing.id);
+      if (existing) {
+        ptMap.set(pt.slug, existing.id);
+        await db
+          .update(platformTypes)
+          .set({
+            name: pt.name,
+            concept: pt.concept,
+            shortDescription: pt.shortDescription,
+            creatorModel: pt.creatorModel,
+            visitorModel: pt.visitorModel,
+            sortOrder: pt.sortOrder,
+            categoryId,
+          })
+          .where(eq(platformTypes.id, existing.id));
+      }
     }
   }
 
@@ -542,19 +674,29 @@ async function seed() {
 
       if (existingLinks.length === 0) {
         await db.insert(downloadLinks).values([
-          { applicationId: appId, type: "ios", url: `https://apps.apple.com/app/${app.slug}` },
-          { applicationId: appId, type: "android", url: `https://play.google.com/store/apps/details?id=com.mrfox.${app.slug}` },
+          { applicationId: appId, type: "ios", url: MRFOX_APP_DOWNLOAD_URL },
+          { applicationId: appId, type: "android", url: GOOGLE_PLAY_URL },
           { applicationId: appId, type: "apk", url: `https://download.mrfox.app/${app.slug}.apk` },
         ]);
       }
     }
   }
 
+  await db
+    .update(downloadLinks)
+    .set({ url: MRFOX_APP_DOWNLOAD_URL })
+    .where(eq(downloadLinks.type, "ios"));
+
+  await db
+    .update(downloadLinks)
+    .set({ url: GOOGLE_PLAY_URL })
+    .where(eq(downloadLinks.type, "android"));
+
   // News is imported from info.mrfox.com via `npm run news:import` or Admin → Sync ข่าว.
 
   await db.insert(banners).values({
-    title: "Mr.FOX Ecosystem",
-    subtitle: "Creator Economy · Community · Contest · Exhibition",
+    title: "Mr.FOX",
+    subtitle: "18+ Creator Platform · Community · Contest",
     active: true,
     sortOrder: 1,
   }).onConflictDoNothing();

@@ -1,4 +1,5 @@
 import en from "@/content/en.json";
+import th from "@/content/th.json";
 import zh from "@/content/zh.json";
 import type { Locale } from "@/i18n/routing";
 
@@ -11,9 +12,10 @@ export type ContentEntity =
 
 type ContentPack = typeof en;
 
-const PACKS: Record<Exclude<Locale, "th">, ContentPack> = {
+const PACKS: Record<Locale, ContentPack> = {
   en,
-  zh,
+  th: th as unknown as ContentPack,
+  zh: zh as unknown as ContentPack,
 };
 
 export function contentText(
@@ -23,17 +25,14 @@ export function contentText(
   field: string,
   fallback?: string | null,
 ): string {
-  if (locale === "th") return fallback ?? "";
-
   const pack = PACKS[locale];
-  const entityPack = pack[entity] as Record<string, Record<string, string>>;
+  const entityPack = pack[entity] as Record<string, Record<string, string>> | undefined;
   return entityPack?.[slug]?.[field] ?? fallback ?? "";
 }
 
 export function localizeCategory<
   T extends { slug: string; name: string; description?: string | null },
 >(locale: Locale, row: T): T {
-  if (locale === "th") return row;
   return {
     ...row,
     name: contentText(locale, "categories", row.slug, "name", row.name),
@@ -59,7 +58,6 @@ export function localizePlatform<
     categoryName?: string;
   },
 >(locale: Locale, row: T): T {
-  if (locale === "th") return row;
   return {
     ...row,
     name: contentText(locale, "platforms", row.slug, "name", row.name),

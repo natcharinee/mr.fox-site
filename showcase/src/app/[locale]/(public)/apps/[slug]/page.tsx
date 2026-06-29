@@ -14,9 +14,11 @@ import { PageHero } from "@/components/layout/page-hero";
 import { PageShell } from "@/components/layout/page-shell";
 import { SectionHeading } from "@/components/layout/section-heading";
 import { publicTheme, themedCard } from "@/components/layout/public-theme";
+import { CATEGORY_THEME } from "@/components/platforms/platform-category-theme";
 import type { Locale } from "@/i18n/routing";
 import { localizeApp, localizePlatform } from "@/lib/content-i18n";
 import { buildMetadata } from "@/lib/metadata";
+import { cn } from "@/lib/utils";
 import {
   getApplicationBySlug,
   getDownloadLinks,
@@ -60,12 +62,17 @@ export default async function AppDetailPage({ params }: Props) {
         name: app.platformTypeName ?? "",
       }).name
     : app.platformTypeName;
+  const categoryTheme =
+    CATEGORY_THEME[app.categorySlug ?? "creator"] ?? CATEGORY_THEME.creator;
 
   return (
     <PageShell>
       <PageHero title={app.name} description={app.description ?? undefined}>
         <div className="flex flex-wrap items-center gap-2">
-          <Badge variant="outline" className={publicTheme.heroBadge}>
+          <Badge
+            variant="outline"
+            className={cn("vulpine-label border", categoryTheme.pill)}
+          >
             {app.categoryName}
           </Badge>
           <Badge className={publicTheme.badgeOutline}>

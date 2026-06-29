@@ -2,33 +2,38 @@
   "nav": {
     "home": "หน้าแรก",
     "platforms": "Platforms",
+    "creator": "Creator",
     "apps": "Applications",
     "features": "Features",
     "news": "News",
-    "about": "About",
+    "about": "About Us",
     "contact": "Contact",
     "search": "ค้นหา",
-    "download": "ดาวน์โหลดแอป"
+    "download": "ดาวน์โหลดแอป",
+    "openMenu": "เปิดเมนู",
+    "menuTitle": "เมนู"
   },
   "home": {
-    "badge": "Creator Economy Super App",
+    "badge": "Creator Platform 18+",
     "brandName": "Mr.FOX",
-    "title": "แพลตฟอร์มและแอปมือถือ",
-    "titleHighlight": "ครบวงจร",
-    "titleSuffix": "สำหรับ Creator และชุมชน",
-    "subtitle": "พัฒนา Platform 10 ประเภท พร้อม Vote, Gift, Live และ monetization — รวมทุกอย่างใน ecosystem เดียว",
-    "pillarPlatforms": "10 Platform Types",
+    "title": "แพลตฟอร์ม Creator 18+",
+    "titleHighlight": "รวมหลายไซต์",
+    "titleSuffix": "ในระบบเดียว",
+    "subtitle": "Mr.FOX รวมไซต์ Creator, Community และ Contest — พร้อม Vote, Gift, Live และ monetization ใน ecosystem เดียว",
+    "pillarPlatforms": "Creator · Community · Contest",
     "pillarFeatures": "Vote · Gift · Live · Chat",
     "pillarApps": "ดาวน์โหลดแอป ≤ 3 คลิก",
     "explorePlatforms": "สำรวจ Platforms",
     "downloadApps": "ดาวน์โหลดแอป",
-    "ecosystem": "Ecosystem Overview",
-    "ecosystemDesc": "แบ่งเป็น 5 กลุ่มใหญ่ — แต่ละกลุ่มมี Platform Types ที่เป็นแม่แบบมาตรฐานสำหรับ use case ที่ต่างกัน",
+    "ecosystem": "ภาพรวม Creator Ecosystem",
+    "ecosystemArchitecture": "System Architecture",
+    "ecosystemDesc": "3 กลุ่มหลัก — Creator · Community · Contest<br></br>แต่ละกลุ่มเป็นแม่แบบมาตรฐานสำหรับไซต์ย่อยในเครือ Mr.FOX",
     "ecosystemIncludes": "ประกอบด้วย Platform Types",
+    "ecosystemModules": "{count} MODULES",
     "ecosystemTypeCount": "{count} ประเภท",
-    "ecosystemViewPlatform": "ดูรายละเอียด",
-    "platformTypes": "10 Platform Types",
-    "platformTypesDesc": "Template มาตรฐาน — เพิ่มแอปได้ไม่จำกัดโดยไม่แก้โครงสร้าง",
+    "ecosystemViewPlatform": "อ่านต่อ",
+    "platformTypes": "3 Platform Types",
+    "platformTypesDesc": "3 Platform Types — Creator Specific, Community, and The Contest",
     "viewAll": "ดูทั้งหมด",
     "featuredApps": "Featured Applications",
     "featuredAppsDesc": "ดาวน์โหลดได้ภายใน ≤ 3 คลิก",
@@ -46,7 +51,7 @@
   },
   "apps": {
     "title": "Applications",
-    "subtitle": "ค้นหาและดาวน์โหลดแอปใน ecosystem",
+    "subtitle": "ค้นหาและดาวน์โหลดแอปจากไซต์ในเครือ Mr.FOX",
     "searchPlaceholder": "ค้นหาแอป...",
     "allCategories": "ทุก Category",
     "allPlatforms": "ทุก Platform Type",
@@ -56,16 +61,279 @@
     "related": "Related Applications",
     "platformType": "Platform Type",
     "targetAudience": "Target Audience",
-    "comingSoon": "เร็วๆ นี้"
+    "comingSoon": "เร็วๆ นี้",
+    "viewDetails": "รายละเอียด",
+    "downloadLabel": "ดาวน์โหลด"
+  },
+  "creator": {
+    "title": "Creator",
+    "subtitle": "คู่มือ Creator ที่ Mr.FOX — ทำไมถึงต่าง ได้อะไร และเริ่มต้นยังไง",
+    "guide": {
+      "intro": {
+        "eyebrow": "Creator Guide",
+        "title": "ทำไมต้องเป็น CREATOR ที่ MR.FOX?",
+        "description": "Mr.FOX ไม่ใช่แค่โปรไฟล์ในแพลตฟอร์มกลาง — แต่เป็น ecosystem ที่ให้คุณมีไซต์ แอป และช่องทางรายได้ของตัวเอง แฟนคลับโหวต ส่ง Gift ดู Live และสนับสนุนคุณได้ตรงๆ ในที่เดียว"
+      },
+      "benefits": {
+        "eyebrow": "ได้อะไร",
+        "title": "สิ่งที่ Creator ได้จาก Mr.FOX",
+        "items": [
+          {
+            "title": "รายได้หลายช่องทาง",
+            "description": "Vote, Gift, Live, Chat, Voice/Video Call และ Subscription — monetization ครบในระบบเดียว ไม่ต้องพึ่งโฆษณาอย่างเดียว"
+          },
+          {
+            "title": "แฟนคลับเข้าถึงง่าย",
+            "description": "แฟนดาวน์โหลดแอป Mr.FOX แล้วเข้าถึงหลายไซต์ Creator ได้ใน ≤ 3 คลิก — ไม่ต้องกระจายลิงก์หลายที่"
+          },
+          {
+            "title": "เปิดแพลตฟอร์มเร็ว",
+            "description": "ใช้ Platform Type สำเร็จรูป มี CMS, แอปมือถือ และระบบชำระเงินพร้อม — ไม่ต้องสร้างเทคโนโลยีเองตั้งแต่ศูนย์"
+          },
+          {
+            "title": "แพลตฟอร์มเป็นของคุณ",
+            "description": "เลือกได้ตั้งแต่ไซต์รวมหลาย Creator ใน niche เดียว ไปจนถึง Official Platform สำหรับ Creator รายบุคคล"
+          }
+        ]
+      },
+      "compare": {
+        "eyebrow": "ต่างจากที่อื่น",
+        "title": "Mr.FOX ต่างจากแพลตฟอร์มทั่วไปยังไง",
+        "columns": {
+          "fox": "Mr.FOX",
+          "others": "แพลตฟอร์มทั่วไป"
+        },
+        "rows": [
+          {
+            "label": "รายได้",
+            "fox": "Vote · Gift · Live · Chat · Subscription — แฟนคลับจ่ายตรงให้ Creator",
+            "others": "ส่วนใหญ่พึ่งโฆษณา ทิป หรือค่าคอมมิชชันที่แพลตฟอร์มกำหนด"
+          },
+          {
+            "label": "แฟนคลับ",
+            "fox": "แอปเดียวเข้าถึงหลาย Creator platform ในเครือข่าย Mr.FOX",
+            "others": "แฟนต้องตามหลายแอป ลิงก์ หรือช่องทางแยกกัน"
+          },
+          {
+            "label": "กิจกรรมบนแอป",
+            "fox": "เปิด–ปิดกิจกรรมได้ตามใจ เลือกฟีเจอร์ที่ต้องการเอง — ไม่บังคับให้ใช้ครบทุกอย่าง",
+            "others": "ฟีเจอร์ถูกกำหนดจากแพลตฟอร์ม — ปรับได้น้อย และมักต้องใช้ตามที่ระบบบังคับ"
+          },
+          {
+            "label": "การเปิดตัว",
+            "fox": "เลือก Platform Type แล้วเปิดได้เร็ว มีทีมสนับสนุน",
+            "others": "สร้างเอง รอ invitation หรือแข่งกับ Creator นับล้านในฟีดเดียว"
+          }
+        ]
+      },
+      "registration": {
+        "eyebrow": "ลงทะเบียนแอป",
+        "title": "วิดีโอสอนลงทะเบียนแอป",
+        "description": "เป็นวิธีลงทะเบียนแอป พร้อมกับการกรอกข้อมูล Creator ในคลิป — ยกตัวอย่าง CupE",
+        "posterAlt": "ดาวน์โหลดแอป Mr.FOX — King of Creator Platform",
+        "posterDownloadLabel": "ดาวน์โหลดแอป Mr.FOX",
+        "videoId": "https://youtu.be/8EfR8_7c0k4",
+        "caption": "สอนลงทะเบียนแอป Mr.FOX สำหรับ Creator",
+        "openLabel": "เปิดบน YouTube",
+        "placeholder": "ใส่ลิงก์ YouTube ใน creator.guide.registration.videoId"
+      },
+      "steps": {
+        "eyebrow": "เริ่มต้นง่ายๆ",
+        "title": "4 ขั้นตอนเริ่มเป็น Creator",
+        "items": [
+          {
+            "title": "เลือกรูปแบบแพลตฟอร์ม",
+            "description": "ดู 3 ประเภทด้านล่าง — Creator Specific, Community และ The Contest แล้วเลือกที่ตรงกับเป้าหมายของคุณ"
+          },
+          {
+            "title": "รอทีมงานอนุมัติ",
+            "description": "แต่บางไซต์ก็ไม่ต้องรอ — ขึ้นอยู่กับประเภทแพลตฟอร์มที่เลือก"
+          },
+          {
+            "title": "ตั้งค่าแพลตฟอร์ม",
+            "description": "ทีมช่วยตั้งโปรไฟล์ ราคา Vote/Gift/Live กฎ content และ branding ให้พร้อมเปิดตัว"
+          },
+          {
+            "title": "เปิดตัวกับแฟนคลับ",
+            "description": "แฟนดาวน์โหลดแอป ติดตาม โหวต ส่ง Gift และเริ่ม monetization ได้ทันที"
+          }
+        ]
+      },
+      "formats": {
+        "eyebrow": "เลือกรูปแบบ",
+        "title": "3 Platform Types",
+        "description": "เลือกประเภทที่ตรงกับเป้าหมายของคุณ — Creator, Community หรือ Contest แล้วดูรายละเอียดแต่ละประเภทได้เลย",
+        "pickLabel": "เหมาะกับใคร",
+        "viewDetails": "ดูรายละเอียด",
+        "types": [
+          {
+            "slug": "creator-specific",
+            "fit": "Creator ใน niche เดียว เช่น FOXY, CupE — หลายคนอยู่ใน category เดียวกัน"
+          },
+          {
+            "slug": "community-specific",
+            "fit": "ชุมชนที่สมาชิกทุกคนโพสต์และมีส่วนร่วมได้ เช่น Silom"
+          },
+          {
+            "slug": "the-contest",
+            "fit": "แพลตฟอร์มประกวด — ผู้เข้าประกวดโพสต์ผลงาน แฟนโหวตและสนับสนุน"
+          }
+        ]
+      },
+      "cta": {
+        "title": "พร้อมแล้ว?",
+        "description": "ดูแอป Creator ที่เปิดให้บริการแล้ว หรือติดต่อทีมเพื่อปรึกษาเปิดแพลตฟอร์มใหม่",
+        "apps": "ดูแอปทั้งหมด",
+        "contact": "ติดต่อทีมงาน"
+      }
+    }
   },
   "platforms": {
     "title": "Platform Types",
-    "subtitle": "10 template มาตรฐาน — แต่ละประเภทกำหนด Feature set และ Permission ตาม Matrix",
+    "subtitle": "ดาวน์โหลดแอปเดียว — เข้าได้หลายไซต์ ทั้ง Creator, Community และ Contest",
+    "overview": {
+      "eyebrow": "เข้าใจง่ายใน 1 นาที",
+      "title": "แอปเดียว หลายไซต์ กฎชัดเจน",
+      "description": "Mr.FOX ไม่ใช่แอปเดียวแบบเดียว — แต่เป็นระบบที่รวมหลายไซต์ไว้ในแอปเดียว แต่ละไซต์เลือกใช้กฎ 1 ใน 3 แบบด้านล่าง ว่าใครโพสต์ได้ แฟนทำอะไรได้บ้าง",
+      "layers": [
+        {
+          "label": "แอป Mr.FOX",
+          "text": "ดาวน์โหลดครั้งเดียว เข้า FOXY, Silom, Beauty Queen และไซต์อื่นๆ ได้จากจุดเดียว"
+        },
+        {
+          "label": "Platform Type",
+          "text": "แม่แบบกฎ 3 แบบ — กำหนดว่าใครโพสต์ โหวต Gift หรือ Live ได้หรือไม่"
+        },
+        {
+          "label": "ไซต์ / แอปย่อย",
+          "text": "แต่ละแบรนด์ในเครือ เช่น FOXY หรือ Silom เลือกใช้ Platform Type ที่เหมาะกับชุมชนของตัวเอง"
+        }
+      ],
+      "coexistTitle": "ทำไมถึงมีทั้ง Creator และ Community?",
+      "coexistDescription": "บางไซต์เน้น Creator ที่แฟนโหวตและส่ง Gift (Creator Specific) บางไซต์เป็นชุมชนที่สมาชิกทุกคนโพสต์และคุยกันได้ (Community) และบางไซต์จัดประกวดที่ผู้เข้าประกวดโพสต์ผลงาน แฟนโหวตสนับสนุน (The Contest) — ทั้งหมดอยู่ใน ecosystem เดียว ผู้ใช้เลือกเข้าไซต์ที่ตรงกับสิ่งที่อยากทำ",
+      "typesTitle": "3 Platform Types — ใครทำอะไรได้บ้าง?",
+      "types": [
+        {
+          "slug": "creator-specific",
+          "categorySlug": "creator",
+          "name": "Creator Specific",
+          "tagline": "Creator",
+          "summary": "ไซต์ Creator ที่แฟนดู โหวต ส่ง Gift และ Live ได้ — แต่แฟนโพสต์เองไม่ได้ เหมาะกับ FOXY, CupE, Himbo",
+          "example": "FOXY, CupE, Himbo, Lesbie",
+          "permissions": [
+            { "label": "Creator โพสต์", "value": "yes" },
+            { "label": "แฟน / สมาชิกโพสต์", "value": "no" },
+            { "label": "Creator Live", "value": "yes" },
+            { "label": "แฟนโหวต", "value": "yes" },
+            { "label": "แฟนส่ง Gift", "value": "yes" }
+          ]
+        },
+        {
+          "slug": "community-specific",
+          "categorySlug": "community",
+          "name": "Community",
+          "tagline": "Community",
+          "summary": "ชุมชนที่สมาชิกทุกคนโพสต์ แสดงความคิดเห็น และมีส่วนร่วมได้ — ไม่แยก Creator กับแฟนแบบเดิม เหมาะกับ Silom, นักศึกษา",
+          "example": "Silom, นักศึกษา",
+          "permissions": [
+            { "label": "Creator โพสต์", "value": "yes" },
+            { "label": "สมาชิกโพสต์", "value": "yes" },
+            { "label": "Creator Live", "value": "optional" },
+            { "label": "แฟนโหวต", "value": "optional" },
+            { "label": "แฟนส่ง Gift", "value": "no" }
+          ]
+        },
+        {
+          "slug": "the-contest",
+          "categorySlug": "contest",
+          "name": "The Contest",
+          "tagline": "Contest",
+          "summary": "แพลตฟอร์มประกวด — เฉพาะผู้เข้าประกวดโพสต์ผลงาน แฟนโหวตและสนับสนุนได้ แต่โพสต์เองไม่ได้",
+          "example": "Beauty Queen",
+          "permissions": [
+            { "label": "ผู้เข้าประกวดโพสต์", "value": "contestant" },
+            { "label": "แฟน / สมาชิกโพสต์", "value": "no" },
+            { "label": "Creator Live", "value": "optional" },
+            { "label": "แฟนโหวต", "value": "yes" },
+            { "label": "แฟนส่ง Gift", "value": "optional" }
+          ]
+        }
+      ],
+      "valueLabels": {
+        "yes": "ได้",
+        "no": "ไม่ได้",
+        "optional": "แล้วแต่ไซต์",
+        "contestant": "เฉพาะผู้ประกวด"
+      },
+      "exampleLabel": "ตัวอย่าง:",
+      "catalogHint": "เลื่อนลงเพื่อดูรายละเอียดแต่ละประเภทและแอปที่เปิดให้บริการ"
+    },
+    "typeDetails": {
+      "creator-specific": {
+        "subtitle": "แพลตฟอร์มที่ออกแบบมาเพื่อครีเอเตอร์แต่ละกลุ่มโดยเฉพาะ",
+        "paragraphs": [
+          "Creator Specific คือแพลตฟอร์มที่สร้างขึ้นจากความเข้าใจในตัวตนและรูปแบบการทำงานของครีเอเตอร์แต่ละสาย เพราะครีเอเตอร์แต่ละกลุ่มมีวิธีสร้างคอนเทนต์ ผู้ติดตาม และรูปแบบการสร้างรายได้ที่แตกต่างกัน จึงไม่ควรถูกจำกัดอยู่บนแพลตฟอร์มแบบเดียวกันทั้งหมด",
+          "ด้วย Mr.FOX ทุกแพลตฟอร์มสามารถออกแบบประสบการณ์ให้เหมาะกับกลุ่มเป้าหมายได้อย่างเต็มรูปแบบ ไม่ว่าจะเป็นการแสดงโปรไฟล์ การจัดหมวดหมู่คอนเทนต์ ระบบค้นหา การมีส่วนร่วมของแฟนคลับ ไปจนถึงฟีเจอร์ที่ตอบโจทย์เฉพาะของแต่ละคอมมูนิตี้",
+          "ครีเอเตอร์สามารถเผยแพร่คอนเทนต์ ถ่ายทอดสด สื่อสารกับผู้ติดตาม เปิดระบบสมาชิก รับของขวัญดิจิทัล และสร้างรายได้จากผู้ชมได้ภายในแพลตฟอร์มเดียว ขณะที่ผู้ติดตามก็สามารถค้นพบครีเอเตอร์ที่ตรงกับความสนใจ มีส่วนร่วมกับคอนเทนต์ และเติบโตไปพร้อมกับชุมชนที่ตนเองเป็นส่วนหนึ่ง",
+          "ไม่ว่าคุณจะต้องการสร้างแพลตฟอร์มสำหรับนางงาม คอสเพลย์ โมเดล เกมเมอร์ หรือครีเอเตอร์เฉพาะทาง Mr.FOX สามารถเปลี่ยนไอเดียนั้นให้กลายเป็นแพลตฟอร์มที่พร้อมใช้งาน พร้อมรองรับการเติบโตของคอมมูนิตี้ในระยะยาว"
+        ],
+        "suitableForTitle": "เหมาะสำหรับ",
+        "suitableFor": [
+          "เวทีนางงามและ Beauty Community",
+          "Cosplay & Fandom",
+          "โมเดลและช่างภาพ",
+          "Fitness & Sports",
+          "Gaming & Streaming",
+          "LGBTQ+",
+          "Premium Creator",
+          "Creator Community เฉพาะทางทุกประเภท"
+        ]
+      },
+      "community-specific": {
+        "subtitle": "เมื่อทุกคนสามารถเป็นผู้สร้างคุณค่าให้กับชุมชน",
+        "paragraphs": [
+          "Community คือแพลตฟอร์มสำหรับการสร้างสังคมออนไลน์ที่ทุกคนมีส่วนร่วมได้ ไม่ว่าจะเป็นการแบ่งปันความรู้ พูดคุย แลกเปลี่ยนความคิดเห็น หรือสร้างคอนเทนต์ร่วมกัน โดยไม่มีศูนย์กลางอยู่ที่บุคคลใดบุคคลหนึ่ง",
+          "ผู้ใช้งานสามารถสร้างกลุ่มตามความสนใจ จัดการคอมมูนิตี้ของตนเอง เปิดพื้นที่สำหรับการสนทนา จัดกิจกรรมออนไลน์ และสร้างความสัมพันธ์ระหว่างสมาชิกได้อย่างเป็นธรรมชาติ ช่วยให้ชุมชนเติบโตจากการมีส่วนร่วมของทุกคน ไม่ใช่เพียงจำนวนผู้ติดตาม",
+          "ไม่ว่าจะเป็นชุมชนของแบรนด์ กลุ่มการเรียนรู้ แฟนคลับ งานอดิเรก หรือองค์กร Community มอบเครื่องมือที่ช่วยให้การสื่อสาร การมีส่วนร่วม และการเติบโตของสมาชิกเกิดขึ้นได้อย่างต่อเนื่องในแพลตฟอร์มเดียว"
+        ],
+        "suitableForTitle": "เหมาะสำหรับ",
+        "suitableFor": [
+          "ชุมชน Creator 18+",
+          "LGBTQ+",
+          "Silom & Nightlife",
+          "กลุ่มแฟนคลับ Creator",
+          "ชุมชนคอสเพลย์ & ฟานดอม",
+          "กลุ่มโมเดล & ช่างภาพ",
+          "เกมเมอร์ & สตรีมเมอร์",
+          "กลุ่มนักเรียน / นักศึกษา"
+        ]
+      },
+      "the-contest": {
+        "subtitle": "แพลตฟอร์มสำหรับการแข่งขันที่ออกแบบมาเพื่อครีเอเตอร์โดยเฉพาะ",
+        "paragraphs": [
+          "The Contest คือแพลตฟอร์มที่ช่วยให้การประกวดและการแข่งขันของครีเอเตอร์เป็นเรื่องง่าย ครบวงจร และสร้างการมีส่วนร่วมได้อย่างเต็มรูปแบบ ตั้งแต่การสมัครผู้เข้าแข่งขัน การจัดการโปรไฟล์ การเผยแพร่ผลงาน การโหวต การให้คะแนน การแสดงความคิดเห็น ไปจนถึงการถ่ายทอดสดและกิจกรรมระหว่างการแข่งขัน",
+          "มากกว่าการค้นหาผู้ชนะ The Contest ถูกออกแบบให้ทุกการแข่งขันเป็นพื้นที่ที่ครีเอเตอร์สามารถแสดงศักยภาพ สร้างฐานผู้ติดตาม เพิ่มการมีส่วนร่วม และต่อยอดโอกาสใหม่ ๆ หลังจบการแข่งขัน ขณะเดียวกัน ผู้ชมก็สามารถร่วมโหวต ติดตาม และสนับสนุนผู้เข้าแข่งขันที่ชื่นชอบได้ตลอดทั้งกิจกรรม",
+          "ไม่ว่าจะเป็นเวทีนางงาม การประกวดคอสเพลย์ การแข่งขันไลฟ์สตรีม การประกวดคอนเทนต์ หรือกิจกรรมสำหรับครีเอเตอร์ทุกประเภท The Contest ช่วยเปลี่ยนทุกการแข่งขันให้กลายเป็นประสบการณ์ที่สร้างคุณค่าให้กับทั้งผู้จัด ผู้เข้าแข่งขัน และผู้ชม"
+        ],
+        "suitableForTitle": "เหมาะสำหรับ",
+        "suitableFor": [
+          "เวทีประกวดนางงาม",
+          "การประกวดคอสเพลย์",
+          "Creator Awards",
+          "การแข่งขันคอนเทนต์",
+          "Talent Competition",
+          "การแข่งขันไลฟ์สตรีม",
+          "กิจกรรมของแบรนด์",
+          "การแข่งขันสำหรับ Creator ทุกประเภท"
+        ]
+      }
+    },
     "catalog": {
       "viewDetails": "ดูรายละเอียด",
       "typeCount": "{count} ประเภท"
     },
     "backToPlatforms": "กลับไป Platform Types",
+    "typeDetailBannerAlt": "Content to Earn — Users Enjoy, Creators Make Money",
     "creatorModel": "Creator Model",
     "visitorModel": "Visitor Model",
     "featuresMatrix": "Features Matrix",
@@ -123,11 +391,12 @@
     "subtitle": "ข่าวสารและอัปเดตล่าสุด",
     "backToNews": "กลับไป News",
     "source": "แหล่งที่มา",
-    "readAtSource": "อ่านข่าวฉบับเต็มที่แหล่งที่มา"
+    "readAtSource": "อ่านข่าวฉบับเต็มที่แหล่งที่มา",
+    "readMore": "อ่านต่อ"
   },
   "about": {
     "title": "About Mr.FOX",
-    "subtitle": "Mr.FOX พัฒนา Platform และ Mobile Applications สำหรับ Creator Economy Ecosystem",
+    "subtitle": "Mr.FOX คือแพลตฟอร์ม Creator 18+ ที่รวมหลายไซต์ — Creator, Community และ Contest",
     "purpose": {
       "eyebrow": "Why Mr.FOX",
       "sectionTitle": "วิสัยทัศน์ที่ขับเคลื่อน Ecosystem",
@@ -136,9 +405,9 @@
         "headline": "Creator หารายได้จากแฟนคลับโดยตรง",
         "body": "สร้าง ecosystem ที่ Creator หารายได้จากแฟนคลับโดยตรง ผ่านแพลตฟอร์มมาตรฐานที่ scale ได้ไม่จำกัด",
         "highlights": [
-          "แพลตฟอร์มเดียว ครอบคลุม Vote · Gift · Live · Chat",
+          "รวมหลายไซต์ใน 3 กลุ่ม — Creator · Community · Contest",
           "Creator เป็นเจ้าของชุมชนและรายได้ของตัวเอง",
-          "ขยายได้จากแอปเดียวสู่หลาย Platform Types"
+          "เพิ่มไซต์ใหม่ได้ด้วย Platform Types มาตรฐาน"
         ]
       },
       "mission": {
@@ -171,7 +440,7 @@
     "roadmapVisualTitle": "ROADMAP",
     "roadmapVisualCaption": "เส้นทางการเติบโตของ Mr.FOX Ecosystem ตั้งแต่ FOXY, PHOENIX ไปจนถึงแอปและแพลตฟอร์มใหม่ๆ",
     "roadmapPhasesTitle": "เส้นทาง Ecosystem",
-    "roadmapPhasesSubtitle": "สรุป 3 ช่วงสำคัญของ Mr.FOX — จากจุดเริ่มต้น สู่การขยายแพลตฟอร์ม และ Creator Super App",
+    "roadmapPhasesSubtitle": "สรุป 3 ช่วงสำคัญของ Mr.FOX — จากจุดเริ่มต้น สู่การขยายไซต์ และแพลตฟอร์มรวมศูนย์ 18+",
     "roadmapStatus": {
       "done": "ผ่านมาแล้ว",
       "active": "กำลังทำ",
@@ -182,7 +451,7 @@
         "era": "ยุคที่ 1",
         "phase": "Foundation",
         "title": "วางรากฐาน Ecosystem",
-        "summary": "เริ่มจาก Mr.FOX Token และแพลตฟอร์มแรกๆ ที่พิสูจน์แนวคิด Creator Economy",
+        "summary": "เริ่มจาก Mr.FOX Token และไซต์แรกๆ ที่พิสูจน์แนวคิดแพลตฟอร์ม Creator 18+",
         "status": "done",
         "items": [
           "Mr.FOX Token และแพลตฟอร์มรุ่นแรก",
@@ -194,23 +463,23 @@
         "era": "ยุคที่ 2",
         "phase": "Expansion",
         "title": "ขยาย Platform Types & แอป",
-        "summary": "เติบโตเป็น ecosystem หลายประเภท — Creator, Community, Contest, Exhibition",
+        "summary": "เติบโตเป็น ecosystem 3 กลุ่ม — Creator, Community และ Contest",
         "status": "active",
         "items": [
-          "10 Platform Types และแอปหลายตัวในระบบ",
+          "3 Platform Types และแอปหลายตัวในระบบ",
           "Partnership กับพันธมิตรและชุมชน",
           "Showcase + CMS สำหรับจัดการเนื้อหา"
         ]
       },
       {
         "era": "ยุคที่ 3",
-        "phase": "Super App",
-        "title": "Creator Super App ครบวงจร",
-        "summary": "รวมทุกแพลตฟอร์มในมือถือเครื่องเดียว — scale สู่ 100+ applications",
+        "phase": "Unified Hub",
+        "title": "แพลตฟอร์มรวมศูนย์ 18+",
+        "summary": "รวมหลายไซต์ Creator · Community · Contest ในระบบเดียว — ขยายเครือข่ายอย่างต่อเนื่อง",
         "status": "upcoming",
         "items": [
-          "แอปรวม Creator tools มากกว่า 20 รูปแบบ",
-          "เชื่อมต่อทุกแพลตฟอร์มใน ecosystem เดียว",
+          "รวมไซต์และแอปหลายตัวในจุดเข้าเดียว",
+          "เชื่อมต่อทุกไซต์ในเครือข่าย Mr.FOX",
           "ขยายตลาดและ use case ใหม่ๆ อย่างต่อเนื่อง"
         ]
       }
@@ -388,7 +657,15 @@
     "featureBadge": "Feature"
   },
   "footer": {
-    "tagline": "Ecosystem แพลตฟอร์ม Creator Economy, Community, Contest และ Exhibition",
+    "tagline": "แพลตฟอร์ม Creator 18+ — รวม Creator · Community · Contest",
+    "companyName": "บริษัท มิสเตอร์ ฟ็อกซ์ จำกัด",
+    "address": "1323/1 ถนนศรีวรา (ลาดพร้าว 94) ทาวน์อินทาวน์ พลับพลา เขตวังทองหลาง กรุงเทพฯ",
+    "emailLabel": "อีเมล",
+    "email": "support@mrfox.com",
+    "emailHref": "mailto:support@mrfox.com",
+    "phoneLabel": "โทรศัพท์",
+    "phone": "02-9575771 ต่อ 75",
+    "phoneHref": "tel:+6629575771;ext=75",
     "explore": "สำรวจ",
     "company": "บริษัท",
     "links": "ลิงก์",

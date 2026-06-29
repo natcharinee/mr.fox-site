@@ -1,3 +1,5 @@
+export const MRFOX_LINE_URL = "https://line.me/R/ti/p/@mrfox";
+
 export const MRFOX_SOCIAL_LINKS = [
   {
     id: "facebook",
@@ -12,7 +14,7 @@ export const MRFOX_SOCIAL_LINKS = [
   {
     id: "line",
     label: "LINE",
-    href: "https://line.me/R/ti/p/@989ubhfy",
+    href: MRFOX_LINE_URL,
   },
   {
     id: "telegram",

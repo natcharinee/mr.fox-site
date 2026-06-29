@@ -25,7 +25,7 @@ function EventVideoCard({
   return (
     <article className="text-center">
       <div className="mb-4 flex flex-col items-center gap-2">
-        <span className="inline-flex rounded-full border border-[var(--vulpine-primary-container)]/40 bg-[var(--vulpine-primary-container)]/12 px-3 py-1 text-[10px] font-bold tracking-[0.22em] text-[var(--vulpine-primary-container)] uppercase">
+        <span className="inline-flex rounded-full border border-[var(--vulpine-primary-container)]/40 bg-[var(--vulpine-primary-container)]/12 px-3 py-1 text-xs font-bold tracking-[0.22em] text-[var(--vulpine-primary-container)] uppercase sm:text-sm">
           Clip 0{index + 1}
         </span>
         <h3 className="font-display text-xl font-extrabold tracking-wide text-[var(--vulpine-primary-container)] drop-shadow-[0_0_10px_rgba(255,184,0,0.35)] sm:text-2xl md:text-3xl">
@@ -50,7 +50,7 @@ function EventVideoCard({
             <span className="inline-flex size-12 items-center justify-center rounded-full border border-[var(--vulpine-primary-container)]/35 bg-[var(--vulpine-primary-container)]/10 text-[var(--vulpine-primary-container)]">
               <Play className="ml-0.5 size-5" aria-hidden />
             </span>
-            <p className={`text-xs sm:text-sm ${publicTheme.muted}`}>
+            <p className={`text-sm sm:text-base ${publicTheme.muted}`}>
               {placeholderLabel}
             </p>
           </div>
@@ -83,7 +83,7 @@ export function AboutEventVideoSection({
         />
 
         <div className="relative px-4 py-8 text-center sm:px-8 sm:py-10">
-          <p className="text-xs font-semibold tracking-[0.28em] text-[#ffc20e]/85 uppercase">
+          <p className="text-sm font-semibold tracking-[0.28em] text-[#ffc20e]/85 uppercase">
             {content.eyebrow}
           </p>
           <h2 className="mt-3 font-display text-2xl font-extrabold tracking-[0.1em] uppercase sm:text-3xl md:text-4xl">

@@ -51,13 +51,11 @@ const STATUS_STYLES: Record<
 
 function PhaseCard({
   phase,
-  index,
   statusLabel,
   icon: Icon,
   elevated = false,
 }: {
   phase: RoadmapPhase;
-  index: number;
   statusLabel: string;
   icon: LucideIcon;
   elevated?: boolean;
@@ -84,25 +82,20 @@ function PhaseCard({
           <div className="flex items-center gap-3">
             <span
               className={cn(
-                "inline-flex size-10 items-center justify-center rounded-xl border",
+                "inline-flex size-11 shrink-0 items-center justify-center rounded-xl border",
                 "border-[var(--vulpine-primary-container)]/25 bg-[var(--vulpine-primary-container)]/10",
                 "text-[var(--vulpine-primary-container)]",
               )}
             >
-              <Icon className="size-4" aria-hidden />
+              <Icon className="size-5" aria-hidden />
             </span>
-            <div>
-              <p className="text-xs font-semibold tracking-[0.18em] text-[var(--vulpine-on-surface-variant)] uppercase">
-                {phase.era}
-              </p>
-              <p className="mt-0.5 font-display text-2xl font-bold leading-none text-white/12">
-                0{index + 1}
-              </p>
-            </div>
+            <p className="font-display text-2xl font-bold uppercase tracking-[0.1em] text-[var(--vulpine-primary-container)] sm:text-3xl">
+              {phase.era}
+            </p>
           </div>
           <span
             className={cn(
-              "inline-flex shrink-0 rounded-full border px-2.5 py-1 text-[10px] font-bold tracking-wide uppercase",
+              "inline-flex shrink-0 rounded-full border px-2.5 py-1 text-xs font-bold tracking-wide uppercase sm:text-sm",
               styles.badge,
             )}
           >
@@ -110,7 +103,7 @@ function PhaseCard({
           </span>
         </div>
 
-        <span className="mt-4 inline-flex rounded-full border border-[var(--vulpine-primary-container)]/35 bg-[var(--vulpine-primary-container)]/10 px-3 py-1 text-[11px] font-bold tracking-wide text-[var(--vulpine-primary)] uppercase">
+        <span className="mt-4 inline-flex rounded-full border border-[var(--vulpine-primary-container)]/35 bg-[var(--vulpine-primary-container)]/10 px-3 py-1 text-xs font-bold tracking-wide text-[var(--vulpine-primary)] uppercase sm:text-sm">
           {phase.phase}
         </span>
 
@@ -164,7 +157,7 @@ export function AboutRoadmapSection({
         />
 
         <div className="relative px-4 py-8 sm:px-8 sm:py-10">
-          <p className="text-center text-xs font-semibold tracking-[0.28em] text-[#ffc20e]/80 uppercase">
+          <p className="text-center text-sm font-semibold tracking-[0.28em] text-[#ffc20e]/80 uppercase">
             Mr.FOX
           </p>
           <h3 className="mt-2 text-center text-3xl font-extrabold tracking-[0.18em] sm:text-4xl">
@@ -223,7 +216,6 @@ export function AboutRoadmapSection({
                   />
                   <PhaseCard
                     phase={phase}
-                    index={index}
                     statusLabel={statusLabels[phase.status]}
                     icon={Icon}
                     elevated={phase.status === "active"}

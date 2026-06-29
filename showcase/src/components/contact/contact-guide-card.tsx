@@ -1,4 +1,4 @@
-import { Inbox, MessageSquare, Send, Users } from "lucide-react";
+import { ChevronDown, Inbox, MessageSquare, Send, Users } from "lucide-react";
 import { GlassCard } from "@/components/vulpine/vulpine-primitives";
 import { cn } from "@/lib/utils";
 
@@ -42,7 +42,7 @@ export function ContactGuideCard({
       </div>
 
       <div className="mt-6">
-        <p className="text-xs font-medium uppercase tracking-wide text-[var(--vulpine-on-surface-variant)]">
+        <p className="text-sm font-medium uppercase tracking-wide text-[var(--vulpine-on-surface-variant)]">
           {content.stepsTitle}
         </p>
         <ol className="relative mt-4 space-y-0">
@@ -76,24 +76,28 @@ export function ContactGuideCard({
       </div>
 
       <div className="mt-8 border-t border-white/8 pt-6">
-        <p className="text-xs font-medium uppercase tracking-wide text-[var(--vulpine-on-surface-variant)]">
+        <p className="text-sm font-medium uppercase tracking-wide text-[var(--vulpine-on-surface-variant)]">
           {content.faqTitle}
         </p>
-        <dl className="mt-4 space-y-4">
+        <div className="mt-4 space-y-2">
           {content.faq.map((item) => (
-            <div
+            <details
               key={item.question}
-              className="rounded-xl border border-white/8 bg-white/[0.02] px-4 py-3"
+              className="group rounded-xl border border-white/8 bg-white/[0.02] open:border-[var(--vulpine-primary-container)]/20 open:bg-[var(--vulpine-primary-container)]/[0.04]"
             >
-              <dt className="text-sm font-medium text-[var(--vulpine-on-surface)]">
-                {item.question}
-              </dt>
-              <dd className="mt-2 text-sm leading-relaxed text-[var(--vulpine-on-surface-variant)]">
+              <summary className="flex cursor-pointer list-none items-center justify-between gap-3 px-4 py-3 text-sm font-medium text-[var(--vulpine-on-surface)] marker:content-none [&::-webkit-details-marker]:hidden">
+                <span>{item.question}</span>
+                <ChevronDown
+                  className="size-4 shrink-0 text-[var(--vulpine-on-surface-variant)] transition-transform group-open:rotate-180"
+                  aria-hidden
+                />
+              </summary>
+              <p className="border-t border-white/5 px-4 py-3 text-sm leading-relaxed text-[var(--vulpine-on-surface-variant)]">
                 {item.answer}
-              </dd>
-            </div>
+              </p>
+            </details>
           ))}
-        </dl>
+        </div>
       </div>
     </GlassCard>
   );

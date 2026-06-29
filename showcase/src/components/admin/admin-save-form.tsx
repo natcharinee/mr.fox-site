@@ -54,7 +54,14 @@ export function AdminSaveForm({
   }, [state, successMessage, router]);
 
   return (
-    <form action={formAction} className={className} aria-busy={pending}>
+    <form
+      className={className}
+      aria-busy={pending}
+      onSubmit={(event) => {
+        event.preventDefault();
+        formAction(new FormData(event.currentTarget));
+      }}
+    >
       {children}
     </form>
   );

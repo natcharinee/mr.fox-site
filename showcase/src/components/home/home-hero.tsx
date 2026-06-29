@@ -5,6 +5,7 @@ import { LinkButton } from "@/components/ui/link-button";
 import { buttonVariants } from "@/components/ui/button";
 import { VulpineEyebrow } from "@/components/vulpine/vulpine-primitives";
 import { HeroScrollVideo } from "@/components/home/hero-scroll-video";
+import { MRFOX_APP_DOWNLOAD_URL } from "@/lib/app-download";
 import { cn } from "@/lib/utils";
 
 type HomeHeroProps = {
@@ -44,7 +45,7 @@ export function HomeHero({
         />
       </div>
 
-      <div className="relative z-30 mx-auto max-w-4xl px-4 pb-16 pt-4 text-center sm:px-6 md:px-16 lg:-mt-16 lg:pb-20">
+      <div className="relative z-30 mx-auto max-w-4xl px-4 pb-16 pt-6 text-center sm:px-6 md:px-16 md:pt-4 lg:-mt-16 lg:pb-20">
         <VulpineEyebrow className="mb-6">{badge}</VulpineEyebrow>
 
         <p className="font-display text-3xl font-extrabold tracking-tight text-[var(--vulpine-primary-container)] drop-shadow-[0_0_8px_rgba(255,184,0,0.35)] sm:text-4xl lg:text-5xl">
@@ -69,7 +70,7 @@ export function HomeHero({
             return (
               <li
                 key={pillar}
-                className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3.5 py-2 text-xs text-[var(--vulpine-on-surface)] sm:text-sm"
+                className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3.5 py-2 text-sm text-[var(--vulpine-on-surface)] sm:text-base"
               >
                 <Icon
                   className="size-3.5 shrink-0 text-[var(--vulpine-primary-container)]"
@@ -91,7 +92,7 @@ export function HomeHero({
             <ArrowRight className="ml-2 size-4" />
           </LinkButton>
           <a
-            href="https://link.mrfox.app"
+            href={MRFOX_APP_DOWNLOAD_URL}
             target="_blank"
             rel="noopener noreferrer"
             className={cn(

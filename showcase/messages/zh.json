@@ -2,33 +2,38 @@
   "nav": {
     "home": "首页",
     "platforms": "平台类型",
+    "creator": "Creator",
     "apps": "应用",
     "features": "功能",
     "news": "新闻",
-    "about": "关于",
+    "about": "关于我们",
     "contact": "联系",
     "search": "搜索",
-    "download": "下载应用"
+    "download": "下载应用",
+    "openMenu": "打开菜单",
+    "menuTitle": "菜单"
   },
   "home": {
-    "badge": "创作者经济超级应用",
+    "badge": "18+ 创作者平台",
     "brandName": "Mr.FOX",
-    "title": "面向创作者与社区的",
-    "titleHighlight": "一体化",
-    "titleSuffix": "平台与移动应用",
-    "subtitle": "10 种平台类型，涵盖投票、礼物、直播与变现 — 统一生态系统。",
-    "pillarPlatforms": "10 种平台类型",
+    "title": "18+ 创作者平台",
+    "titleHighlight": "聚合多个站点",
+    "titleSuffix": "统一入口",
+    "subtitle": "Mr.FOX 汇聚 Creator、Community 与 Contest 站点 — 投票、礼物、直播与变现，同一生态系统。",
+    "pillarPlatforms": "Creator · Community · Contest",
     "pillarFeatures": "投票 · 礼物 · 直播 · 聊天",
     "pillarApps": "≤ 3 次点击下载应用",
     "explorePlatforms": "探索平台",
     "downloadApps": "下载应用",
-    "ecosystem": "生态系统概览",
-    "ecosystemDesc": "分为 5 大类别 — 每类包含适用于不同场景的 Platform Types 标准模板。",
+    "ecosystem": "Creator 生态系统概览",
+    "ecosystemArchitecture": "系统架构",
+    "ecosystemDesc": "三大核心类别 — Creator · Community · Contest<br></br>每类均为 Mr.FOX 旗下站点的标准模板。",
     "ecosystemIncludes": "包含以下 Platform Types",
+    "ecosystemModules": "{count} 个模块",
     "ecosystemTypeCount": "{count} 种类型",
-    "ecosystemViewPlatform": "查看详情",
-    "platformTypes": "10 种平台类型",
-    "platformTypesDesc": "标准模板 — 扩展至 100+ 应用无需改动架构",
+    "ecosystemViewPlatform": "阅读更多",
+    "platformTypes": "3 种平台类型",
+    "platformTypesDesc": "3 种平台类型 — Creator Specific、Community 与 The Contest",
     "viewAll": "查看全部",
     "featuredApps": "精选应用",
     "featuredAppsDesc": "≤ 3 次点击即可下载",
@@ -46,7 +51,7 @@
   },
   "apps": {
     "title": "应用",
-    "subtitle": "在 Mr.FOX 生态系统中搜索并下载应用",
+    "subtitle": "搜索并下载 Mr.FOX 旗下站点的应用",
     "searchPlaceholder": "搜索应用...",
     "allCategories": "所有类别",
     "allPlatforms": "所有平台类型",
@@ -56,16 +61,279 @@
     "related": "相关应用",
     "platformType": "平台类型",
     "targetAudience": "目标受众",
-    "comingSoon": "即将推出"
+    "comingSoon": "即将推出",
+    "viewDetails": "详情",
+    "downloadLabel": "下载"
+  },
+  "creator": {
+    "title": "Creator",
+    "subtitle": "Mr.FOX Creator 指南 — 我们有何不同、你能获得什么、如何开始",
+    "guide": {
+      "intro": {
+        "eyebrow": "Creator Guide",
+        "title": "为什么要在 Mr.FOX 做 Creator？",
+        "description": "Mr.FOX 不只是大平台上的个人主页 — 而是让你拥有自己的站点、应用和收入渠道。粉丝可在同一处投票、送礼、看直播并直接支持你。"
+      },
+      "benefits": {
+        "eyebrow": "你能获得",
+        "title": "Creator 在 Mr.FOX 获得什么",
+        "items": [
+          {
+            "title": "多元收入来源",
+            "description": "Vote、Gift、Live、Chat、语音/视频通话与订阅 — 一套系统完成变现，不只依赖广告。"
+          },
+          {
+            "title": "粉丝触达更简单",
+            "description": "粉丝下载 Mr.FOX 应用，≤ 3 次点击即可访问多个 Creator 站点 — 无需分散链接。"
+          },
+          {
+            "title": "快速上线",
+            "description": "现成平台类型，含 CMS、移动应用与支付 — 无需从零搭建技术。"
+          },
+          {
+            "title": "平台真正属于你",
+            "description": "从同一垂类的多 Creator 中心，到个人专属官方平台，任你选择。"
+          }
+        ]
+      },
+      "compare": {
+        "eyebrow": "与众不同",
+        "title": "Mr.FOX 与一般平台有何不同",
+        "columns": {
+          "fox": "Mr.FOX",
+          "others": "一般平台"
+        },
+        "rows": [
+          {
+            "label": "收入",
+            "fox": "Vote · Gift · Live · Chat · 订阅 — 粉丝直接向 Creator 付费",
+            "others": "多为广告、打赏或平台抽成"
+          },
+          {
+            "label": "粉丝",
+            "fox": "一个应用即可访问 Mr.FOX 网络中的多个 Creator 平台",
+            "others": "粉丝需追随多个应用、链接与渠道"
+          },
+          {
+            "label": "应用内活动",
+            "fox": "活动可自由开关，自选所需功能 — 不强制使用全部",
+            "others": "功能由平台限定 — 自定义空间小，常须按系统要求使用"
+          },
+          {
+            "label": "起步",
+            "fox": "选择平台类型即可快速上线，并有团队支持",
+            "others": "自建、等待邀请或在单一信息流中竞争"
+          }
+        ]
+      },
+      "registration": {
+        "eyebrow": "应用注册",
+        "title": "应用注册教程视频",
+        "description": "演示如何注册应用并填写 Creator 资料 — 以 CupE 为例。",
+        "posterAlt": "下载 Mr.FOX 应用 — King of Creator Platform",
+        "posterDownloadLabel": "下载 Mr.FOX 应用",
+        "videoId": "https://youtu.be/8EfR8_7c0k4",
+        "caption": "Mr.FOX Creator 应用注册指南",
+        "openLabel": "在 YouTube 打开",
+        "placeholder": "请在 creator.guide.registration.videoId 填入 YouTube 链接"
+      },
+      "steps": {
+        "eyebrow": "轻松起步",
+        "title": "成为 Creator 的 4 步",
+        "items": [
+          {
+            "title": "选择平台形式",
+            "description": "查看下方 3 种类型 — Creator Specific、Community 与 The Contest — 选择最符合目标的一种。"
+          },
+          {
+            "title": "等待团队审批",
+            "description": "部分站点无需等待 — 取决于所选平台类型。"
+          },
+          {
+            "title": "配置平台",
+            "description": "团队协助设置资料、Vote/Gift/Live 定价、内容规则与品牌，准备上线。"
+          },
+          {
+            "title": "向粉丝发布",
+            "description": "粉丝下载应用、关注、投票、送礼，即可立即开始变现。"
+          }
+        ]
+      },
+      "formats": {
+        "eyebrow": "选择形式",
+        "title": "3 种平台类型",
+        "description": "选择符合目标的类型 — Creator、Community 或 Contest — 再查看各类详情。",
+        "pickLabel": "适合谁",
+        "viewDetails": "查看详情",
+        "types": [
+          {
+            "slug": "creator-specific",
+            "fit": "同一垂类的 Creator — 如 FOXY、CupE — 多人共享一个品类"
+          },
+          {
+            "slug": "community-specific",
+            "fit": "每位成员均可发帖参与的社区 — 如 Silom"
+          },
+          {
+            "slug": "the-contest",
+            "fit": "竞赛平台 — 参赛者发布作品，粉丝投票与支持"
+          }
+        ]
+      },
+      "cta": {
+        "title": "准备好了吗？",
+        "description": "浏览已上线的 Creator 应用，或联系我们规划新平台。",
+        "apps": "查看全部应用",
+        "contact": "联系我们"
+      }
+    }
   },
   "platforms": {
     "title": "平台类型",
-    "subtitle": "10 种标准模板 — 每种通过 Matrix 定义功能集与权限",
+    "subtitle": "一个应用 — 汇聚 Creator、Community 与 Contest 多个站点",
+    "overview": {
+      "eyebrow": "一分钟读懂",
+      "title": "一个应用，多个站点，规则清晰",
+      "description": "Mr.FOX 不是单一应用体验 — 而是在一个入口中汇聚多个站点。每个站点采用下列三种模板之一，规定谁可以发帖、粉丝可以做什么。",
+      "layers": [
+        {
+          "label": "Mr.FOX 应用",
+          "text": "下载一次 — 从同一入口访问 FOXY、Silom、Beauty Queen 等站点"
+        },
+        {
+          "label": "Platform Type",
+          "text": "三种规则模板之一 — 谁发帖、投票、送礼或直播"
+        },
+        {
+          "label": "站点 / 应用",
+          "text": "网络中的每个品牌 — 如 FOXY 或 Silom — 选择适合其社区的模板"
+        }
+      ],
+      "coexistTitle": "为什么同时有 Creator 和 Community？",
+      "coexistDescription": "部分站点以创作者为核心 — 粉丝可投票送礼但不能发帖（Creator Specific）。部分是开放社区，每位成员均可发帖互动（Community）。部分是竞赛平台，仅参赛者发帖、观众投票（The Contest）。全部在同一生态中 — 用户进入符合需求的站点即可。",
+      "typesTitle": "3 种 Platform Types — 谁可以做什么？",
+      "types": [
+        {
+          "slug": "creator-specific",
+          "categorySlug": "creator",
+          "name": "Creator Specific",
+          "tagline": "Creator",
+          "summary": "创作者主导 — 粉丝观看、投票、送礼、看直播，但不能发帖。如 FOXY、CupE、Himbo",
+          "example": "FOXY、CupE、Himbo、Lesbie",
+          "permissions": [
+            { "label": "创作者发帖", "value": "yes" },
+            { "label": "粉丝 / 成员发帖", "value": "no" },
+            { "label": "创作者直播", "value": "yes" },
+            { "label": "粉丝投票", "value": "yes" },
+            { "label": "粉丝送礼", "value": "yes" }
+          ]
+        },
+        {
+          "slug": "community-specific",
+          "categorySlug": "community",
+          "name": "Community",
+          "tagline": "Community",
+          "summary": "每位成员均可发帖、评论与参与 — 不严格区分创作者与粉丝。如 Silom、学生社区",
+          "example": "Silom、นักศึกษา",
+          "permissions": [
+            { "label": "创作者发帖", "value": "yes" },
+            { "label": "成员发帖", "value": "yes" },
+            { "label": "创作者直播", "value": "optional" },
+            { "label": "粉丝投票", "value": "optional" },
+            { "label": "粉丝送礼", "value": "no" }
+          ]
+        },
+        {
+          "slug": "the-contest",
+          "categorySlug": "contest",
+          "name": "The Contest",
+          "tagline": "Contest",
+          "summary": "竞赛平台 — 仅参赛者发布作品；粉丝可投票支持但不能发帖",
+          "example": "Beauty Queen",
+          "permissions": [
+            { "label": "参赛者发帖", "value": "contestant" },
+            { "label": "粉丝 / 成员发帖", "value": "no" },
+            { "label": "创作者直播", "value": "optional" },
+            { "label": "粉丝投票", "value": "yes" },
+            { "label": "粉丝送礼", "value": "optional" }
+          ]
+        }
+      ],
+      "valueLabels": {
+        "yes": "可以",
+        "no": "不可以",
+        "optional": "视站点而定",
+        "contestant": "仅参赛者"
+      },
+      "exampleLabel": "示例：",
+      "catalogHint": "向下滚动查看各类型的完整详情与在线应用"
+    },
+    "typeDetails": {
+      "creator-specific": {
+        "subtitle": "为每个创作者社群量身打造的平台",
+        "paragraphs": [
+          "创作者专属平台源于对每个创作者圈层身份与工作方式的理解。不同圈层的创作方式、粉丝关系与变现路径各不相同，不应被限制在同一套通用平台中。",
+          "借助 Mr.FOX，每个平台都能为目标受众完整定制体验——从个人主页、内容分类、搜索发现、粉丝互动，到契合该社群的专属功能。",
+          "创作者可在同一平台发布内容、直播、与粉丝沟通、开通会员、接收数字礼物并从观众获得收入；粉丝也能发现感兴趣的创作者、参与内容互动，并与所属社群共同成长。",
+          "无论您想为选美、Cosplay、模特、游戏主播或任何垂直创作者社群搭建平台，Mr.FOX 都能将想法落地为可运营的平台，并支持社群长期成长。"
+        ],
+        "suitableForTitle": "适合",
+        "suitableFor": [
+          "选美赛事与美妆社群",
+          "Cosplay 与同人圈",
+          "模特与摄影师",
+          "健身与运动",
+          "游戏与直播",
+          "LGBTQ+",
+          "高端创作者",
+          "各类垂直创作者社群"
+        ]
+      },
+      "community-specific": {
+        "subtitle": "当每个人都能为社群创造价值",
+        "paragraphs": [
+          "社区平台用于打造人人可参与的在线社会——分享知识、交流讨论、互换观点或共同创作内容，而不以某一个人为中心。",
+          "用户可以按兴趣建群、运营自己的社群、开辟讨论空间、组织线上活动并自然建立成员关系，让社群因每个人的参与而成长，而非仅靠粉丝数量。",
+          "无论是品牌社群、学习小组、粉丝团、兴趣爱好或组织，社区都提供工具，让沟通、参与与成员成长在同一平台持续发生。"
+        ],
+        "suitableForTitle": "适合",
+        "suitableFor": [
+          "18+ 创作者社群",
+          "LGBTQ+",
+          "夜生活与娱乐",
+          "创作者粉丝团",
+          "Cosplay 与同人",
+          "模特与摄影师",
+          "游戏与直播",
+          "学生创作者群组"
+        ]
+      },
+      "the-contest": {
+        "subtitle": "为创作者量身打造的竞赛平台",
+        "paragraphs": [
+          "竞赛合集让创作者的赛事与竞赛变得简单、全流程且充分互动——从参赛者报名、资料管理、作品发布、投票评分、评论互动，到直播与赛间活动一应俱全。",
+          "不止于选出冠军，竞赛合集让每场比赛成为创作者展示潜力、积累粉丝、提升参与度并在赛后延续机会的场域；观众也可全程投票、关注并支持喜爱的参赛者。",
+          "无论是选美、Cosplay 赛事、直播竞赛、内容比赛或各类创作者活动，竞赛合集都能将每场比赛转化为对主办方、参赛者与观众皆有价值的体验。"
+        ],
+        "suitableForTitle": "适合",
+        "suitableFor": [
+          "选美赛事",
+          "Cosplay 竞赛",
+          "创作者奖项",
+          "内容竞赛",
+          "才艺比赛",
+          "直播竞赛",
+          "品牌活动",
+          "各类创作者竞赛"
+        ]
+      }
+    },
     "catalog": {
       "viewDetails": "查看详情",
       "typeCount": "{count} 种类型"
     },
     "backToPlatforms": "返回平台类型",
+    "typeDetailBannerAlt": "Content to Earn — 用户享受，创作者赚钱",
     "creatorModel": "创作者模式",
     "visitorModel": "访客模式",
     "featuresMatrix": "功能矩阵",
@@ -123,11 +391,12 @@
     "subtitle": "Mr.FOX 最新新闻与更新",
     "backToNews": "返回新闻",
     "source": "来源",
-    "readAtSource": "在来源网站阅读全文"
+    "readAtSource": "在来源网站阅读全文",
+    "readMore": "阅读更多"
   },
   "about": {
     "title": "关于 Mr.FOX",
-    "subtitle": "Mr.FOX 为创作者经济生态系统打造平台与移动应用",
+    "subtitle": "Mr.FOX 是 18+ 创作者平台枢纽 — 汇聚 Creator、Community 与 Contest 站点",
     "purpose": {
       "eyebrow": "Why Mr.FOX",
       "sectionTitle": "驱动生态系统的愿景",
@@ -136,9 +405,9 @@
         "headline": "创作者直接从粉丝获得收入",
         "body": "构建创作者可直接从粉丝获利的可扩展标准平台生态系统",
         "highlights": [
-          "统一生态涵盖投票 · 礼物 · 直播 · 聊天",
+          "三大类别汇聚多个站点 — Creator · Community · Contest",
           "创作者拥有自己的社区与收入",
-          "从单一应用扩展至多种平台类型"
+          "通过标准 Platform Types 快速上线新站点"
         ]
       },
       "mission": {
@@ -171,7 +440,7 @@
     "roadmapVisualTitle": "ROADMAP",
     "roadmapVisualCaption": "Mr.FOX 生态系统发展路线 — 从 FOXY、PHOENIX 到即将推出的应用与平台。",
     "roadmapPhasesTitle": "生态发展路径",
-    "roadmapPhasesSubtitle": "Mr.FOX 的三个关键阶段 — 从奠基、平台扩张到创作者超级应用。",
+    "roadmapPhasesSubtitle": "Mr.FOX 的三个关键阶段 — 从奠基、站点扩张到 18+ 统一枢纽。",
     "roadmapStatus": {
       "done": "已完成",
       "active": "进行中",
@@ -182,7 +451,7 @@
         "era": "第一阶段",
         "phase": "Foundation",
         "title": "奠定生态基础",
-        "summary": "从 Mr.FOX Token 与早期平台起步，验证创作者经济模式。",
+        "summary": "从 Mr.FOX Token 与早期站点起步，验证 18+ 创作者平台模式。",
         "status": "done",
         "items": [
           "Mr.FOX Token 与第一代平台",
@@ -194,23 +463,23 @@
         "era": "第二阶段",
         "phase": "Expansion",
         "title": "扩展平台类型与应用",
-        "summary": "成长为多类型生态 — 创作者、社区、赛事、展览。",
+        "summary": "成长为多类型生态 — 创作者、社区与赛事。",
         "status": "active",
         "items": [
-          "10 种平台类型与多款在线应用",
+          "3 种平台类型与多款在线应用",
           "与合作伙伴及社区的协作",
           "Showcase + CMS 内容运营"
         ]
       },
       {
         "era": "第三阶段",
-        "phase": "Super App",
-        "title": "一体化创作者超级应用",
-        "summary": "一部手机连接整个生态 — 迈向 100+ 应用规模。",
+        "phase": "Unified Hub",
+        "title": "18+ 多站点创作者枢纽",
+        "summary": "汇聚 Creator、Community 与 Contest 站点于统一入口 — 持续扩展网络。",
         "status": "upcoming",
         "items": [
-          "20+ 种创作者变现工具",
-          "所有平台在同一生态中互联",
+          "多个站点与应用，统一入口访问",
+          "Mr.FOX 网络内站点全面互联",
           "持续拓展新市场与新场景"
         ]
       }
@@ -388,7 +657,15 @@
     "featureBadge": "功能"
   },
   "footer": {
-    "tagline": "创作者经济、社区、竞赛与展览生态系统",
+    "tagline": "18+ 创作者平台 — Creator · Community · Contest",
+    "companyName": "Mr.FOX Co., Ltd.",
+    "address": "1323/1 Srivara Road (Lat Phrao 94) Town in Town Phlabphla, Wang Thonglang, Bangkok",
+    "emailLabel": "邮箱",
+    "email": "support@mrfox.com",
+    "emailHref": "mailto:support@mrfox.com",
+    "phoneLabel": "电话",
+    "phone": "02-9575771 转分机 75",
+    "phoneHref": "tel:+6629575771;ext=75",
     "explore": "探索",
     "company": "公司",
     "links": "链接",

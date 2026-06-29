@@ -110,7 +110,7 @@ export function HomePlatformTypesSection({
                     "vulpine-glow-hover relative flex h-full flex-col rounded-2xl border border-white/8 bg-[rgba(18,20,20,0.4)] p-6 backdrop-blur-2xl transition-all hover:-translate-y-0.5",
                   )}
                 >
-                  <span className="vulpine-label mb-2 block text-[10px] text-[var(--vulpine-primary-container)] opacity-70">
+                  <span className="vulpine-label mb-2 block text-xs text-[var(--vulpine-primary-container)] opacity-80 sm:text-sm">
                     DATA_TYPE: {pt.slug.replace(/-/g, "_").toUpperCase()}
                   </span>
                   <div className="flex items-start gap-3">
@@ -129,13 +129,13 @@ export function HomePlatformTypesSection({
                     </div>
                   </div>
 
-                  <p className="mt-3 flex-1 text-xs leading-relaxed text-[var(--vulpine-on-surface-variant)] opacity-80 line-clamp-2">
+                  <p className="mt-3 flex-1 text-sm leading-relaxed text-[var(--vulpine-on-surface-variant)] opacity-90 line-clamp-2">
                     {pt.shortDescription ?? pt.concept}
                   </p>
 
                   <p
                     className={cn(
-                      "vulpine-label mt-4 flex items-center gap-1 text-xs opacity-70 transition-all group-hover:gap-2 group-hover:opacity-100",
+                      "vulpine-label mt-4 flex items-center gap-1 text-sm opacity-80 transition-all group-hover:gap-2 group-hover:opacity-100",
                       theme.accent,
                     )}
                   >

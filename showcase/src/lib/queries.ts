@@ -1,4 +1,4 @@
-import { and, count, desc, eq, ilike, ne, or } from "drizzle-orm";
+import { and, count, desc, eq, ilike, inArray, ne, or } from "drizzle-orm";
 import { db } from "@/db";
 import {
   applications,
@@ -13,6 +13,8 @@ import {
   platformTypePermissions,
   platformTypes,
 } from "@/db/schema";
+import { CORE_FEATURE_SLUGS } from "@/lib/core-features";
+import { ACTIVE_PLATFORM_TYPE_SLUGS } from "@/lib/platform-type-slugs";
 import { newsPublicWhere } from "@/lib/news-publish-sql";
 
 export async function getActiveBanners() {
@@ -24,7 +26,10 @@ export async function getActiveBanners() {
 }
 
 export async function getSiteStats() {
-  const [platformTypeCount] = await db.select({ count: count() }).from(platformTypes);
+  const [platformTypeCount] = await db
+    .select({ count: count() })
+    .from(platformTypes)
+    .where(inArray(platformTypes.slug, [...ACTIVE_PLATFORM_TYPE_SLUGS]));
   const [appCount] = await db.select({ count: count() }).from(applications);
   const [featureCount] = await db
     .select({ count: count() })
@@ -65,6 +70,7 @@ export async function getPlatformTypes() {
       platformCategories,
       eq(platformTypes.categoryId, platformCategories.id),
     )
+    .where(inArray(platformTypes.slug, [...ACTIVE_PLATFORM_TYPE_SLUGS]))
     .orderBy(platformTypes.sortOrder);
 }
 
@@ -87,7 +93,12 @@ export async function getPlatformTypeBySlug(slug: string) {
       platformCategories,
       eq(platformTypes.categoryId, platformCategories.id),
     )
-    .where(eq(platformTypes.slug, slug))
+    .where(
+      and(
+        eq(platformTypes.slug, slug),
+        inArray(platformTypes.slug, [...ACTIVE_PLATFORM_TYPE_SLUGS]),
+      ),
+    )
     .limit(1);
 
   return row ?? null;
@@ -165,6 +176,7 @@ export async function getApplications(filters?: {
       featuredPosterFocus: applications.featuredPosterFocus,
       description: applications.description,
       featured: applications.featured,
+      sortOrder: applications.sortOrder,
       platformTypeName: platformTypes.name,
       platformTypeSlug: platformTypes.slug,
       categoryName: platformCategories.name,
@@ -229,6 +241,7 @@ export async function getApplicationBySlug(slug: string) {
       platformTypeName: platformTypes.name,
       platformTypeSlug: platformTypes.slug,
       categoryName: platformCategories.name,
+      categorySlug: platformCategories.slug,
     })
     .from(applications)
     .innerJoin(platformTypes, eq(applications.platformTypeId, platformTypes.id))
@@ -295,8 +308,13 @@ export async function getShowcaseFeatures() {
     .orderBy(features.sortOrder);
 }
 
-export async function getCoreFeatures(limit = 6) {
-  return getShowcaseFeatures().then((rows) => rows.slice(0, limit));
+export async function getCoreFeatures() {
+  const rows = await db.select().from(features);
+  const bySlug = new Map(rows.map((row) => [row.slug, row]));
+  return CORE_FEATURE_SLUGS.flatMap((slug) => {
+    const row = bySlug.get(slug);
+    return row ? [row] : [];
+  });
 }
 
 export async function getFeatureBySlug(slug: string) {
@@ -369,7 +387,12 @@ export async function globalSearch(q: string) {
       db
         .select({ name: platformTypes.name, slug: platformTypes.slug })
         .from(platformTypes)
-        .where(or(ilike(platformTypes.name, term), ilike(platformTypes.concept, term)))
+        .where(
+          and(
+            inArray(platformTypes.slug, [...ACTIVE_PLATFORM_TYPE_SLUGS]),
+            or(ilike(platformTypes.name, term), ilike(platformTypes.concept, term)),
+          ),
+        )
         .limit(5),
       db
         .select({ name: applications.name, slug: applications.slug })

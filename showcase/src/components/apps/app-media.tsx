@@ -1,5 +1,9 @@
 import { ContentImage } from "@/components/ui/content-image";
-import { isCompanyLogo, resolveImageUrl } from "@/lib/brand-assets";
+import {
+  isCompanyLogo,
+  isUploadedMediaUrl,
+  resolveImageUrl,
+} from "@/lib/brand-assets";
 import { cn } from "@/lib/utils";
 
 type AppMediaProps = {
@@ -21,6 +25,7 @@ export function AppMedia({
 }: AppMediaProps) {
   const resolved = resolveImageUrl(posterUrl);
   const fallback = isCompanyLogo(resolved);
+  const unoptimized = isUploadedMediaUrl(posterUrl);
 
   return (
     <div
@@ -37,6 +42,7 @@ export function AppMedia({
         sizes="(max-width: 768px) 100vw, 33vw"
         objectPosition={posterFocus}
         fit={fit}
+        unoptimized={unoptimized}
         className={cn(fallback && "p-8", imageClassName)}
       />
     </div>

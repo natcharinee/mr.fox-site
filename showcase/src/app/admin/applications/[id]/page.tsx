@@ -1,12 +1,10 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { db } from "@/db";
-import { platformTypes } from "@/db/schema";
 import { AdminSaveForm } from "@/components/admin/admin-save-form";
 import { AdminPosterUploadField } from "@/components/admin/admin-poster-upload-field";
 import { ApplicationFormVisibilityFields } from "@/components/admin/application-form-visibility-fields";
 import { updateApplication } from "@/lib/admin/actions";
-import { getApplicationById } from "@/lib/admin/queries";
+import { getApplicationById, getAllPlatformsAdmin } from "@/lib/admin/queries";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -20,7 +18,7 @@ export default async function AdminApplicationEditPage({ params }: Props) {
   const { id } = await params;
   const [item, types] = await Promise.all([
     getApplicationById(Number(id)),
-    db.select({ id: platformTypes.id, name: platformTypes.name }).from(platformTypes),
+    getAllPlatformsAdmin(),
   ]);
 
   if (!item) notFound();
@@ -28,6 +26,9 @@ export default async function AdminApplicationEditPage({ params }: Props) {
   const update = updateApplication.bind(null, item.id);
   const iosUrl = item.links.find((link) => link.type === "ios")?.url ?? "";
   const androidUrl = item.links.find((link) => link.type === "android")?.url ?? "";
+  const apkUrl =
+    item.links.find((link) => link.type === "apk")?.url ??
+    (iosUrl || androidUrl ? `https://download.mrfox.app/${item.slug}.apk` : "");
 
   return (
     <div className="mx-auto max-w-3xl space-y-6">
@@ -103,6 +104,16 @@ export default async function AdminApplicationEditPage({ params }: Props) {
         <div>
           <Label htmlFor="androidUrl">Android URL</Label>
           <Input id="androidUrl" name="androidUrl" defaultValue={androidUrl} className="mt-1" />
+        </div>
+        <div className="sm:col-span-2">
+          <Label htmlFor="apkUrl">APK URL</Label>
+          <Input
+            id="apkUrl"
+            name="apkUrl"
+            defaultValue={apkUrl}
+            placeholder={`https://download.mrfox.app/${item.slug}.apk`}
+            className="mt-1"
+          />
         </div>
         <div className="flex gap-2 sm:col-span-2">
           <Button type="submit">บันทึก</Button>

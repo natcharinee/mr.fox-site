@@ -4,7 +4,7 @@ import { ImageResponse } from "next/og";
 import { LINE_SEED_SANS_TH_FAMILY } from "@/lib/fonts/line-seed-sans-th";
 
 export const runtime = "nodejs";
-export const alt = "Mr.FOX — Platform Showcase";
+export const alt = "Mr.FOX — 18+ Creator Platform";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -46,7 +46,7 @@ export default async function OpenGraphImage() {
             color: "#94a3b8",
           }}
         >
-          Platform Showcase · Creator Economy Ecosystem
+          18+ Creator Platform · Creator · Community · Contest
         </div>
       </div>
     ),

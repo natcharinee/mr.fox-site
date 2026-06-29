@@ -1,12 +1,10 @@
 import { getTranslations } from "next-intl/server";
-import { Link } from "@/i18n/navigation";
-import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { NewsMedia } from "@/components/news/news-media";
+import { NewsListCard } from "@/components/news/news-list-card";
 import { PageHero } from "@/components/layout/page-hero";
 import { PageShell } from "@/components/layout/page-shell";
-import { themedCard, publicTheme } from "@/components/layout/public-theme";
+import { publicTheme } from "@/components/layout/public-theme";
 import type { Locale } from "@/i18n/routing";
-import { formatLocaleDate, localizeNews } from "@/lib/content-i18n";
+import { localizeNews } from "@/lib/content-i18n";
 import { buildMetadata } from "@/lib/metadata";
 import { getAllNews } from "@/lib/queries";
 
@@ -42,26 +40,16 @@ export default async function NewsPage({
       <div className={publicTheme.pageGrid}>
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {items.map((item) => (
-            <Link key={item.slug} href={`/news/${item.slug}`}>
-              <Card className={themedCard("h-full overflow-hidden")}>
-                <NewsMedia
-                  thumbnailUrl={item.thumbnailUrl}
-                  title={item.title}
-                  className="aspect-[16/10]"
-                />
-                <CardHeader>
-                  <CardTitle className={`line-clamp-2 text-base ${publicTheme.cardTitle}`}>
-                    {item.title}
-                  </CardTitle>
-                  <CardDescription className={publicTheme.cardDescription}>
-                    {item.publishedAt ? formatLocaleDate(locale, item.publishedAt) : ""}
-                  </CardDescription>
-                  <CardDescription className={`line-clamp-2 ${publicTheme.muted}`}>
-                    {item.excerpt}
-                  </CardDescription>
-                </CardHeader>
-              </Card>
-            </Link>
+            <NewsListCard
+              key={item.slug}
+              slug={item.slug}
+              title={item.title}
+              excerpt={item.excerpt}
+              thumbnailUrl={item.thumbnailUrl}
+              publishedAt={item.publishedAt}
+              locale={locale}
+              readMoreLabel={t("readMore")}
+            />
           ))}
         </div>
       </div>

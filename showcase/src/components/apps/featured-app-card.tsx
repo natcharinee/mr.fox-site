@@ -1,7 +1,7 @@
 import { ContentImage } from "@/components/ui/content-image";
 import { DownloadButtons } from "@/components/apps/download-buttons";
 import { GlassCard } from "@/components/vulpine/vulpine-primitives";
-import { isCompanyLogo, resolveImageUrl, resolvePosterUrl } from "@/lib/brand-assets";
+import { isCompanyLogo, isUploadedMediaUrl, resolveImageUrl, resolvePosterUrl } from "@/lib/brand-assets";
 import { cn } from "@/lib/utils";
 
 type FeaturedAppCardProps = {
@@ -49,12 +49,10 @@ export function FeaturedAppCard({
           <ContentImage
             src={posterSrc}
             fill
-            sizes="(max-width: 640px) 50vw, 25vw"
+            sizes="(max-width: 1024px) 100vw, 50vw"
             objectPosition={posterFocus}
             fit="cover"
-            unoptimized={
-              posterSrc.startsWith("/api/media/") || posterSrc.startsWith("/uploads/")
-            }
+            unoptimized={isUploadedMediaUrl(posterSrc)}
             className="transition-all duration-700 group-hover:scale-105 grayscale-[0.15] group-hover:grayscale-0"
           />
         ) : (
@@ -73,14 +71,14 @@ export function FeaturedAppCard({
           </div>
         )}
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-[var(--vulpine-background)] to-transparent opacity-90" />
-        <span className="vulpine-label absolute top-4 right-4 rounded-lg bg-[var(--vulpine-primary)] px-2 py-0.5 text-[10px] text-[var(--vulpine-on-primary)] shadow-[0_0_10px_rgba(255,184,0,0.5)]">
+        <span className="vulpine-label absolute top-4 right-4 rounded-lg bg-[var(--vulpine-primary)] px-2 py-0.5 text-xs text-[var(--vulpine-on-primary)] shadow-[0_0_10px_rgba(255,184,0,0.5)]">
           {featuredLabel}
         </span>
       </div>
 
       <div className="relative p-6">
         {app.categoryName ? (
-          <span className="vulpine-label mb-3 inline-block rounded-lg border border-white/20 px-2 py-0.5 text-[9px] text-[var(--vulpine-on-surface-variant)]">
+          <span className="vulpine-label mb-3 inline-block rounded-lg border border-white/20 px-2 py-0.5 text-xs text-[var(--vulpine-on-surface-variant)]">
             CAT:{app.categoryName.replace(/\s+/g, "_").toUpperCase()}
           </span>
         ) : null}
@@ -98,17 +96,23 @@ export function FeaturedAppCard({
             <h3 className="font-display text-lg font-bold uppercase text-[var(--vulpine-on-surface)]">
               {app.name}
             </h3>
-            <p className="mt-1 text-[11px] leading-relaxed text-[var(--vulpine-on-surface-variant)] opacity-80 line-clamp-2">
+            <p className="mt-1.5 text-sm leading-relaxed text-[var(--vulpine-on-surface-variant)] opacity-90 line-clamp-2">
               {app.description}
             </p>
           </div>
         </div>
 
         <div className="mt-5 border-t border-white/5 pt-4">
-          <p className="vulpine-label mb-3 text-[10px] text-[var(--vulpine-on-surface-variant)]">
+          <p className="vulpine-label mb-3 text-center text-xs text-[var(--vulpine-on-surface-variant)] sm:text-sm">
             {downloadLabel}
           </p>
-          <DownloadButtons appSlug={app.slug} appId={app.id} links={links} />
+          <DownloadButtons
+            appSlug={app.slug}
+            appId={app.id}
+            links={links}
+            align="center"
+            compact
+          />
         </div>
       </div>
     </GlassCard>

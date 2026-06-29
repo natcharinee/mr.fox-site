@@ -2,225 +2,204 @@
   "categories": {
     "creator": {
       "name": "Creator",
-      "description": "Platforms for the Creator Economy — from solo creators to multi-category setups"
+      "description": "18+ creator sites — from solo creators to multi-category setups"
     },
     "community": {
       "name": "Community",
       "description": "Communities where every member can participate, post, and exchange ideas"
     },
-    "company": {
-      "name": "Company",
-      "description": "Corporate platforms for companies, universities, and alumni networks"
-    },
     "contest": {
       "name": "Contest",
       "description": "Contest and voting platforms — supporting single events and multi-contest hubs"
-    },
-    "exhibition": {
-      "name": "Exhibition",
-      "description": "Exhibitions and trade shows — ticket sales and exhibitor management"
     }
   },
   "platforms": {
     "creator-specific": {
       "name": "Creator Specific",
-      "concept": "Multiple creators, one category; visitors cannot post",
-      "shortDescription": "Single-category creator platform, e.g. FOXY",
+      "concept": "Platforms tailored to each creator community",
+      "shortDescription": "Platforms tailored to each creator community — experiences built for every niche",
       "creatorModel": "Creators post content, receive votes and gifts, go live, and access monetization tools",
       "visitorModel": "Visitors view content, vote, send gifts, and subscribe — cannot post"
     },
-    "creator-multi-category": {
-      "name": "Creator Multi Category",
-      "concept": "Multiple creators, multiple categories; visitors cannot post",
-      "shortDescription": "Multi-discipline creator hub, e.g. The Expert, The Consult",
-      "creatorModel": "Creators organized by category, set their own service prices",
-      "visitorModel": "Visitors follow creators in categories they care about"
-    },
-    "creator-single": {
-      "name": "Creator Single",
-      "concept": "Solo creator — official platform",
-      "shortDescription": "Dedicated platform for a celebrity or individual creator",
-      "creatorModel": "One creator controls all content and monetization",
-      "visitorModel": "Fans support through votes, gifts, and subscriptions"
-    },
     "community-specific": {
-      "name": "Community Specific",
-      "concept": "Every member can post; no creator/visitor split",
-      "shortDescription": "Online community, e.g. TOM Thailand, Silom",
+      "name": "Community",
+      "concept": "When everyone can create value for the community",
+      "shortDescription": "When everyone can create value for the community — an online space where all members participate",
       "creatorModel": "Every member can be a creator",
       "visitorModel": "Everyone posts, comments, and participates"
     },
-    "the-company": {
-      "name": "The Company / Alumni / Gov",
-      "concept": "Multiple organizations on one platform",
-      "shortDescription": "e.g. The Alumni, Local Government",
-      "creatorModel": "Organizations and members publish updates",
-      "visitorModel": "Members and interested users follow organization news"
-    },
-    "company-single": {
-      "name": "Company Single",
-      "concept": "Single organization",
-      "shortDescription": "e.g. SRICHA, University Platform",
-      "creatorModel": "One organization manages all content",
-      "visitorModel": "Members and people interested in the organization"
-    },
     "the-contest": {
       "name": "The Contest",
-      "concept": "Multiple contest programs",
-      "shortDescription": "e.g. Music Contest, Photo Contest",
+      "concept": "A competition platform designed for creators",
+      "shortDescription": "A competition platform designed for creators — end-to-end from registration to voting and live streaming",
       "creatorModel": "Contestants post their entries",
       "visitorModel": "Viewers vote and support contestants"
-    },
-    "contest-single": {
-      "name": "Contest Single",
-      "concept": "Single contest program",
-      "shortDescription": "e.g. Miss Grand, MUT",
-      "creatorModel": "Contestants post and compete",
-      "visitorModel": "Fans vote and send gifts"
-    },
-    "the-exhibition": {
-      "name": "The Exhibition",
-      "concept": "Multiple exhibition events",
-      "shortDescription": "Exhibition Hub for trade shows and expos",
-      "creatorModel": "Exhibitors register and manage booths",
-      "visitorModel": "Visitors buy tickets and browse events"
-    },
-    "exhibition-single": {
-      "name": "Exhibition Single",
-      "concept": "Single exhibition event",
-      "shortDescription": "e.g. Museum Event, Expo",
-      "creatorModel": "Organizers manage exhibitors and content",
-      "visitorModel": "Visitors buy tickets to attend"
     }
   },
   "features": {
-    "vote": {
-      "name": "Vote",
-      "description": "Paid voting to support creators",
-      "workflow": "Creator opens voting → visitor pays to vote → points accumulate in rankings",
-      "revenueModel": "10/20/50/100 THB per vote"
+    "public-post": {
+      "name": "Public Post",
+      "description": "Public content posts"
     },
-    "gift": {
-      "name": "Gift",
-      "description": "Send sticker gifts to creators",
-      "workflow": "Visitor picks a sticker → pays from wallet → creator receives the gift",
-      "revenueModel": "Priced per sticker"
+    "photo-album": {
+      "name": "Photo Album",
+      "description": "Photo albums"
     },
-    "chat": {
-      "name": "Chat",
-      "description": "Pay-per-message chat with creators",
-      "workflow": "Creator sets price → visitor pays before sending → message reaches creator",
-      "revenueModel": "Per message"
+    "video-post": {
+      "name": "Video Post",
+      "description": "Video posts"
     },
-    "voice-call": {
-      "name": "Voice Call",
-      "description": "Pay-per-minute voice calls with creators",
-      "workflow": "Visitor buys time → starts a 1:1 voice call",
-      "revenueModel": "Per minute"
+    "follow": {
+      "name": "Follow Creator",
+      "description": "Follow creators"
     },
-    "video-call": {
-      "name": "Video Call",
-      "description": "Pay-per-minute video calls with creators",
-      "workflow": "Visitor buys time → video call with gifts available during the session",
-      "revenueModel": "Per minute + gifts"
+    "like": {
+      "name": "Like",
+      "description": "Like content"
     },
-    "live": {
-      "name": "Live",
-      "description": "Live streaming — free, paid, or password-protected",
-      "workflow": "Creator opens a live room → visitors join, comment, and send gifts",
-      "revenueModel": "Entry fee + gifts"
+    "comment": {
+      "name": "Comment",
+      "description": "Comment on content"
     },
-    "live-archive": {
-      "name": "Live Archive",
-      "description": "Sell recorded live streams",
-      "workflow": "Creator saves a live stream → sets price → visitor pays to watch",
-      "revenueModel": "Per clip"
-    },
-    "unlock-photo": {
-      "name": "Unlock Photo",
-      "description": "Blurred photos unlocked with payment",
-      "workflow": "Creator uploads blurred image → visitor pays to view the full image",
-      "revenueModel": "Per item"
-    },
-    "unlock-video": {
-      "name": "Unlock Video",
-      "description": "Video previews unlocked with payment",
-      "workflow": "Creator uploads preview → visitor pays to watch the full video",
-      "revenueModel": "Per clip"
-    },
-    "subscription": {
-      "name": "Subscription",
-      "description": "Monthly premium feed",
-      "workflow": "Creator builds premium content → visitor subscribes",
-      "revenueModel": "Monthly / quarterly / annual"
-    },
-    "fan-club": {
-      "name": "Fan Club",
-      "description": "Multi-tier fan club membership",
-      "workflow": "Visitor joins fan club → earns badge and special perks"
-    },
-    "marketplace": {
-      "name": "Marketplace",
-      "description": "Buy and sell within the community",
-      "revenueModel": "Commission"
-    },
-    "event": {
-      "name": "Event",
-      "description": "Event management"
-    },
-    "contest": {
-      "name": "Contest",
-      "description": "Contest and ranking system"
-    },
-    "exhibition": {
-      "name": "Exhibition",
-      "description": "Exhibition and booth management"
-    },
-    "ticketing": {
-      "name": "Ticketing",
-      "description": "Event ticket sales",
-      "revenueModel": "Per ticket"
-    },
-    "membership": {
-      "name": "Membership",
-      "description": "Organization membership",
-      "revenueModel": "Annual / monthly"
+    "share": {
+      "name": "Share",
+      "description": "Share content"
     },
     "ranking": {
       "name": "Ranking",
-      "description": "Creator rankings based on votes and gifts"
+      "description": "Creator rankings by votes and gifts"
+    },
+    "vote": {
+      "name": "Vote",
+      "description": "Vote for creators"
+    },
+    "gift": {
+      "name": "Gift",
+      "description": "Send virtual gifts"
+    },
+    "wallet": {
+      "name": "Wallet",
+      "description": "In-app wallet"
+    },
+    "chat": {
+      "name": "Chat",
+      "description": "Direct messaging"
+    },
+    "voice-call": {
+      "name": "Voice Call",
+      "description": "Voice calls"
+    },
+    "video-call": {
+      "name": "Video Call",
+      "description": "Video calls"
+    },
+    "live": {
+      "name": "Live",
+      "description": "Live streaming"
+    },
+    "live-archive": {
+      "name": "Live Archive",
+      "description": "Archived live streams"
+    },
+    "unlock-photo": {
+      "name": "Unlock Photo",
+      "description": "Paid photo unlock"
+    },
+    "unlock-video": {
+      "name": "Unlock Video",
+      "description": "Paid video unlock"
+    },
+    "subscription": {
+      "name": "Subscription",
+      "description": "Fan subscriptions"
+    },
+    "fan-club": {
+      "name": "Fan Club",
+      "description": "Fan club memberships"
+    },
+    "marketplace": {
+      "name": "Marketplace",
+      "description": "Buy and sell in-app"
+    },
+    "event": {
+      "name": "Event",
+      "description": "Events and meetups"
+    },
+    "contest": {
+      "name": "Contest",
+      "description": "Contest features"
+    },
+    "ticketing": {
+      "name": "Ticketing",
+      "description": "Event ticketing"
+    },
+    "membership": {
+      "name": "Membership",
+      "description": "Membership tiers"
+    },
+    "creator-directory": {
+      "name": "Creator Directory",
+      "description": "Browse creators"
+    },
+    "download-app-links": {
+      "name": "Download App Links",
+      "description": "App download links"
     }
   },
   "apps": {
     "foxy": {
-      "description": "Mr.FOX's flagship Creator Economy platform — full support for votes, gifts, live streaming, and monetization",
-      "targetAudience": "Creators and fans"
+      "name": "FOXY",
+      "description": "Mr.FOX's flagship 18+ creator site — full Vote, Gift, Live, and monetization"
     },
-    "the-expert": {
-      "description": "Multi-disciplinary experts hub — consulting, coaching, and knowledge sharing",
-      "targetAudience": "Experts and learners"
+    "cupe": {
+      "name": "CupE",
+      "description": "18+ creator site for Cup E content — vote, send gifts, and go live"
     },
-    "tom-thailand": {
-      "description": "Online community where every member can participate",
-      "targetAudience": "Community members"
+    "cliq": {
+      "name": "CLIQ",
+      "description": "18+ CLIQ creator site — connect creators with fans"
     },
-    "the-alumni": {
-      "description": "Alumni platform spanning multiple institutions",
-      "targetAudience": "Alumni and organizations"
+    "himbo": {
+      "name": "Himbo",
+      "description": "18+ creator site for Himbo — Vote, Gift, and Live"
     },
-    "miss-grand": {
-      "description": "Beauty pageant platform — vote and support contestants",
-      "targetAudience": "Contestants and fans"
+    "lesbie": {
+      "name": "Lesbie",
+      "description": "18+ creator site for the Lesbian community — Vote and Gift support"
     },
-    "exhibition-hub": {
-      "description": "Hub for exhibitions and trade shows",
-      "targetAudience": "Organizers and visitors"
+    "tomboi": {
+      "name": "Tomboi",
+      "description": "18+ creator site for the Tom community — full monetization"
+    },
+    "bargirl": {
+      "name": "BarGirl",
+      "description": "18+ creator site for bar girls and entertainers — Vote, Gift, and Live"
+    },
+    "silom": {
+      "name": "Silom",
+      "description": "Silom 18+ community — every member can post and participate"
+    },
+    "cosplay-plus": {
+      "name": "Cosplay Plus",
+      "description": "Cosplay creator hub — multiple styles in one site"
+    },
+    "expat-idols": {
+      "name": "Expat Idols",
+      "description": "18+ creator site for Expat Idols — vote, send gifts, and go live"
+    },
+    "beauty-queen": {
+      "name": "Beauty Queen",
+      "description": "Beauty Queen contest platform — vote and support contestants"
+    },
+    "nak-sueksa": {
+      "name": "นักศึกษา",
+      "description": "18+ student community — members post, share ideas, and participate"
     }
   },
   "news": {
     "mrfox-ecosystem-launch": {
       "title": "Mr.FOX Launches Creator Economy Platform Ecosystem",
-      "excerpt": "10 platform types covering Creator, Community, Company, Contest, and Exhibition",
+      "excerpt": "3 platform types covering Creator, Community, and Contest",
       "content": "Mr.FOX announces a full-stack ecosystem for the Creator Economy, with monetization through votes, gifts, live streaming, subscriptions, and more."
     },
     "foxy-app-update": {

@@ -6,8 +6,9 @@ import {
   news,
   platformTypes,
 } from "@/db/schema";
-import { eq } from "drizzle-orm";
+import { eq, inArray } from "drizzle-orm";
 import { routing } from "@/i18n/routing";
+import { ACTIVE_PLATFORM_TYPE_SLUGS } from "@/lib/platform-type-slugs";
 import { newsPublicWhere } from "@/lib/news-publish-sql";
 import { SITE_URL } from "@/lib/metadata";
 
@@ -16,11 +17,11 @@ export const dynamic = "force-dynamic";
 const STATIC_PATHS = [
   "",
   "/platforms",
+  "/creator",
   "/apps",
   "/features",
   "/news",
   "/about",
-  "/contact",
   "/search",
 ];
 
@@ -39,7 +40,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   try {
     const [pts, apps, feats, newsItems] = await Promise.all([
-      db.select({ slug: platformTypes.slug }).from(platformTypes),
+      db
+        .select({ slug: platformTypes.slug })
+        .from(platformTypes)
+        .where(inArray(platformTypes.slug, [...ACTIVE_PLATFORM_TYPE_SLUGS])),
       db.select({ slug: applications.slug }).from(applications),
       db
         .select({ slug: features.slug })

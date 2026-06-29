@@ -17,6 +17,11 @@ export function isBrandFallbackImage(url?: string | null): boolean {
   return BRAND_FALLBACK_IMAGES.has(url.trim());
 }
 
+export function isUploadedMediaUrl(url?: string | null): boolean {
+  const trimmed = url?.trim() ?? "";
+  return trimmed.startsWith("/uploads/") || trimmed.startsWith("/api/media/");
+}
+
 export function resolvePosterUrl(
   posterUrl?: string | null,
   alternateUrl?: string | null,
