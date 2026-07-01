@@ -46,6 +46,7 @@ Vercel Dashboard → Project → Settings → Environment Variables:
 | Key | Value |
 |-----|-------|
 | `DATABASE_URL` | Neon **pooled** connection string |
+| `DATABASE_URL_DIRECT` | (recommended) Neon **direct** connection string for build migrations |
 | `AUTH_SECRET` | ค่าเดียวกับที่ใช้ตอน deploy |
 | `NEXT_PUBLIC_SITE_URL` | `https://your-project.vercel.app` |
 | `CONTACT_WEBHOOK_URL` | (optional) Slack/Discord webhook |

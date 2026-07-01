@@ -78,7 +78,13 @@ async function main() {
   console.log(`Applied ${statements.length} schema statements.`);
 }
 
-main().catch((error) => {
-  console.error("Schema migration failed:", error);
+main().catch((error: unknown) => {
+  console.error("Schema migration failed:");
+  if (error instanceof Error) {
+    console.error(error.message);
+    if ("code" in error) console.error("code:", (error as { code?: string }).code);
+  } else {
+    console.error(error);
+  }
   process.exit(1);
 });

@@ -743,7 +743,13 @@ async function seed() {
   process.exit(0);
 }
 
-seed().catch((err) => {
-  console.error("❌ Seed failed:", err);
+seed().catch((err: unknown) => {
+  console.error("❌ Seed failed:");
+  if (err instanceof Error) {
+    console.error(err.message);
+    if ("code" in err) console.error("code:", (err as { code?: string }).code);
+  } else {
+    console.error(err);
+  }
   process.exit(1);
 });
