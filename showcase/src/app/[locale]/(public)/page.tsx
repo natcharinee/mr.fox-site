@@ -127,10 +127,8 @@ export default async function HomePage({ params }: Props) {
         includesLabel={t("ecosystemIncludes")}
         viewPlatformLabel={t("ecosystemViewPlatform")}
         viewAllLabel={t("ecosystemViewAll")}
-        capabilitiesLabel={t("ecosystemCapabilities")}
         suitableForLabel={t("ecosystemSuitableFor")}
         sampleAppsLabel={t("ecosystemSampleApps")}
-        permissionLabels={platformsOverview.valueLabels}
         modulesLabelFor={(count) => t("ecosystemModules", { count })}
         categories={localizedCategories}
         platformTypes={localizedPlatforms}

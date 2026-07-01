@@ -58,7 +58,7 @@ export function HeroScrollVideo() {
       ref={containerRef}
       className={cn(
         "relative w-full overflow-hidden",
-        "lg:ml-[calc(50%-50vw)] lg:w-screen lg:max-w-[100vw] lg:overflow-hidden lg:py-0",
+        "md:ml-[calc(50%-50vw)] md:w-screen md:max-w-[100vw]",
       )}
     >
       <div
@@ -66,7 +66,7 @@ export function HeroScrollVideo() {
         className={cn(
           "pointer-events-none absolute left-1/2 top-1/2 z-0 hidden -translate-x-1/2 -translate-y-[42%] rounded-full bg-[radial-gradient(circle,rgba(255,194,14,0.22)_0%,rgba(255,194,14,0.06)_42%,transparent_72%)] blur-2xl",
           "h-[min(85vw,580px)] w-[min(85vw,580px)]",
-          "md:block lg:hidden",
+          "hidden",
         )}
       />
 

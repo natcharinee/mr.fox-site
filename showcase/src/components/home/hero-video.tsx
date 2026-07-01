@@ -7,21 +7,19 @@ const HERO_VIDEO_MP4 = "/hero/hero%20banner%20mr.fox.mp4";
 
 const frameClassName = cn(
   "relative mx-auto w-full",
-  "lg:mx-0 lg:w-screen lg:max-w-none",
+  "md:mx-0 md:w-screen md:max-w-none",
 );
 
 const shellClassName = cn(
   "relative w-full overflow-hidden bg-black",
   "aspect-[16/10] min-h-[min(58vh,520px)]",
-  "md:mx-auto md:aspect-auto md:min-h-0 md:w-[340px] md:overflow-visible md:bg-transparent",
-  "lg:aspect-[21/9] lg:w-screen lg:max-w-none lg:overflow-hidden lg:bg-black",
+  "md:aspect-[21/9] md:w-screen md:max-w-none md:min-h-[min(48vh,440px)]",
 );
 
 const mediaClassName = cn(
-  "h-full w-full object-cover object-center [transform:translateZ(0)]",
-  "rounded-none",
-  "md:relative md:h-auto md:w-full md:rounded-[2.25rem] md:object-contain",
-  "lg:absolute lg:inset-0 lg:h-full lg:w-full lg:min-h-full lg:min-w-full lg:rounded-none lg:object-cover lg:scale-[1.2]",
+  "h-full w-full object-cover object-center [transform:translateZ(0)] rounded-none",
+  "md:absolute md:inset-0 md:min-h-full md:min-w-full md:scale-[1.15]",
+  "lg:scale-[1.2]",
 );
 
 export function HeroVideo() {

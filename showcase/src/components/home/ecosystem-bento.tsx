@@ -1,4 +1,4 @@
-import { ArrowRight, Check, Minus, X } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { LinkButton } from "@/components/ui/link-button";
 import {
@@ -27,27 +27,14 @@ type PlatformType = {
 
 type SampleApp = { slug: string; name: string };
 
-type CatalogPermission = {
-  label: string;
-  value: "yes" | "no" | "optional" | "contestant";
-};
-
 type CatalogType = {
   slug: string;
   categorySlug: string;
   example: string;
-  permissions: CatalogPermission[];
 };
 
 type TypeDetailSnippet = {
   suitableFor?: string[];
-};
-
-type PermissionLabels = {
-  yes: string;
-  no: string;
-  optional: string;
-  contestant: string;
 };
 
 type EcosystemBentoProps = {
@@ -57,10 +44,8 @@ type EcosystemBentoProps = {
   includesLabel: string;
   viewPlatformLabel: string;
   viewAllLabel: string;
-  capabilitiesLabel: string;
   suitableForLabel: string;
   sampleAppsLabel: string;
-  permissionLabels: PermissionLabels;
   categories: Category[];
   platformTypes: PlatformType[];
   catalogTypes: CatalogType[];
@@ -112,42 +97,6 @@ function CategoryLegend({
   );
 }
 
-function PermissionBadge({
-  value,
-  labels,
-}: {
-  value: CatalogPermission["value"];
-  labels: PermissionLabels;
-}) {
-  const text =
-    value === "yes"
-      ? labels.yes
-      : value === "no"
-        ? labels.no
-        : value === "contestant"
-          ? labels.contestant
-          : labels.optional;
-  const Icon = value === "yes" ? Check : value === "no" ? X : Minus;
-  const tone =
-    value === "yes"
-      ? "border-emerald-400/30 bg-emerald-500/10 text-emerald-300"
-      : value === "no"
-        ? "border-white/10 bg-white/[0.03] text-white/45"
-        : "border-[var(--vulpine-primary-container)]/30 bg-[var(--vulpine-primary-container)]/10 text-[var(--vulpine-primary-container)]";
-
-  return (
-    <span
-      className={cn(
-        "inline-flex items-center gap-1 rounded-md border px-2 py-1 text-[11px] font-medium sm:text-xs",
-        tone,
-      )}
-    >
-      <Icon className="size-3 shrink-0" aria-hidden />
-      {text}
-    </span>
-  );
-}
-
 function CategoryCard({
   slug,
   category,
@@ -155,10 +104,8 @@ function CategoryCard({
   includesLabel,
   viewPlatformLabel,
   modulesLabel,
-  capabilitiesLabel,
   suitableForLabel,
   sampleAppsLabel,
-  permissionLabels,
   catalogType,
   typeDetail,
   sampleApps,
@@ -169,10 +116,8 @@ function CategoryCard({
   includesLabel: string;
   viewPlatformLabel: string;
   modulesLabel: string;
-  capabilitiesLabel: string;
   suitableForLabel: string;
   sampleAppsLabel: string;
-  permissionLabels: PermissionLabels;
   catalogType?: CatalogType;
   typeDetail?: TypeDetailSnippet;
   sampleApps: SampleApp[];
@@ -302,32 +247,6 @@ function CategoryCard({
             ))}
           </ul>
 
-          {catalogType && catalogType.permissions.length > 0 ? (
-            <div className="mt-5 rounded-xl border border-white/10 bg-white/[0.04] p-4 sm:p-5">
-              <p
-                className={cn(
-                  "vulpine-label text-[11px] font-semibold uppercase tracking-[0.16em] sm:text-xs",
-                  theme?.accent,
-                )}
-              >
-                {capabilitiesLabel}
-              </p>
-              <ul className="mt-3 grid gap-2 sm:grid-cols-2">
-                {catalogType.permissions.map((row) => (
-                  <li
-                    key={row.label}
-                    className="flex items-center justify-between gap-2 rounded-lg border border-white/8 bg-black/15 px-3 py-2 text-xs sm:text-sm"
-                  >
-                    <span className="text-[var(--vulpine-on-surface-variant)]">
-                      {row.label}
-                    </span>
-                    <PermissionBadge value={row.value} labels={permissionLabels} />
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ) : null}
-
           {typeDetail?.suitableFor && typeDetail.suitableFor.length > 0 ? (
             <div className="mt-4">
               <p
@@ -397,10 +316,8 @@ export function EcosystemBento({
   includesLabel,
   viewPlatformLabel,
   viewAllLabel,
-  capabilitiesLabel,
   suitableForLabel,
   sampleAppsLabel,
-  permissionLabels,
   categories,
   platformTypes,
   catalogTypes,
@@ -466,10 +383,8 @@ export function EcosystemBento({
                 includesLabel={includesLabel}
                 viewPlatformLabel={viewPlatformLabel}
                 modulesLabel={modulesLabelFor(types.length)}
-                capabilitiesLabel={capabilitiesLabel}
                 suitableForLabel={suitableForLabel}
                 sampleAppsLabel={sampleAppsLabel}
-                permissionLabels={permissionLabels}
                 catalogType={catalogType}
                 typeDetail={typeDetail}
                 sampleApps={sampleAppsByCategory[slug] ?? []}
