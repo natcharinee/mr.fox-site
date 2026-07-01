@@ -53,7 +53,7 @@ export default async function AppDetailPage({ params }: Props) {
 
   const [links, relatedRows] = await Promise.all([
     getDownloadLinks(appRow.id),
-    getRelatedApplications(appRow.platformTypeId, slug),
+    getRelatedApplications(slug),
   ]);
   const related = relatedRows.map((r) => localizeApp(locale, r));
   const platformTypeName = app.platformTypeSlug
@@ -96,6 +96,7 @@ export default async function AppDetailPage({ params }: Props) {
           appId={app.id}
           links={links}
           showDetailsLink={false}
+          align="center"
         />
 
         <div className="mt-10 grid gap-6 lg:grid-cols-2">

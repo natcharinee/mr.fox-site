@@ -276,11 +276,7 @@ export async function getDownloadLinks(applicationId: number) {
   return Array.from(byType.values());
 }
 
-export async function getRelatedApplications(
-  platformTypeId: number,
-  excludeSlug: string,
-  limit = 3,
-) {
+export async function getRelatedApplications(excludeSlug: string) {
   return db
     .select({
       name: applications.name,
@@ -290,14 +286,9 @@ export async function getRelatedApplications(
     .from(applications)
     .innerJoin(platformTypes, eq(applications.platformTypeId, platformTypes.id))
     .where(
-      and(
-        eq(applications.platformTypeId, platformTypeId),
-        eq(applications.published, true),
-        ne(applications.slug, excludeSlug),
-      ),
+      and(eq(applications.published, true), ne(applications.slug, excludeSlug)),
     )
-    .orderBy(applications.sortOrder)
-    .limit(limit);
+    .orderBy(applications.sortOrder);
 }
 
 export async function getShowcaseFeatures() {
