@@ -2,6 +2,12 @@ import { Sparkles, Trophy, Users, type LucideIcon } from "lucide-react";
 
 export const CATEGORY_ORDER = ["creator", "community", "contest"] as const;
 
+export const CATEGORY_IMAGE: Record<(typeof CATEGORY_ORDER)[number], string> = {
+  creator: "/platforms/ecosystem/creator.png",
+  community: "/platforms/ecosystem/community.png",
+  contest: "/platforms/ecosystem/contest.png",
+};
+
 export type CategoryTheme = {
   icon: LucideIcon;
   header: string;

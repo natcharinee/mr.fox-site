@@ -2,9 +2,11 @@ import { ArrowRight } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { LinkButton } from "@/components/ui/link-button";
 import {
+  CATEGORY_IMAGE,
   CATEGORY_ORDER,
   CATEGORY_THEME,
 } from "@/components/platforms/platform-category-theme";
+import { ContentImage } from "@/components/ui/content-image";
 import { isActivePlatformTypeSlug } from "@/lib/platform-type-slugs";
 import { cn } from "@/lib/utils";
 import type { ReactNode } from "react";
@@ -95,6 +97,7 @@ function CategoryCard({
 }) {
   const theme = CATEGORY_THEME[slug];
   const Icon = theme?.icon;
+  const imageSrc = CATEGORY_IMAGE[slug as keyof typeof CATEGORY_IMAGE];
 
   return (
     <article
@@ -106,41 +109,58 @@ function CategoryCard({
     >
       <div
         className={cn(
-          "relative px-5 py-5 sm:px-6 sm:py-6",
-          "border-b border-white/8 md:w-[min(100%,280px)] md:shrink-0 md:self-stretch md:border-b-0 md:border-r md:border-white/8 lg:w-72",
+          "relative flex min-h-0 flex-row items-stretch",
+          "border-b border-white/8 md:w-[min(100%,400px)] md:shrink-0 md:self-stretch md:border-b-0 md:border-r md:border-white/8 lg:w-[440px]",
           theme?.header,
         )}
       >
-        <div className="flex items-start gap-4">
-          {Icon ? (
-            <div
-              className={cn(
-                "flex size-12 shrink-0 items-center justify-center rounded-xl ring-1 ring-white/10 sm:size-14 sm:rounded-2xl",
-                theme?.iconWrap,
-              )}
-            >
-              <Icon className="size-6 sm:size-7" aria-hidden />
-            </div>
-          ) : null}
-          <div className="min-w-0 flex-1">
-            <div className="flex flex-wrap items-center gap-2.5">
-              <h3 className="font-display text-lg font-bold uppercase tracking-wide text-[var(--vulpine-on-surface)] sm:text-xl">
-                {category.name}
-              </h3>
-              <span
+        <div className="relative min-h-[120px] w-32 shrink-0 self-stretch overflow-hidden sm:w-40 md:w-44 lg:w-52">
+          <ContentImage
+            src={imageSrc}
+            alt={category.name}
+            fill
+            sizes="(max-width: 768px) 128px, 208px"
+            fit="cover"
+            className="object-cover"
+          />
+          <div
+            className="pointer-events-none absolute inset-0 bg-gradient-to-r from-transparent via-[rgba(18,20,20,0.15)] to-[rgba(18,20,20,0.88)]"
+            aria-hidden
+          />
+        </div>
+
+        <div className="flex min-w-0 flex-1 items-center px-4 py-4 sm:px-5 sm:py-5">
+          <div className="flex min-w-0 items-start gap-3 sm:gap-4">
+            {Icon ? (
+              <div
                 className={cn(
-                  "vulpine-label rounded-lg border px-2.5 py-1 text-xs tabular-nums sm:text-sm",
+                  "flex size-11 shrink-0 items-center justify-center rounded-xl ring-1 ring-white/10 sm:size-12 sm:rounded-2xl",
                   theme?.iconWrap,
                 )}
               >
-                {modulesLabel}
-              </span>
-            </div>
-            {category.description ? (
-              <p className="mt-2.5 text-sm leading-relaxed text-[var(--vulpine-on-surface-variant)] sm:text-base">
-                {category.description}
-              </p>
+                <Icon className="size-5 sm:size-6" aria-hidden />
+              </div>
             ) : null}
+            <div className="min-w-0 flex-1">
+              <div className="flex flex-wrap items-center gap-2">
+                <h3 className="font-display text-base font-bold uppercase tracking-wide text-[var(--vulpine-on-surface)] sm:text-lg">
+                  {category.name}
+                </h3>
+                <span
+                  className={cn(
+                    "vulpine-label rounded-lg border px-2 py-0.5 text-[10px] tabular-nums sm:text-xs",
+                    theme?.iconWrap,
+                  )}
+                >
+                  {modulesLabel}
+                </span>
+              </div>
+              {category.description ? (
+                <p className="mt-2 text-xs leading-relaxed text-[var(--vulpine-on-surface-variant)] sm:text-sm">
+                  {category.description}
+                </p>
+              ) : null}
+            </div>
           </div>
         </div>
       </div>

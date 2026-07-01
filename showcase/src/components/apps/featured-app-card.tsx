@@ -18,7 +18,7 @@ type FeaturedAppCardProps = {
     featuredPosterUrl?: string | null;
     featuredPosterFocus?: string | null;
   };
-  featuredLabel: string;
+  featuredLabel?: string;
   downloadLabel: string;
   links: { type: string; url: string }[];
   className?: string;
@@ -49,7 +49,7 @@ export function FeaturedAppCard({
       <div
         className={cn(
           "relative w-full overflow-hidden bg-black",
-          compactBelowLg ? "aspect-[16/10] lg:aspect-[3/4]" : "aspect-[3/4]",
+          compactBelowLg ? "aspect-[16/10] lg:aspect-[4/5]" : "aspect-[4/5]",
         )}
       >
         {posterSrc ? (
@@ -58,8 +58,8 @@ export function FeaturedAppCard({
             fill
             sizes={
               compactBelowLg
-                ? "(max-width: 1024px) 100vw, 50vw"
-                : "(max-width: 1024px) 100vw, 50vw"
+                ? "(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                : "(max-width: 1024px) 100vw, 33vw"
             }
             objectPosition={posterFocus}
             fit="cover"
@@ -82,16 +82,18 @@ export function FeaturedAppCard({
           </div>
         )}
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-[var(--vulpine-background)] to-transparent opacity-90" />
-        <span
-          className={cn(
-            "vulpine-label absolute rounded-lg bg-[var(--vulpine-primary)] text-[var(--vulpine-on-primary)] shadow-[0_0_10px_rgba(255,184,0,0.5)]",
-            compactBelowLg
-              ? "top-3 right-3 px-1.5 py-0.5 text-[10px] lg:top-4 lg:right-4 lg:px-2 lg:text-xs"
-              : "top-4 right-4 px-2 py-0.5 text-xs",
-          )}
-        >
-          {featuredLabel}
-        </span>
+        {featuredLabel ? (
+          <span
+            className={cn(
+              "vulpine-label absolute rounded-lg bg-[var(--vulpine-primary)] text-[var(--vulpine-on-primary)] shadow-[0_0_10px_rgba(255,184,0,0.5)]",
+              compactBelowLg
+                ? "top-3 right-3 px-1.5 py-0.5 text-[10px] lg:top-4 lg:right-4 lg:px-2 lg:text-xs"
+                : "top-4 right-4 px-2 py-0.5 text-xs",
+            )}
+          >
+            {featuredLabel}
+          </span>
+        ) : null}
       </div>
 
       <div className={cn("relative", compactBelowLg ? "p-4 lg:p-6" : "p-6")}>

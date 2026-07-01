@@ -16,16 +16,19 @@ import {
   localizeNews,
   localizePlatform,
 } from "@/lib/content-i18n";
+import { compareAppsByPosterPriority } from "@/lib/app-poster";
 import {
   getCategories,
+  getApplications,
   getCoreFeatures,
   getDownloadLinks,
-  getFeaturedApplications,
   getLatestNews,
   getPlatformTypes,
 } from "@/lib/queries";
 
 export const dynamic = "force-dynamic";
+
+const HOMEPAGE_APPS_LIMIT = 12;
 
 type Props = { params: Promise<{ locale: string }> };
 
@@ -36,27 +39,36 @@ export default async function HomePage({ params }: Props) {
   const tc = await getTranslations("common");
   const tNews = await getTranslations("news");
 
-  const [categories, platformTypes, featuredApps, coreFeatures, latestNews] =
+  const [categories, platformTypes, allApps, coreFeatures, latestNews] =
     await Promise.all([
       getCategories(),
       getPlatformTypes(),
-      getFeaturedApplications(),
+      getApplications(),
       getCoreFeatures(),
       getLatestNews(3),
     ]);
 
   const localizedCategories = categories.map((c) => localizeCategory(locale, c));
   const localizedPlatforms = platformTypes.map((p) => localizePlatform(locale, p));
-  const localizedApps = featuredApps.map((a) => localizeApp(locale, a));
+  const localizedApps = allApps.map((a) => localizeApp(locale, a));
   const localizedFeatures = coreFeatures.map((f) => localizeFeature(locale, f));
   const localizedNews = latestNews.map((n) => localizeNews(locale, n));
 
-  const appsWithLinks = await Promise.all(
-    localizedApps.map(async (app) => ({
-      ...app,
-      links: await getDownloadLinks(app.id),
-    })),
-  );
+  const appsWithLinks = (
+    await Promise.all(
+      localizedApps.map(async (app) => ({
+        ...app,
+        links: await getDownloadLinks(app.id),
+      })),
+    )
+  )
+    .sort((a, b) => {
+      const posterOrder = compareAppsByPosterPriority(a, b);
+      if (posterOrder !== 0) return posterOrder;
+      if (a.featured !== b.featured) return a.featured ? -1 : 1;
+      return a.sortOrder - b.sortOrder;
+    })
+    .slice(0, HOMEPAGE_APPS_LIMIT);
 
   return (
     <>
@@ -80,7 +92,7 @@ export default async function HomePage({ params }: Props) {
         architectureLabel={t("ecosystemArchitecture")}
         includesLabel={t("ecosystemIncludes")}
         viewPlatformLabel={t("ecosystemViewPlatform")}
-        viewAllLabel={t("viewAll")}
+        viewAllLabel={t("ecosystemViewAll")}
         modulesLabelFor={(count) => t("ecosystemModules", { count })}
         categories={localizedCategories}
         platformTypes={localizedPlatforms}
@@ -97,20 +109,20 @@ export default async function HomePage({ params }: Props) {
             </h2>
             <p className="mt-2 text-[var(--vulpine-on-surface-variant)]">{t("featuredAppsDesc")}</p>
           </div>
-          <div className="grid grid-cols-1 gap-4 lg:grid-cols-2 lg:gap-6">
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 lg:gap-6">
             {appsWithLinks.length > 0 ? (
               appsWithLinks.map((app) => (
                 <FeaturedAppCard
                   key={app.slug}
                   app={app}
-                  featuredLabel={tc("featured")}
+                  featuredLabel={app.featured ? tc("featured") : undefined}
                   downloadLabel={t("downloadApps")}
                   links={app.links}
                   compactBelowLg
                 />
               ))
             ) : (
-              <p className="text-[var(--vulpine-on-surface-variant)] lg:col-span-2">
+              <p className="text-[var(--vulpine-on-surface-variant)] lg:col-span-3">
                 {t("featuredAppsEmpty")}
               </p>
             )}
