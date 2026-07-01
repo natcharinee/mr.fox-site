@@ -18,13 +18,14 @@ import {
 } from "@/lib/content-i18n";
 import { compareAppsByPosterPriority } from "@/lib/app-poster";
 import {
-  getCategories,
   getApplications,
+  getCategories,
   getCoreFeatures,
   getDownloadLinks,
   getLatestNews,
   getPlatformTypes,
 } from "@/lib/queries";
+import { CATEGORY_ORDER } from "@/components/platforms/platform-category-theme";
 
 export const dynamic = "force-dynamic";
 
@@ -38,15 +39,48 @@ export default async function HomePage({ params }: Props) {
   const t = await getTranslations("home");
   const tc = await getTranslations("common");
   const tNews = await getTranslations("news");
+  const tPlatforms = await getTranslations("platforms");
+  const platformsOverview = tPlatforms.raw("overview") as {
+    types: Array<{
+      slug: string;
+      categorySlug: string;
+      example: string;
+      permissions: Array<{
+        label: string;
+        value: "yes" | "no" | "optional" | "contestant";
+      }>;
+    }>;
+    valueLabels: {
+      yes: string;
+      no: string;
+      optional: string;
+      contestant: string;
+    };
+  };
+  const typeDetails = tPlatforms.raw("typeDetails") as Record<
+    string,
+    { suitableFor?: string[] }
+  >;
 
-  const [categories, platformTypes, allApps, coreFeatures, latestNews] =
+  const [categories, platformTypes, allApps, coreFeatures, latestNews, ...categoryApps] =
     await Promise.all([
       getCategories(),
       getPlatformTypes(),
       getApplications(),
       getCoreFeatures(),
       getLatestNews(3),
+      ...CATEGORY_ORDER.map((slug) => getApplications({ categorySlug: slug })),
     ]);
+
+  const sampleAppsByCategory = Object.fromEntries(
+    CATEGORY_ORDER.map((slug, index) => [
+      slug,
+      categoryApps[index]!.slice(0, 6).map((app) => ({
+        slug: app.slug,
+        name: app.name,
+      })),
+    ]),
+  );
 
   const localizedCategories = categories.map((c) => localizeCategory(locale, c));
   const localizedPlatforms = platformTypes.map((p) => localizePlatform(locale, p));
@@ -93,9 +127,16 @@ export default async function HomePage({ params }: Props) {
         includesLabel={t("ecosystemIncludes")}
         viewPlatformLabel={t("ecosystemViewPlatform")}
         viewAllLabel={t("ecosystemViewAll")}
+        capabilitiesLabel={t("ecosystemCapabilities")}
+        suitableForLabel={t("ecosystemSuitableFor")}
+        sampleAppsLabel={t("ecosystemSampleApps")}
+        permissionLabels={platformsOverview.valueLabels}
         modulesLabelFor={(count) => t("ecosystemModules", { count })}
         categories={localizedCategories}
         platformTypes={localizedPlatforms}
+        catalogTypes={platformsOverview.types}
+        typeDetails={typeDetails}
+        sampleAppsByCategory={sampleAppsByCategory}
       />
 
       <section className="px-4 py-16 md:px-16 md:py-24">

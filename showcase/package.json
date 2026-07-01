@@ -4,6 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "dev:clean": "bash scripts/dev.sh",
+    "dev:prod": "bash scripts/dev.sh prod",
     "preview": "next dev",
     "db:local": "docker compose -f ../docker-compose.yml up -d postgres",
     "dev:setup": "npm run db:local && sleep 3 && npm run db:push && npm run db:seed",
