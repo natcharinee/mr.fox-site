@@ -114,9 +114,8 @@ export function Header({ variant = "brand" }: HeaderProps) {
       <div className="mx-auto h-14 max-w-[1200px] px-3 sm:h-16 sm:px-4 md:px-10 lg:px-12">
         {/* Mobile & tablet */}
         <div className="relative flex h-full items-center lg:hidden">
-          <div className="z-10 flex shrink-0 items-center gap-1.5 sm:gap-2">
+          <div className="z-10 shrink-0">
             <MobileNav items={NAV} isBrand={isBrand} />
-            <LocaleSwitcher inverted={isBrand} compact />
           </div>
 
           <Link

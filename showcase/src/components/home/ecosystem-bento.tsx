@@ -138,12 +138,12 @@ function CategoryCard({
     >
       <div
         className={cn(
-          "relative flex min-h-0 flex-col",
-          "order-2 border-b border-white/10 md:order-1 md:w-[min(100%,380px)] md:shrink-0 md:self-stretch md:border-b-0 md:border-r md:border-white/10 lg:w-[420px]",
+          "contents md:relative md:flex md:min-h-0 md:flex-col",
+          "md:w-[min(100%,380px)] md:shrink-0 md:self-stretch md:border-r md:border-white/10 lg:w-[420px]",
           theme?.header,
         )}
       >
-        <div className="flex flex-1 flex-col justify-center px-5 py-5 sm:px-6 sm:py-6">
+        <div className="order-1 flex flex-col justify-center border-b border-white/10 px-5 py-5 sm:px-6 sm:py-6 md:border-b-0">
           <div className="flex items-start gap-3.5 sm:gap-4">
             {Icon ? (
               <div
@@ -178,7 +178,7 @@ function CategoryCard({
           </div>
         </div>
 
-        <div className="relative mt-auto aspect-[16/10] w-full min-h-[148px] overflow-hidden sm:min-h-[168px]">
+        <div className="relative order-2 aspect-[16/10] w-full min-h-[148px] overflow-hidden sm:min-h-[168px] md:mt-auto">
           <ContentImage
             src={imageSrc}
             alt={category.name}
@@ -198,7 +198,7 @@ function CategoryCard({
         </div>
       </div>
 
-      <div className="relative order-1 flex min-h-0 min-w-0 flex-1 flex-col bg-black/10 px-5 py-5 sm:px-6 sm:py-6 md:order-2">
+      <div className="relative order-3 flex min-h-0 min-w-0 flex-1 flex-col bg-black/10 px-5 py-5 sm:px-6 sm:py-6 md:order-none">
         <div
           className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_100%_0%,rgba(255,184,0,0.07),transparent_55%)]"
           aria-hidden
