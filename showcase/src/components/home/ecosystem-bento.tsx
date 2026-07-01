@@ -139,29 +139,10 @@ function CategoryCard({
       <div
         className={cn(
           "relative flex min-h-0 flex-col",
-          "border-b border-white/10 md:w-[min(100%,380px)] md:shrink-0 md:self-stretch md:border-b-0 md:border-r md:border-white/10 lg:w-[420px]",
+          "order-2 border-b border-white/10 md:order-1 md:w-[min(100%,380px)] md:shrink-0 md:self-stretch md:border-b-0 md:border-r md:border-white/10 lg:w-[420px]",
           theme?.header,
         )}
       >
-        <div className="relative aspect-[16/10] w-full min-h-[148px] overflow-hidden sm:min-h-[168px]">
-          <ContentImage
-            src={imageSrc}
-            alt={category.name}
-            fill
-            sizes="(max-width: 768px) 100vw, 420px"
-            fit="cover"
-            className="object-cover"
-          />
-          <div
-            className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[rgba(12,14,14,0.92)] via-[rgba(12,14,14,0.15)] to-transparent"
-            aria-hidden
-          />
-          <div
-            className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-white/10"
-            aria-hidden
-          />
-        </div>
-
         <div className="flex flex-1 flex-col justify-center px-5 py-5 sm:px-6 sm:py-6">
           <div className="flex items-start gap-3.5 sm:gap-4">
             {Icon ? (
@@ -196,9 +177,28 @@ function CategoryCard({
             </div>
           </div>
         </div>
+
+        <div className="relative mt-auto aspect-[16/10] w-full min-h-[148px] overflow-hidden sm:min-h-[168px]">
+          <ContentImage
+            src={imageSrc}
+            alt={category.name}
+            fill
+            sizes="(max-width: 768px) 100vw, 420px"
+            fit="cover"
+            className="object-cover"
+          />
+          <div
+            className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[rgba(12,14,14,0.92)] via-[rgba(12,14,14,0.15)] to-transparent"
+            aria-hidden
+          />
+          <div
+            className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-white/10"
+            aria-hidden
+          />
+        </div>
       </div>
 
-      <div className="relative flex min-h-0 min-w-0 flex-1 flex-col bg-black/10 px-5 py-5 sm:px-6 sm:py-6">
+      <div className="relative order-1 flex min-h-0 min-w-0 flex-1 flex-col bg-black/10 px-5 py-5 sm:px-6 sm:py-6 md:order-2">
         <div
           className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_100%_0%,rgba(255,184,0,0.07),transparent_55%)]"
           aria-hidden

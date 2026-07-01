@@ -48,8 +48,8 @@ export function FeaturedAppCard({
     >
       <div
         className={cn(
-          "relative w-full overflow-hidden bg-black",
-          compactBelowLg ? "aspect-[16/10] lg:aspect-[4/5]" : "aspect-[4/5]",
+          "relative w-full overflow-hidden bg-[var(--fox-charcoal)]",
+          "aspect-[4/5]",
         )}
       >
         {posterSrc ? (
@@ -62,9 +62,9 @@ export function FeaturedAppCard({
                 : "(max-width: 1024px) 100vw, 33vw"
             }
             objectPosition={posterFocus}
-            fit="cover"
+            fit="contain"
             unoptimized={isUploadedMediaUrl(posterSrc)}
-            className="transition-all duration-700 group-hover:scale-105 grayscale-[0.15] group-hover:grayscale-0"
+            className="transition-all duration-700 group-hover:scale-[1.02] grayscale-[0.15] group-hover:grayscale-0"
           />
         ) : (
           <div className="flex h-full flex-col items-center justify-center gap-4 bg-gradient-to-br from-[var(--fox-charcoal)] via-[#1a1a1a] to-black p-8 text-center">

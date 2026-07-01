@@ -113,10 +113,16 @@ export function Header({ variant = "brand" }: HeaderProps) {
     >
       <div className="mx-auto h-14 max-w-[1200px] px-3 sm:h-16 sm:px-4 md:px-10 lg:px-12">
         {/* Mobile & tablet */}
-        <div className="flex h-full items-center gap-2 lg:hidden">
-          <MobileNav items={NAV} isBrand={isBrand} />
+        <div className="relative flex h-full items-center lg:hidden">
+          <div className="z-10 flex shrink-0 items-center gap-1.5 sm:gap-2">
+            <MobileNav items={NAV} isBrand={isBrand} />
+            <LocaleSwitcher inverted={isBrand} compact />
+          </div>
 
-          <Link href="/" className="flex min-w-0 flex-1 items-center justify-center brightness-110">
+          <Link
+            href="/"
+            className="absolute top-1/2 left-1/2 z-[1] -translate-x-1/2 -translate-y-1/2 brightness-110 transition-opacity hover:opacity-90"
+          >
             <BrandLogo
               priority
               wordmarkClassName="h-6 sm:h-7"
@@ -124,12 +130,14 @@ export function Header({ variant = "brand" }: HeaderProps) {
             />
           </Link>
 
-          <HeaderActions
-            isBrand={isBrand}
-            searchLabel={t("search")}
-            downloadLabel={t("download")}
-            showLocale={false}
-          />
+          <div className="z-10 ml-auto">
+            <HeaderActions
+              isBrand={isBrand}
+              searchLabel={t("search")}
+              downloadLabel={t("download")}
+              showLocale={false}
+            />
+          </div>
         </div>
 
         {/* Desktop — เมนูกลางระหว่างโลโก้กับ actions */}

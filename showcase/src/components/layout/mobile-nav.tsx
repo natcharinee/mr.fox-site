@@ -11,7 +11,6 @@ import {
 } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { BrandLogo } from "@/components/brand/brand-logo";
-import { LocaleSwitcher } from "@/components/layout/locale-switcher";
 import { buttonVariants } from "@/components/ui/button";
 import {
   Sheet,
@@ -89,9 +88,6 @@ export function MobileNav({ items, isBrand = true }: MobileNavProps) {
                 Mr.FOX
               </SheetDescription>
             </div>
-          </div>
-          <div className="mt-4">
-            <LocaleSwitcher inverted={isBrand} fullWidth />
           </div>
         </SheetHeader>
 
