@@ -21,8 +21,8 @@ export function NewsMedia({
   return (
     <div
       className={cn(
-        "relative overflow-hidden",
-        fallback ? "bg-[var(--fox-gold)]" : "bg-[var(--fox-charcoal)]",
+        "relative overflow-hidden bg-black",
+        fallback && "bg-[var(--fox-gold)]",
         className,
       )}
     >
@@ -30,8 +30,13 @@ export function NewsMedia({
         src={thumbnailUrl}
         alt={title}
         fill
-        sizes="(max-width: 768px) 100vw, 33vw"
-        className={cn(fallback && "p-8", imageClassName)}
+        fit={fallback ? "contain" : "cover"}
+        quality={90}
+        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 420px"
+        className={cn(
+          fallback ? "object-contain p-8" : "object-cover",
+          imageClassName,
+        )}
       />
     </div>
   );

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { ContentImage } from "@/components/ui/content-image";
 import {
   isCompanyLogo,
@@ -30,21 +31,41 @@ export function AppMedia({
   return (
     <div
       className={cn(
-        "relative overflow-hidden",
+        "relative overflow-hidden rounded-2xl",
         fallback ? "bg-[var(--fox-gold)]" : "bg-black",
         className,
       )}
     >
-      <ContentImage
-        src={posterUrl}
-        alt={name}
-        fill
-        sizes="(max-width: 768px) 100vw, 33vw"
-        objectPosition={posterFocus}
-        fit={fit}
-        unoptimized={unoptimized}
-        className={cn(fallback && "p-8", imageClassName)}
-      />
+      {fit === "contain" && !fallback ? (
+        <div className="absolute inset-0 flex items-center justify-center p-3 sm:p-4">
+          <Image
+            src={resolved}
+            alt={name}
+            width={960}
+            height={960}
+            sizes="(max-width: 768px) 100vw, 720px"
+            unoptimized={unoptimized}
+            className={cn(
+              "h-auto max-h-full w-auto max-w-full rounded-2xl object-contain shadow-[0_8px_32px_rgba(0,0,0,0.35)]",
+              imageClassName,
+            )}
+            style={
+              posterFocus ? { objectPosition: posterFocus } : undefined
+            }
+          />
+        </div>
+      ) : (
+        <ContentImage
+          src={posterUrl}
+          alt={name}
+          fill
+          sizes="(max-width: 768px) 100vw, 33vw"
+          objectPosition={posterFocus}
+          fit={fit}
+          unoptimized={unoptimized}
+          className={cn(fallback && "p-8", "rounded-2xl", imageClassName)}
+        />
+      )}
     </div>
   );
 }

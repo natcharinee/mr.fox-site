@@ -69,7 +69,12 @@ export default async function AppDetailPage({ params }: Props) {
 
   return (
     <PageShell>
-      <PageHero title={app.name} description={app.description ?? undefined}>
+      <PageHero
+        title={app.name}
+        description={app.description ?? undefined}
+        backHref={`/apps#app-${app.slug}`}
+        backLabel={t("backToApps")}
+      >
         <div className="flex flex-wrap items-center gap-2">
           <Badge
             variant="outline"
@@ -88,7 +93,7 @@ export default async function AppDetailPage({ params }: Props) {
           posterUrl={app.featuredPosterUrl ?? app.posterUrl}
           posterFocus={app.featuredPosterFocus ?? app.posterFocus}
           name={app.name}
-          className="aspect-[21/9] rounded-2xl"
+          className="aspect-[21/9] overflow-hidden rounded-2xl"
         />
       </div>
 
@@ -196,7 +201,10 @@ export default async function AppDetailPage({ params }: Props) {
         ) : null}
 
         <div className="mt-10">
-          <Link href="/apps" className={`text-sm ${publicTheme.link}`}>
+          <Link
+            href={`/apps#app-${app.slug}`}
+            className={`text-sm ${publicTheme.link}`}
+          >
             ← {t("backToApps")}
           </Link>
         </div>

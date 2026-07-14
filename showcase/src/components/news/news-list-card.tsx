@@ -27,13 +27,17 @@ export function NewsListCard({
 }: NewsListCardProps) {
   return (
     <Link href={`/news/${slug}`} className="group block h-full">
-      <Card className={themedCard("flex h-full flex-col overflow-hidden")}>
+      <Card
+        className={themedCard(
+          "flex h-full flex-col gap-0 overflow-hidden pt-0 [--card-spacing:1rem]",
+        )}
+      >
         <NewsMedia
           thumbnailUrl={thumbnailUrl}
           title={title}
-          className="aspect-[16/10]"
+          className="aspect-[16/10] w-full shrink-0"
         />
-        <CardHeader className="flex-1">
+        <CardHeader className="flex-1 pt-4">
           <CardTitle className={`line-clamp-2 text-base ${publicTheme.cardTitle}`}>
             {title}
           </CardTitle>
@@ -48,7 +52,7 @@ export function NewsListCard({
             </CardDescription>
           ) : null}
         </CardHeader>
-        <div className="px-4 pb-4 pt-0">
+        <div className="px-4 pb-4 pt-2">
           <span className="inline-flex items-center gap-1.5 rounded-lg border border-[var(--vulpine-primary-container)]/40 bg-white/[0.04] px-3 py-1.5 text-sm font-semibold text-[var(--vulpine-primary-container)] transition-all group-hover:border-[var(--vulpine-primary-container)]/60 group-hover:bg-[var(--vulpine-primary-container)]/10">
             {readMoreLabel}
             <ArrowRight className="size-4" aria-hidden />

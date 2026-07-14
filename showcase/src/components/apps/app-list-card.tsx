@@ -35,9 +35,11 @@ export function AppListCard({
 
   return (
     <article
+      id={`app-${app.slug}`}
       className={cn(
         publicTheme.card,
-        "group flex flex-col gap-0 overflow-hidden p-0 transition-all hover:-translate-y-0.5 sm:flex-row sm:items-stretch",
+        "group flex scroll-mt-28 flex-col gap-0 overflow-hidden p-0 transition-all hover:-translate-y-0.5 sm:flex-row sm:items-stretch",
+        "data-[highlight=true]:ring-2 data-[highlight=true]:ring-[var(--vulpine-primary-container)]/60",
         theme.cardHover,
         className,
       )}

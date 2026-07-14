@@ -10,6 +10,7 @@ type ContentImageProps = {
   height?: number;
   sizes?: string;
   priority?: boolean;
+  quality?: number;
   unoptimized?: boolean;
   className?: string;
   fallbackClassName?: string;
@@ -26,6 +27,7 @@ export function ContentImage({
   height,
   sizes,
   priority,
+  quality,
   unoptimized,
   className,
   fallbackClassName,
@@ -49,6 +51,7 @@ export function ContentImage({
       height={height}
       sizes={sizes}
       priority={priority}
+      quality={quality}
       unoptimized={unoptimized}
       style={focusStyle}
       className={cn(

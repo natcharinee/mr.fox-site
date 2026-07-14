@@ -3,6 +3,7 @@ import { Input } from "@/components/ui/input";
 import { AppListCard } from "@/components/apps/app-list-card";
 import { PageHero } from "@/components/layout/page-hero";
 import { PageShell } from "@/components/layout/page-shell";
+import { ScrollToHash } from "@/components/layout/scroll-to-hash";
 import { publicTheme } from "@/components/layout/public-theme";
 import type { Locale } from "@/i18n/routing";
 import { localizeApp, localizeCategory, localizePlatform } from "@/lib/content-i18n";
@@ -73,6 +74,7 @@ export default async function AppsPage({
 
   return (
     <PageShell>
+      <ScrollToHash />
       <PageHero title={t("title")} description={t("subtitle")}>
         <form className="flex flex-wrap gap-3" action="/apps" method="get">
           <Input
