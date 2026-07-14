@@ -31,7 +31,7 @@ export function AppMedia({
     <div
       className={cn(
         "relative overflow-hidden",
-        fallback ? "bg-[var(--fox-gold)]" : "bg-[var(--fox-charcoal)]",
+        fallback ? "bg-[var(--fox-gold)]" : "bg-black",
         className,
       )}
     >

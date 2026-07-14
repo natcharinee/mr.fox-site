@@ -8,6 +8,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { AppGalleryPlaceholders } from "@/components/apps/app-gallery-placeholders";
 import { DownloadButtons } from "@/components/apps/download-buttons";
 import { AppMedia } from "@/components/apps/app-media";
 import { PageHero } from "@/components/layout/page-hero";
@@ -17,6 +18,7 @@ import { publicTheme, themedCard } from "@/components/layout/public-theme";
 import { CATEGORY_THEME } from "@/components/platforms/platform-category-theme";
 import type { Locale } from "@/i18n/routing";
 import { localizeApp, localizePlatform } from "@/lib/content-i18n";
+import { getAppGallery } from "@/lib/app-gallery";
 import { buildMetadata } from "@/lib/metadata";
 import { cn } from "@/lib/utils";
 import {
@@ -37,7 +39,7 @@ export async function generateMetadata({ params }: Props) {
   const localized = localizeApp(locale, app);
   return buildMetadata({
     title: localized.name,
-    description: localized.description ?? "",
+    description: localized.about || localized.description || "",
     path: `/apps/${slug}`,
     locale,
   });
@@ -99,19 +101,56 @@ export default async function AppDetailPage({ params }: Props) {
           align="center"
         />
 
-        <div className="mt-10 grid gap-6 lg:grid-cols-2">
-          <Card className={themedCard()}>
-            <CardHeader>
-              <CardTitle className={`text-base ${publicTheme.cardTitle}`}>
-                {t("platformType")}
-              </CardTitle>
-              <CardDescription className={publicTheme.cardDescription}>
-                <Link href={`/platforms/${app.platformTypeSlug}`} className={publicTheme.link}>
-                  {platformTypeName}
-                </Link>
-              </CardDescription>
-            </CardHeader>
-          </Card>
+        {app.about ? (
+          <section className="mt-12">
+            <SectionHeading title={t("about")} />
+            <article
+              className={cn(
+                "relative overflow-hidden rounded-2xl border border-white/10",
+                "bg-gradient-to-br from-[var(--vulpine-primary-container)]/[0.08] via-[rgba(18,20,20,0.55)] to-black/70",
+                "p-6 shadow-[0_4px_40px_rgba(0,0,0,0.25)] sm:p-8 md:p-10",
+              )}
+            >
+              <div
+                aria-hidden
+                className="pointer-events-none absolute -right-20 -top-24 size-64 rounded-full bg-[var(--vulpine-primary-container)]/15 blur-3xl"
+              />
+              <div className="relative space-y-5">
+                {app.style ? (
+                  <p className="vulpine-label text-[var(--vulpine-primary-container)]">
+                    {app.style}
+                  </p>
+                ) : null}
+                <p className="max-w-3xl text-base leading-[1.75] text-[var(--vulpine-on-surface)] sm:text-lg sm:leading-[1.8]">
+                  {app.about}
+                </p>
+              </div>
+            </article>
+          </section>
+        ) : null}
+
+        <AppGalleryPlaceholders
+          activitiesTitle={t("activities")}
+          videosTitle={t("videos")}
+          eventsTitle={t("events")}
+          placeholderLabel={t("mediaComingSoon")}
+          appName={app.name}
+          media={getAppGallery(app.slug)}
+        />
+
+        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {app.highlights ? (
+            <Card className={themedCard()}>
+              <CardHeader>
+                <CardTitle className={`text-base ${publicTheme.cardTitle}`}>
+                  {t("highlights")}
+                </CardTitle>
+                <CardDescription className={publicTheme.cardDescription}>
+                  {app.highlights}
+                </CardDescription>
+              </CardHeader>
+            </Card>
+          ) : null}
           {app.targetAudience ? (
             <Card className={themedCard()}>
               <CardHeader>
@@ -124,6 +163,21 @@ export default async function AppDetailPage({ params }: Props) {
               </CardHeader>
             </Card>
           ) : null}
+          <Card className={themedCard()}>
+            <CardHeader>
+              <CardTitle className={`text-base ${publicTheme.cardTitle}`}>
+                {t("platformType")}
+              </CardTitle>
+              <CardDescription className={publicTheme.cardDescription}>
+                <Link
+                  href={`/platforms/${app.platformTypeSlug}`}
+                  className={publicTheme.link}
+                >
+                  {platformTypeName}
+                </Link>
+              </CardDescription>
+            </CardHeader>
+          </Card>
         </div>
 
         {related.length > 0 ? (

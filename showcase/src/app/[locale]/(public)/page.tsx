@@ -133,7 +133,7 @@ export default async function HomePage({ params }: Props) {
 
       <section className="py-16 md:py-24">
         <PageWidth>
-          <div className="mb-12 border-l-2 border-[var(--vulpine-primary-container)] pl-6">
+          <div className="mb-12">
             <p className="vulpine-label mb-2 text-[var(--vulpine-primary-container)]">
               Deployed Modules
             </p>

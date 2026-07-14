@@ -62,6 +62,13 @@
     "related": "Related Applications",
     "platformType": "Platform Type",
     "targetAudience": "Target Audience",
+    "about": "About this app",
+    "style": "Style / Genre",
+    "highlights": "Highlights",
+    "activities": "Activities",
+    "videos": "Videos",
+    "events": "Events",
+    "mediaComingSoon": "Coming soon",
     "comingSoon": "Coming soon",
     "viewDetails": "Details",
     "downloadLabel": "Download"

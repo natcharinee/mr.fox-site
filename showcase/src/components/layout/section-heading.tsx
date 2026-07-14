@@ -10,7 +10,7 @@ export function SectionHeading({
   eyebrow?: string;
 }) {
   return (
-    <div className={cn("mb-8 border-l-2 border-[var(--vulpine-primary-container)] pl-6", className)}>
+    <div className={cn("mb-8", className)}>
       {eyebrow ? (
         <p className="vulpine-label mb-2 text-[var(--vulpine-primary-container)]">{eyebrow}</p>
       ) : null}

@@ -24,44 +24,37 @@ type AppListCardProps = {
   className?: string;
 };
 
-const CATEGORY_BORDER: Record<string, string> = {
-  creator: "border-l-[var(--vulpine-primary-container)]",
-  community: "border-l-[var(--vulpine-primary-container)]/80",
-  contest: "border-l-[var(--vulpine-primary-container)]/60",
-};
-
 export function AppListCard({
   app,
   links,
   downloadLabel,
   className,
 }: AppListCardProps) {
-  const categoryKey = app.categorySlug ?? "creator";
-  const theme = CATEGORY_THEME[categoryKey] ?? CATEGORY_THEME.creator;
-  const categoryBorder = CATEGORY_BORDER[categoryKey] ?? CATEGORY_BORDER.creator;
+  const theme =
+    CATEGORY_THEME[app.categorySlug ?? "creator"] ?? CATEGORY_THEME.creator;
 
   return (
     <article
       className={cn(
         publicTheme.card,
-        "group flex flex-col gap-0 overflow-hidden border-l-[3px] p-0 transition-all hover:-translate-y-0.5 sm:flex-row sm:items-stretch",
-        categoryBorder,
+        "group flex flex-col gap-0 overflow-hidden p-0 transition-all hover:-translate-y-0.5 sm:flex-row sm:items-stretch",
         theme.cardHover,
         className,
       )}
     >
       <Link
         href={`/apps/${app.slug}`}
-        className="relative shrink-0 self-center p-4 pb-0 sm:self-stretch sm:p-5 sm:pr-0"
+        className="relative flex shrink-0 items-center justify-center self-center py-4 pr-4 pl-3 pb-0 sm:py-5 sm:pr-0 sm:pl-4"
         tabIndex={-1}
         aria-hidden
       >
         <AppMedia
           posterUrl={app.featuredPosterUrl ?? app.posterUrl}
-          posterFocus={app.featuredPosterFocus ?? app.posterFocus}
+          posterFocus={app.featuredPosterFocus ?? app.posterFocus ?? "42% 50%"}
           name={app.name}
+          fit="cover"
           className="aspect-square w-[7.5rem] rounded-2xl border border-[var(--vulpine-outline-variant)]/35 bg-[var(--vulpine-surface-container)] shadow-[0_8px_32px_rgba(0,0,0,0.25)] transition-transform duration-300 group-hover:scale-[1.02] sm:w-32 lg:w-36"
-          imageClassName="transition-transform duration-300 group-hover:scale-105"
+          imageClassName="object-cover transition-transform duration-300 group-hover:scale-105"
         />
       </Link>
 

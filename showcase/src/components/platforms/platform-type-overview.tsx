@@ -114,8 +114,6 @@ export function PlatformTypeOverview({
                 key={paragraph.slice(0, 40)}
                 className={cn(
                   "rounded-2xl border border-white/10 bg-white/[0.03] p-5 sm:p-6",
-                  "border-l-4",
-                  theme?.borderAccent,
                 )}
               >
                 <p className="text-sm leading-relaxed text-[var(--vulpine-on-surface-variant)] sm:text-base">

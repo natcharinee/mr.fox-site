@@ -131,17 +131,27 @@ export function localizeApp<
     slug: string;
     name: string;
     description?: string | null;
+    about?: string | null;
+    style?: string | null;
+    highlights?: string | null;
     targetAudience?: string | null;
     platformTypeName?: string;
     platformTypeSlug?: string;
     categoryName?: string;
     categorySlug?: string;
   },
->(locale: Locale, row: T): T {
-  if (locale === "th") return row;
+>(locale: Locale, row: T): T & {
+  about: string;
+  style: string;
+  highlights: string;
+} {
   const localized = {
     ...row,
+    name: contentText(locale, "apps", row.slug, "name", row.name),
     description: contentText(locale, "apps", row.slug, "description", row.description),
+    about: contentText(locale, "apps", row.slug, "about", row.about),
+    style: contentText(locale, "apps", row.slug, "style", row.style),
+    highlights: contentText(locale, "apps", row.slug, "highlights", row.highlights),
     targetAudience: contentText(
       locale,
       "apps",
@@ -151,24 +161,26 @@ export function localizeApp<
     ),
   };
 
-  if (row.platformTypeSlug && row.platformTypeName) {
-    localized.platformTypeName = contentText(
-      locale,
-      "platforms",
-      row.platformTypeSlug,
-      "name",
-      row.platformTypeName,
-    );
-  }
+  if (locale !== "th") {
+    if (row.platformTypeSlug && row.platformTypeName) {
+      localized.platformTypeName = contentText(
+        locale,
+        "platforms",
+        row.platformTypeSlug,
+        "name",
+        row.platformTypeName,
+      );
+    }
 
-  if (row.categorySlug && row.categoryName) {
-    localized.categoryName = contentText(
-      locale,
-      "categories",
-      row.categorySlug,
-      "name",
-      row.categoryName,
-    );
+    if (row.categorySlug && row.categoryName) {
+      localized.categoryName = contentText(
+        locale,
+        "categories",
+        row.categorySlug,
+        "name",
+        row.categoryName,
+      );
+    }
   }
 
   return localized;

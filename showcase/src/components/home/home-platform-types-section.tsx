@@ -55,7 +55,7 @@ export function HomePlatformTypesSection({
     <section className="border-y border-white/5 bg-[var(--vulpine-surface-container-low)]/30 py-16 md:py-24">
       <PageWidth>
         <div className="mb-12 flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
-          <div className="border-l-2 border-[var(--vulpine-primary-container)] pl-6">
+          <div>
             <p className="vulpine-label mb-2 text-[var(--vulpine-primary-container)]">
               Standard Templates
             </p>

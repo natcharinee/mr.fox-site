@@ -172,52 +172,88 @@
   },
   "apps": {
     "foxy": {
-      "description": "Mr.FOX 旗舰 18+ 创作者站点 — 全面支持投票、礼物、直播与变现",
+      "description": "Mr.FOX 旗舰 Creator Economy 平台 — 投票、礼物、直播",
+      "about": "FOXY 面向希望把内容做成自己生意的创作者，提供完整的变现、粉丝管理与私域社区工具。会员、直播、聊天、礼物与精品内容，都为可持续成长与充分回报而设计。",
+      "style": "Premium Creator Platform",
+      "highlights": "会员 · 直播 · 聊天 · 礼物 · 精品内容",
       "targetAudience": "创作者与粉丝"
     },
     "cupe": {
       "description": "18+ Cup E 创作者站点 — 投票、送礼与直播",
-      "targetAudience": "创作者与粉丝"
+      "about": "CupE 是模特、摄影师与时尚创作者的社区，可建立作品集、展示成果并连接同行粉丝与合作者。在塑造形象与拓展人脉之外，还能从作品变现并与粉丝建立长期关系。",
+      "style": "Models & Photographers Community",
+      "highlights": "作品集 · 人脉 · 作品变现",
+      "targetAudience": "模特、摄影师与时尚创作者"
     },
     "cliq": {
       "description": "18+ CLIQ 风格创作者站点 — 拉近创作者与粉丝的距离",
-      "targetAudience": "创作者与粉丝"
+      "about": "CLIQ 服务礼仪小姐、品牌大使、主持与活动人才，帮助打造专业档案、拓展工作机会，并更方便地连接雇主，同时提供内容、粉丝增长与长期变现空间。",
+      "style": "Brand Ambassadors & Event Talent",
+      "highlights": "专业档案 · 雇主 · 工作机会",
+      "targetAudience": "品牌大使、主持与活动人才"
     },
     "himbo": {
       "description": "18+ Himbo 社区单人创作者站点 — 投票、礼物与直播",
-      "targetAudience": "创作者与粉丝"
+      "about": "Himbo 是男性创作者塑造形象、分享生活方式并通过优质内容连接粉丝的空间——时尚、健身、生活方式或娱乐。在创作之路的每个阶段都有完整的变现与成长工具。",
+      "style": "Male Creator Community",
+      "highlights": "生活方式 · 时尚 · 健身 · 娱乐",
+      "targetAudience": "男性创作者与粉丝"
     },
     "lesbie": {
       "description": "18+ 女同社区创作者站点 — 投票与礼物支持",
-      "targetAudience": "创作者与粉丝"
+      "about": "Lesbie 为希望表达自我、分享生活方式并与粉丝建立连接的女性提供开放友好的社区，并以会员、粉丝与特别内容的变现工具，支持创作者在自己的社区中稳健成长。",
+      "style": "Women's Creator Community",
+      "highlights": "会员 · 粉丝 · 特别内容",
+      "targetAudience": "女性创作者及其社区"
     },
     "tomboi": {
       "description": "18+ Tom 社区单人创作者站点 — 完整变现工具",
-      "targetAudience": "创作者与粉丝"
+      "about": "Tomboi 面向希望建立自己社区的汤帅哥创作者，便于分享故事、生活方式与作品，并通过粉丝变现，在理解身份与社区多样性的平台上成长。",
+      "style": "Tomboi Creator Community",
+      "highlights": "社区 · 生活方式 · 粉丝变现",
+      "targetAudience": "汤帅哥创作者与粉丝"
     },
     "bargirl": {
       "description": "18+ 酒吧女郎与演艺创作者站点 — 投票、礼物与直播",
-      "targetAudience": "创作者与粉丝"
+      "about": "BarGirl 服务希望打造个人品牌、扩大粉丝并安全变现的夜生活创作者——分享生活方式、与粉丝沟通或建立会员，工具一应俱全，方便经营自己的生意。",
+      "style": "Nightlife Creator Community",
+      "highlights": "个人品牌 · 会员 · 私密空间",
+      "targetAudience": "夜生活创作者与粉丝"
     },
     "silom": {
       "description": "18+ Silom 社区 — 每位成员均可发帖与互动",
-      "targetAudience": "社区成员"
+      "about": "Silom 是 LGBTQ+ 创作者与用户表达自我、创作内容并连接同好的社区，重视多样性、安全与作品变现，支持每个人自由建立自己的社区。",
+      "style": "Gay Creator Community",
+      "highlights": "多样性 · 安全 · 建设社区",
+      "targetAudience": "LGBTQ+ 创作者与用户"
     },
     "cosplay-plus": {
       "description": "多品类 Cosplay 创作者中心 — 多种风格汇聚一站",
-      "targetAudience": "Cosplay 创作者与粉丝"
+      "about": "Cosplay Plus 面向角色扮演者、创作者与同人文化爱好者，提供展示作品、建设社区与连接全国粉丝的空间，并可从内容、活动与粉丝支持中获得收入。",
+      "style": "Cosplay & Fandom Community",
+      "highlights": "展示 · 社区 · 活动 · 变现",
+      "targetAudience": "角色扮演者、创作者与同人粉丝"
     },
     "expat-idols": {
       "description": "18+ Expat Idols 创作者站点 — 投票、礼物与直播",
-      "targetAudience": "创作者与粉丝"
+      "about": "Expat Idols 面向在泰国的外籍创作者，或希望建立国际粉丝社区的人，让内容创作、粉丝沟通与变现更简单，并支持在本地与海外多元市场成长。",
+      "style": "International Creator Community",
+      "highlights": "国际社区 · 内容 · 变现",
+      "targetAudience": "外籍创作者与国际粉丝"
     },
     "beauty-queen": {
       "description": "Beauty Queen 赛事平台 — 投票与支持参赛者",
-      "targetAudience": "参赛者与粉丝"
+      "about": "Beauty Queen 面向选美参赛者、模特与美妆创作者，提供形象塑造、作品展示与同圈粉丝连接，以及变现与职业机会工具——从参赛者到公众人物。",
+      "style": "Pageant & Beauty Community",
+      "highlights": "形象 · 作品 · 职业机会",
+      "targetAudience": "选美、模特与美妆创作者"
     },
     "nak-sueksa": {
       "description": "18+ 学生社区 — 成员发帖、分享想法与交流",
-      "targetAudience": "学生与社区成员"
+      "about": "面向希望踏上创作者之路的学生——创作、积累粉丝并从自身能力变现，无论内容、生活方式或专长。社区帮助年轻人共同学习、成长并创造新机会。",
+      "style": "Student Creator Community",
+      "highlights": "起步创作 · 社区 · 新机会",
+      "targetAudience": "学生与年轻创作者"
     }
   },
   "news": {

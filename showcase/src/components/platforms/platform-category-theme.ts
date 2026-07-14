@@ -3,9 +3,9 @@ import { Sparkles, Trophy, Users, type LucideIcon } from "lucide-react";
 export const CATEGORY_ORDER = ["creator", "community", "contest"] as const;
 
 export const CATEGORY_IMAGE: Record<(typeof CATEGORY_ORDER)[number], string> = {
-  creator: "/platforms/ecosystem/creator.png",
-  community: "/platforms/ecosystem/community.png",
-  contest: "/platforms/ecosystem/contest.png",
+  creator: "/platforms/ecosystem/creator-live.png",
+  community: "/platforms/ecosystem/community-live.png",
+  contest: "/platforms/ecosystem/contest-live.png",
 };
 
 export type CategoryTheme = {

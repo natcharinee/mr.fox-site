@@ -322,7 +322,7 @@ const SAMPLE_APPS = [
     slug: "foxy",
     name: "FOXY",
     platformType: "creator-specific",
-    description: "ไซต์ Creator 18+ หลักของ Mr.FOX — รองรับ Vote, Gift, Live และ monetization ครบ",
+    description: "แพลตฟอร์ม Creator Economy หลักของ Mr.FOX — รองรับ Vote, Gift, Live",
     targetAudience: "Creator และแฟนคลับ",
     featured: true,
     logoUrl: "/brand/mrfox-icon.png",

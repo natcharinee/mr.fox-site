@@ -149,51 +149,99 @@
   "apps": {
     "foxy": {
       "name": "FOXY",
-      "description": "Mr.FOX's flagship 18+ creator site — full Vote, Gift, Live, and monetization"
+      "description": "Mr.FOX's flagship Creator Economy platform — Vote, Gift, Live",
+      "about": "FOXY is a platform for creators who want to turn content into their own business — with end-to-end tools for monetization, fan management, and building a community in a private space. Membership, live shows, chat, gifts, and premium content are all designed so creators can grow sustainably and earn fully from their work.",
+      "style": "Premium Creator Platform",
+      "highlights": "Membership · Live · Chat · Gifts · Premium content",
+      "targetAudience": "Creators and fans"
     },
     "cupe": {
       "name": "CupE",
-      "description": "18+ creator site for Cup E content — vote, send gifts, and go live"
+      "description": "18+ creator site for Cup E content — vote, send gifts, and go live",
+      "about": "CupE is a community for models, photographers, and fashion creators — a place to build portfolios, showcase work, and connect with followers or collaborators in the same scene. Beyond identity and networking, CupE helps creators monetize their work and build lasting fan relationships on one platform.",
+      "style": "Models & Photographers Community",
+      "highlights": "Portfolios · Networking · Earnings from work",
+      "targetAudience": "Models, photographers, and fashion creators"
     },
     "cliq": {
       "name": "CLIQ",
-      "description": "18+ CLIQ creator site — connect creators with fans"
+      "description": "18+ CLIQ creator site — connect creators with fans",
+      "about": "CLIQ is for pretty girls, brand ambassadors, MCs, and event talent who want a professional profile, more job opportunities, and easier connections with employers — plus space to create content, grow followers, and earn from their skills long term.",
+      "style": "Brand Ambassadors & Event Talent",
+      "highlights": "Professional profiles · Employers · Job opportunities",
+      "targetAudience": "Brand ambassadors, MCs, and event talent"
     },
     "himbo": {
       "name": "Himbo",
-      "description": "18+ creator site for Himbo — Vote, Gift, and Live"
+      "description": "18+ creator site for Himbo — Vote, Gift, and Live",
+      "about": "Himbo is a space for male creators who want to build identity, share lifestyle, and connect with fans through quality content — fashion, fitness, lifestyle, or entertainment. Full tools for monetization and growth at every stage of the creator journey.",
+      "style": "Male Creator Community",
+      "highlights": "Lifestyle · Fashion · Fitness · Entertainment",
+      "targetAudience": "Male creators and fans"
     },
     "lesbie": {
       "name": "Lesbie",
-      "description": "18+ creator site for the Lesbian community — Vote and Gift support"
+      "description": "18+ creator site for the Lesbian community — Vote and Gift support",
+      "about": "Lesbie is a community for women who want space to express themselves, share lifestyle, and create content that connects with followers — open and welcoming — with tools to earn from members, fans, and special content so creators can grow steadily in their own community.",
+      "style": "Women's Creator Community",
+      "highlights": "Membership · Fans · Special content",
+      "targetAudience": "Women creators and their community"
     },
     "tomboi": {
       "name": "Tomboi",
-      "description": "18+ creator site for the Tom community — full monetization"
+      "description": "18+ creator site for the Tom community — full monetization",
+      "about": "Tomboi is for tom creators who want their own community — share stories, lifestyle, and work with easier reach to followers, plus systems to earn from fans and grow on a platform that understands identity and community diversity.",
+      "style": "Tomboi Creator Community",
+      "highlights": "Community · Lifestyle · Fan earnings",
+      "targetAudience": "Tom creators and fans"
     },
     "bargirl": {
       "name": "BarGirl",
-      "description": "18+ creator site for bar girls and entertainers — Vote, Gift, and Live"
+      "description": "18+ creator site for bar girls and entertainers — Vote, Gift, and Live",
+      "about": "BarGirl is for nightlife creators who want a personal brand, a growing fan base, and earnings through content in a safe, private space — sharing lifestyle, talking with fans, or building memberships. Every tool helps creators run their own business with ease.",
+      "style": "Nightlife Creator Community",
+      "highlights": "Personal brand · Membership · Private space",
+      "targetAudience": "Nightlife creators and fans"
     },
     "silom": {
       "name": "Silom",
-      "description": "Silom 18+ community — every member can post and participate"
+      "description": "Silom 18+ community — every member can post and participate",
+      "about": "Silom is a community for LGBTQ+ creators and users who want space to express themselves, create content, and connect with like-minded people — on a platform that values diversity, safety, and earning from work, and supports everyone building their own community freely.",
+      "style": "Gay Creator Community",
+      "highlights": "Diversity · Safety · Community building",
+      "targetAudience": "LGBTQ+ creators and users"
     },
     "cosplay-plus": {
       "name": "Cosplay Plus",
-      "description": "Cosplay creator hub — multiple styles in one site"
+      "description": "Cosplay creator hub — multiple styles in one site",
+      "about": "Cosplay Plus is a community for cosplayers, creators, and fandom lovers — a place to show work, build community, and connect with fans across the country, with systems to earn from content, events, and follower support on one platform.",
+      "style": "Cosplay & Fandom Community",
+      "highlights": "Showcase · Community · Events · Earnings",
+      "targetAudience": "Cosplayers, creators, and fandom fans"
     },
     "expat-idols": {
       "name": "Expat Idols",
-      "description": "18+ creator site for Expat Idols — vote, send gifts, and go live"
+      "description": "18+ creator site for Expat Idols — vote, send gifts, and go live",
+      "about": "Expat Idols is for international creators living in Thailand, or anyone building a global following — making content, fan communication, and earnings easier, with room to grow across diverse markets locally and abroad.",
+      "style": "International Creator Community",
+      "highlights": "International community · Content · Earnings",
+      "targetAudience": "Expat creators and international fans"
     },
     "beauty-queen": {
       "name": "Beauty Queen",
-      "description": "Beauty Queen contest platform — vote and support contestants"
+      "description": "Beauty Queen contest platform — vote and support contestants",
+      "about": "Beauty Queen is for pageant contestants, models, and beauty creators — identity, portfolios, and fan connections in the same scene, plus tools to earn and grow career opportunities from contestants to public figures.",
+      "style": "Pageant & Beauty Community",
+      "highlights": "Identity · Portfolio · Career opportunities",
+      "targetAudience": "Pageant, model, and beauty creators"
     },
     "nak-sueksa": {
       "name": "นักศึกษา",
-      "description": "18+ student community — members post, share ideas, and participate"
+      "description": "18+ student community — members post, share ideas, and participate",
+      "about": "A platform for students starting as creators — build work, grow followers, and earn from their skills, whether content, lifestyle, or a specialty. A community where the next generation can learn, grow, and create new opportunities together.",
+      "style": "Student Creator Community",
+      "highlights": "Start creating · Community · New opportunities",
+      "targetAudience": "Students and young creators"
     }
   },
   "news": {

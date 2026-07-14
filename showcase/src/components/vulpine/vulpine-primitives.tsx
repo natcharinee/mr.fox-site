@@ -36,7 +36,6 @@ export function VulpineSectionHeader({
     <div
       className={cn(
         "mb-12",
-        align === "left" && "border-l-2 border-[var(--vulpine-primary-container)] pl-6",
         align === "center" && "text-center",
         className,
       )}

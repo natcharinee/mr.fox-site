@@ -128,18 +128,19 @@ function CategoryCard({
       {/* Visual — left on desktop, first on mobile */}
       <div
         className={cn(
-          "relative order-1 aspect-square w-full shrink-0 overflow-hidden p-5 sm:aspect-[5/4] sm:p-6 md:order-none md:aspect-auto md:w-[min(100%,280px)] md:self-stretch md:p-7 lg:w-[300px]",
+          "relative order-1 aspect-square w-full shrink-0 overflow-hidden p-0 sm:aspect-[5/4] md:order-none md:aspect-auto md:w-[min(100%,280px)] md:self-stretch lg:w-[300px]",
           theme?.header,
         )}
       >
-        <div className="relative h-full min-h-[11rem] w-full sm:min-h-[12rem] md:min-h-0">
+        <div className="relative h-full min-h-[14rem] w-full sm:min-h-[16rem] md:min-h-0">
           <ContentImage
             src={imageSrc}
             alt={category.name}
             fill
             sizes="(max-width: 768px) 100vw, 300px"
-            fit="contain"
-            className="object-contain"
+            fit="cover"
+            unoptimized
+            className="object-cover"
           />
         </div>
         <div
@@ -306,7 +307,7 @@ export function EcosystemBento({
       />
 
       <PageWidth className="relative">
-        <div className="border-l-4 border-[var(--vulpine-primary-container)] pl-6 sm:pl-8">
+        <div>
           <p className="vulpine-label mb-3 text-sm text-[var(--vulpine-primary-container)] sm:text-base">
             {architectureLabel}
           </p>
