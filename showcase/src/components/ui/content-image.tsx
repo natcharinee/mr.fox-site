@@ -36,7 +36,9 @@ export function ContentImage({
   const resolved = resolveImageUrl(src);
   const fallback = isCompanyLogo(resolved);
   const focusStyle = !fallback && objectPosition ? { objectPosition } : undefined;
-  const objectFit = fallback ? "contain" : fit;
+  // Allow callers to force cover (e.g. brand mark matching header); default remain contain+pad.
+  const objectFit = fit === "cover" ? "cover" : fallback ? "contain" : fit;
+  const padFallback = fallback && objectFit === "contain";
 
   const image = (
     <Image
@@ -51,9 +53,9 @@ export function ContentImage({
       style={focusStyle}
       className={cn(
         objectFit === "contain" ? "object-contain" : "object-cover",
-        fallback && "p-4",
+        padFallback && "p-4",
         className,
-        fallback && fallbackClassName,
+        padFallback && fallbackClassName,
       )}
     />
   );

@@ -26,6 +26,7 @@ import {
   getPlatformTypes,
 } from "@/lib/queries";
 import { CATEGORY_ORDER } from "@/components/platforms/platform-category-theme";
+import { pageWidth } from "@/components/layout/public-theme";
 
 export const dynamic = "force-dynamic";
 
@@ -57,11 +58,6 @@ export default async function HomePage({ params }: Props) {
       contestant: string;
     };
   };
-  const typeDetails = tPlatforms.raw("typeDetails") as Record<
-    string,
-    { suitableFor?: string[] }
-  >;
-
   const [categories, platformTypes, allApps, coreFeatures, latestNews, ...categoryApps] =
     await Promise.all([
       getCategories(),
@@ -127,18 +123,16 @@ export default async function HomePage({ params }: Props) {
         includesLabel={t("ecosystemIncludes")}
         viewPlatformLabel={t("ecosystemViewPlatform")}
         viewAllLabel={t("ecosystemViewAll")}
-        suitableForLabel={t("ecosystemSuitableFor")}
         sampleAppsLabel={t("ecosystemSampleApps")}
         modulesLabelFor={(count) => t("ecosystemModules", { count })}
         categories={localizedCategories}
         platformTypes={localizedPlatforms}
         catalogTypes={platformsOverview.types}
-        typeDetails={typeDetails}
         sampleAppsByCategory={sampleAppsByCategory}
       />
 
-      <section className="px-4 py-16 md:px-16 md:py-24">
-        <div className="mx-auto max-w-[1200px]">
+      <section className="py-16 md:py-24">
+        <div className={pageWidth}>
           <div className="mb-12 border-l-2 border-[var(--vulpine-primary-container)] pl-6">
             <p className="vulpine-label mb-2 text-[var(--vulpine-primary-container)]">
               Deployed Modules
@@ -146,7 +140,6 @@ export default async function HomePage({ params }: Props) {
             <h2 className="font-display text-2xl font-bold tracking-wide text-[var(--vulpine-on-surface)] uppercase md:text-3xl">
               {t("featuredApps")}
             </h2>
-            <p className="mt-2 text-[var(--vulpine-on-surface-variant)]">{t("featuredAppsDesc")}</p>
           </div>
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 lg:gap-6">
             {appsWithLinks.length > 0 ? (
@@ -175,8 +168,8 @@ export default async function HomePage({ params }: Props) {
         features={localizedFeatures}
       />
 
-      <section className="px-4 py-16 md:px-16 md:py-24">
-        <div className="mx-auto max-w-[1200px]">
+      <section className="py-16 md:py-24">
+        <div className={pageWidth}>
           <div className="mb-12 flex items-end justify-between gap-4 border-b border-white/5 pb-4">
             <h2 className="font-display text-2xl font-bold tracking-wider text-[var(--vulpine-on-surface)] uppercase md:text-3xl">
               {t("latestNews")}
@@ -184,7 +177,7 @@ export default async function HomePage({ params }: Props) {
             <LinkButton
               href="/news"
               variant="ghost"
-              className="vulpine-label text-[var(--vulpine-primary-container)]"
+              className="vulpine-label h-auto rounded-lg border border-[var(--vulpine-primary-container)]/40 bg-white/[0.04] px-3.5 py-2 text-base font-semibold text-[var(--vulpine-primary-container)] hover:bg-[var(--vulpine-primary-container)]/10 hover:text-[var(--vulpine-primary-container)] sm:text-lg"
             >
               {t("viewAll")} →
             </LinkButton>
@@ -206,7 +199,7 @@ export default async function HomePage({ params }: Props) {
                   <p className="mt-3 text-base text-[var(--vulpine-on-surface-variant)] opacity-90 line-clamp-2">
                     {item.excerpt}
                   </p>
-                  <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-[var(--vulpine-primary-container)] transition-all group-hover:gap-2.5">
+                  <span className="mt-4 inline-flex items-center gap-1.5 rounded-lg border border-[var(--vulpine-primary-container)]/40 bg-white/[0.04] px-3 py-1.5 text-sm font-semibold text-[var(--vulpine-primary-container)] transition-all group-hover:border-[var(--vulpine-primary-container)]/60 group-hover:bg-[var(--vulpine-primary-container)]/10">
                     {tNews("readMore")}
                     <ArrowRight className="size-4" aria-hidden />
                   </span>

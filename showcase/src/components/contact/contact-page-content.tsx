@@ -15,7 +15,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { GlassCard, VulpineSectionHeader } from "@/components/vulpine/vulpine-primitives";
-import { publicTheme } from "@/components/layout/public-theme";
+import { publicTheme, pageWidth } from "@/components/layout/public-theme";
 import { MRFOX_MAP_LINK } from "@/lib/contact/map";
 import { submitContactForm } from "@/lib/contact/actions";
 import {
@@ -95,7 +95,7 @@ export function ContactPageContent({
       className={cn(
         embedded
           ? "mt-16 scroll-mt-24 border-t border-white/5 pt-16 md:mt-20 md:pt-20"
-          : "mx-auto max-w-[1200px] px-4 py-12 md:px-16 md:py-16",
+          : cn(pageWidth, "py-12 md:py-16"),
       )}
     >
       {embedded ? (

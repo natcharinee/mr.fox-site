@@ -10,6 +10,8 @@ import { localizeCategory, localizePlatform } from "@/lib/content-i18n";
 import { MRFOX_APP_DOWNLOAD_URL } from "@/lib/app-download";
 import { buildMetadata } from "@/lib/metadata";
 import { getCategories, getPlatformTypes } from "@/lib/queries";
+import { pageWidth } from "@/components/layout/public-theme";
+import { cn } from "@/lib/utils";
 
 export const dynamic = "force-dynamic";
 
@@ -49,7 +51,7 @@ export default async function PlatformsPage({
     <PageShell>
       <PageHero title={t("title")} description={t("subtitle")} />
 
-      <div className="mx-auto max-w-[1200px] px-4 pt-8 md:px-16">
+      <div className={cn(pageWidth, "pt-8")}>
         <PlatformTypeBanner
           alt={t("typeDetailBannerAlt")}
           href={MRFOX_APP_DOWNLOAD_URL}

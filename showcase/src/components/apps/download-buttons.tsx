@@ -72,8 +72,8 @@ export function DownloadButtons({
       size="sm"
       variant="outline"
       className={cn(
-        "shrink-0 rounded-xl font-medium transition-all",
-        compact ? "h-8 max-w-full px-2.5 text-xs" : "h-10 px-4 text-sm",
+        "rounded-lg font-medium transition-all",
+        compact ? "h-8 min-w-0 flex-1 px-2.5 text-xs" : "h-10 shrink-0 px-4 text-sm",
         publicTheme.badgeOutline,
         "hover:text-[var(--vulpine-primary)]",
       )}
@@ -107,7 +107,8 @@ export function DownloadButtons({
       size="sm"
       className={cn(
         publicTheme.submitButton,
-        compact ? "h-8 w-full max-w-[11rem] px-3 text-xs" : "h-9 px-4",
+        "rounded-lg",
+        compact ? "h-8 w-full px-3 text-xs" : "h-9 px-4",
       )}
     >
       {t("viewDetails")}
@@ -118,12 +119,13 @@ export function DownloadButtons({
     <div
       className={cn(
         "flex w-full max-w-full gap-2",
-        compact || align === "center"
-          ? "justify-center"
-          : align === "end"
-            ? "justify-end"
-            : "justify-start",
-        compact ? "flex-wrap" : "flex-nowrap",
+        compact
+          ? "flex-nowrap"
+          : align === "center"
+            ? "flex-nowrap justify-center"
+            : align === "end"
+              ? "flex-nowrap justify-end"
+              : "flex-nowrap justify-start",
       )}
     >
       {storeButtons}
@@ -148,7 +150,13 @@ export function DownloadButtons({
     <div
       className={cn(
         "flex w-full max-w-full flex-col gap-2",
-        align === "center" ? "items-center" : align === "end" ? "items-end" : "items-start",
+        compact
+          ? "items-stretch"
+          : align === "center"
+            ? "items-center"
+            : align === "end"
+              ? "items-end"
+              : "items-start",
         className,
       )}
     >

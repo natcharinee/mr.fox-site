@@ -15,6 +15,8 @@ import type { ContactGuideContent } from "@/components/contact/contact-guide-car
 import type { AboutEventVideoContent } from "@/lib/youtube";
 import { PageHero } from "@/components/layout/page-hero";
 import { PageShell } from "@/components/layout/page-shell";
+import { pageWidth } from "@/components/layout/public-theme";
+import { cn } from "@/lib/utils";
 import type { Locale } from "@/i18n/routing";
 import { buildMetadata } from "@/lib/metadata";
 
@@ -46,7 +48,7 @@ export default async function AboutPage({ params }: Props) {
     <PageShell>
       <PageHero title={t("title")} description={t("subtitle")} />
 
-      <div className="mx-auto max-w-[1200px] px-4 py-12 md:px-16">
+      <div className={cn(pageWidth, "py-12")}>
         <AboutPurposeSection content={purpose} />
 
         <AboutRoadmapSection

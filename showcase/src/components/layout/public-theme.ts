@@ -1,8 +1,16 @@
 import { cn } from "@/lib/utils";
 
+/**
+ * Shared content column for the whole site.
+ * Equivalent to outer `px-4 md:px-16` + inner `max-w-[1200px]`.
+ */
+export const pageWidth =
+  "mx-auto w-full max-w-[min(1200px,calc(100%-2rem))] md:max-w-[min(1200px,calc(100%-8rem))]";
+
 export const publicTheme = {
   shell: "vulpine-shell min-h-screen",
-  content: "mx-auto max-w-[1200px] px-4 py-16 sm:px-6 md:px-16 lg:px-16",
+  pageWidth,
+  content: cn(pageWidth, "py-16 md:py-24"),
   contentNarrow: "mx-auto max-w-3xl px-4 py-16 sm:px-6 md:px-16",
   section: "py-16 md:py-24",
   card:
@@ -26,7 +34,7 @@ export const publicTheme = {
     "border-[var(--vulpine-primary-container)]/30 bg-[var(--vulpine-primary-container)]/10 text-[var(--vulpine-primary)]",
   prose:
     "prose prose-invert max-w-none prose-headings:font-display prose-headings:text-[var(--vulpine-on-surface)] prose-a:text-[var(--vulpine-primary-container)]",
-  pageGrid: "mx-auto max-w-[1200px] px-4 py-12 md:px-16",
+  pageGrid: cn(pageWidth, "py-12"),
   cardTitle: "font-display text-[var(--vulpine-on-surface)]",
   cardTitleLink:
     "transition-colors hover:text-[var(--vulpine-primary-container)]",

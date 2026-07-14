@@ -4,7 +4,7 @@ import { ArrowUp, ArrowUpRight } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { BrandLogo } from "@/components/brand/brand-logo";
-import { publicTheme } from "@/components/layout/public-theme";
+import { publicTheme, pageWidth } from "@/components/layout/public-theme";
 import { MRFOX_APP_DOWNLOAD_URL } from "@/lib/app-download";
 import { cn } from "@/lib/utils";
 
@@ -91,7 +91,7 @@ export function Footer() {
         className="pointer-events-none absolute bottom-0 left-0 size-48 rounded-full bg-[var(--vulpine-primary-container)]/5 blur-3xl md:hidden"
       />
 
-      <div className="relative mx-auto max-w-[1200px] px-4 py-10 sm:py-12 md:px-16 md:py-16">
+      <div className={cn("relative py-10 sm:py-12 md:py-16", pageWidth)}>
         <div className="flex flex-col gap-6 lg:grid lg:grid-cols-12 lg:items-stretch lg:gap-6">
           <div className="flex lg:col-span-5">
             <div className="flex h-full w-full flex-col rounded-2xl border border-white/8 bg-white/[0.03] p-5 sm:p-6">

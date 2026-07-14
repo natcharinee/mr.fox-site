@@ -6,6 +6,7 @@ import {
   CATEGORY_ORDER,
   CATEGORY_THEME,
 } from "@/components/platforms/platform-category-theme";
+import { pageWidth } from "@/components/layout/public-theme";
 import { ContentImage } from "@/components/ui/content-image";
 import { isActivePlatformTypeSlug } from "@/lib/platform-type-slugs";
 import { cn } from "@/lib/utils";
@@ -33,10 +34,6 @@ type CatalogType = {
   example: string;
 };
 
-type TypeDetailSnippet = {
-  suitableFor?: string[];
-};
-
 type EcosystemBentoProps = {
   title: string;
   description: ReactNode;
@@ -44,12 +41,10 @@ type EcosystemBentoProps = {
   includesLabel: string;
   viewPlatformLabel: string;
   viewAllLabel: string;
-  suitableForLabel: string;
   sampleAppsLabel: string;
   categories: Category[];
   platformTypes: PlatformType[];
   catalogTypes: CatalogType[];
-  typeDetails: Record<string, TypeDetailSnippet>;
   sampleAppsByCategory: Record<string, SampleApp[]>;
   modulesLabelFor: (count: number) => string;
 };
@@ -68,7 +63,7 @@ function CategoryLegend({
   categoryCounts: Record<string, number>;
 }) {
   return (
-    <div className="mt-8 flex flex-wrap gap-3" aria-label="Ecosystem categories overview">
+    <div className="mt-6 flex flex-wrap gap-3" aria-label="Ecosystem categories overview">
       {CATEGORY_ORDER.map((slug) => {
         const theme = CATEGORY_THEME[slug];
         const category = categories[slug];
@@ -104,10 +99,8 @@ function CategoryCard({
   includesLabel,
   viewPlatformLabel,
   modulesLabel,
-  suitableForLabel,
   sampleAppsLabel,
   catalogType,
-  typeDetail,
   sampleApps,
 }: {
   slug: string;
@@ -116,10 +109,8 @@ function CategoryCard({
   includesLabel: string;
   viewPlatformLabel: string;
   modulesLabel: string;
-  suitableForLabel: string;
   sampleAppsLabel: string;
   catalogType?: CatalogType;
-  typeDetail?: TypeDetailSnippet;
   sampleApps: SampleApp[];
 }) {
   const theme = CATEGORY_THEME[slug];
@@ -138,21 +129,20 @@ function CategoryCard({
     >
       <div
         className={cn(
-          "contents md:relative md:flex md:min-h-0 md:flex-col",
-          "md:w-[min(100%,380px)] md:shrink-0 md:self-stretch md:border-r md:border-white/10 lg:w-[420px]",
+          "contents md:relative md:flex md:min-h-0 md:w-[min(100%,300px)] md:shrink-0 md:flex-col md:border-r md:border-white/10 lg:w-[320px]",
           theme?.header,
         )}
       >
-        <div className="order-1 flex flex-col justify-center border-b border-white/10 px-5 py-5 sm:px-6 sm:py-6 md:border-b-0">
-          <div className="flex items-start gap-3.5 sm:gap-4">
+        <div className="order-1 flex flex-col justify-center border-b border-white/10 px-5 py-4 sm:px-6 sm:py-4 md:border-b-0">
+          <div className="flex items-start gap-3 sm:gap-3.5">
             {Icon ? (
               <div
                 className={cn(
-                  "flex size-12 shrink-0 items-center justify-center rounded-xl ring-1 ring-white/15 sm:size-14 sm:rounded-2xl",
+                  "flex size-10 shrink-0 items-center justify-center rounded-lg ring-1 ring-white/15 sm:size-11 sm:rounded-xl",
                   theme?.iconWrap,
                 )}
               >
-                <Icon className="size-6 sm:size-7" aria-hidden />
+                <Icon className="size-5 sm:size-5" aria-hidden />
               </div>
             ) : null}
             <div className="min-w-0 flex-1">
@@ -170,7 +160,7 @@ function CategoryCard({
                 </span>
               </div>
               {category.description ? (
-                <p className="mt-2.5 text-sm leading-relaxed text-[var(--vulpine-on-surface)]/85 sm:text-base">
+                <p className="mt-1.5 text-sm leading-relaxed text-[var(--vulpine-on-surface)]/85 sm:text-[15px]">
                   {category.description}
                 </p>
               ) : null}
@@ -178,12 +168,12 @@ function CategoryCard({
           </div>
         </div>
 
-        <div className="relative order-2 aspect-[16/10] w-full min-h-[148px] overflow-hidden sm:min-h-[168px] md:mt-auto">
+        <div className="relative order-2 aspect-[2/1] max-h-[140px] w-full overflow-hidden sm:max-h-[152px] md:max-h-[160px]">
           <ContentImage
             src={imageSrc}
             alt={category.name}
             fill
-            sizes="(max-width: 768px) 100vw, 420px"
+            sizes="(max-width: 768px) 100vw, 320px"
             fit="cover"
             className="object-cover"
           />
@@ -198,7 +188,7 @@ function CategoryCard({
         </div>
       </div>
 
-      <div className="relative order-3 flex min-h-0 min-w-0 flex-1 flex-col bg-black/10 px-5 py-5 sm:px-6 sm:py-6 md:order-none">
+      <div className="relative order-3 flex min-h-0 min-w-0 flex-1 flex-col justify-center bg-black/10 px-5 py-4 sm:px-6 sm:py-4 md:order-none">
         <div
           className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_100%_0%,rgba(255,184,0,0.07),transparent_55%)]"
           aria-hidden
@@ -212,13 +202,13 @@ function CategoryCard({
           >
             {includesLabel}
           </p>
-          <ul className="mt-4 flex flex-col gap-3">
+          <ul className="mt-3 flex flex-col gap-2.5">
             {types.map((pt) => (
               <li key={pt.slug} className="min-w-0">
                 <Link
                   href={`/platforms/${pt.slug}`}
                   className={cn(
-                    "group flex h-full flex-col rounded-xl border border-white/12 bg-white/[0.06] p-4 transition-all sm:p-5",
+                    "group flex h-full flex-col rounded-xl border border-white/12 bg-white/[0.06] p-3.5 transition-all sm:p-4",
                     "hover:border-[var(--vulpine-primary-container)]/40 hover:bg-white/[0.09]",
                     theme?.cardHover,
                   )}
@@ -229,13 +219,14 @@ function CategoryCard({
                     </p>
                   </div>
                   {pt.shortDescription ? (
-                    <p className="mt-2 text-sm leading-relaxed text-[var(--vulpine-on-surface-variant)] sm:text-base line-clamp-3">
+                    <p className="mt-1.5 text-sm leading-relaxed text-[var(--vulpine-on-surface-variant)] sm:text-base line-clamp-3">
                       {pt.shortDescription}
                     </p>
                   ) : null}
                   <span
                     className={cn(
-                      "vulpine-label mt-3 inline-flex items-center gap-1 text-xs font-semibold opacity-80 transition-all group-hover:translate-x-0.5 group-hover:opacity-100 sm:text-sm",
+                      "vulpine-label mt-2.5 inline-flex w-fit items-center gap-1 self-start rounded-lg border px-2.5 py-1 text-xs font-semibold transition-all group-hover:bg-[var(--vulpine-primary-container)]/10 sm:text-sm",
+                      "border-[var(--vulpine-primary-container)]/40 bg-white/[0.04]",
                       theme?.accent,
                     )}
                   >
@@ -247,34 +238,8 @@ function CategoryCard({
             ))}
           </ul>
 
-          {typeDetail?.suitableFor && typeDetail.suitableFor.length > 0 ? (
-            <div className="mt-4">
-              <p
-                className={cn(
-                  "vulpine-label text-[11px] font-semibold uppercase tracking-[0.16em] sm:text-xs",
-                  theme?.accent,
-                )}
-              >
-                {suitableForLabel}
-              </p>
-              <div className="mt-2.5 flex flex-wrap gap-2">
-                {typeDetail.suitableFor.slice(0, 6).map((item) => (
-                  <span
-                    key={item}
-                    className={cn(
-                      "rounded-full border px-2.5 py-1 text-[11px] sm:text-xs",
-                      theme?.pill,
-                    )}
-                  >
-                    {item}
-                  </span>
-                ))}
-              </div>
-            </div>
-          ) : null}
-
           {sampleApps.length > 0 ? (
-            <div className="mt-4">
+            <div className="mt-3">
               <p
                 className={cn(
                   "vulpine-label text-[11px] font-semibold uppercase tracking-[0.16em] sm:text-xs",
@@ -283,7 +248,7 @@ function CategoryCard({
               >
                 {sampleAppsLabel}
               </p>
-              <div className="mt-2.5 flex flex-wrap gap-2">
+              <div className="mt-2 flex flex-wrap gap-2">
                 {sampleApps.map((app) => (
                   <Link
                     key={app.slug}
@@ -296,7 +261,7 @@ function CategoryCard({
               </div>
             </div>
           ) : catalogType?.example ? (
-            <p className="mt-4 text-sm text-[var(--vulpine-on-surface-variant)]">
+            <p className="mt-3 text-sm text-[var(--vulpine-on-surface-variant)]">
               <span className="font-semibold text-[var(--vulpine-primary-container)]">
                 {sampleAppsLabel}:
               </span>{" "}
@@ -316,12 +281,10 @@ export function EcosystemBento({
   includesLabel,
   viewPlatformLabel,
   viewAllLabel,
-  suitableForLabel,
   sampleAppsLabel,
   categories,
   platformTypes,
   catalogTypes,
-  typeDetails,
   sampleAppsByCategory,
   modulesLabelFor,
 }: EcosystemBentoProps) {
@@ -335,7 +298,7 @@ export function EcosystemBento({
 
   return (
     <section
-      className="relative overflow-hidden border-y border-white/5 bg-[var(--vulpine-surface-container-low)]/20 px-4 py-16 md:px-16 md:py-24"
+      className="relative overflow-hidden border-y border-white/5 bg-[var(--vulpine-surface-container-low)]/20 py-16 md:py-24"
       id="ecosystem"
     >
       <div
@@ -347,7 +310,7 @@ export function EcosystemBento({
         aria-hidden
       />
 
-      <div className="relative mx-auto max-w-[1200px]">
+      <div className={cn("relative", pageWidth)}>
         <div className="border-l-4 border-[var(--vulpine-primary-container)] pl-6 sm:pl-8">
           <p className="vulpine-label mb-3 text-sm text-[var(--vulpine-primary-container)] sm:text-base">
             {architectureLabel}
@@ -362,7 +325,7 @@ export function EcosystemBento({
           <CategoryLegend categories={bySlug} categoryCounts={categoryCounts} />
         </div>
 
-        <div className="mt-10 flex flex-col gap-6 sm:gap-7">
+        <div className="mt-8 flex flex-col gap-5 sm:gap-6">
           {CATEGORY_ORDER.map((slug) => {
             const category = bySlug[slug];
             if (!category) return null;
@@ -372,7 +335,6 @@ export function EcosystemBento({
 
             const primaryType = types[0]!;
             const catalogType = catalogTypes.find((item) => item.slug === primaryType.slug);
-            const typeDetail = typeDetails[primaryType.slug];
 
             return (
               <CategoryCard
@@ -383,21 +345,19 @@ export function EcosystemBento({
                 includesLabel={includesLabel}
                 viewPlatformLabel={viewPlatformLabel}
                 modulesLabel={modulesLabelFor(types.length)}
-                suitableForLabel={suitableForLabel}
                 sampleAppsLabel={sampleAppsLabel}
                 catalogType={catalogType}
-                typeDetail={typeDetail}
                 sampleApps={sampleAppsByCategory[slug] ?? []}
               />
             );
           })}
         </div>
 
-        <div className="mt-10 flex justify-center sm:mt-12">
+        <div className="mt-8 flex justify-center sm:mt-10">
           <LinkButton
             href="/platforms"
-            variant="outline"
-            className="vulpine-label gap-2 border-[var(--vulpine-primary-container)]/40 px-6 py-2.5 text-sm text-[var(--vulpine-primary-container)] hover:bg-[var(--vulpine-primary-container)]/10 sm:text-base"
+            variant="ghost"
+            className="vulpine-label h-auto gap-2 rounded-xl border border-[var(--vulpine-primary-container)]/40 bg-white/[0.04] px-6 py-2.5 text-sm text-[var(--vulpine-primary-container)] hover:bg-[var(--vulpine-primary-container)]/10 hover:text-[var(--vulpine-primary-container)] sm:text-base"
           >
             {viewAllLabel}
             <ArrowRight className="size-4" aria-hidden />

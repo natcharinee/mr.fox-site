@@ -111,14 +111,23 @@ export function FeaturedAppCard({
         <div className={cn("flex items-start", compactBelowLg ? "gap-2.5 lg:gap-3" : "gap-3")}>
           <div
             className={cn(
-              "relative shrink-0 overflow-hidden border border-white/15",
+              "relative shrink-0 overflow-hidden",
               compactBelowLg
                 ? "size-9 rounded-lg lg:size-10 lg:rounded-xl"
                 : "size-10 rounded-xl",
-              isCompanyLogo(logo) ? "bg-[var(--vulpine-primary-container)]/20" : "bg-white/5",
+              isCompanyLogo(logo)
+                ? null
+                : "border border-white/15 bg-white/5",
             )}
           >
-            <ContentImage src={app.logoUrl} fill sizes="40px" fallbackClassName="p-1" />
+            <ContentImage
+              src={app.logoUrl}
+              fill
+              sizes="40px"
+              fit={isCompanyLogo(logo) ? "cover" : "contain"}
+              className={isCompanyLogo(logo) ? "object-cover p-0" : undefined}
+              fallbackClassName={isCompanyLogo(logo) ? "p-0" : "p-1"}
+            />
           </div>
           <div className="min-w-0">
             <h3

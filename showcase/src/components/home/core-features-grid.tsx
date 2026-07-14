@@ -25,6 +25,7 @@ import {
 } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { GlassCard } from "@/components/vulpine/vulpine-primitives";
+import { pageWidth } from "@/components/layout/public-theme";
 import { cn } from "@/lib/utils";
 
 type Feature = {
@@ -164,7 +165,7 @@ export function CoreFeaturesGrid({ title, exploreLabel, features }: CoreFeatures
   return (
     <section className="relative overflow-hidden border-y border-white/5 bg-[var(--vulpine-surface-container-lowest)] py-16 md:py-24">
       <div className="vulpine-scanline opacity-20" aria-hidden />
-      <div className="relative mx-auto max-w-[1200px] px-4 md:px-16">
+      <div className={cn("relative", pageWidth)}>
         <h2 className="mb-10 text-center font-display text-3xl font-bold tracking-[0.15em] text-[var(--vulpine-on-surface)] uppercase sm:mb-12 sm:text-4xl">
           {title}
         </h2>
