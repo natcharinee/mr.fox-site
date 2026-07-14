@@ -26,7 +26,7 @@ import {
   getPlatformTypes,
 } from "@/lib/queries";
 import { CATEGORY_ORDER } from "@/components/platforms/platform-category-theme";
-import { pageWidth } from "@/components/layout/public-theme";
+import { PageWidth } from "@/components/layout/page-width";
 
 export const dynamic = "force-dynamic";
 
@@ -132,7 +132,7 @@ export default async function HomePage({ params }: Props) {
       />
 
       <section className="py-16 md:py-24">
-        <div className={pageWidth}>
+        <PageWidth>
           <div className="mb-12 border-l-2 border-[var(--vulpine-primary-container)] pl-6">
             <p className="vulpine-label mb-2 text-[var(--vulpine-primary-container)]">
               Deployed Modules
@@ -159,7 +159,7 @@ export default async function HomePage({ params }: Props) {
               </p>
             )}
           </div>
-        </div>
+        </PageWidth>
       </section>
 
       <CoreFeaturesGrid
@@ -169,7 +169,7 @@ export default async function HomePage({ params }: Props) {
       />
 
       <section className="py-16 md:py-24">
-        <div className={pageWidth}>
+        <PageWidth>
           <div className="mb-12 flex items-end justify-between gap-4 border-b border-white/5 pb-4">
             <h2 className="font-display text-2xl font-bold tracking-wider text-[var(--vulpine-on-surface)] uppercase md:text-3xl">
               {t("latestNews")}
@@ -207,7 +207,7 @@ export default async function HomePage({ params }: Props) {
               </Link>
             ))}
           </div>
-        </div>
+        </PageWidth>
       </section>
     </>
   );

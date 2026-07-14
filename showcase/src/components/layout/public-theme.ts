@@ -1,14 +1,22 @@
 import { cn } from "@/lib/utils";
 
+/** Outer horizontal padding — pair with `pageInner`. */
+export const pageShell = "w-full px-4 md:px-16";
+
+/** Inner max-width column — nest inside `pageShell`. */
+export const pageInner = "mx-auto w-full max-w-[1200px]";
+
 /**
- * Shared content column for the whole site.
- * Equivalent to outer `px-4 md:px-16` + inner `max-w-[1200px]`.
+ * Single-element equivalent of `pageShell` + `pageInner`
+ * (same edges; prefer nested wrappers when editing layout).
  */
 export const pageWidth =
   "mx-auto w-full max-w-[min(1200px,calc(100%-2rem))] md:max-w-[min(1200px,calc(100%-8rem))]";
 
 export const publicTheme = {
   shell: "vulpine-shell min-h-screen",
+  pageShell,
+  pageInner,
   pageWidth,
   content: cn(pageWidth, "py-16 md:py-24"),
   contentNarrow: "mx-auto max-w-3xl px-4 py-16 sm:px-6 md:px-16",

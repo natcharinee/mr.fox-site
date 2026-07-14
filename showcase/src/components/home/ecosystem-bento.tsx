@@ -6,7 +6,7 @@ import {
   CATEGORY_ORDER,
   CATEGORY_THEME,
 } from "@/components/platforms/platform-category-theme";
-import { pageWidth } from "@/components/layout/public-theme";
+import { PageWidth } from "@/components/layout/page-width";
 import { ContentImage } from "@/components/ui/content-image";
 import { isActivePlatformTypeSlug } from "@/lib/platform-type-slugs";
 import { cn } from "@/lib/utils";
@@ -121,33 +121,55 @@ function CategoryCard({
     <article
       id={`ecosystem-${slug}`}
       className={cn(
-        "vulpine-glow-hover relative flex min-h-0 flex-col overflow-hidden rounded-2xl border border-white/12 bg-[rgba(22,24,24,0.72)] shadow-[0_12px_48px_rgba(0,0,0,0.35)] backdrop-blur-2xl md:flex-row md:items-start",
-        "border-l-4",
-        theme?.borderAccent,
+        "vulpine-glow-hover relative flex min-h-0 flex-col overflow-hidden rounded-2xl border border-white/12 bg-[rgba(22,24,24,0.72)] shadow-[0_12px_48px_rgba(0,0,0,0.35)] backdrop-blur-2xl md:flex-row md:items-stretch",
         theme?.cardHover,
       )}
     >
+      {/* Visual — left on desktop, first on mobile */}
       <div
         className={cn(
-          "contents md:relative md:flex md:min-h-0 md:w-[min(100%,300px)] md:shrink-0 md:flex-col md:border-r md:border-white/10 lg:w-[320px]",
+          "relative order-1 aspect-square w-full shrink-0 overflow-hidden p-5 sm:aspect-[5/4] sm:p-6 md:order-none md:aspect-auto md:w-[min(100%,280px)] md:self-stretch md:p-7 lg:w-[300px]",
           theme?.header,
         )}
       >
-        <div className="order-1 flex flex-col justify-center border-b border-white/10 px-5 py-4 sm:px-6 sm:py-4 md:border-b-0">
-          <div className="flex items-start gap-3 sm:gap-3.5">
+        <div className="relative h-full min-h-[11rem] w-full sm:min-h-[12rem] md:min-h-0">
+          <ContentImage
+            src={imageSrc}
+            alt={category.name}
+            fill
+            sizes="(max-width: 768px) 100vw, 300px"
+            fit="contain"
+            className="object-contain"
+          />
+        </div>
+        <div
+          className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-white/10"
+          aria-hidden
+        />
+      </div>
+
+      {/* Details — right on desktop */}
+      <div className="relative order-2 flex min-h-0 min-w-0 flex-1 flex-col bg-black/10 px-5 py-5 sm:px-6 sm:py-5 md:order-none md:py-6">
+        <div
+          className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_100%_0%,rgba(255,184,0,0.07),transparent_55%)]"
+          aria-hidden
+        />
+
+        <div className="relative flex flex-col gap-5 sm:gap-6">
+          <header className="flex items-start gap-3.5 sm:gap-4">
             {Icon ? (
               <div
                 className={cn(
-                  "flex size-10 shrink-0 items-center justify-center rounded-lg ring-1 ring-white/15 sm:size-11 sm:rounded-xl",
+                  "mt-0.5 flex size-11 shrink-0 items-center justify-center rounded-xl ring-1 ring-white/15 sm:size-12",
                   theme?.iconWrap,
                 )}
               >
-                <Icon className="size-5 sm:size-5" aria-hidden />
+                <Icon className="size-5 sm:size-6" aria-hidden />
               </div>
             ) : null}
             <div className="min-w-0 flex-1">
               <div className="flex flex-wrap items-center gap-2.5">
-                <h3 className="font-display text-xl font-bold uppercase tracking-wide text-[var(--vulpine-on-surface)] sm:text-2xl">
+                <h3 className="font-display text-2xl font-bold uppercase tracking-wide text-[var(--vulpine-on-surface)] sm:text-[1.75rem]">
                   {category.name}
                 </h3>
                 <span
@@ -160,114 +182,87 @@ function CategoryCard({
                 </span>
               </div>
               {category.description ? (
-                <p className="mt-1.5 text-sm leading-relaxed text-[var(--vulpine-on-surface)]/85 sm:text-[15px]">
+                <p className="mt-2 max-w-2xl text-sm leading-relaxed text-[var(--vulpine-on-surface-variant)] sm:text-[15px]">
                   {category.description}
                 </p>
               ) : null}
             </div>
-          </div>
-        </div>
+          </header>
 
-        <div className="relative order-2 aspect-[2/1] max-h-[140px] w-full overflow-hidden sm:max-h-[152px] md:max-h-[160px]">
-          <ContentImage
-            src={imageSrc}
-            alt={category.name}
-            fill
-            sizes="(max-width: 768px) 100vw, 320px"
-            fit="cover"
-            className="object-cover"
-          />
-          <div
-            className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[rgba(12,14,14,0.92)] via-[rgba(12,14,14,0.15)] to-transparent"
-            aria-hidden
-          />
-          <div
-            className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-white/10"
-            aria-hidden
-          />
-        </div>
-      </div>
-
-      <div className="relative order-3 flex min-h-0 min-w-0 flex-1 flex-col justify-center bg-black/10 px-5 py-4 sm:px-6 sm:py-4 md:order-none">
-        <div
-          className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_100%_0%,rgba(255,184,0,0.07),transparent_55%)]"
-          aria-hidden
-        />
-        <div className="relative">
-          <p
-            className={cn(
-              "vulpine-label text-xs font-semibold uppercase tracking-[0.18em] sm:text-sm",
-              theme?.accent,
-            )}
-          >
-            {includesLabel}
-          </p>
-          <ul className="mt-3 flex flex-col gap-2.5">
-            {types.map((pt) => (
-              <li key={pt.slug} className="min-w-0">
-                <Link
-                  href={`/platforms/${pt.slug}`}
-                  className={cn(
-                    "group flex h-full flex-col rounded-xl border border-white/12 bg-white/[0.06] p-3.5 transition-all sm:p-4",
-                    "hover:border-[var(--vulpine-primary-container)]/40 hover:bg-white/[0.09]",
-                    theme?.cardHover,
-                  )}
-                >
-                  <div className="flex items-start justify-between gap-2">
+          <div className="border-t border-white/8 pt-5 sm:pt-6">
+            <p
+              className={cn(
+                "vulpine-label text-xs font-semibold uppercase tracking-[0.18em] sm:text-sm",
+                theme?.accent,
+              )}
+            >
+              {includesLabel}
+            </p>
+            <ul className="mt-3 flex flex-col gap-2.5">
+              {types.map((pt) => (
+                <li key={pt.slug} className="min-w-0">
+                  <Link
+                    href={`/platforms/${pt.slug}`}
+                    className={cn(
+                      "group flex h-full flex-col rounded-xl border border-white/12 bg-white/[0.06] p-3.5 transition-all sm:p-4",
+                      "hover:border-[var(--vulpine-primary-container)]/40 hover:bg-white/[0.09]",
+                      theme?.cardHover,
+                    )}
+                  >
                     <p className="text-base font-bold text-[var(--vulpine-on-surface)] sm:text-lg">
                       {pt.name}
                     </p>
-                  </div>
-                  {pt.shortDescription ? (
-                    <p className="mt-1.5 text-sm leading-relaxed text-[var(--vulpine-on-surface-variant)] sm:text-base line-clamp-3">
-                      {pt.shortDescription}
-                    </p>
-                  ) : null}
-                  <span
-                    className={cn(
-                      "vulpine-label mt-2.5 inline-flex w-fit items-center gap-1 self-start rounded-lg border px-2.5 py-1 text-xs font-semibold transition-all group-hover:bg-[var(--vulpine-primary-container)]/10 sm:text-sm",
-                      "border-[var(--vulpine-primary-container)]/40 bg-white/[0.04]",
-                      theme?.accent,
-                    )}
-                  >
-                    {viewPlatformLabel}
-                    <ArrowRight className="size-3.5" aria-hidden />
-                  </span>
-                </Link>
-              </li>
-            ))}
-          </ul>
-
-          {sampleApps.length > 0 ? (
-            <div className="mt-3">
-              <p
-                className={cn(
-                  "vulpine-label text-[11px] font-semibold uppercase tracking-[0.16em] sm:text-xs",
-                  theme?.accent,
-                )}
-              >
-                {sampleAppsLabel}
-              </p>
-              <div className="mt-2 flex flex-wrap gap-2">
-                {sampleApps.map((app) => (
-                  <Link
-                    key={app.slug}
-                    href={`/apps/${app.slug}`}
-                    className="rounded-full border border-white/12 bg-white/[0.05] px-3 py-1 text-xs font-medium text-[var(--vulpine-on-surface)] transition-colors hover:border-[var(--vulpine-primary-container)]/40 hover:text-[var(--vulpine-primary-container)] sm:text-sm"
-                  >
-                    {app.name}
+                    {pt.shortDescription ? (
+                      <p className="mt-1.5 text-sm leading-relaxed text-[var(--vulpine-on-surface-variant)] sm:text-base line-clamp-3">
+                        {pt.shortDescription}
+                      </p>
+                    ) : null}
+                    <span
+                      className={cn(
+                        "vulpine-label mt-2.5 inline-flex w-fit items-center gap-1 self-start rounded-lg border px-2.5 py-1 text-xs font-semibold transition-all group-hover:bg-[var(--vulpine-primary-container)]/10 sm:text-sm",
+                        "border-[var(--vulpine-primary-container)]/40 bg-white/[0.04]",
+                        theme?.accent,
+                      )}
+                    >
+                      {viewPlatformLabel}
+                      <ArrowRight className="size-3.5" aria-hidden />
+                    </span>
                   </Link>
-                ))}
+                </li>
+              ))}
+            </ul>
+
+            {sampleApps.length > 0 ? (
+              <div className="mt-4">
+                <p
+                  className={cn(
+                    "vulpine-label text-[11px] font-semibold uppercase tracking-[0.16em] sm:text-xs",
+                    theme?.accent,
+                  )}
+                >
+                  {sampleAppsLabel}
+                </p>
+                <div className="mt-2 flex flex-wrap gap-2">
+                  {sampleApps.map((app) => (
+                    <Link
+                      key={app.slug}
+                      href={`/apps/${app.slug}`}
+                      className="rounded-full border border-white/12 bg-white/[0.05] px-3 py-1 text-xs font-medium text-[var(--vulpine-on-surface)] transition-colors hover:border-[var(--vulpine-primary-container)]/40 hover:text-[var(--vulpine-primary-container)] sm:text-sm"
+                    >
+                      {app.name}
+                    </Link>
+                  ))}
+                </div>
               </div>
-            </div>
-          ) : catalogType?.example ? (
-            <p className="mt-3 text-sm text-[var(--vulpine-on-surface-variant)]">
-              <span className="font-semibold text-[var(--vulpine-primary-container)]">
-                {sampleAppsLabel}:
-              </span>{" "}
-              {catalogType.example}
-            </p>
-          ) : null}
+            ) : catalogType?.example ? (
+              <p className="mt-4 text-sm text-[var(--vulpine-on-surface-variant)]">
+                <span className="font-semibold text-[var(--vulpine-primary-container)]">
+                  {sampleAppsLabel}:
+                </span>{" "}
+                {catalogType.example}
+              </p>
+            ) : null}
+          </div>
         </div>
       </div>
     </article>
@@ -310,7 +305,7 @@ export function EcosystemBento({
         aria-hidden
       />
 
-      <div className={cn("relative", pageWidth)}>
+      <PageWidth className="relative">
         <div className="border-l-4 border-[var(--vulpine-primary-container)] pl-6 sm:pl-8">
           <p className="vulpine-label mb-3 text-sm text-[var(--vulpine-primary-container)] sm:text-base">
             {architectureLabel}
@@ -321,9 +316,9 @@ export function EcosystemBento({
           <div className="mt-4 max-w-3xl text-base leading-relaxed text-[var(--vulpine-on-surface-variant)] sm:text-lg">
             {description}
           </div>
-
-          <CategoryLegend categories={bySlug} categoryCounts={categoryCounts} />
         </div>
+
+        <CategoryLegend categories={bySlug} categoryCounts={categoryCounts} />
 
         <div className="mt-8 flex flex-col gap-5 sm:gap-6">
           {CATEGORY_ORDER.map((slug) => {
@@ -363,7 +358,7 @@ export function EcosystemBento({
             <ArrowRight className="size-4" aria-hidden />
           </LinkButton>
         </div>
-      </div>
+      </PageWidth>
     </section>
   );
 }

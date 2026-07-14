@@ -62,9 +62,9 @@ export function FeaturedAppCard({
                 : "(max-width: 1024px) 100vw, 33vw"
             }
             objectPosition={posterFocus}
-            fit="contain"
+            fit="cover"
             unoptimized={isUploadedMediaUrl(posterSrc)}
-            className="transition-all duration-700 group-hover:scale-[1.02] grayscale-[0.15] group-hover:grayscale-0"
+            className="object-cover transition-all duration-700 group-hover:scale-[1.02] grayscale-[0.15] group-hover:grayscale-0"
           />
         ) : (
           <div className="flex h-full flex-col items-center justify-center gap-4 bg-gradient-to-br from-[var(--fox-charcoal)] via-[#1a1a1a] to-black p-8 text-center">

@@ -5,7 +5,7 @@ import {
   CATEGORY_ORDER,
   CATEGORY_THEME,
 } from "@/components/platforms/platform-category-theme";
-import { pageWidth } from "@/components/layout/public-theme";
+import { PageWidth } from "@/components/layout/page-width";
 import { cn } from "@/lib/utils";
 
 type PlatformType = {
@@ -53,7 +53,7 @@ export function HomePlatformTypesSection({
 
   return (
     <section className="border-y border-white/5 bg-[var(--vulpine-surface-container-low)]/30 py-16 md:py-24">
-      <div className={pageWidth}>
+      <PageWidth>
         <div className="mb-12 flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
           <div className="border-l-2 border-[var(--vulpine-primary-container)] pl-6">
             <p className="vulpine-label mb-2 text-[var(--vulpine-primary-container)]">
@@ -161,7 +161,7 @@ export function HomePlatformTypesSection({
             </Link>
           </div>
         ) : null}
-      </div>
+      </PageWidth>
     </section>
   );
 }

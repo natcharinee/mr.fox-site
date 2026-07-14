@@ -9,7 +9,7 @@ import { buttonVariants } from "@/components/ui/button";
 import { LocaleSwitcher } from "@/components/layout/locale-switcher";
 import { MobileNav } from "@/components/layout/mobile-nav";
 import { BrandLogo } from "@/components/brand/brand-logo";
-import { pageWidth } from "@/components/layout/public-theme";
+import { PageWidth } from "@/components/layout/page-width";
 import { MRFOX_APP_DOWNLOAD_URL } from "@/lib/app-download";
 import { cn } from "@/lib/utils";
 
@@ -112,7 +112,7 @@ export function Header({ variant = "brand" }: HeaderProps) {
           : "border-border/60 bg-background/80",
       )}
     >
-      <div className={cn(pageWidth, "h-14 sm:h-16")}>
+      <PageWidth className="h-14 sm:h-16">
         {/* Mobile & tablet */}
         <div className="relative flex h-full items-center lg:hidden">
           <div className="z-10 shrink-0">
@@ -166,7 +166,7 @@ export function Header({ variant = "brand" }: HeaderProps) {
             />
           </div>
         </div>
-      </div>
+      </PageWidth>
     </header>
   );
 }
