@@ -38,18 +38,18 @@
   },
   "apps": {
     "foxy": {
-      "description": "แพลตฟอร์ม Creator Economy หลักของ Mr.FOX — รองรับ Vote, Gift, Live",
-      "about": "FOXY คือแพลตฟอร์มรวมที่สุดของ Sexy Models และ Premium Creators พื้นที่ที่ครีเอเตอร์สามารถสร้างตัวตน เชื่อมต่อกับแฟนคลับ และสร้างรายได้ผ่านคอนเทนต์และประสบการณ์สุดเอ็กซ์คลูซีฟ พร้อมระบบที่ออกแบบมาเพื่อมอบประสบการณ์ระดับพรีเมียมให้ทั้งครีเอเตอร์และผู้ติดตาม",
-      "style": "Premium Creator Platform",
-      "highlights": "สมาชิก · Live · แชท · ของขวัญ · คอนเทนต์พรีเมียม",
-      "targetAudience": "ครีเอเตอร์และแฟนคลับ"
+      "description": "Sexy Idol app — the naughty girls club · Vote, Live, Chat, Call",
+      "about": "FOXY คือแอปไอดอลสายเซ็กซี่ — the naughty girls club แพลตฟอร์มออนไลน์ที่เปิดช่องทางให้ FOX Member เชื่อมต่อกับ FOXY ผ่านฟีเจอร์หลากหลาย เช่น Vote, Live, Chat, Call และ Secret Album",
+      "style": "\"Sexy Idol App\" · The Naughty Girls Club",
+      "highlights": "Vote · Live · Chat · Call · Secret Album",
+      "targetAudience": "FOX Member และ FOXY Creator"
     },
     "cupe": {
-      "description": "ไซต์ Creator 18+ สำหรับคอนเทนต์ Cup E — โหวต ส่งของขวัญ และ Live",
-      "about": "CupE คือชุมชนสำหรับนางแบบ ช่างภาพ และครีเอเตอร์สายแฟชั่น ที่เปิดโอกาสให้ทุกคนได้สร้างพอร์ตโฟลิโอ นำเสนอผลงาน และเชื่อมต่อกับผู้ติดตามหรือผู้ร่วมงานในวงการเดียวกัน นอกจากการสร้างตัวตนและขยายเครือข่ายแล้ว CupE ยังช่วยให้ครีเอเตอร์ต่อยอดรายได้จากผลงาน พร้อมสร้างความสัมพันธ์ระยะยาวกับแฟนคลับในแพลตฟอร์มเดียว",
-      "style": "Models & Photographers Community",
-      "highlights": "พอร์ตโฟลิโอ · เครือข่าย · รายได้จากผลงาน",
-      "targetAudience": "นางแบบ ช่างภาพ และครีเอเตอร์สายแฟชั่น"
+      "description": "แอปไอดอลแนวคิวต์และเลิฟลี่ — เชื่อมต่อเมมเบอร์กับไอดอลผ่าน Vote, Live, Chat, Call",
+      "about": "CupE คือแอปไอดอลแนวคิวต์และเลิฟลี่ — แพลตฟอร์มออนไลน์ที่เปิดช่องทางสะดวกให้เมมเบอร์เชื่อมต่อกับไอดอลผ่านฟีเจอร์หลากหลาย เช่น Vote, Live, Chat, Call และ Secret Album",
+      "style": "Cutesy & Lovey Idol Application",
+      "highlights": "Vote · Live · Chat · Call · Secret Album",
+      "targetAudience": "CupE Member และ CupE Creator"
     },
     "cliq": {
       "description": "ไซต์ Creator 18+ แบบ CLIQ — เชื่อมต่อ Creator กับแฟนคลับอย่างใกล้ชิด",
@@ -66,11 +66,11 @@
       "targetAudience": "ครีเอเตอร์ชายและแฟนคลับ"
     },
     "lesbie": {
-      "description": "ไซต์ Creator 18+ สำหรับ Lesbian community — สนับสนุน Creator ด้วย Vote และ Gift",
-      "about": "Lesbie คือชุมชนสำหรับผู้หญิงที่ต้องการพื้นที่ในการแสดงตัวตน ถ่ายทอดไลฟ์สไตล์ และสร้างคอนเทนต์ที่เชื่อมโยงกับผู้ติดตามในบรรยากาศที่เปิดกว้างและเป็นมิตร พร้อมเครื่องมือสำหรับสร้างรายได้จากสมาชิก แฟนคลับ และคอนเทนต์พิเศษ เพื่อให้ครีเอเตอร์เติบโตได้อย่างมั่นคงในชุมชนของตัวเอง",
-      "style": "Women's Creator Community",
-      "highlights": "สมาชิก · แฟนคลับ · คอนเทนต์พิเศษ",
-      "targetAudience": "ครีเอเตอร์หญิงและชุมชน"
+      "description": "Girl Love Girl app — Fall in love with the right person · Vote, Live, Chat, Call",
+      "about": "Lesbie คือแอป \"Girl Love Girl\" — Fall in love with the right person แพลตฟอร์มออนไลน์ที่เปิดช่องทางให้แฟนคลับ (FC) เชื่อมต่อกับไอดอลหญิง LGBT ผ่านฟีเจอร์หลากหลาย เช่น Vote, Live, Chat, Call และ Secret Album",
+      "style": "\"Girl Love Girl App\" · Fall in Love with the Right Person",
+      "highlights": "Vote · Live · Chat · Call · Secret Album",
+      "targetAudience": "แฟนคลับ (FC) และไอดอลหญิง LGBT"
     },
     "tomboi": {
       "description": "ไซต์ Creator 18+ สำหรับ Tom community — โปรไฟล์เดี่ยวและ monetization ครบ",
@@ -80,11 +80,11 @@
       "targetAudience": "ครีเอเตอร์ทอมและแฟนคลับ"
     },
     "bargirl": {
-      "description": "ไซต์ Creator 18+ สำหรับ Bar Girl / entertainer — Vote, Gift และ Live",
-      "about": "BarGirl คือแพลตฟอร์มสำหรับครีเอเตอร์สายไนต์ไลฟ์ที่ต้องการสร้างแบรนด์ส่วนตัว ขยายฐานแฟนคลับ และสร้างรายได้ผ่านคอนเทนต์ในพื้นที่ที่ปลอดภัยและเป็นส่วนตัว ไม่ว่าจะเป็นการแบ่งปันไลฟ์สไตล์ การสื่อสารกับแฟนคลับ หรือการสร้างสมาชิก ทุกเครื่องมือถูกออกแบบมาเพื่อช่วยให้ครีเอเตอร์บริหารธุรกิจของตัวเองได้อย่างง่ายดาย",
-      "style": "Nightlife Creator Community",
-      "highlights": "แบรนด์ส่วนตัว · สมาชิก · พื้นที่ส่วนตัว",
-      "targetAudience": "ครีเอเตอร์สายไนต์ไลฟ์และแฟนคลับ"
+      "description": "Bar Girls app — Hot and stylish girls · Vote, Live, Chat, Call",
+      "about": "BarGirl คือแอป Bar Girls — Hot and stylish girls แพลตฟอร์มออนไลน์สำหรับแฟนชายทั่วโลกที่ชื่นชอบบาร์เกิร์ลสไตล์และคาแรคเตอร์ของพวกเธอ สามารถโต้ตอบและสื่อสารผ่านฟีเจอร์ต่างๆ เช่น Vote, Live, Chat, Call และ Secret Album",
+      "style": "Bar Girls App · Hot and Stylish Girls",
+      "highlights": "Vote · Live · Chat · Call · Secret Album",
+      "targetAudience": "แฟนชายทั่วโลกและ Bar Girls"
     },
     "silom": {
       "description": "ชุมชน Silom 18+ — สมาชิกทุกคนมีส่วนร่วม โพสต์และแลกเปลี่ยนได้",
@@ -101,11 +101,11 @@
       "targetAudience": "นักคอสเพลย์ ครีเอเตอร์ และแฟนด้อม"
     },
     "expat-idols": {
-      "description": "ไซต์ Creator 18+ สำหรับ Expat Idols — โหวต ส่งของขวัญ และ Live",
-      "about": "Expat Idols คือแพลตฟอร์มสำหรับครีเอเตอร์ชาวต่างชาติที่อาศัยอยู่ในประเทศไทย หรือผู้ที่ต้องการสร้างชุมชนผู้ติดตามระดับนานาชาติ ช่วยให้การสร้างคอนเทนต์ การสื่อสารกับแฟนคลับ และการสร้างรายได้เป็นเรื่องง่าย พร้อมรองรับการเติบโตของครีเอเตอร์ในตลาดที่หลากหลายทั้งในประเทศและต่างประเทศ",
-      "style": "International Creator Community",
-      "highlights": "ชุมชนนานาชาติ · คอนเทนต์ · รายได้",
-      "targetAudience": "ครีเอเตอร์ต่างชาติและแฟนนานาชาติ"
+      "description": "Expat Models app — worldwide friendships · Vote, Live, Chat, Call",
+      "about": "Expat Idols คือแอป Expat Models — worldwide friendships แพลตฟอร์มออนไลน์สำหรับนางแบบและนายแบบชาวต่างชาติที่อาศัยในประเทศไทย ให้ได้ปฏิสัมพันธ์และสื่อสารกัน พร้อมฟีเจอร์ให้แฟนคลับ (FC) เชื่อมต่อกับโมเดลคนโปรด เช่น Vote, Live, Chat, Call และ Secret Album",
+      "style": "Expat Models App · Worldwide Friendships",
+      "highlights": "Vote · Live · Chat · Call · Secret Album",
+      "targetAudience": "โมเดลต่างชาติในไทยและแฟนคลับ (FC)"
     },
     "beauty-queen": {
       "description": "แพลตฟอร์มประกวด Beauty Queen — โหวตและสนับสนุนผู้เข้าประกวด",

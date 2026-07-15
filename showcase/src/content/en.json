@@ -149,19 +149,19 @@
   "apps": {
     "foxy": {
       "name": "FOXY",
-      "description": "Mr.FOX's flagship Creator Economy platform — Vote, Gift, Live",
-      "about": "FOXY is a platform for creators who want to turn content into their own business — with end-to-end tools for monetization, fan management, and building a community in a private space. Membership, live shows, chat, gifts, and premium content are all designed so creators can grow sustainably and earn fully from their work.",
-      "style": "Premium Creator Platform",
-      "highlights": "Membership · Live · Chat · Gifts · Premium content",
-      "targetAudience": "Creators and fans"
+      "description": "Sexy Idol app — the naughty girls club · Vote, Live, Chat, Call",
+      "about": "FOXY is a \"Sexy Idol app\" — the naughty girls club. An online platform for FOX Members to get in touch with FOXY through features like Vote, Live, Chat, Call, and Secret Album.",
+      "style": "\"Sexy Idol App\" · The Naughty Girls Club",
+      "highlights": "Vote · Live · Chat · Call · Secret Album",
+      "targetAudience": "FOX Members and FOXY Creators"
     },
     "cupe": {
       "name": "CupE",
-      "description": "18+ creator site for Cup E content — vote, send gifts, and go live",
-      "about": "CupE is a community for models, photographers, and fashion creators — a place to build portfolios, showcase work, and connect with followers or collaborators in the same scene. Beyond identity and networking, CupE helps creators monetize their work and build lasting fan relationships on one platform.",
-      "style": "Models & Photographers Community",
-      "highlights": "Portfolios · Networking · Earnings from work",
-      "targetAudience": "Models, photographers, and fashion creators"
+      "description": "Cutesy and lovey idol app — connect members with idols via Vote, Live, Chat, Call",
+      "about": "CupE is a cutesy and lovey idol application — an online platform that gives members a convenient way to connect with idols through features like Vote, Live, Chat, Call, and Secret Album.",
+      "style": "Cutesy & Lovey Idol Application",
+      "highlights": "Vote · Live · Chat · Call · Secret Album",
+      "targetAudience": "CupE Members and CupE Creators"
     },
     "cliq": {
       "name": "CLIQ",
@@ -181,11 +181,11 @@
     },
     "lesbie": {
       "name": "Lesbie",
-      "description": "18+ creator site for the Lesbian community — Vote and Gift support",
-      "about": "Lesbie is a community for women who want space to express themselves, share lifestyle, and create content that connects with followers — open and welcoming — with tools to earn from members, fans, and special content so creators can grow steadily in their own community.",
-      "style": "Women's Creator Community",
-      "highlights": "Membership · Fans · Special content",
-      "targetAudience": "Women creators and their community"
+      "description": "Girl Love Girl app — Fall in love with the right person · Vote, Live, Chat, Call",
+      "about": "Lesbie is a \"Girl Love Girl app\" — fall in love with the right person. An online platform for fan clubs (FC) to get in touch with LGBT female idols through features like Vote, Live, Chat, Call, and Secret Album.",
+      "style": "\"Girl Love Girl App\" · Fall in Love with the Right Person",
+      "highlights": "Vote · Live · Chat · Call · Secret Album",
+      "targetAudience": "Fan clubs (FC) and LGBT female idols"
     },
     "tomboi": {
       "name": "Tomboi",
@@ -197,11 +197,11 @@
     },
     "bargirl": {
       "name": "BarGirl",
-      "description": "18+ creator site for bar girls and entertainers — Vote, Gift, and Live",
-      "about": "BarGirl is for nightlife creators who want a personal brand, a growing fan base, and earnings through content in a safe, private space — sharing lifestyle, talking with fans, or building memberships. Every tool helps creators run their own business with ease.",
-      "style": "Nightlife Creator Community",
-      "highlights": "Personal brand · Membership · Private space",
-      "targetAudience": "Nightlife creators and fans"
+      "description": "Bar Girls app — Hot and stylish girls · Vote, Live, Chat, Call",
+      "about": "BarGirl is a Bar Girls app — hot and stylish girls. An online platform for male fans worldwide who love stylish bar girls and their characters, with ways to interact through Vote, Live, Chat, Call, and Secret Album.",
+      "style": "Bar Girls App · Hot and Stylish Girls",
+      "highlights": "Vote · Live · Chat · Call · Secret Album",
+      "targetAudience": "Male fans worldwide and bar girls"
     },
     "silom": {
       "name": "Silom",
@@ -221,11 +221,11 @@
     },
     "expat-idols": {
       "name": "Expat Idols",
-      "description": "18+ creator site for Expat Idols — vote, send gifts, and go live",
-      "about": "Expat Idols is for international creators living in Thailand, or anyone building a global following — making content, fan communication, and earnings easier, with room to grow across diverse markets locally and abroad.",
-      "style": "International Creator Community",
-      "highlights": "International community · Content · Earnings",
-      "targetAudience": "Expat creators and international fans"
+      "description": "Expat Models app — worldwide friendships · Vote, Live, Chat, Call",
+      "about": "Expat Idols is an Expat Models app — worldwide friendships. An online platform for foreign male and female models living in Thailand to interact and communicate, with features for fan clubs (FC) to connect with their favorite models such as Vote, Live, Chat, Call, and Secret Album.",
+      "style": "Expat Models App · Worldwide Friendships",
+      "highlights": "Vote · Live · Chat · Call · Secret Album",
+      "targetAudience": "Expat models in Thailand and fan clubs (FC)"
     },
     "beauty-queen": {
       "name": "Beauty Queen",

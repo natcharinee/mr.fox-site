@@ -63,6 +63,7 @@
     "platformType": "平台类型",
     "targetAudience": "目标受众",
     "about": "关于应用",
+    "concept": "概念",
     "style": "风格 / 类型",
     "highlights": "亮点",
     "screenshots": "应用内示例",
@@ -82,32 +83,32 @@
       "earnLabel": "创作者得",
       "tools": {
         "vote": {
-          "name": "Vote",
+          "name": "投票",
           "fan": "为喜欢的主页或作品投票支持",
           "earn": "既获得投票收入，也提升排名（Rank）"
         },
         "gift": {
-          "name": "Gift",
+          "name": "礼物",
           "fan": "在帖子或直播中赠送虚拟礼物",
           "earn": "即时获得会员礼物收入"
         },
         "live": {
-          "name": "Live",
+          "name": "直播",
           "fan": "观看直播、送礼并实时互动",
           "earn": "开播期间持续变现"
         },
         "chatCall": {
-          "name": "Chat & Call",
+          "name": "聊天与通话",
           "fan": "与创作者私聊或语音/视频通话",
           "earn": "一对一沟通按次收费"
         },
         "subscription": {
-          "name": "Subscription & Secret",
+          "name": "订阅与私密内容",
           "fan": "订阅或解锁独家内容",
           "earn": "会员月费 + 付费解锁高级内容"
         },
         "liveArchive": {
-          "name": "Live Archive",
+          "name": "直播存档",
           "fan": "回看往期直播，或解锁存档重播",
           "earn": "直播结束后仍可从存档持续获得收入"
         }

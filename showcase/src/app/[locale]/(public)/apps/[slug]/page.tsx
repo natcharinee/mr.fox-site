@@ -130,9 +130,14 @@ export default async function AppDetailPage({ params }: Props) {
               />
               <div className="relative max-w-2xl space-y-5">
                 {app.style ? (
-                  <p className="vulpine-label text-[var(--vulpine-primary-container)]">
-                    {app.style}
-                  </p>
+                  <div className="space-y-2">
+                    <p className="font-display text-base font-semibold uppercase tracking-[0.18em] text-[var(--vulpine-primary-container)] sm:text-lg">
+                      {t("concept")}
+                    </p>
+                    <p className="font-display text-base font-semibold uppercase tracking-[0.12em] text-[var(--vulpine-primary-container)]/85 sm:text-lg">
+                      {app.style}
+                    </p>
+                  </div>
                 ) : null}
                 <p className="text-base leading-[1.8] text-[var(--vulpine-on-surface)] sm:text-lg sm:leading-[1.85]">
                   {app.about}

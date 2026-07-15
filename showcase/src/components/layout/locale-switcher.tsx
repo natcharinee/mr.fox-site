@@ -15,7 +15,7 @@ import { cn } from "@/lib/utils";
 const LOCALES: { code: Locale; label: string; flag: string }[] = [
   { code: "en", label: "English", flag: "🇺🇸" },
   { code: "th", label: "ภาษาไทย", flag: "🇹🇭" },
-  { code: "zh", label: "จีน", flag: "🇨🇳" },
+  { code: "zh", label: "中文", flag: "🇨🇳" },
 ];
 
 export function LocaleSwitcher({
