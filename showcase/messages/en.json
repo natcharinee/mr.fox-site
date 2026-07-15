@@ -65,13 +65,54 @@
     "about": "About this app",
     "style": "Style / Genre",
     "highlights": "Highlights",
+    "screenshots": "In-app examples",
     "activities": "Activities",
+    "feed": "From the live feed",
     "videos": "Videos",
     "events": "Events",
     "mediaComingSoon": "Coming soon",
     "comingSoon": "Coming soon",
     "viewDetails": "Details",
-    "downloadLabel": "Download"
+    "downloadLabel": "Download",
+    "openOnFoxy": "Open on FOXY",
+    "monetization": {
+      "title": "{app} earning tools",
+      "subtitle": "What members do → what creators earn",
+      "fanLabel": "Members",
+      "earnLabel": "Creators earn",
+      "tools": {
+        "vote": {
+          "name": "Vote",
+          "fan": "Cast votes to support a profile or post they love",
+          "earn": "Earn from votes and climb higher in Rank"
+        },
+        "gift": {
+          "name": "Gift",
+          "fan": "Send digital gifts on posts or during Live",
+          "earn": "Instant income from gifts members send"
+        },
+        "live": {
+          "name": "Live",
+          "fan": "Watch live, send gifts, and interact in real time",
+          "earn": "Earn while you stream"
+        },
+        "chatCall": {
+          "name": "Chat & Call",
+          "fan": "Private chat or voice/video calls with the creator",
+          "earn": "Per-session fees for one-to-one connection"
+        },
+        "subscription": {
+          "name": "Subscription & Secret",
+          "fan": "Subscribe or unlock exclusive content",
+          "earn": "Recurring membership plus premium unlocks"
+        },
+        "liveArchive": {
+          "name": "Live Archive",
+          "fan": "Rewatch past lives or unlock archived streams",
+          "earn": "Keep earning from recorded lives after the stream ends"
+        }
+      }
+    }
   },
   "creator": {
     "title": "Creator",
@@ -693,7 +734,7 @@
     "privacy": "Privacy Policy",
     "terms": "Terms of Service",
     "downloadTitle": "Download Mr.FOX apps",
-    "downloadDesc": "Vote, Gift, Live, and more — one tap away.",
+    "downloadDesc": "Ready to grow your space? Download and start in moments.",
     "backToTop": "Back to top",
     "copyright": "All rights reserved"
   },

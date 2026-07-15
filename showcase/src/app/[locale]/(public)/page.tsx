@@ -16,7 +16,7 @@ import {
   localizeNews,
   localizePlatform,
 } from "@/lib/content-i18n";
-import { compareAppsByPosterPriority } from "@/lib/app-poster";
+import { compareAppsByListOrder } from "@/lib/app-list-order";
 import {
   getApplications,
   getCategories,
@@ -92,12 +92,7 @@ export default async function HomePage({ params }: Props) {
       })),
     )
   )
-    .sort((a, b) => {
-      const posterOrder = compareAppsByPosterPriority(a, b);
-      if (posterOrder !== 0) return posterOrder;
-      if (a.featured !== b.featured) return a.featured ? -1 : 1;
-      return a.sortOrder - b.sortOrder;
-    })
+    .sort(compareAppsByListOrder)
     .slice(0, HOMEPAGE_APPS_LIMIT);
 
   return (

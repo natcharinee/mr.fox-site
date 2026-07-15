@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { CalendarDays, ImageIcon, Play } from "lucide-react";
+import { CalendarDays, ImageIcon, LayoutGrid, Play } from "lucide-react";
 import { ContentImage } from "@/components/ui/content-image";
 import { SectionHeading } from "@/components/layout/section-heading";
 import { publicTheme } from "@/components/layout/public-theme";
@@ -14,6 +14,7 @@ type SlotProps = {
   icon: ReactNode;
   mediaUrl?: string | null;
   imageAlt?: string;
+  objectPosition?: string;
 };
 
 function MediaSlot({
@@ -22,6 +23,7 @@ function MediaSlot({
   icon,
   mediaUrl,
   imageAlt = "",
+  objectPosition,
 }: SlotProps) {
   const youtubeId = mediaUrl ? extractYoutubeId(mediaUrl) : null;
 
@@ -59,6 +61,7 @@ function MediaSlot({
           alt={imageAlt}
           fill
           fit="cover"
+          objectPosition={objectPosition}
           sizes="(max-width: 768px) 100vw, 33vw"
           unoptimized={isUploadedMediaUrl(mediaUrl)}
           className="object-cover"
@@ -82,12 +85,16 @@ function MediaSlot({
   );
 }
 
-function padSlots(urls: string[] | undefined, count: number) {
+function padSlots(
+  urls: (string | null | undefined)[] | undefined,
+  count: number,
+) {
   return Array.from({ length: count }, (_, i) => urls?.[i] ?? null);
 }
 
 type AppGalleryPlaceholdersProps = {
   activitiesTitle: string;
+  feedTitle: string;
   videosTitle: string;
   eventsTitle: string;
   placeholderLabel: string;
@@ -97,19 +104,50 @@ type AppGalleryPlaceholdersProps = {
 
 export function AppGalleryPlaceholders({
   activitiesTitle,
+  feedTitle,
   videosTitle,
   eventsTitle,
   placeholderLabel,
   appName,
   media = {},
 }: AppGalleryPlaceholdersProps) {
-  const activities = padSlots(media.activities, Math.max(4, media.activities?.length ?? 0));
-  const videos = padSlots(media.videos, Math.max(2, media.videos?.length ?? 0));
+  const activities = padSlots(
+    media.activities,
+    Math.max(4, media.activities?.length ?? 0),
+  );
+  const showFeed = media.feed !== undefined;
+  const feed = showFeed
+    ? padSlots(
+        media.feed,
+        Math.max(media.feedSlotCount ?? 6, media.feed?.length ?? 0),
+      )
+    : [];
+  const videoUrls = (media.videos ?? []).filter(Boolean);
+  const videos = videoUrls.length > 0 ? padSlots(videoUrls, videoUrls.length) : [];
   const eventUrls = (media.events ?? []).filter(Boolean);
   const events = eventUrls.length > 0 ? padSlots(eventUrls, eventUrls.length) : [];
 
   return (
     <div className="mt-14 space-y-12">
+      {showFeed ? (
+        <section>
+          <SectionHeading title={feedTitle} />
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {feed.map((url, i) => (
+              <MediaSlot
+                key={`feed-${i}`}
+                label={placeholderLabel}
+                aspectClassName="aspect-[3/4]"
+                icon={<LayoutGrid className="size-5" aria-hidden />}
+                mediaUrl={url}
+                imageAlt={`${appName} feed ${i + 1}`}
+                objectPosition="top"
+              />
+            ))}
+          </div>
+        </section>
+      ) : null}
+
       <section>
         <SectionHeading title={activitiesTitle} />
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -126,21 +164,23 @@ export function AppGalleryPlaceholders({
         </div>
       </section>
 
-      <section>
-        <SectionHeading title={videosTitle} />
-        <div className="grid gap-4">
-          {videos.map((url, i) => (
-            <MediaSlot
-              key={`video-${i}`}
-              label={placeholderLabel}
-              aspectClassName="aspect-video"
-              icon={<Play className="ml-0.5 size-5" aria-hidden />}
-              mediaUrl={url}
-              imageAlt={`${appName} video ${i + 1}`}
-            />
-          ))}
-        </div>
-      </section>
+      {videos.length > 0 ? (
+        <section>
+          <SectionHeading title={videosTitle} />
+          <div className="grid gap-4">
+            {videos.map((url, i) => (
+              <MediaSlot
+                key={`video-${i}`}
+                label={placeholderLabel}
+                aspectClassName="aspect-video"
+                icon={<Play className="ml-0.5 size-5" aria-hidden />}
+                mediaUrl={url}
+                imageAlt={`${appName} video ${i + 1}`}
+              />
+            ))}
+          </div>
+        </section>
+      ) : null}
 
       {events.length > 0 ? (
         <section>

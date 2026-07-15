@@ -311,6 +311,36 @@
     }
   }
 
+  @keyframes app-screenshots-marquee {
+    from {
+      transform: translate3d(0, 0, 0);
+    }
+    to {
+      transform: translate3d(-50%, 0, 0);
+    }
+  }
+
+  .app-screenshots-track {
+    width: max-content;
+    animation: app-screenshots-marquee var(--app-screenshots-duration, 42s) linear
+      infinite;
+  }
+
+  .app-screenshots-viewport:hover .app-screenshots-track,
+  .app-screenshots-viewport:focus-within .app-screenshots-track {
+    animation-play-state: paused;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .app-screenshots-track {
+      animation: none;
+    }
+
+    .app-screenshots-viewport {
+      overflow-x: auto;
+    }
+  }
+
   .feature-card-enter {
     animation: feature-fade-up 0.55s ease-out both;
   }

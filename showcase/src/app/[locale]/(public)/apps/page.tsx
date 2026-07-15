@@ -1,14 +1,16 @@
 import { getTranslations } from "next-intl/server";
 import { Input } from "@/components/ui/input";
 import { AppListCard } from "@/components/apps/app-list-card";
+import { AppScreenshots } from "@/components/apps/app-screenshots";
 import { PageHero } from "@/components/layout/page-hero";
 import { PageShell } from "@/components/layout/page-shell";
 import { ScrollToHash } from "@/components/layout/scroll-to-hash";
 import { publicTheme } from "@/components/layout/public-theme";
 import type { Locale } from "@/i18n/routing";
 import { localizeApp, localizeCategory, localizePlatform } from "@/lib/content-i18n";
+import { MRFOX_APP_SCREENSHOTS } from "@/lib/app-gallery";
 import { buildMetadata } from "@/lib/metadata";
-import { compareAppsByPosterPriority } from "@/lib/app-poster";
+import { compareAppsByListOrder } from "@/lib/app-list-order";
 import { getApplications, getCategories, getDownloadLinks, getPlatformTypes } from "@/lib/queries";
 
 export const dynamic = "force-dynamic";
@@ -65,12 +67,7 @@ export default async function AppsPage({
         links: await getDownloadLinks(app.id),
       })),
     )
-  ).sort((a, b) => {
-    const posterOrder = compareAppsByPosterPriority(a, b);
-    if (posterOrder !== 0) return posterOrder;
-    if (a.featured !== b.featured) return a.featured ? -1 : 1;
-    return a.sortOrder - b.sortOrder;
-  });
+  ).sort(compareAppsByListOrder);
 
   return (
     <PageShell>
@@ -109,7 +106,14 @@ export default async function AppsPage({
       </PageHero>
 
       <div className={publicTheme.pageGrid}>
-        <div className="flex flex-col gap-5">
+        <AppScreenshots
+          title={t("screenshots")}
+          appName="Mr.FOX"
+          images={[...MRFOX_APP_SCREENSHOTS]}
+          className="mt-0"
+        />
+
+        <div className="mt-10 flex flex-col gap-5">
           {appsWithLinks.map((app) => (
             <AppListCard
               key={app.slug}

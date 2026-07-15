@@ -1,24 +1,24 @@
+import { ExternalLink } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { notFound } from "next/navigation";
 import { Badge } from "@/components/ui/badge";
-import {
-  Card,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 import { AppGalleryPlaceholders } from "@/components/apps/app-gallery-placeholders";
+import { AppMonetizationTools } from "@/components/apps/app-monetization-tools";
 import { DownloadButtons } from "@/components/apps/download-buttons";
 import { AppMedia } from "@/components/apps/app-media";
 import { PageHero } from "@/components/layout/page-hero";
 import { PageShell } from "@/components/layout/page-shell";
 import { SectionHeading } from "@/components/layout/section-heading";
-import { publicTheme, themedCard } from "@/components/layout/public-theme";
+import { publicTheme } from "@/components/layout/public-theme";
 import { CATEGORY_THEME } from "@/components/platforms/platform-category-theme";
 import type { Locale } from "@/i18n/routing";
 import { localizeApp, localizePlatform } from "@/lib/content-i18n";
-import { getAppGallery } from "@/lib/app-gallery";
+import { getAppGallery, getAppLiveSite } from "@/lib/app-gallery";
+import {
+  getAppMonetization,
+  type MonetizationToolId,
+} from "@/lib/app-monetization";
 import { buildMetadata } from "@/lib/metadata";
 import { cn } from "@/lib/utils";
 import {
@@ -67,6 +67,18 @@ export default async function AppDetailPage({ params }: Props) {
   const categoryTheme =
     CATEGORY_THEME[app.categorySlug ?? "creator"] ?? CATEGORY_THEME.creator;
 
+  const gallery = getAppGallery(app.slug);
+  const liveSiteUrl = getAppLiveSite(app.slug);
+  const monetization = getAppMonetization(app.slug);
+  const monetizationTools =
+    monetization?.toolIds.map((id: MonetizationToolId) => ({
+      id,
+      name: t(`monetization.tools.${id}.name`),
+      fan: t(`monetization.tools.${id}.fan`),
+      earn: t(`monetization.tools.${id}.earn`),
+      screenshot: monetization.screenshots?.[id] ?? null,
+    })) ?? [];
+
   return (
     <PageShell>
       <PageHero
@@ -89,12 +101,53 @@ export default async function AppDetailPage({ params }: Props) {
       </PageHero>
 
       <div className={`${publicTheme.pageGrid} pb-0`}>
-        <AppMedia
-          posterUrl={app.featuredPosterUrl ?? app.posterUrl}
-          posterFocus={app.featuredPosterFocus ?? app.posterFocus}
-          name={app.name}
-          className="aspect-[21/9] overflow-hidden rounded-2xl"
-        />
+        {app.about ? (
+          <div className="grid gap-6 md:grid-cols-[max-content_minmax(0,1fr)] md:items-stretch md:gap-8 lg:gap-10">
+            <div className="relative mx-auto aspect-square w-full max-w-[15rem] md:mx-0 md:flex md:h-auto md:w-auto md:max-w-none md:self-stretch">
+              {/* Square frame: side length follows about-card height */}
+              <div
+                aria-hidden
+                className="pointer-events-none invisible hidden md:block md:h-full md:w-auto"
+                style={{ aspectRatio: "1 / 1" }}
+              />
+              <AppMedia
+                posterUrl={app.featuredPosterUrl ?? app.posterUrl}
+                posterFocus={app.featuredPosterFocus ?? app.posterFocus}
+                name={app.name}
+                className="absolute inset-0 overflow-hidden rounded-2xl"
+              />
+            </div>
+            <article
+              className={cn(
+                "relative flex min-h-[14rem] flex-col justify-center overflow-hidden rounded-2xl border border-white/10 md:min-h-[16rem]",
+                "bg-gradient-to-br from-[var(--vulpine-primary-container)]/[0.08] via-[rgba(18,20,20,0.55)] to-black/70",
+                "px-8 py-8 shadow-[0_4px_40px_rgba(0,0,0,0.25)] sm:px-10 sm:py-10 md:px-12 md:py-11",
+              )}
+            >
+              <div
+                aria-hidden
+                className="pointer-events-none absolute -right-20 -top-24 size-64 rounded-full bg-[var(--vulpine-primary-container)]/15 blur-3xl"
+              />
+              <div className="relative max-w-2xl space-y-5">
+                {app.style ? (
+                  <p className="vulpine-label text-[var(--vulpine-primary-container)]">
+                    {app.style}
+                  </p>
+                ) : null}
+                <p className="text-base leading-[1.8] text-[var(--vulpine-on-surface)] sm:text-lg sm:leading-[1.85]">
+                  {app.about}
+                </p>
+              </div>
+            </article>
+          </div>
+        ) : (
+          <AppMedia
+            posterUrl={app.featuredPosterUrl ?? app.posterUrl}
+            posterFocus={app.featuredPosterFocus ?? app.posterFocus}
+            name={app.name}
+            className="aspect-[21/9] overflow-hidden rounded-2xl"
+          />
+        )}
       </div>
 
       <div className={publicTheme.pageGrid}>
@@ -106,84 +159,43 @@ export default async function AppDetailPage({ params }: Props) {
           align="center"
         />
 
-        {app.about ? (
-          <section className="mt-12">
-            <SectionHeading title={t("about")} />
-            <article
+        {liveSiteUrl ? (
+          <div className="mt-4 flex justify-center">
+            <a
+              href={liveSiteUrl}
+              target="_blank"
+              rel="noopener noreferrer"
               className={cn(
-                "relative overflow-hidden rounded-2xl border border-white/10",
-                "bg-gradient-to-br from-[var(--vulpine-primary-container)]/[0.08] via-[rgba(18,20,20,0.55)] to-black/70",
-                "p-6 shadow-[0_4px_40px_rgba(0,0,0,0.25)] sm:p-8 md:p-10",
+                publicTheme.submitButton,
+                "inline-flex h-10 items-center gap-2 rounded-lg px-5",
               )}
             >
-              <div
-                aria-hidden
-                className="pointer-events-none absolute -right-20 -top-24 size-64 rounded-full bg-[var(--vulpine-primary-container)]/15 blur-3xl"
-              />
-              <div className="relative space-y-5">
-                {app.style ? (
-                  <p className="vulpine-label text-[var(--vulpine-primary-container)]">
-                    {app.style}
-                  </p>
-                ) : null}
-                <p className="max-w-3xl text-base leading-[1.75] text-[var(--vulpine-on-surface)] sm:text-lg sm:leading-[1.8]">
-                  {app.about}
-                </p>
-              </div>
-            </article>
-          </section>
+              {t("openOnFoxy")}
+              <ExternalLink className="size-3.5 opacity-90" aria-hidden />
+            </a>
+          </div>
+        ) : null}
+
+        {monetizationTools.length > 0 ? (
+          <AppMonetizationTools
+            title={t("monetization.title", { app: app.name })}
+            subtitle={t("monetization.subtitle")}
+            fanLabel={t("monetization.fanLabel")}
+            earnLabel={t("monetization.earnLabel")}
+            placeholderLabel={t("mediaComingSoon")}
+            tools={monetizationTools}
+          />
         ) : null}
 
         <AppGalleryPlaceholders
           activitiesTitle={t("activities")}
+          feedTitle={t("feed")}
           videosTitle={t("videos")}
           eventsTitle={t("events")}
           placeholderLabel={t("mediaComingSoon")}
           appName={app.name}
-          media={getAppGallery(app.slug)}
+          media={gallery}
         />
-
-        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {app.highlights ? (
-            <Card className={themedCard()}>
-              <CardHeader>
-                <CardTitle className={`text-base ${publicTheme.cardTitle}`}>
-                  {t("highlights")}
-                </CardTitle>
-                <CardDescription className={publicTheme.cardDescription}>
-                  {app.highlights}
-                </CardDescription>
-              </CardHeader>
-            </Card>
-          ) : null}
-          {app.targetAudience ? (
-            <Card className={themedCard()}>
-              <CardHeader>
-                <CardTitle className={`text-base ${publicTheme.cardTitle}`}>
-                  {t("targetAudience")}
-                </CardTitle>
-                <CardDescription className={publicTheme.cardDescription}>
-                  {app.targetAudience}
-                </CardDescription>
-              </CardHeader>
-            </Card>
-          ) : null}
-          <Card className={themedCard()}>
-            <CardHeader>
-              <CardTitle className={`text-base ${publicTheme.cardTitle}`}>
-                {t("platformType")}
-              </CardTitle>
-              <CardDescription className={publicTheme.cardDescription}>
-                <Link
-                  href={`/platforms/${app.platformTypeSlug}`}
-                  className={publicTheme.link}
-                >
-                  {platformTypeName}
-                </Link>
-              </CardDescription>
-            </CardHeader>
-          </Card>
-        </div>
 
         {related.length > 0 ? (
           <section className="mt-12">

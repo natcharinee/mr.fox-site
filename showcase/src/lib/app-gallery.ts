@@ -4,9 +4,35 @@
  */
 export type AppGalleryMedia = {
   activities?: string[];
+  /**
+   * Live-app feed previews. Pass an array (even empty) to show the section;
+   * missing/empty entries render dashed boxes ready for real screenshots.
+   */
+  feed?: (string | null | undefined)[];
+  /** How many feed boxes to show when fewer images are provided (default 6). */
+  feedSlotCount?: number;
   videos?: string[];
   events?: string[];
 };
+
+/** Shared Mr.FOX app screenshots from App Store (real product UI). */
+export const MRFOX_APP_SCREENSHOTS = [
+  "/apps/screenshots/mrfox/mrfox-screen-1.jpg",
+  "/apps/screenshots/mrfox/mrfox-screen-2.jpg",
+  "/apps/screenshots/mrfox/mrfox-screen-3.jpg",
+  "/apps/screenshots/mrfox/mrfox-screen-4.jpg",
+  "/apps/screenshots/mrfox/mrfox-screen-5.jpg",
+  "/apps/screenshots/mrfox/mrfox-screen-6.png",
+] as const;
+
+/** Public live product URLs for “open on app” CTAs on detail pages. */
+export const APP_LIVE_SITES: Record<string, string> = {
+  foxy: "https://www.foxy.club",
+};
+
+export function getAppLiveSite(slug: string): string | null {
+  return APP_LIVE_SITES[slug] ?? null;
+}
 
 export const APP_GALLERY: Record<string, AppGalleryMedia> = {
   foxy: {
@@ -16,6 +42,10 @@ export const APP_GALLERY: Record<string, AppGalleryMedia> = {
       "/apps/gallery/foxy-activity-3.png",
       "/apps/gallery/foxy-activity-4.png",
     ],
+    // Drop real feed screenshots into public/apps/gallery/ as foxy-feed-1.jpg …
+    // then list paths here (empty slots stay as dashed boxes).
+    feed: [null, null, null, null, null, null],
+    feedSlotCount: 6,
   },
   "cosplay-plus": {
     activities: [

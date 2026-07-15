@@ -65,13 +65,54 @@
     "about": "关于应用",
     "style": "风格 / 类型",
     "highlights": "亮点",
+    "screenshots": "应用内示例",
     "activities": "活动相册",
+    "feed": "来自真实动态",
     "videos": "视频",
     "events": "活动",
     "mediaComingSoon": "即将推出",
     "comingSoon": "即将推出",
     "viewDetails": "详情",
-    "downloadLabel": "下载"
+    "downloadLabel": "下载",
+    "openOnFoxy": "在 FOXY 上查看",
+    "monetization": {
+      "title": "{app} 变现工具",
+      "subtitle": "会员做什么 → 创作者赚什么",
+      "fanLabel": "会员做",
+      "earnLabel": "创作者得",
+      "tools": {
+        "vote": {
+          "name": "Vote",
+          "fan": "为喜欢的主页或作品投票支持",
+          "earn": "既获得投票收入，也提升排名（Rank）"
+        },
+        "gift": {
+          "name": "Gift",
+          "fan": "在帖子或直播中赠送虚拟礼物",
+          "earn": "即时获得会员礼物收入"
+        },
+        "live": {
+          "name": "Live",
+          "fan": "观看直播、送礼并实时互动",
+          "earn": "开播期间持续变现"
+        },
+        "chatCall": {
+          "name": "Chat & Call",
+          "fan": "与创作者私聊或语音/视频通话",
+          "earn": "一对一沟通按次收费"
+        },
+        "subscription": {
+          "name": "Subscription & Secret",
+          "fan": "订阅或解锁独家内容",
+          "earn": "会员月费 + 付费解锁高级内容"
+        },
+        "liveArchive": {
+          "name": "Live Archive",
+          "fan": "回看往期直播，或解锁存档重播",
+          "earn": "直播结束后仍可从存档持续获得收入"
+        }
+      }
+    }
   },
   "creator": {
     "title": "Creator",
@@ -693,7 +734,7 @@
     "privacy": "隐私政策",
     "terms": "服务条款",
     "downloadTitle": "下载 Mr.FOX 应用",
-    "downloadDesc": "投票、礼物、直播等 — 一键即达",
+    "downloadDesc": "准备好打造自己的空间了吗？立即下载，马上开始。",
     "backToTop": "返回顶部",
     "copyright": "版权所有"
   },

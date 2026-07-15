@@ -22,9 +22,9 @@ const GOOGLE_PLAY_URL =
 /** Apps shown in homepage Featured Applications (synced on every seed/deploy). */
 const HOMEPAGE_FEATURED_SLUGS = [
   "foxy",
+  "cupe",
   "cosplay-plus",
   "nak-sueksa",
-  "cupe",
 ] as const;
 import { hashPassword } from "../src/lib/password";
 import { EXCLUDED_NEWS_SLUGS } from "../src/lib/excluded-news-slugs";

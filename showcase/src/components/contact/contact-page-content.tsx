@@ -277,7 +277,7 @@ export function ContactPageContent({
             <h3 className="font-display text-base font-bold uppercase text-[var(--vulpine-on-surface)]">
               {t("social.title")}
             </h3>
-            <div className="mt-4 flex flex-wrap gap-2.5">
+            <div className="mt-4 grid grid-cols-5 justify-items-start gap-2.5">
               {MRFOX_SOCIAL_LINKS.map((item) => (
                 <SocialLinkButton
                   key={item.id}

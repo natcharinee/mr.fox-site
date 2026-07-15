@@ -53,7 +53,7 @@ export function NewsListCard({
           ) : null}
         </CardHeader>
         <div className="px-4 pb-4 pt-2">
-          <span className="inline-flex items-center gap-1.5 rounded-lg border border-[var(--vulpine-primary-container)]/40 bg-white/[0.04] px-3 py-1.5 text-sm font-semibold text-[var(--vulpine-primary-container)] transition-all group-hover:border-[var(--vulpine-primary-container)]/60 group-hover:bg-[var(--vulpine-primary-container)]/10">
+          <span className="inline-flex w-full items-center justify-center gap-1.5 rounded-lg border border-[var(--vulpine-primary-container)]/40 bg-white/[0.04] px-3 py-2.5 text-sm font-semibold text-[var(--vulpine-primary-container)] transition-all group-hover:border-[var(--vulpine-primary-container)]/60 group-hover:bg-[var(--vulpine-primary-container)]/10">
             {readMoreLabel}
             <ArrowRight className="size-4" aria-hidden />
           </span>

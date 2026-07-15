@@ -103,7 +103,7 @@ const SOCIAL_BUTTON_STYLES: Record<SocialPlatformId, string> = {
   telegram: "bg-[#26A5E4] text-white",
   youtube: "bg-[#FF0000] text-white",
   twitter: "bg-white text-black",
-  tiktok: "bg-black text-white",
+  tiktok: "border border-white/30 bg-black text-white",
   vk: "bg-[#0077FF] text-white",
   coinmarketcap: "bg-[#3861fb] text-white",
 };
