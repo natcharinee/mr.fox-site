@@ -22,6 +22,7 @@ import { AdminSaveForm } from "@/components/admin/admin-save-form";
 import { AdminPosterUploadField } from "@/components/admin/admin-poster-upload-field";
 import { ApplicationFormVisibilityFields } from "@/components/admin/application-form-visibility-fields";
 import { ApplicationVisibilityToggle } from "@/components/admin/application-visibility-toggle";
+import { ScrollToHash } from "@/components/layout/scroll-to-hash";
 import { createApplication, deleteApplication } from "@/lib/admin/actions";
 import { getAllApplicationsAdmin, getAllPlatformsAdmin } from "@/lib/admin/queries";
 
@@ -38,6 +39,7 @@ export default async function AdminApplicationsPage() {
 
   return (
     <div className="space-y-8">
+      <ScrollToHash offset={24} />
       <div>
         <h2 className="text-2xl font-bold">Application Management</h2>
         <p className="text-muted-foreground">
@@ -102,11 +104,11 @@ export default async function AdminApplicationsPage() {
               <Input id="androidUrl" name="androidUrl" className="mt-1" />
             </div>
             <div className="sm:col-span-2">
-              <Label htmlFor="apkUrl">APK URL</Label>
+              <Label htmlFor="apkUrl">URL Site</Label>
               <Input
                 id="apkUrl"
                 name="apkUrl"
-                placeholder="https://download.mrfox.app/{slug}.apk"
+                placeholder="https://www.example.com"
                 className="mt-1"
               />
             </div>
@@ -136,14 +138,18 @@ export default async function AdminApplicationsPage() {
           </TableHeader>
           <TableBody>
             {items.map((item) => (
-              <TableRow key={item.id}>
+              <TableRow
+                key={item.id}
+                id={`app-${item.id}`}
+                className="scroll-mt-6 data-[highlight=true]:bg-amber-50 data-[highlight=true]:ring-2 data-[highlight=true]:ring-amber-300/80"
+              >
                 <TableCell>
                   <AppMedia
                     posterUrl={item.featuredPosterUrl ?? item.posterUrl}
                     posterFocus={item.featuredPosterFocus ?? item.posterFocus}
                     name={item.name}
+                    fit="cover"
                     className="h-12 w-9 rounded-md"
-                    imageClassName="p-1"
                   />
                 </TableCell>
                 <TableCell className="font-medium">{item.name}</TableCell>

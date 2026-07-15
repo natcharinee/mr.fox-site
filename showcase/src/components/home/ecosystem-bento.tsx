@@ -353,7 +353,7 @@ export function EcosystemBento({
           <LinkButton
             href="/platforms"
             variant="ghost"
-            className="vulpine-label h-auto gap-2 rounded-xl border border-[var(--vulpine-primary-container)]/40 bg-white/[0.04] px-6 py-2.5 text-sm text-[var(--vulpine-primary-container)] hover:bg-[var(--vulpine-primary-container)]/10 hover:text-[var(--vulpine-primary-container)] sm:text-base"
+            className="vulpine-label h-auto w-full max-w-md gap-2 rounded-xl border border-[var(--vulpine-primary-container)]/40 bg-white/[0.04] px-6 py-2.5 text-sm text-[var(--vulpine-primary-container)] hover:bg-[var(--vulpine-primary-container)]/10 hover:text-[var(--vulpine-primary-container)] sm:text-base"
           >
             {viewAllLabel}
             <ArrowRight className="size-4" aria-hidden />

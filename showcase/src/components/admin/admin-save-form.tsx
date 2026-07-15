@@ -1,8 +1,11 @@
 "use client";
 
 import { useActionState, useEffect, type ReactNode } from "react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
+import { buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 type ActionState = {
   ok: boolean;
@@ -13,6 +16,8 @@ type ActionState = {
 type Props = {
   action: (formData: FormData) => Promise<void>;
   successMessage?: string;
+  successHref?: string;
+  successLinkLabel?: string;
   className?: string;
   children: ReactNode;
 };
@@ -20,6 +25,8 @@ type Props = {
 export function AdminSaveForm({
   action,
   successMessage = "บันทึกสำเร็จแล้ว",
+  successHref,
+  successLinkLabel = "ไปหน้ารวม",
   className,
   children,
 }: Props) {
@@ -63,6 +70,18 @@ export function AdminSaveForm({
       }}
     >
       {children}
+
+      {state?.ok && successHref ? (
+        <div className="flex flex-wrap items-center gap-3 rounded-lg border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-900 sm:col-span-2">
+          <span className="flex-1">{state.message ?? successMessage}</span>
+          <Link
+            href={successHref}
+            className={cn(buttonVariants({ size: "sm" }))}
+          >
+            {successLinkLabel}
+          </Link>
+        </div>
+      ) : null}
     </form>
   );
 }

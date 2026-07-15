@@ -31,7 +31,7 @@ export function AppMedia({
   return (
     <div
       className={cn(
-        "relative overflow-hidden rounded-2xl",
+        "relative overflow-hidden",
         fallback ? "bg-[var(--fox-gold)]" : "bg-black",
         className,
       )}
@@ -63,7 +63,11 @@ export function AppMedia({
           objectPosition={posterFocus}
           fit={fit}
           unoptimized={unoptimized}
-          className={cn(fallback && "p-8", "rounded-2xl", imageClassName)}
+          className={cn(
+            fit === "cover" ? "rounded-none" : "rounded-2xl",
+            fallback && "p-8",
+            imageClassName,
+          )}
         />
       )}
     </div>

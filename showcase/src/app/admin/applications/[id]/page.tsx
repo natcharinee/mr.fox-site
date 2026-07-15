@@ -5,10 +5,11 @@ import { AdminPosterUploadField } from "@/components/admin/admin-poster-upload-f
 import { ApplicationFormVisibilityFields } from "@/components/admin/application-form-visibility-fields";
 import { updateApplication } from "@/lib/admin/actions";
 import { getApplicationById, getAllPlatformsAdmin } from "@/lib/admin/queries";
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { cn } from "@/lib/utils";
 
 export const dynamic = "force-dynamic";
 
@@ -33,6 +34,15 @@ export default async function AdminApplicationEditPage({ params }: Props) {
   return (
     <div className="mx-auto max-w-3xl space-y-6">
       <div>
+        <Link
+          href={`/admin/applications#app-${item.id}`}
+          className={cn(
+            buttonVariants({ variant: "outline", size: "sm" }),
+            "mb-3 gap-1.5",
+          )}
+        >
+          ← กลับหน้ารวม
+        </Link>
         <h2 className="text-2xl font-bold">แก้ไขแอป</h2>
         <p className="text-muted-foreground">{item.slug}</p>
       </div>
@@ -40,6 +50,8 @@ export default async function AdminApplicationEditPage({ params }: Props) {
       <AdminSaveForm
         action={update}
         successMessage="อัปเดตแอปสำเร็จแล้ว"
+        successHref={`/admin/applications#app-${item.id}`}
+        successLinkLabel="ไปหน้ารวมแอป"
         className="grid gap-4 sm:grid-cols-2"
       >
         <div>
@@ -106,18 +118,18 @@ export default async function AdminApplicationEditPage({ params }: Props) {
           <Input id="androidUrl" name="androidUrl" defaultValue={androidUrl} className="mt-1" />
         </div>
         <div className="sm:col-span-2">
-          <Label htmlFor="apkUrl">APK URL</Label>
+          <Label htmlFor="apkUrl">URL Site</Label>
           <Input
             id="apkUrl"
             name="apkUrl"
             defaultValue={apkUrl}
-            placeholder={`https://download.mrfox.app/${item.slug}.apk`}
+            placeholder="https://www.example.com"
             className="mt-1"
           />
         </div>
         <div className="flex gap-2 sm:col-span-2">
           <Button type="submit">บันทึก</Button>
-          <Button variant="outline" nativeButton={false} render={<Link href="/admin/applications" />}>
+          <Button variant="outline" nativeButton={false} render={<Link href={`/admin/applications#app-${item.id}`} />}>
             ยกเลิก
           </Button>
         </div>
